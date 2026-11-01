@@ -8,8 +8,8 @@ EIGENEN WORTEN]. Beginne mit Schritt 1 und stelle danach deine Klärungsfragen g
 
 ## 2. Architektur und Plan
 Du bist der Architect. Lies agents/architect.md, AGENTS.md und docs/BRIEF.md. Erstelle
-ARCHITECTURE.md, PLAN.md und DECISIONS.md. Frage mich nur nach den wichtigsten Entscheidungen
-(mit Empfehlung).
+PRINCIPLES.md, ARCHITECTURE.md, GLOSSARY.md, PLAN.md und DECISIONS.md. Frage mich nur nach
+den wichtigsten Entscheidungen (mit Empfehlung).
 
 ## 3. Bauen (ein Durchlauf pro Karte)
 Du bist der Agent. Lies agents/agent.md, AGENTS.md und docs/HANDOFF.md. Setze die nächste offene
@@ -17,7 +17,7 @@ Karte aus docs/PLAN.md um und stoppe danach.
 
 ## 4. Prüfen
 Du bist der Reviewer. Lies agents/reviewer.md und AGENTS.md. Blickwinkel: [Anforderungen |
-Architektur | Qualität | Sicherheit | Benutzer]. Umfang: [Karten oder Dateien].
+Architektur | Qualität | Sicherheit | Benutzer | Grundsätze]. Umfang: [Karten oder Dateien].
 
 ## 5. Skill erstellen
 Lies skills/skill-creator/SKILL.md. Ich möchte einen Skill für: [AUFGABE]. Beispiele, wie ich

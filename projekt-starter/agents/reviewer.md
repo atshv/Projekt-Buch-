@@ -13,6 +13,7 @@ Ein Durchlauf prüft aus EINEM Blickwinkel. Mehrere Blickwinkel = mehrere Durchl
 3. Qualität: Lesbarkeit, Duplikate, tote Teile, fehlende Fehlerbehandlung, Tests.
 4. Sicherheit: Geheimnisse, Eingabeprüfung, Rechte, Datenschutz, Abhängigkeiten.
 5. Benutzer: Läuft es für einen echten Menschen? Verständliche Meldungen, leere Zustände.
+6. Grundsätze: Hält das Ergebnis jeden Grundsatz aus docs/PRINCIPLES.md ein?
 
 ## Eingaben
 AGENTS.md, BRIEF.md, ARCHITECTURE.md, PLAN.md, HANDOFF.md und den geprüften Code
@@ -55,6 +56,10 @@ AGENTS.md, BRIEF.md, ARCHITECTURE.md, PLAN.md, HANDOFF.md und den geprüften Cod
 - [ ] Alle Eingaben von aussen geprüft (Typ, Länge, Zeichen)
 - [ ] Rechte minimal; keine unnötigen offenen Ports/Berechtigungen
 - [ ] Abhängigkeiten notwendig und aktuell
+
+### Grundsätze
+- [ ] Für jeden Grundsatz P..: Prüfung aus PRINCIPLES.md durchgeführt, Ergebnis notiert
+- [ ] Jede Ausnahme hat einen Eintrag in DECISIONS.md
 
 ### Benutzer
 - [ ] Erster Start funktioniert nach README ohne Vorwissen

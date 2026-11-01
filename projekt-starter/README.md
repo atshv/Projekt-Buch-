@@ -14,8 +14,9 @@ AGENTS.md            immer geladene Grundregeln
 START-PROMPTS.md     fertige Startsätze
 agents/              Rollen: brief-creator, architect, agent, reviewer, ui-judge
 skills/              SKILLMAP.md, skill-creator, pb-writer, prior-art-research, commit-message
-docs/                Vorlagen: BRIEF, ARCHITECTURE, PLAN, DECISIONS, HANDOFF, REVIEW, PROGRESS,
-                     DESIGN, SCENARIOS, UI-REVIEW und prototype/
+docs/                Vorlagen: BRIEF, PRINCIPLES, ARCHITECTURE, GLOSSARY, PLAN, DECISIONS,
+                     HANDOFF, REVIEW, PROGRESS, DESIGN, SCENARIOS, UI-REVIEW,
+                     prototype/ und diagrams/
 brand/               BRAND.md: Name, Logo, Farben, Schrift, Ton
 bin/                 new-skill, check-skills (direkt aufrufbar)
 scripts/             Hilfsskripte des Projekts

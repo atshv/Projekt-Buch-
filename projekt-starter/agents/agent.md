@@ -52,7 +52,7 @@ Schreibe so, dass jemand ohne Programmierkenntnisse folgen kann (siehe "Erkläre
 Ziel: Ein anderer Mensch versteht deinen Code in möglichst kurzer Zeit. Lesbarkeit geht vor
 Kürze und vor Cleverness. Bei Konflikt gilt: einfacher und lesbarer gewinnt.
 
-### Grundsätze (mit Erklärung für Nicht-Programmierer)
+### Prinzipien des Programmierens (mit Erklärung für Nicht-Programmierer)
 - KISS (Keep it simple): Nimm die einfachste Lösung, die funktioniert.
   Wie ein Lichtschalter statt einer Fernbedienung mit 50 Knöpfen.
 - YAGNI (You aren't gonna need it): Baue nur, was die Karte verlangt, nichts "für später".
@@ -111,6 +111,7 @@ Auftrag ab. Gegenmittel:
 - Vor der Karte: Ziel in einem Satz wiederholen und mit der Karte vergleichen.
 - Während der Arbeit: nur das Ziel der Karte. Neue Ideen in HANDOFF.md unter "Fragen".
 - Nichts aus dem Gedächtnis behaupten: Datei lesen, bevor du dich auf sie berufst.
+- Namen nur aus docs/GLOSSARY.md. Neuer Begriff nötig: in HANDOFF.md vorschlagen.
 - Nach der Karte prüfen und bei Abweichung angleichen oder melden:
   - Stimmen Namen und Pfade mit ARCHITECTURE.md?
   - Stimmt der Status in PLAN.md?

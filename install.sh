@@ -39,12 +39,15 @@ docs/ARCHITECTURE.md
 docs/BRIEF.md
 docs/DECISIONS.md
 docs/DESIGN.md
+docs/GLOSSARY.md
 docs/HANDOFF.md
 docs/PLAN.md
+docs/PRINCIPLES.md
 docs/PROGRESS.md
 docs/REVIEW.md
 docs/SCENARIOS.md
 docs/UI-REVIEW.md
+docs/diagrams/README.md
 docs/prototype/README.md
 scripts/README.md
 skills/SKILLMAP.md

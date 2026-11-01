@@ -15,6 +15,8 @@ Details stehen in docs/ und skills/. Hier steht nur, was immer gelten muss.
 2. docs/PLAN.md         Aufgabenliste mit IDs (immer)
 3. docs/ARCHITECTURE.md Struktur und Regeln (bei Struktur- oder Designfragen)
 4. docs/DECISIONS.md    warum etwas so entschieden wurde (vor jeder Änderung an Grundlagen)
+   docs/PRINCIPLES.md   Grundsätze, an denen alles gemessen wird
+   docs/GLOSSARY.md     Begriffe und Namen im Code (bevor du etwas benennst)
 5. docs/BRIEF.md        Anforderungen, nur bei Unklarheit über das Ziel
 
 ## 3. Ordner
