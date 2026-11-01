@@ -20,6 +20,7 @@ Aktualisiert: [JJJJ-MM-TT HH:MM]     Von: Agent     Letzte Karte: [T00]
 
 ## 5. Prüfstand
 - Test-Befehl: [..]  Ergebnis: [x bestanden, y fehlgeschlagen]
+- Nachweis: [docs/handoff/nachweise/Txx-JJJJMMTT-HHMMSS.md] (von bin/record-test)
 - Manuell geprüft: [Schritt -> Ergebnis]
 
 ## 6. Blockiert / Probleme

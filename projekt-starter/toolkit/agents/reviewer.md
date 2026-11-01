@@ -22,6 +22,8 @@ AGENTS.md, BRIEF.md, ARCHITECTURE.md, PLAN.md, HANDOFF.md und den geprüften Cod
 ## Ablauf
 1. Umfang festlegen: welche Karten/Dateien, welcher Blickwinkel. Schreibe es oben in den Bericht.
 2. Bauen und testen: Tests/Start laut AGENTS.md ausführen. Ergebnis wörtlich notieren.
+   Lies die Nachweise der Karte in docs/handoff/nachweise/ und vergleiche sie mit deinem Lauf.
+   Fehlt der Nachweis oder weicht dein Ergebnis ab, ist das ein Fund.
 3. Prüfen anhand der Checkliste des Blickwinkels (unten). Jede Aussage mit Beleg:
    Datei:Zeile oder Befehlsausgabe. Ohne Beleg kein Fund.
 4. Befunde einstufen:

@@ -27,8 +27,10 @@ AGENTS.md
 README.md
 START-PROMPTS.md
 bin/README.md
+bin/check-scope
 bin/check-skills
 bin/new-skill
+bin/record-test
 brand/BRAND.md
 docs/GLOSSARY.md
 docs/adr/_overview.md
@@ -134,6 +136,7 @@ if [ ${#DATEIEN[@]} -gt 0 ]; then
     mkdir -p "$(dirname "$d")"
     say "lade $d"
     curl -fsSL "$RAW/$d" -o "$d" || fail "nicht gefunden: $d (Liste: --liste)"
+    case "$d" in bin/*) chmod +x "$d" ;; esac
   done
   printf '%sFertig.%s %s%d Datei(en) im aktuellen Ordner.%s\n' "$G" "$N" "$D" "${#DATEIEN[@]}" "$N"
   exit 0
@@ -153,4 +156,5 @@ printf '\n%s✔ %s Dateien geladen%s\n\n' "$G" "$N_DATEIEN" "$N"
 printf '  %scd %s%s\n' "$C" "$ZIEL" "$N"
 printf '  %sgit init%s\n' "$C" "$N"
 printf '  %sAGENTS.md öffnen%s    %s# Abschnitt 1 ausfüllen%s\n' "$C" "$N" "$D" "$N"
-printf '  %s→ Prompt 1 aus START-PROMPTS.md in dein KI-Programm einfügen%s\n\n' "$D" "$N"
+printf '  %s→ Prompt 1 (Schritt für Schritt) oder Prompt 16 (alles in einem Durchlauf)%s\n' "$D" "$N"
+printf '  %s  aus START-PROMPTS.md in dein KI-Programm einfügen%s\n\n' "$D" "$N"

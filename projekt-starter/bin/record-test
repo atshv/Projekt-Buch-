@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+# Führt einen Befehl aus und legt das Ergebnis als Nachweis ab.  Aufruf: bin/record-test <Karten-ID> -- <Befehl>
+# Beispiel: bin/record-test T05 -- npm test       Ablage: docs/handoff/nachweise/<ID>-JJJJMMTT-HHMMSS.md
+# Die Datei hat immer denselben Aufbau, wird nie überschrieben und hält auch Fehlschläge fest.
+# Der Exit-Code des Befehls wird durchgereicht (0 = bestanden).
+set -uo pipefail
+cd "$(dirname "$0")/.."
+
+ID="${1:-}"
+if [ -z "$ID" ] || [ "$ID" = "--help" ] || [ "$ID" = "-h" ]; then
+  sed -n '2,5p' "$0" | sed 's/^# \{0,1\}//'; exit 0
+fi
+shift
+if [ "${1:-}" = "--" ]; then shift; fi
+[ $# -gt 0 ] || { echo "Es fehlt der Befehl. Aufruf: bin/record-test <Karten-ID> -- <Befehl>"; exit 2; }
+echo "$ID" | grep -Eq '^[A-Za-z0-9][A-Za-z0-9._-]*$' || { echo "Ungültige Kennung: $ID (erlaubt: Buchstaben, Ziffern, . _ -)"; exit 2; }
+
+ZIEL="docs/handoff/nachweise"
+mkdir -p "$ZIEL"
+ROH=$(mktemp)
+trap 'rm -f "$ROH"' EXIT
+
+ZEIT=$(date '+%Y-%m-%d %H:%M:%S %z')
+STEMPEL=$(date '+%Y%m%d-%H%M%S')
+
+"$@" 2>&1 | tee "$ROH"
+CODE=${PIPESTATUS[0]}
+
+if [ "$CODE" -eq 0 ]; then ERGEBNIS="bestanden"; else ERGEBNIS="fehlgeschlagen"; fi
+
+# Stand des Projekts
+if git rev-parse --verify -q HEAD >/dev/null 2>&1; then
+  STAND="Commit $(git rev-parse --short HEAD), $(git status --porcelain | wc -l | tr -d ' ') ungesicherte Dateien"
+else
+  STAND="noch kein Commit"
+fi
+
+# Test der Karte aus dem Plan (nur wenn die Kennung eine Karte ist)
+KARTENTEST="(keine Karte $ID in docs/plan/PLAN.md)"
+if [ -f docs/plan/PLAN.md ]; then
+  T=$(awk -v id="$ID" '
+    $0 ~ "^### " id ":" { drin = 1; next }
+    drin && /^##/ { exit }
+    drin && /^- Test:/ { sub(/^- Test:[ \t]*/, ""); print; exit }
+  ' docs/plan/PLAN.md)
+  [ -z "$T" ] || KARTENTEST="$T"
+fi
+
+# Ausgabe säubern (Farbcodes, Zeilenenden) und auf die letzten 100 Zeilen kürzen
+ESC=$(printf '\033')
+SAUBER=$(mktemp)
+sed "s/${ESC}\\[[0-9;]*[A-Za-z]//g" "$ROH" | tr -d '\r' > "$SAUBER"
+N_ZEILEN=$(wc -l < "$SAUBER" | tr -d ' ')
+if [ "$N_ZEILEN" -gt 100 ]; then
+  HINWEIS="gekürzt: letzte 100 von $N_ZEILEN Zeilen"
+else
+  HINWEIS="vollständig: $N_ZEILEN Zeilen"
+fi
+
+DATEI="$ZIEL/$ID-$STEMPEL.md"
+N=2
+while [ -e "$DATEI" ]; do DATEI="$ZIEL/$ID-$STEMPEL-$N.md"; N=$((N + 1)); done
+
+{
+  echo "# Nachweis $ID"
+  echo
+  echo "- Karte: $ID"
+  echo "- Zeit: $ZEIT"
+  echo "- Befehl: \`$*\`"
+  echo "- Ergebnis: $ERGEBNIS (Exit-Code $CODE)"
+  echo "- Stand: $STAND"
+  echo "- Test der Karte: $KARTENTEST"
+  echo
+  echo "## Ausgabe ($HINWEIS)"
+  echo
+  echo '````text'
+  tail -n 100 "$SAUBER"
+  echo '````'
+} > "$DATEI"
+rm -f "$SAUBER"
+
+echo
+echo "Nachweis: $DATEI ($ERGEBNIS)"
+exit "$CODE"

@@ -8,7 +8,7 @@ Regel: Eine Karte pro Agent-Durchlauf. Reihenfolge einhalten. Abhängigkeiten zu
 ### T01: Projektgerüst und Test-Setup
 - Bezug: Architektur Abschnitt 3
 - Abhängig von: -
-- Betrifft: Ordnerstruktur, Konfiguration, tests/
+- Betrifft: Ordnerstruktur, Konfiguration, tests/, AGENTS.md
 - Beschreibung: Ordner anlegen, Werkzeuge installieren, Start- und Testbefehl in AGENTS.md
   im Abschnitt Befehle eintragen.
 - Test: Fertig, wenn `[Testbefehl]` läuft und "0 Fehler" meldet.
