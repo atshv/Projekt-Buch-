@@ -5,6 +5,8 @@ Befehle, die man direkt aufruft. Jede Datei ist ausführbar und erklärt sich mi
 | Befehl            | Was er tut                                   |
 |-------------------|----------------------------------------------|
 | bin/new-skill     | legt toolkit/skills/<name>/ mit Gerüst und Tests an  |
+| bin/new-change    | legt docs/changes/<name>/CHANGE.md für eine Änderung an (`bin/new-change pdf-export`) |
+| bin/finish-change | schliesst eine Änderung ab, wenn Karten erledigt und Übernahme abgehakt sind, und archiviert sie |
 | bin/check-skills  | prüft alle Skills mit dem Prüfskript         |
 | bin/check-plan    | prüft PLAN.md: Felder, Abnahme (Wenn/Dann), Abhängigkeiten, Platzhalter, Umfang der Architektur |
 | bin/check-scope   | prüft, ob geänderte Dateien zur Aufgabenkarte passen und keine geschützten Pfade berührt sind (`bin/check-scope T05`) |

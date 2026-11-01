@@ -2,6 +2,7 @@
 
 Diese Datei wird in JEDER Sitzung zuerst gelesen. Sie ist kurz (Ziel: unter 100 Zeilen).
 Details stehen in toolkit/ (gleich in jedem Projekt) und docs/ (nur dieses Projekt).
+Gilt für jedes KI-Programm. CLAUDE.md, GEMINI.md, .cursor/rules/ und .github/ verweisen nur hierher.
 
 ## 1. Projekt
 - Name: [PROJEKTNAME]
@@ -22,7 +23,7 @@ Details stehen in toolkit/ (gleich in jedem Projekt) und docs/ (nur dieses Proje
 ## 3. Ordner
 toolkit/   agents/ (Rollen), skills/ (Skills + SKILLMAP.md), governance/ (Regeln), templates/
 docs/      GLOSSARY.md, brief/, principles/, architecture/, adr/, integrations/,
-           problem-to-solution/, research/, plan/, design/, handoff/, reviews/
+           problem-to-solution/, research/, plan/, changes/, design/, handoff/, reviews/
 brand/ Marke · bin/ Befehle · scripts/ Hilfsskripte · src/ Code · tests/ Tests
 Neue Ordner nur mit Grund in einem ADR (docs/adr/). toolkit/ wird im Projekt nicht verändert.
 
@@ -47,6 +48,7 @@ Starte eine Sitzung mit: "Du bist <Rolle>. Lies toolkit/agents/<datei> und AGENT
 - Umfang prüfen:   bin/check-scope <Karten-ID>
 - Testlauf belegen: bin/record-test <Karten-ID> -p A1,A2 -- <Testbefehl>
 - Fertig prüfen:   bin/check-done <Karten-ID>
+- Änderung:        bin/new-change <name> anlegen, bin/finish-change <name> abschliessen
 Ist ein Befehl unbekannt, trage "[UNKLAR]" ein und frage den Menschen. Rate nie.
 
 ## 6. Regeln (Verbot + Alternative)
@@ -57,6 +59,8 @@ Ist ein Befehl unbekannt, trage "[UNKLAR]" ein und frage den Menschen. Rate nie.
 - Füge nie neue Abhängigkeiten ohne Rückfrage hinzu. Alternative: nenne 2 Optionen im Chat.
 - Schreibe nie Passwörter, Schlüssel oder Tokens in Dateien. Alternative: .env + .env.example.
 - Lösche nie Daten oder Dateien ohne Freigabe. Alternative: verschiebe nach _archiv/.
+- Schreibe nie Code, bevor ein Test scheitert (Test zuerst). Ausnahme nur, wenn die Karte
+  "Test zuerst: nein (Grund)" sagt. Alternative: schreibe zuerst den Test.
 - Überspringe nie Tests, um "fertig" zu melden. Alternative: melde den Fehler ehrlich.
   Belege Testläufe mit bin/record-test. "erledigt" erst, wenn bin/check-done "FERTIG" meldet.
 - Erfinde nie Fakten über Code, den du nicht gelesen hast. Alternative: lies die Datei.
@@ -74,7 +78,8 @@ Ist ein Befehl unbekannt, trage "[UNKLAR]" ein und frage den Menschen. Rate nie.
 
 ## 8. Skills
 - Landkarte: toolkit/skills/SKILLMAP.md (welcher Skill für welche Aufgabe und Rolle).
-- Lade einen Skill nur, wenn seine Beschreibung passt. Neuer Skill: skill-creator.
+- Pflicht: Lies vor jeder Aufgabe SKILLMAP.md. Passt ein Skill, lade ihn und nenne ihn im ersten
+  Satz ("Skill: plan-cards"). Passt keiner: "Skill: keiner". Neuer Skill: skill-creator.
 
 ## 9. Rückverfolgung (alles hängt über IDs zusammen)
 Brief M1 → Grundsatz P01 → Architektur (Modul) → adr-0003 → Karte T05 → Commit "T05: ..."

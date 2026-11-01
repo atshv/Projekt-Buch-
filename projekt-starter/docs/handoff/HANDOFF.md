@@ -13,7 +13,7 @@ Aktualisiert: [JJJJ-MM-TT HH:MM]     Von: Agent     Letzte Karte: [T00]
 - Erster konkreter Handgriff: [z. B. "Datei src/x.py öffnen, Funktion y ergänzen"]
 
 ## 3. Erledigt in dieser Sitzung
-- [Txx]: [Ergebnis] (Dateien: [..])
+- [Txx]: [Ergebnis] (Dateien: [..]; Skills: [Name | keiner])
 
 ## 4. Geänderte Dateien
 - [Pfad]: [Was und warum, 1 Zeile]

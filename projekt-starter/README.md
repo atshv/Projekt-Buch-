@@ -10,19 +10,21 @@ Ein leeres, wiederverwendbares Gerüst für Projekte mit KI-Unterstützung.
 4. Danach: Architect (Prompt 2), dann Agent (Prompt 3) Karte für Karte, dazwischen Reviewer.
    Nach Prompt 16 folgt Prompt 17 (Kaltstart-Test), dann geht es mit dem Agent (Prompt 3) weiter.
 5. Brauchst du eine wiederkehrende Fähigkeit: Prompt 5 (Skill erstellen).
+6. Gibt es das Projekt schon: Prompt 18 (Bestandsaufnahme), danach Prompt 8 für jeden Änderungswunsch.
 
 ## Inhalt
-AGENTS.md            immer geladene Grundregeln
+AGENTS.md            immer geladene Grundregeln (gilt für jedes KI-Programm)
+CLAUDE.md, GEMINI.md, .cursor/rules/, .github/   verweisen nur auf AGENTS.md
 START-PROMPTS.md     fertige Startsätze
 toolkit/             in jedem Projekt gleich, nicht verändern
   agents/            brief-creator, architect, agent, reviewer, ui-judge
   skills/            SKILLMAP.md und alle Skills
   governance/        code-style, git-workflow, anti-drift, definition-of-done
-  templates/         Vorlagen für Prüfberichte
+  templates/         Vorlagen für Prüfberichte, Änderungen und Bestandsaufnahme
 docs/                nur dieses Projekt
   GLOSSARY.md        ein Begriff, ein Name im Code
   brief/ principles/ architecture/ adr/ integrations/ problem-to-solution/
-  plan/ design/ handoff/ reviews/
+  plan/ changes/ design/ handoff/ reviews/
 brand/ bin/ scripts/ src/ tests/
 
 Die Dateien sind projektunabhängig. Passe nur die eckigen Klammern an.

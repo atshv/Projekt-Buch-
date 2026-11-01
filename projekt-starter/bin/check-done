@@ -2,13 +2,15 @@
 # Prüft, ob eine Karte belegt fertig ist.  Aufruf: bin/check-done <Karten-ID>
 # Verlangt gültige Nachweise (bin/record-test) für jeden Abnahmepunkt (A1, A2 ...) und jeden Befehl
 # unter "Prüfungen". Gültig = bestanden, Prüfsumme stimmt, Arbeitsdateien seit dem Lauf unverändert.
+# Test zuerst: Ein fehlgeschlagener Nachweis muss älter sein als der erste bestandene (ausser die
+# Karte sagt "Test zuerst: nein (Grund)").
 # Ergebnis: 0 = FERTIG, 1 = NICHT FERTIG, 2 = Eingabe- oder Planfehler.
 set -uo pipefail
 cd "$(dirname "$0")/.."
 
 ID="${1:-}"
 if [ -z "$ID" ] || [ "$ID" = "--help" ] || [ "$ID" = "-h" ]; then
-  sed -n '2,5p' "$0" | sed 's/^# \{0,1\}//'; exit 0
+  sed -n '2,7p' "$0" | sed 's/^# \{0,1\}//'; exit 0
 fi
 echo "$ID" | grep -Eq '^T[0-9]+[a-z]?$' || { echo "Ungültige Karten-ID: $ID (erwartet z. B. T07 oder T07a)"; exit 2; }
 git rev-parse --git-dir >/dev/null 2>&1 || { echo "Kein Git-Projekt. Zuerst: git init"; exit 2; }
@@ -47,7 +49,10 @@ PRUEFUNGEN=$(printf '%s\n' "$KARTE" | awk '
   { feld = 0 }
 ' | grep -o '`[^`]*`' | tr -d '`' || true)
 
+ZUERST=$(printf '%s\n' "$KARTE" | grep -m1 '^- Test zuerst:' | sed 's/^- Test zuerst:[[:space:]]*//' || true)
 JETZT=$(stand_hash)
+ROT=""
+GRUEN=""
 DECKT_A=" "
 DECKT_B=""
 N_GUELTIG=0
@@ -60,7 +65,12 @@ for d in docs/handoff/nachweise/"$ID"-[0-9]*.md; do
   if [ -z "$SUMME" ] || [ "$SUMME" != "$REAL" ]; then
     echo "Nachweis beschädigt oder nachträglich verändert (ignoriert): $d"; N_KAPUTT=$((N_KAPUTT + 1)); continue
   fi
-  grep -q '^- Ergebnis: bestanden' "$d" || continue
+  STEMPEL=$(basename "$d" .md | sed "s/^$ID-//" | cut -c1-15)
+  if ! grep -q '^- Ergebnis: bestanden' "$d"; then
+    if [ -z "$ROT" ] || [[ "$STEMPEL" < "$ROT" ]]; then ROT="$STEMPEL"; fi
+    continue
+  fi
+  if [ -z "$GRUEN" ] || [[ "$STEMPEL" < "$GRUEN" ]]; then GRUEN="$STEMPEL"; fi
   STAND=$(grep '^- Arbeitsstand: ' "$d" | head -n 1 | sed 's/^- Arbeitsstand: //')
   if [ "$STAND" != "$JETZT" ]; then N_ALT=$((N_ALT + 1)); continue; fi
   N_GUELTIG=$((N_GUELTIG + 1))
@@ -84,6 +94,13 @@ done <<< "$PRUEFUNGEN"
 if [ -z "$ABNAHME" ] && [ -z "$PRUEFUNGEN" ] && [ $N_GUELTIG -eq 0 ]; then
   echo "  FEHLT    kein gültiger Nachweis (Karte hat keine Abnahme-IDs und keine Prüfungen)"; FEHLT=$((FEHLT + 1))
 fi
+case "$ZUERST" in
+  nein*) echo "  ok       Test zuerst entfällt: $ZUERST" ;;
+  *)
+    if [ -z "$GRUEN" ]; then :
+    elif [ -n "$ROT" ] && [[ "$ROT" < "$GRUEN" ]]; then echo "  ok       Test zuerst: roter Lauf ($ROT) vor dem grünen ($GRUEN)"
+    else echo "  FEHLT    Test zuerst: kein roter Nachweis vor dem ersten grünen. Der Test muss zuerst scheitern (bin/record-test $ID -- <Befehl>) oder die Karte sagt \"Test zuerst: nein (Grund)\"."; FEHLT=$((FEHLT + 1)); fi ;;
+esac
 [ $N_ALT -eq 0 ] || echo "  Hinweis  $N_ALT bestandene Nachweise sind veraltet (Dateien wurden seit dem Lauf geändert). Test neu laufen lassen."
 [ $N_KAPUTT -eq 0 ] || echo "  Hinweis  $N_KAPUTT Nachweise sind beschädigt."
 if [ $FEHLT -eq 0 ]; then echo "FERTIG: $ID ist belegt."; exit 0; fi
