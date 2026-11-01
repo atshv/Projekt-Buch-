@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="250" viewBox="0 0 640 250" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="14">
+<rect width="640" height="250" rx="10" fill="#0d1117" stroke="#30363d"/>
+<path d="M0 10a10 10 0 0 1 10-10h620a10 10 0 0 1 10 10v26H0z" fill="#161b22"/>
+<circle cx="22" cy="18" r="6" fill="#ff5f56"/><circle cx="42" cy="18" r="6" fill="#ffbd2e"/><circle cx="62" cy="18" r="6" fill="#27c93f"/>
+<text x="320.0" y="23" text-anchor="middle" fill="#8b949e" font-size="12">projekt-buch — zsh</text>
+<text x="24" y="66" xml:space="preserve"><tspan fill="#3fb950">$ </tspan><tspan fill="#c9d1d9">cat TITEL.txt</tspan></text>
+<text x="24" y="118" font-size="38" font-weight="bold" fill="#79c0ff">Das KI-Projekt-Buch</text>
+<text x="24" y="150" fill="#8b949e">Software bauen mit Brief, Architect, Agent, Skills, Reviewer</text>
+<text x="24" y="172" fill="#8b949e">Schritt für Schritt. Kopierfertige Dateien für jedes Projekt.</text>
+<text x="24" y="214" xml:space="preserve"><tspan fill="#3fb950">$ </tspan><tspan fill="#e3b341">▋</tspan></text>
+</svg>

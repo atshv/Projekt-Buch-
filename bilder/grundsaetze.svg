@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="435" height="336" viewBox="0 0 435 336" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="14">
+<rect width="435" height="336" rx="10" fill="#0d1117" stroke="#30363d"/>
+<path d="M0 10a10 10 0 0 1 10-10h415a10 10 0 0 1 10 10v26H0z" fill="#161b22"/>
+<circle cx="22" cy="18" r="6" fill="#ff5f56"/><circle cx="42" cy="18" r="6" fill="#ffbd2e"/><circle cx="62" cy="18" r="6" fill="#27c93f"/>
+<text x="217.5" y="23" text-anchor="middle" fill="#8b949e" font-size="12">grundsaetze.txt</text>
+<text x="24" y="61.9" xml:space="preserve"><tspan fill="#3fb950">$ </tspan><tspan fill="#c9d1d9">cat GRUNDSAETZE.txt</tspan></text>
+<text x="24" y="84.3" xml:space="preserve"><tspan fill="#c9d1d9"></tspan></text>
+<text x="24" y="106.7" xml:space="preserve"><tspan fill="#e3b341">01 </tspan><tspan fill="#c9d1d9">Eine Sitzung, eine Rolle.</tspan></text>
+<text x="24" y="129.1" xml:space="preserve"><tspan fill="#e3b341">02 </tspan><tspan fill="#c9d1d9">Dateien vor Gedächtnis.</tspan></text>
+<text x="24" y="151.5" xml:space="preserve"><tspan fill="#e3b341">03 </tspan><tspan fill="#c9d1d9">Kleine Karten, kleine Schritte.</tspan></text>
+<text x="24" y="173.9" xml:space="preserve"><tspan fill="#e3b341">04 </tspan><tspan fill="#c9d1d9">Test zuerst.</tspan></text>
+<text x="24" y="196.3" xml:space="preserve"><tspan fill="#e3b341">05 </tspan><tspan fill="#c9d1d9">Verbot immer mit Alternative.</tspan></text>
+<text x="24" y="218.7" xml:space="preserve"><tspan fill="#e3b341">06 </tspan><tspan fill="#c9d1d9">Unklar? </tspan><tspan fill="#ff7b72">[UNKLAR]</tspan><tspan fill="#c9d1d9"> markieren und fragen.</tspan></text>
+<text x="24" y="241.1" xml:space="preserve"><tspan fill="#e3b341">07 </tspan><tspan fill="#c9d1d9">Der Mensch gibt frei.</tspan></text>
+<text x="24" y="263.5" xml:space="preserve"><tspan fill="#e3b341">08 </tspan><tspan fill="#c9d1d9">Ein frischer Blick prüft.</tspan></text>
+<text x="24" y="285.9" xml:space="preserve"><tspan fill="#e3b341">09 </tspan><tspan fill="#c9d1d9">Skill ab der dritten Wiederholung.</tspan></text>
+<text x="24" y="308.3" xml:space="preserve"><tspan fill="#e3b341">10 </tspan><tspan fill="#c9d1d9">Kurz schlägt lang.</tspan></text>
+</svg>
