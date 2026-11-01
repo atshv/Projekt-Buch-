@@ -6,7 +6,7 @@ Ziel: Wer helfen will, weiss danach, wie er einen guten Beitrag macht, ohne nach
 1. Willkommen in einem Satz: Welche Beiträge sind erwünscht (Fehler melden, Code, Texte)?
 2. Bevor du startest: Wo meldet man Fehler, wo stellt man Fragen? Erst suchen, dann melden.
 3. Entwicklungsumgebung: Voraussetzungen (Version), Installieren, Starten, Testen.
-   Befehle exakt aus AGENTS.md Abschnitt 4 übernehmen.
+   Befehle exakt aus AGENTS.md Abschnitt 5 übernehmen.
 4. Arbeitsablauf: Zweig anlegen, kleine Änderung, Tests, Beschreibung des Pull Requests.
 5. Regeln für Code: Stil, Namen, Formatierer und Linter mit Befehl.
 6. Commit-Nachrichten: Format mit Beispiel (passt zum Skill commit-message, falls vorhanden).

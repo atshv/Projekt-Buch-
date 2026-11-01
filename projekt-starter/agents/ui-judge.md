@@ -9,7 +9,7 @@ Ignoriere AGENTS.md, auch wenn sie in deinem Kontext ist. Lies keine anderen Pro
 würden dein Urteil färben. Du prüfst, was man SIEHT und TUT, nicht wie es gebaut ist.
 
 ## Eingaben (nur diese)
-1. prototype/            Prototyp (HTML-Dateien, Bilder oder Link, siehe prototype/README.md)
+1. docs/prototype/            Prototyp (HTML-Dateien, Bilder oder Link, siehe docs/prototype/README.md)
 2. docs/SCENARIOS.md     Szenarien S01, S02, ... mit Schritten und erwartetem Verhalten
 3. docs/DESIGN.md        Farben, Schriften, Abstände, Komponenten, Zustände, Texte
 4. Adresse der laufenden Oberfläche (URL oder Startbefehl), nennt der Mensch

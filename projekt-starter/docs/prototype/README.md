@@ -1,4 +1,4 @@
-# prototype/
+# docs/prototype/
 
 Hier liegt der Prototyp: der Massstab, an dem der UI-Judge die fertige Oberfläche misst.
 

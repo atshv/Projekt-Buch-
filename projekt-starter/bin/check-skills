@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Prüft alle Skills in skills/ mit dem Prüfskript.  Aufruf: bin/check-skills
+set -uo pipefail
+cd "$(dirname "$0")/.."
+if [ "${1:-}" = "--help" ]; then sed -n '2p' "$0" | sed 's/^# //'; exit 0; fi
+FEHLER=0
+for d in skills/*/; do
+  [ -f "$d/SKILL.md" ] || continue
+  echo "== ${d%/}"
+  python3 skills/skill-creator/scripts/validate_skill.py "${d%/}" || FEHLER=1
+done
+grep -q "" skills/SKILLMAP.md 2>/dev/null || echo "HINWEIS: skills/SKILLMAP.md fehlt"
+for d in skills/*/; do
+  n=$(basename "$d")
+  grep -q "$n" skills/SKILLMAP.md || echo "HINWEIS: $n fehlt in SKILLMAP.md"
+done
+exit $FEHLER

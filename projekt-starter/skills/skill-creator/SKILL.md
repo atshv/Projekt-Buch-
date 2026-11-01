@@ -38,6 +38,7 @@ Ist die Aufgabe einmalig oder nur ein Projektdokument? Dann KEIN Skill; sage das
 Regeln (hart): 1 bis 64 Zeichen; nur a-z, 0-9 und Bindestrich; nicht am Anfang oder Ende
 ein Bindestrich; kein doppelter Bindestrich (--); Ordnername = name.
 Stil: Tätigkeit oder Gegenstand, 2 bis 4 Wörter, englisch: `pdf-report`, `db-migration`.
+Gerüst anlegen: `bin/new-skill <name>` (erstellt SKILL.md und tests/).
 
 ## Phase 4: Description schreiben (wichtigster Teil)
 Die Beschreibung ist der EINZIGE Auslöser. Der Körper wird erst nach dem Start gelesen, also
@@ -82,6 +83,7 @@ Stilregeln:
 
 ## Phase 6: Prüfen (automatisch + Checkliste)
 1. Führe aus: `python3 skills/skill-creator/scripts/validate_skill.py skills/<name>`
+   (oder `bin/check-skills` für alle Skills und den Abgleich mit SKILLMAP.md)
    Behebe jede Meldung. Das Skript prüft Name, Beschreibung, Länge, Struktur, Verweise.
 2. Checkliste (alle abhaken, sonst zurück zu Phase 4/5):
    - [ ] Beschreibung enthält "Nutze diesen Skill, wenn" und "Nicht für"

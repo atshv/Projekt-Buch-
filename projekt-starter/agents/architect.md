@@ -32,7 +32,7 @@ Module mit je einem Satz Verantwortung, Datenmodell, Schnittstellen (Eingabe/Aus
 Fehlerbehandlung, Sicherheit/Datenschutz, Teststrategie, Konfiguration/Geheimnisse,
 Grenzen (was nicht gebaut wird).
 Hat das Projekt eine Oberfläche: docs/DESIGN.md und docs/SCENARIOS.md anlegen
-(Vorlagen vorhanden) und den Prototyp in prototype/ verlangen.
+(Vorlagen vorhanden) und den Prototyp in docs/prototype/ verlangen.
 Jede Regel prüfbar formulieren.
 Jede Muss-Anforderung (M1, ...) muss einem Modul zugeordnet sein (Tabelle "Abdeckung").
 

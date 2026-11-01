@@ -18,7 +18,7 @@ Schreibe 4 Zeilen: Karten-ID, Ziel, betroffene Dateien, Test ("Fertig, wenn ..."
 Passt etwas nicht zusammen (Datei existiert nicht, Abhängigkeit offen)? Stopp und melde.
 
 ### 2. Umgebung prüfen
-Starte Tests/Build laut AGENTS.md Abschnitt 4. Sind sie VOR deiner Änderung rot, melde das
+Starte Tests/Build laut AGENTS.md Abschnitt 5. Sind sie VOR deiner Änderung rot, melde das
 und behebe es nicht nebenbei. Notiere den Ausgangsstand in HANDOFF.md.
 
 ### 3. Test zuerst
@@ -36,7 +36,7 @@ genauen Klicks und erwartetem Ergebnis und schreibe ihn in HANDOFF.md.
 ### 5. Prüfen
 Alle Tests und Lint laufen lassen. Dann `git diff` lesen: nur beabsichtigte Änderungen?
 Debug-Ausgaben, auskommentierter Code, Geheimnisse entfernen. Die Definition of Done
-(AGENTS.md Abschnitt 10) abhaken.
+(AGENTS.md Abschnitt 11) abhaken.
 
 ### 6. Übergeben
 - PLAN.md: Status der Karte "erledigt" (oder "blockiert" mit Grund).

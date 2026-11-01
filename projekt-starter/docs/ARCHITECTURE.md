@@ -18,8 +18,12 @@ Status: Entwurf | freigegeben am [DATUM]     Basis: BRIEF.md Version [N]
 ```text
 [projekt]/
   AGENTS.md
-  docs/            BRIEF, ARCHITECTURE, PLAN, DECISIONS, HANDOFF, REVIEW, PROGRESS
-  roles/  skills/
+  agents/          Rollen (brief-creator, architect, agent, reviewer, ui-judge)
+  skills/          Skills und SKILLMAP.md
+  docs/            Projektdokumente, Vorlagen, prototype/
+  brand/           Name, Logo, Farben, Ton (BRAND.md)
+  bin/             Befehle zum direkten Aufrufen
+  scripts/         Hilfsskripte (Build, Daten, Wartung)
   src/
     [modul-a]/     [Verantwortung in 1 Satz]
     [modul-b]/

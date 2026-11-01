@@ -3,20 +3,20 @@
 Jeder Prompt startet eine NEUE Sitzung mit genau einer Rolle. Ersetze [ ] durch deine Angaben.
 
 ## 1. Brief erstellen
-Du bist der Brief Creator. Lies roles/brief-creator.md und AGENTS.md. Meine Idee: [IDEE IN
+Du bist der Brief Creator. Lies agents/brief-creator.md und AGENTS.md. Meine Idee: [IDEE IN
 EIGENEN WORTEN]. Beginne mit Schritt 1 und stelle danach deine Klärungsfragen gebündelt.
 
 ## 2. Architektur und Plan
-Du bist der Architect. Lies roles/architect.md, AGENTS.md und docs/BRIEF.md. Erstelle
+Du bist der Architect. Lies agents/architect.md, AGENTS.md und docs/BRIEF.md. Erstelle
 ARCHITECTURE.md, PLAN.md und DECISIONS.md. Frage mich nur nach den wichtigsten Entscheidungen
 (mit Empfehlung).
 
 ## 3. Bauen (ein Durchlauf pro Karte)
-Du bist der Agent. Lies roles/agent.md, AGENTS.md und docs/HANDOFF.md. Setze die nächste offene
+Du bist der Agent. Lies agents/agent.md, AGENTS.md und docs/HANDOFF.md. Setze die nächste offene
 Karte aus docs/PLAN.md um und stoppe danach.
 
 ## 4. Prüfen
-Du bist der Reviewer. Lies roles/reviewer.md und AGENTS.md. Blickwinkel: [Anforderungen |
+Du bist der Reviewer. Lies agents/reviewer.md und AGENTS.md. Blickwinkel: [Anforderungen |
 Architektur | Qualität | Sicherheit | Benutzer]. Umfang: [Karten oder Dateien].
 
 ## 5. Skill erstellen
@@ -32,11 +32,11 @@ Du bist der Agent. Lies AGENTS.md. Aufgabe: [BESCHREIBUNG]. Betrifft: [DATEIEN].
 [KRITERIUM]. Schreibe einen Test, setze um, aktualisiere docs/HANDOFF.md.
 
 ## 8. Änderungswunsch im laufenden Projekt
-Du bist der Architect. Lies roles/architect.md, AGENTS.md, docs/BRIEF.md, docs/PLAN.md. Neuer
+Du bist der Architect. Lies agents/architect.md, AGENTS.md, docs/BRIEF.md, docs/PLAN.md. Neuer
 Wunsch: [WUNSCH]. Liste zuerst die Auswirkungen (Karten, Module), dann frage mich.
 
 ## 9. Oberfläche gegen Prototyp prüfen (UI-Judge)
-Du bist der UI-Judge. Lies nur roles/ui-judge.md, prototype/, docs/SCENARIOS.md und
+Du bist der UI-Judge. Lies nur agents/ui-judge.md, docs/prototype/, docs/SCENARIOS.md und
 docs/DESIGN.md. Ignoriere AGENTS.md und alle anderen Projektdokumente. Laufende Oberfläche:
 [URL oder Startbefehl]. Prüfe alle Szenarien und schreibe docs/UI-REVIEW.md.
 

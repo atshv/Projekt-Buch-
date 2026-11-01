@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# Legt einen neuen Skill an.  Aufruf: bin/new-skill <name>
+# name: nur a-z, 0-9 und Bindestrich, z. B. bericht-schreiben
+set -euo pipefail
+cd "$(dirname "$0")/.."
+if [ "${1:-}" = "" ] || [ "${1:-}" = "--help" ]; then
+  sed -n '2,3p' "$0" | sed 's/^# //'; exit 0
+fi
+NAME="$1"
+echo "$NAME" | grep -Eq '^[a-z0-9]+(-[a-z0-9]+)*$' || { echo "Ungültiger Name: nur a-z, 0-9, Bindestrich"; exit 1; }
+DIR="skills/$NAME"
+[ -e "$DIR" ] && { echo "Gibt es schon: $DIR"; exit 1; }
+mkdir -p "$DIR/references" "$DIR/tests"
+cat > "$DIR/SKILL.md" <<SKILL
+---
+name: $NAME
+description: [Was der Skill tut, 1 Satz]. Nutze diesen Skill, wenn [Situationen] oder der
+  Mensch [Stichworte] sagt, auch wenn [Sonderfall]. Nicht für [nahe Fehlgriffe].
+---
+
+# $NAME
+
+[Zweck in einem Satz.]
+
+## Ablauf
+1. [Verb] [Objekt]. Ergebnis: [überprüfbar].
+2. [Verb] [Objekt]. Ergebnis: [überprüfbar].
+
+## Ausgabeformat
+\`\`\`text
+[Vorlage]
+\`\`\`
+
+## Regeln
+- Tue nie [..], weil [..]. Stattdessen: [..].
+
+## Prüfen
+- [ ] [..]
+SKILL
+printf '# Testaufträge\n1. [realistischer Auftrag]\n2. [..]\n3. [..]\n' > "$DIR/tests/prompts.md"
+printf '# Auslösesätze\nJA: [..]\nNEIN: [..]\n' > "$DIR/tests/trigger-queries.md"
+rmdir "$DIR/references" 2>/dev/null || true
+echo "Angelegt: $DIR"
+echo "Weiter: Platzhalter ausfüllen (oder skills/skill-creator/SKILL.md nutzen),"
+echo "        Zeile in skills/SKILLMAP.md ergänzen, dann bin/check-skills"

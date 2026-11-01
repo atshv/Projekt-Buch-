@@ -1,7 +1,7 @@
 # UI-REVIEW
 
 Datum: [JJJJ-MM-TT]     Durchlauf: [1]     Geprüfte Adresse: [URL]
-Grundlage: prototype/, docs/SCENARIOS.md, docs/DESIGN.md (sonst nichts)
+Grundlage: docs/prototype/, docs/SCENARIOS.md, docs/DESIGN.md (sonst nichts)
 
 ## Urteil
 [BESTANDEN | NICHT BESTANDEN | NICHT GEPRÜFT]

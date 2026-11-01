@@ -6,7 +6,7 @@ es im Prototyp und in der laufenden Oberfläche durch und vergleicht.
 ## S01: [Titel, z. B. "Neuen Bericht anlegen"]
 - Bezug: [M1]
 - Ausgangszustand: [eingeloggt als .., Liste leer, Breite 390 px]
-- Prototyp-Stelle: [prototype/bericht.html oder Bild 03]
+- Prototyp-Stelle: [docs/prototype/bericht.html oder Bild 03]
 - Schritte:
   1. [Klicke auf "Neu"]
   2. [Gib "Test" in Feld "Titel" ein]

@@ -17,7 +17,7 @@ curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh
 
 # Nur einzelne Dateien laden (in den aktuellen Ordner)
 curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s -- \
-    --datei AGENTS.md --datei roles/architect.md --datei roles/agent.md
+    --datei AGENTS.md --datei agents/architect.md --datei agents/agent.md
 
 # Alle ladbaren Dateien anzeigen
 curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s -- --liste
@@ -42,11 +42,11 @@ Ohne Skript: `git clone https://github.com/atshv/Projekt-Buch-.git` und den Ordn
 
 | Rolle | Datei | Schreibt |
 |:--|:--|:--|
-| `brief-creator` | `roles/brief-creator.md` | `docs/BRIEF.md` |
-| `architect` | `roles/architect.md` | ARCHITECTURE, PLAN, DECISIONS |
-| `agent` | `roles/agent.md` | Code, Tests, HANDOFF, PROGRESS |
-| `reviewer` | `roles/reviewer.md` | `docs/REVIEW.md` (kein Code) |
-| `ui-judge` | `roles/ui-judge.md` | `docs/UI-REVIEW.md` (prüft Oberfläche gegen Prototyp) |
+| `brief-creator` | `agents/brief-creator.md` | `docs/BRIEF.md` |
+| `architect` | `agents/architect.md` | ARCHITECTURE, PLAN, DECISIONS |
+| `agent` | `agents/agent.md` | Code, Tests, HANDOFF, PROGRESS |
+| `reviewer` | `agents/reviewer.md` | `docs/REVIEW.md` (kein Code) |
+| `ui-judge` | `agents/ui-judge.md` | `docs/UI-REVIEW.md` (prüft Oberfläche gegen Prototyp) |
 | `skill-creator` | `skills/skill-creator/SKILL.md` | neue Skills |
 
 ### Skills
@@ -60,12 +60,11 @@ Ohne Skript: `git clone https://github.com/atshv/Projekt-Buch-.git` und den Ordn
 
 Welcher Skill wann passt: `skills/SKILLMAP.md`.
 
-## <img src="bilder/logo-bauplan.svg" height="26" align="top"> Skill prüfen
+## <img src="bilder/logo-bauplan.svg" height="26" align="top"> Skill anlegen und prüfen
 
 ```console
-python3 projekt-starter/skills/skill-creator/scripts/validate_skill.py \
-          projekt-starter/skills/mein-skill
-→ Ergebnis: 0 Fehler, 0 Hinweise (38 Zeilen Körper)
+bin/new-skill bericht-schreiben    # Gerüst anlegen
+bin/check-skills                   # alle Skills prüfen, Abgleich mit SKILLMAP.md
 ```
 
 ## <img src="bilder/logo-bauplan.svg" height="26" align="top"> Grundsätze

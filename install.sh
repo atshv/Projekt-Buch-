@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Projekt-Starter laden.
 #   Alles:          curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s mein-projekt
-#   Eine Datei:     curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s -- --datei roles/architect.md
-#   Mehrere Dateien: ... | bash -s -- --datei AGENTS.md --datei roles/agent.md
+#   Eine Datei:     curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s -- --datei agents/architect.md
+#   Mehrere Dateien: ... | bash -s -- --datei AGENTS.md --datei agents/agent.md
 #   Liste:          ... | bash -s -- --liste
 set -euo pipefail
 
@@ -26,6 +26,15 @@ while [ $# -gt 0 ]; do
 AGENTS.md
 README.md
 START-PROMPTS.md
+agents/agent.md
+agents/architect.md
+agents/brief-creator.md
+agents/reviewer.md
+agents/ui-judge.md
+bin/README.md
+bin/check-skills
+bin/new-skill
+brand/BRAND.md
 docs/ARCHITECTURE.md
 docs/BRIEF.md
 docs/DECISIONS.md
@@ -36,12 +45,8 @@ docs/PROGRESS.md
 docs/REVIEW.md
 docs/SCENARIOS.md
 docs/UI-REVIEW.md
-prototype/README.md
-roles/agent.md
-roles/architect.md
-roles/brief-creator.md
-roles/reviewer.md
-roles/ui-judge.md
+docs/prototype/README.md
+scripts/README.md
 skills/SKILLMAP.md
 skills/commit-message/SKILL.md
 skills/commit-message/tests/prompts.md
@@ -64,13 +69,14 @@ skills/skill-creator/references/skill-template.md
 skills/skill-creator/scripts/validate_skill.py
 skills/skill-creator/tests/prompts.md
 skills/skill-creator/tests/trigger-queries.md
+src/README.md
 LISTE
       exit 0 ;;
     -h|--help)
       cat <<'HILFE'
 Projekt-Starter laden
   bash -s mein-projekt                 alle Dateien in den Ordner mein-projekt
-  bash -s -- --datei roles/agent.md    eine Datei (mehrfach möglich)
+  bash -s -- --datei agents/agent.md    eine Datei (mehrfach möglich)
   bash -s -- --liste                   alle ladbaren Dateien anzeigen
 HILFE
       exit 0 ;;
