@@ -36,6 +36,7 @@ bin/check-plan
 bin/check-scope
 bin/check-skills
 bin/finish-change
+bin/link-commands
 bin/new-change
 bin/new-skill
 bin/record-test
@@ -64,6 +65,18 @@ toolkit/agents/architect.md
 toolkit/agents/brief-creator.md
 toolkit/agents/reviewer.md
 toolkit/agents/ui-judge.md
+toolkit/commands/README.md
+toolkit/commands/pb-aenderung.md
+toolkit/commands/pb-alles.md
+toolkit/commands/pb-bauen.md
+toolkit/commands/pb-bestand.md
+toolkit/commands/pb-brief.md
+toolkit/commands/pb-kaltstart.md
+toolkit/commands/pb-karten.md
+toolkit/commands/pb-plan.md
+toolkit/commands/pb-pruefen.md
+toolkit/commands/pb-teilen.md
+toolkit/commands/pb-weiter.md
 toolkit/governance/README.md
 toolkit/governance/anti-drift.md
 toolkit/governance/code-style.md

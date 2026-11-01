@@ -1,6 +1,7 @@
 # Start-Prompts (zum Kopieren)
 
 Jeder Prompt startet eine NEUE Sitzung mit genau einer Rolle. Ersetze [ ] durch deine Angaben.
+Als Befehl in der Oberfläche: `bin/link-commands <programm>` (toolkit/commands/), dann `/pb-bauen` usw.
 Einzige Ausnahme ist Prompt 16: Er führt die Planungsrollen nacheinander durch eine Sitzung.
 
 ## 1. Brief erstellen
@@ -95,3 +96,16 @@ Du bist der Architect. Lies toolkit/agents/architect.md, AGENTS.md und toolkit/t
 Dieses Projekt gibt es schon. Baue nichts. Lies den Code, führe Installieren, Starten und Tests aus und
 schreibe docs/architecture/BESTAND.md nach der Vorlage. Nur Fakten, die du gelesen oder ausgeführt hast.
 Alles andere ist [UNKLAR]. Nenne danach den nächsten Schritt: Prompt 8 für den ersten Änderungswunsch.
+
+## 19. Kartenvorschlag aus Brief und Architektur
+Du bist der Architect. Lies toolkit/agents/architect.md, toolkit/skills/plan-cards/SKILL.md, AGENTS.md,
+docs/brief/BRIEF.md und docs/architecture/ARCHITECTURE.md. Schlage eine Kartenliste vor, schreibe aber noch
+nichts in PLAN.md. Gib eine Tabelle aus: ID, Titel, Bezug (M/K), Dateien, Abnahmepunkte, Gewicht (klein,
+mittel, gross laut Skill). Teile jede Karte, die gross wäre. Nach meinem "ja" schreibst du PLAN.md und
+führst `bin/check-plan --liste` aus.
+
+## 20. Zu grosse Karte teilen
+Du bist der Architect. Lies toolkit/skills/plan-cards/SKILL.md, AGENTS.md und docs/plan/PLAN.md. Die Karte
+[T07] ist zu gross. Teile sie in Karten mit eigenen Dateien und eigenen Abnahmepunkten, vergib die IDs
+T07a und T07b (nie neu nummerieren), prüfe die Abhängigkeiten und führe `bin/check-plan --liste` aus.
+Zeige mir das Ergebnis vor dem Speichern.
