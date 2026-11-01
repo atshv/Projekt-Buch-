@@ -14,6 +14,9 @@ Zahlen und Namen statt "modern" oder "schön".
 | akzent     | [#......] | Hauptknopf, Links, Markierung |
 | fehler     | [#......] | Fehlermeldungen               |
 
+Diese Werte landen im UI-Starter in `src/theme.ts` (Namen `ui.bg`, `ui.text`, `ui.accent`,
+`ui.danger`). Seiten benutzen nur diese Namen, nie `#......`.
+
 ## 3. Schrift
 | Rolle      | Schrift   | Grösse | Gewicht | Zeilenhöhe |
 |------------|-----------|--------|---------|------------|
@@ -30,6 +33,9 @@ Zahlen und Namen statt "modern" oder "schön".
 |------------|----------------------|---------------------------------------|
 | Knopf      | primär, sekundär     | normal, hover, fokus, deaktiviert, lädt |
 | Eingabefeld| [..]                 | leer, gefüllt, fehler, deaktiviert    |
+
+Mit UI-Starter sind Knopf, Eingabefeld, Dialog und Tabelle fertige Chakra-Bausteine
+(chakra-ui.com/docs/components). Hier nur festlegen, welche Varianten das Projekt benutzt.
 
 ## 6. Aufbau und Breiten
 - Handy: [390 px], Tablet: [768 px], Desktop: [1280 px]. Was ändert sich je Breite?

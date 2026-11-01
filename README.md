@@ -37,6 +37,23 @@ Lieber tippen statt kopieren: `bin/link-commands claude` (oder `cursor`, `copilo
 
 Ohne Skript: `git clone https://github.com/atshv/Projekt-Buch-.git` und den Ordner `projekt-starter/` kopieren.
 
+## <img src="bilder/logo.svg" height="26" align="top"> Mit Oberfläche (Chakra UI)
+
+Braucht dein Projekt eine Oberfläche, lade zusätzlich den **UI-Starter**: Next.js 16 mit
+[Chakra UI 3](https://chakra-ui.com/docs/get-started/installation), eigenem Farbsystem und einer
+Beispielseite. Fertige Bausteine statt eigener Knöpfe, Tastaturbedienung und Kontrast inklusive.
+
+```console
+# im Projektordner, nach dem Starter
+curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s -- --ui
+npm install
+npm run dev            # http://localhost:3000
+```
+
+Farben und Schriften stehen nur in `src/theme.ts` (Werte aus `docs/design/DESIGN.md`).
+Der Ordner `projekt-starter/` bleibt ohne Framework, damit auch Projekte ohne Oberfläche
+(Skript, CLI, Dienst) damit arbeiten. Alles Weitere: [UI-Starter](projekt-starter/ui-starter/README.md).
+
 ## <img src="bilder/logo.svg" height="26" align="top"> Dateien
 
 <p align="center"><img src="bilder/struktur-v2.svg" alt="Struktur"></p>
@@ -117,6 +134,6 @@ Falls der Link nicht lädt: [Ersatz-Link](https://htmlpreview.github.io/?https:/
 
 ```console
 Teil A  Verstehen            Überblick, Prompt vs. Skill vs. Brief, Einrichten, Alles in einem Durchlauf
-Teil B  Schritt für Schritt  Brief, AGENTS.md, Architect, Skills, Agent, Reviewer, Betrieb
+Teil B  Schritt für Schritt  Brief, AGENTS.md, Architect, Skills, Oberfläche, Agent, Reviewer, UI-Judge, Betrieb
 Teil C  Kopier-Set           jede Datei vollständig
 ```

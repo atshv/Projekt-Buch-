@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Projekt-Starter laden.
 #   Alles:          curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s mein-projekt
+#   Oberfläche:     curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s -- --ui
 #   Eine Datei:     curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s -- --datei toolkit/agents/architect.md
 #   Mehrere Dateien: ... | bash -s -- --datei AGENTS.md --datei toolkit/agents/agent.md
 #   Liste:          ... | bash -s -- --liste
@@ -18,8 +19,10 @@ command -v curl >/dev/null || fail "curl fehlt"
 
 DATEIEN=()
 ZIEL=""
+UI_STARTER=0
 while [ $# -gt 0 ]; do
   case "$1" in
+    --ui) UI_STARTER=1; shift ;;
     --datei) [ $# -ge 2 ] || fail "--datei braucht einen Pfad"; DATEIEN+=("$2"); shift 2 ;;
     --liste)
       cat <<'LISTE'
@@ -139,12 +142,23 @@ toolkit/templates/bestand.md
 toolkit/templates/change.md
 toolkit/templates/review.md
 toolkit/templates/ui-review.md
+ui-starter/.gitignore
+ui-starter/README.md
+ui-starter/next.config.ts
+ui-starter/package.json
+ui-starter/src/app/layout.tsx
+ui-starter/src/app/page.tsx
+ui-starter/src/components/ui/color-mode.tsx
+ui-starter/src/components/ui/provider.tsx
+ui-starter/src/theme.ts
+ui-starter/tsconfig.json
 LISTE
       exit 0 ;;
     -h|--help)
       cat <<'HILFE'
 Projekt-Starter laden
   bash -s mein-projekt                 alle Dateien in den Ordner mein-projekt
+  bash -s -- --ui                      Oberfläche (Next.js + Chakra UI) in den aktuellen Ordner
   bash -s -- --datei toolkit/agents/agent.md    eine Datei (mehrfach möglich)
   bash -s -- --liste                   alle ladbaren Dateien anzeigen
 HILFE
@@ -163,6 +177,23 @@ if [ ${#DATEIEN[@]} -gt 0 ]; then
     case "$d" in bin/*) chmod +x "$d" ;; esac
   done
   printf '%sFertig.%s %s%d Datei(en) im aktuellen Ordner.%s\n' "$G" "$N" "$D" "${#DATEIEN[@]}" "$N"
+  exit 0
+fi
+
+if [ "$UI_STARTER" = "1" ]; then
+  ZIEL_UI="${ZIEL:-.}"
+  [ -e "$ZIEL_UI/package.json" ] && fail "$ZIEL_UI/package.json existiert schon. Der UI-Starter kommt in einen leeren Ordner."
+  TMP="$(mktemp -d)"; trap 'rm -rf "$TMP"' EXIT
+  say "lade UI-Starter (Next.js + Chakra UI) nach $ZIEL_UI"
+  curl -fsSL "$ARCHIV" | tar -xz -C "$TMP" || fail "Download fehlgeschlagen"
+  QUELLE="$(find "$TMP" -maxdepth 4 -type d -name ui-starter | head -n1)"
+  [ -n "$QUELLE" ] || fail "ui-starter nicht im Archiv gefunden"
+  mkdir -p "$ZIEL_UI"
+  cp -R "$QUELLE"/. "$ZIEL_UI"/
+  printf '\n%s✔ UI-Starter geladen%s\n\n' "$G" "$N"
+  printf '  %snpm install%s\n' "$C" "$N"
+  printf '  %snpm run dev%s        %s# → http://localhost:3000%s\n' "$C" "$N" "$D" "$N"
+  printf '  %sFarben aus docs/design/DESIGN.md in src/theme.ts eintragen%s\n\n' "$D" "$N"
   exit 0
 fi
 

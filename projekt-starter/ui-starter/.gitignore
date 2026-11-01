@@ -1,0 +1,16 @@
+# Abhängigkeiten und Build-Ausgaben
+node_modules/
+.next/
+out/
+coverage/
+
+# Konfiguration mit Geheimnissen
+.env
+.env.local
+.env.*.local
+
+# Von Next.js erzeugt (wird bei jedem Build neu angelegt)
+next-env.d.ts
+
+# Betriebssystem und Editor
+.DS_Store

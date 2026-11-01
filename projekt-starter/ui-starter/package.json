@@ -1,0 +1,26 @@
+{
+  "name": "ui-starter",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Oberfläche mit Next.js und Chakra UI (Vorlage aus dem KI-Projekt-Buch)",
+  "scripts": {
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^3.37.0",
+    "@emotion/react": "^11.14.0",
+    "next": "16.4.3",
+    "next-themes": "^0.4.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-icons": "^5.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^7.0.2"
+  }
+}

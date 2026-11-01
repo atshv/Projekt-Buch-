@@ -3,7 +3,8 @@
 Ein leeres, wiederverwendbares Gerüst für Projekte mit KI-Unterstützung.
 
 ## So startest du (7 Schritte)
-1. Kopiere diesen Ordner als Basis deines neuen Projekts.
+1. Kopiere diesen Ordner als Basis deines neuen Projekts. Braucht das Projekt eine Oberfläche:
+   kopiere zusätzlich `ui-starter/` mit (siehe unten).
 2. Öffne AGENTS.md und ersetze die Angaben in [ECKIGEN KLAMMERN] (Abschnitt 1).
 3. Starte eine Sitzung mit dem Prompt "1. Brief erstellen" aus START-PROMPTS.md. Oder nimm
    Prompt 16 und lass dich in einer Sitzung von der Idee bis zur Einrichtung führen.
@@ -28,6 +29,7 @@ docs/                nur dieses Projekt
   brief/ principles/ architecture/ adr/ integrations/ problem-to-solution/
   plan/ changes/ design/ handoff/ reviews/
 brand/ bin/ scripts/ src/ tests/
+ui-starter/         fertige Oberfläche (Next.js + Chakra UI), nur für Projekte mit Oberfläche
 
 Die Dateien sind projektunabhängig. Passe nur die eckigen Klammern an.
 Update des Werkzeugs: toolkit/ ersetzen, docs/ bleibt unberührt.
