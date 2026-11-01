@@ -20,7 +20,7 @@ Schritte, Korrekturen des Menschen, Ein- und Ausgabeformate. Frage nur das Fehle
 3. Was kommt heraus? (Dateityp, Format, Ort)
 4. Was darf nie passieren? (Grenzen, Risiken, Daten)
 5. Welche Werkzeuge, Dateien, Befehle werden gebraucht?
-Prüfe vorab: Gibt es schon einen Skill dafür (skills/README.md)? Dann erweitern statt neu.
+Prüfe vorab: Gibt es schon einen Skill dafür (skills/SKILLMAP.md)? Dann erweitern statt neu.
 Ist die Aufgabe einmalig oder nur ein Projektdokument? Dann KEIN Skill; sage das.
 
 ## Phase 2: Zuschnitt (ein Skill = eine Aufgabe)
@@ -91,7 +91,7 @@ Stilregeln:
    - [ ] Jede Datei in references/ wird im Körper mit Bedingung verlinkt
    - [ ] Kein Inhalt doppelt (Körper vs. references/)
    - [ ] Keine Geheimnisse, keine überraschenden Nebenwirkungen
-   - [ ] Eintrag in skills/README.md ergänzt (Name + 1 Satz)
+   - [ ] Eintrag in skills/SKILLMAP.md ergänzt (Aufgabe, Skill, Referenzen, Rolle)
 
 ## Phase 7: Testen (nie ohne Test abgeben)
 A. Ausführungstest: formuliere 3 realistische Aufträge (wie der Mensch wirklich schreibt, mit

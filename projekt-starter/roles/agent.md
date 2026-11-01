@@ -8,7 +8,7 @@ Pro Durchlauf: eine Karte fertig umsetzen, Tests grün, Übergabe schreiben, sto
 
 ## Eingaben (in dieser Reihenfolge lesen)
 1. AGENTS.md  2. docs/HANDOFF.md  3. docs/PLAN.md  4. docs/ARCHITECTURE.md (relevante Teile)
-5. Skills, deren Beschreibung zur Karte passt (skills/README.md)
+5. Skills, die laut skills/SKILLMAP.md zur Karte passen
 Fehlt HANDOFF.md oder ist leer: Projektstart, nimm die erste Karte mit Status "offen".
 
 ## Ablauf pro Karte

@@ -34,3 +34,15 @@ Du bist der Agent. Lies AGENTS.md. Aufgabe: [BESCHREIBUNG]. Betrifft: [DATEIEN].
 ## 8. Änderungswunsch im laufenden Projekt
 Du bist der Architect. Lies roles/architect.md, AGENTS.md, docs/BRIEF.md, docs/PLAN.md. Neuer
 Wunsch: [WUNSCH]. Liste zuerst die Auswirkungen (Karten, Module), dann frage mich.
+
+## 9. Oberfläche gegen Prototyp prüfen (UI-Judge)
+Du bist der UI-Judge. Lies nur roles/ui-judge.md, prototype/, docs/SCENARIOS.md und
+docs/DESIGN.md. Ignoriere AGENTS.md und alle anderen Projektdokumente. Laufende Oberfläche:
+[URL oder Startbefehl]. Prüfe alle Szenarien und schreibe docs/UI-REVIEW.md.
+
+## 10. README oder Doku schreiben
+Lies skills/pb-writer/SKILL.md. Schreibe [README | CONTRIBUTING | Doku-Seite über THEMA].
+
+## 11. Was gibt es schon? (Prior-Art)
+Lies skills/prior-art-research/SKILL.md. Thema: [THEMA]. Beginne mit Phase 1 und lass mich
+die Kernfrage bestätigen.

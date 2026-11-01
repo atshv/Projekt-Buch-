@@ -46,7 +46,19 @@ Ohne Skript: `git clone https://github.com/atshv/Projekt-Buch-.git` und den Ordn
 | `architect` | `roles/architect.md` | ARCHITECTURE, PLAN, DECISIONS |
 | `agent` | `roles/agent.md` | Code, Tests, HANDOFF, PROGRESS |
 | `reviewer` | `roles/reviewer.md` | `docs/REVIEW.md` (kein Code) |
+| `ui-judge` | `roles/ui-judge.md` | `docs/UI-REVIEW.md` (prüft Oberfläche gegen Prototyp) |
 | `skill-creator` | `skills/skill-creator/SKILL.md` | neue Skills |
+
+### Skills
+
+| Skill | Wofür | Referenzen |
+|:--|:--|:--|
+| `skill-creator` | Skills bauen, prüfen, testen | Vorlage, Beschreibungs-Muster, Fehlerliste |
+| `pb-writer` | README, CONTRIBUTING, Doku | readme-writer, contributing-writer, documentation-writer |
+| `prior-art-research` | Was gibt es schon? (arXiv, GitHub) | Suchstrategie, Berichtsvorlage |
+| `commit-message` | Commit-Nachrichten | Muster für eigene Skills |
+
+Welcher Skill wann passt: `skills/SKILLMAP.md`.
 
 ## <img src="bilder/logo-bauplan.svg" height="26" align="top"> Skill prüfen
 

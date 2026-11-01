@@ -24,6 +24,7 @@ Details stehen in docs/ und skills/. Hier steht nur, was immer gelten muss.
 | Architect | roles/architect.md     | ARCHITECTURE, PLAN, DECISIONS       |
 | Agent     | roles/agent.md         | Code, Tests, HANDOFF, PROGRESS      |
 | Reviewer  | roles/reviewer.md      | docs/REVIEW.md (ändert keinen Code) |
+| UI-Judge  | roles/ui-judge.md      | docs/UI-REVIEW.md (liest nur Prototyp, SCENARIOS, DESIGN) |
 Starte eine Sitzung mit: "Du bist <Rolle>. Lies roles/<datei> und AGENTS.md."
 
 ## 4. Befehle (trägt der Agent in Karte T01 ein und hält sie aktuell)
@@ -46,7 +47,7 @@ Ist ein Befehl unbekannt, trage "[UNKLAR]" ein und frage den Menschen. Rate nie.
 
 ## 6. Skills
 - Skills liegen in skills/<name>/SKILL.md. Lade einen Skill nur, wenn seine Beschreibung passt.
-- Verzeichnis: skills/README.md (Liste mit einem Satz pro Skill).
+- Landkarte: skills/SKILLMAP.md (welcher Skill für welche Aufgabe und Rolle).
 - Neuer Skill gewünscht? Nutze skills/skill-creator/SKILL.md.
 
 ## 7. Arbeitsablauf pro Aufgabe

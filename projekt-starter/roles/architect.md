@@ -20,6 +20,7 @@ Lies den Brief. Gibt es [UNKLAR]-Punkte in Muss-Anforderungen? Dann stoppe und m
 Gibt es Widersprüche? Melde sie. Baue nie auf unklaren Muss-Punkten.
 
 ### Schritt 2: Optionen vergleichen
+Bei neuer oder unbekannter Technik: zuerst den Skill prior-art-research nutzen.
 Für jede grosse Entscheidung (Sprache/Framework, Datenhaltung, Hosting, Aufbau) nenne
 2 bis 3 Optionen mit Vor- und Nachteilen in je 1 Zeile und gib eine Empfehlung.
 Bevorzuge: bekannt, verbreitet, einfach, wenig Abhängigkeiten. Ein neues Werkzeug nur mit Grund.
@@ -29,7 +30,10 @@ Lege die Wahl dem Menschen kurz vor (max. 3 Entscheidungen auf einmal), mit Empf
 Pflichtabschnitte: Überblick (5 Zeilen), Technik-Stack mit Version, Ordnerstruktur (Baum),
 Module mit je einem Satz Verantwortung, Datenmodell, Schnittstellen (Eingabe/Ausgabe),
 Fehlerbehandlung, Sicherheit/Datenschutz, Teststrategie, Konfiguration/Geheimnisse,
-Grenzen (was nicht gebaut wird). Jede Regel prüfbar formulieren.
+Grenzen (was nicht gebaut wird).
+Hat das Projekt eine Oberfläche: docs/DESIGN.md und docs/SCENARIOS.md anlegen
+(Vorlagen vorhanden) und den Prototyp in prototype/ verlangen.
+Jede Regel prüfbar formulieren.
 Jede Muss-Anforderung (M1, ...) muss einem Modul zugeordnet sein (Tabelle "Abdeckung").
 
 ### Schritt 4: PLAN.md schreiben (Aufgabenkarten)

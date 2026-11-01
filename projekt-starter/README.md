@@ -11,9 +11,11 @@ Ein leeres, wiederverwendbares Gerüst für Projekte mit KI-Unterstützung.
 
 ## Inhalt
 AGENTS.md            immer geladene Grundregeln
-roles/               brief-creator, architect, agent, reviewer
-docs/                Vorlagen: BRIEF, ARCHITECTURE, PLAN, DECISIONS, HANDOFF, REVIEW, PROGRESS
-skills/              skill-creator (mit Prüfskript), commit-message (Beispiel-Skill)
+roles/               brief-creator, architect, agent, reviewer, ui-judge
+docs/                Vorlagen: BRIEF, ARCHITECTURE, PLAN, DECISIONS, HANDOFF, REVIEW, PROGRESS,
+                     DESIGN, SCENARIOS, UI-REVIEW
+skills/              SKILLMAP.md, skill-creator, pb-writer, prior-art-research, commit-message
+prototype/           Prototyp der Oberfläche (für den UI-Judge)
 START-PROMPTS.md     fertige Startsätze
 
 Die Dateien sind projektunabhängig. Passe nur die eckigen Klammern an.
