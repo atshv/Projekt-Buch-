@@ -184,7 +184,7 @@ Ich möchte einen Skill für: [AUFGABE].
 So würde ich es sagen: &quot;[SATZ 1]&quot;, &quot;[SATZ 2]&quot;, &quot;[SATZ 3]&quot;.
 Führe mich durch die 8 Phasen.</pre></div><p><b>Anlegen per Befehl:</b> <code>bin/new-skill mein-skill</code> erstellt das Gerüst. <b>Prüfen:</b> <code>bin/check-skills</code> prüft alle Skills und meldet, wenn einer in der SKILLMAP fehlt. Fehler müssen weg, Hinweise prüfst du.</p><div class="box ok"><div class="lbl">FERTIG, WENN</div><p>☐ Prüfskript meldet 0 Fehler</p><p>☐ Beschreibung enthält &quot;Nutze diesen Skill, wenn&quot; und &quot;Nicht für&quot;</p><p>☐ Alle 3 Testaufträge liefern das gewünschte Ergebnis</p><p>☐ Bei den 20 Auslösesätzen startet der Skill nur bei den 10 JA-Sätzen</p><p>☐ Der Skill steht in skills/SKILLMAP.md</p></div><div class="box warn"><div class="lbl">HÄUFIGE FEHLER</div><p>• Ein Skill für mehrere Aufgaben (besser: teilen).</p><p>• Beschreibung ohne die Wörter, die du wirklich sagst.</p><p>• Nur Verbote ohne Alternative.</p><p>• Nie getestet: ein ungetesteter Skill löst oft gar nicht aus.</p><p>• Alles in SKILL.md, nichts in references/.</p></div></div><div class="blk"><h2>Mitgelieferte Skills</h2><table><tr><th>Skill</th><th>Wofür</th><th>Referenzen</th></tr><tr><td>skill-creator</td><td>Skills bauen, prüfen, testen</td><td>Vorlage, Beschreibungs-Muster, Fehlerliste</td></tr><tr><td>pb-writer</td><td>README, CONTRIBUTING und Doku schreiben</td><td>readme-writer, contributing-writer, documentation-writer</td></tr><tr><td>prior-art-research</td><td>Herausfinden, was es schon gibt (Fachartikel auf arXiv, Projekte auf GitHub)</td><td>Suchstrategie, Berichtsvorlage</td></tr><tr><td>commit-message</td><td>Commit-Nachrichten im Format T07</td><td>keine (Muster für eigene Skills)</td></tr></table><p>Welcher Skill wann passt, steht in der <b>Skillmap</b> <a href="#kit-skills-skillmap-md"><code>skills/SKILLMAP.md</code></a> (Kopier-Set). Der Agent liest sie, bevor er einen Skill lädt. Ein Skill mit Referenzen funktioniert wie ein Ordner mit Register: SKILL.md sagt, welche Referenz für welche Aufgabe gilt, und nur diese wird gelesen.</p></div></section><section class="page" id="b5" data-tag="Teil B · Schritt 5" data-title="Agent"><div class="ph"><div class="no">5</div><div><div class="tag">Teil B · Schritt 5</div><h1>Agent</h1><p class="sub">Baut Karte für Karte und übergibt sauber.</p></div></div><table class="facts"><tr><th>Rolle</th><td>Agent (Builder). Setzt genau eine Karte pro Durchlauf um.</td></tr><tr><th>Eingabe</th><td>AGENTS.md, HANDOFF.md, PLAN.md, passende Teile von ARCHITECTURE.md, passende Skills.</td></tr><tr><th>Ausgabe</th><td>Code + Tests, aktualisierte PLAN.md, HANDOFF.md, PROGRESS.md.</td></tr><tr><th>Rollendatei</th><td><a href="#kit-agents-agent-md"><code>agents/agent.md</code></a> (Kopier-Set)</td></tr><tr><th>Vorlagen</th><td><a href="#kit-docs-handoff-md"><code>docs/HANDOFF.md</code></a> (Kopier-Set), <a href="#kit-docs-progress-md"><code>docs/PROGRESS.md</code></a> (Kopier-Set)</td></tr></table><div class="blk"><h2>Der Durchlauf in sieben Schritten</h2><ol class='steps'><li><b>Verstehen:</b> 4 Zeilen: Karten-ID, Ziel, Dateien, Test.</li><li><b>Umgebung prüfen:</b> Tests vorher laufen lassen. Rot vorher heisst: melden, nicht nebenbei reparieren.</li><li><b>Test zuerst:</b> Test schreiben, der rot ist.</li><li><b>Umsetzen:</b> kleine Schritte, nur die Dateien der Karte.</li><li><b>Prüfen:</b> alle Tests, Lint, <code>git diff</code> lesen.</li><li><b>Übergeben:</b> PLAN.md auf &quot;erledigt&quot;, HANDOFF.md neu schreiben, eine Zeile in PROGRESS.md.</li><li><b>Berichten:</b> 3 Sätze an dich. Dann Stopp.</li></ol><div class="code"><div class="wb"><i></i><i></i><i></i><span class="ttl">PROMPT ZUM KOPIEREN</span><span class="act"><button class="cp" type="button">kopieren</button></span></div><pre>Du bist der Agent.
 Lies agents/agent.md, AGENTS.md und docs/HANDOFF.md.
-Setze die nächste offene Karte aus docs/PLAN.md um und stoppe danach.</pre></div></div><div class="blk"><h2>Wenn etwas schiefgeht</h2><table><tr><th>Lage</th><th>Was der Agent tut</th></tr><tr><td>Test rot</td><td>Fehlermeldung lesen, Ursache formulieren, EINE Änderung, neu testen.</td></tr><tr><td>3 Versuche ohne Fortschritt</td><td>Stopp. HANDOFF.md &quot;Blockiert&quot;: Fehlertext, Versuche, Vermutung. Dich fragen.</td></tr><tr><td>Anforderung unklar</td><td>Nicht raten. Unter &quot;Fragen&quot; zwei Vorschläge mit Empfehlung eintragen.</td></tr><tr><td>Karte braucht mehr Dateien</td><td>Grund in HANDOFF.md nennen, minimal erweitern.</td></tr><tr><td>Kontext wird lang oder ungenau</td><td>HANDOFF.md schreiben, Neustart empfehlen.</td></tr></table><div class="box ok"><div class="lbl">FERTIG, WENN</div><p>☐ Test der Karte ist grün (Befehl wurde wirklich ausgeführt)</p><p>☐ Nur Dateien der Karte geändert</p><p>☐ PLAN.md, HANDOFF.md, PROGRESS.md aktuell</p><p>☐ Keine Geheimnisse, keine Debug-Reste</p></div><div class="box warn"><div class="lbl">HÄUFIGE FEHLER</div><p>• Mehrere Karten in einem Durchlauf.</p><p>• Tests abschwächen, damit es grün wird.</p><p>• HANDOFF.md anhängen statt neu schreiben (wird unlesbar).</p></div></div></section><section class="page" id="b6" data-tag="Teil B · Schritt 6" data-title="Reviewer"><div class="ph"><div class="no">6</div><div><div class="tag">Teil B · Schritt 6</div><h1>Reviewer</h1><p class="sub">Ein frischer Blick findet, was dem Autor entgeht.</p></div></div><table class="facts"><tr><th>Rolle</th><td>Reviewer. Ändert keinen Code, schreibt nur REVIEW.md.</td></tr><tr><th>Wann</th><td>Nach jeder Phase, vor wichtigen Meilensteinen, vor der Abnahme.</td></tr><tr><th>Ausgabe</th><td>docs/REVIEW.md mit Urteil, Befunden (R1 …) und Folgekarten.</td></tr><tr><th>Rollendatei</th><td><a href="#kit-agents-reviewer-md"><code>agents/reviewer.md</code></a> (Kopier-Set)</td></tr><tr><th>Vorlage</th><td><a href="#kit-docs-review-md"><code>docs/REVIEW.md</code></a> (Kopier-Set)</td></tr></table><div class="blk"><h2>Ein Blickwinkel pro Durchlauf</h2><table><tr><th>Blickwinkel</th><th>Frage</th></tr><tr><td>Anforderungen</td><td>Erfüllt das Ergebnis jede Muss-Anforderung aus dem Brief?</td></tr><tr><td>Architektur</td><td>Hält der Code Struktur, Namen und Regeln ein?</td></tr><tr><td>Qualität</td><td>Lesbar, ohne Duplikate, mit Fehlerbehandlung und Tests?</td></tr><tr><td>Sicherheit</td><td>Geheimnisse, Eingabeprüfung, Rechte, Datenschutz?</td></tr><tr><td>Benutzer</td><td>Funktioniert es für einen echten Menschen beim ersten Mal?</td></tr></table></div><div class="blk"><h2>Schweregrade und Urteil</h2><table><tr><th>Stufe</th><th>Bedeutung</th><th>Folge</th></tr><tr><td>KRITISCH</td><td>falsches Ergebnis, Datenverlust, Sicherheitslücke, Absturz</td><td>muss vor Abnahme behoben sein</td></tr><tr><td>WICHTIG</td><td>verletzt Anforderung oder Architektur, fehlender Test</td><td>soll behoben werden</td></tr><tr><td>KLEIN</td><td>Stil, Namen, kleine Verbesserung</td><td>kann warten</td></tr></table><p>Urteil: <b>Abnahme</b>, <b>Abnahme mit Auflagen</b> oder <b>Nicht abgenommen</b>. Jeder Befund braucht einen Beleg (Datei:Zeile oder Befehlsausgabe).</p><div class="code"><div class="wb"><i></i><i></i><i></i><span class="ttl">PROMPT ZUM KOPIEREN</span><span class="act"><button class="cp" type="button">kopieren</button></span></div><pre>Du bist der Reviewer.
+Setze die nächste offene Karte aus docs/PLAN.md um und stoppe danach.</pre></div></div><div class="blk"><h2>Wenn etwas schiefgeht</h2><table><tr><th>Lage</th><th>Was der Agent tut</th></tr><tr><td>Test rot</td><td>Fehlermeldung lesen, Ursache formulieren, EINE Änderung, neu testen.</td></tr><tr><td>3 Versuche ohne Fortschritt</td><td>Stopp. HANDOFF.md &quot;Blockiert&quot;: Fehlertext, Versuche, Vermutung. Dich fragen.</td></tr><tr><td>Anforderung unklar</td><td>Nicht raten. Unter &quot;Fragen&quot; zwei Vorschläge mit Empfehlung eintragen.</td></tr><tr><td>Karte braucht mehr Dateien</td><td>Grund in HANDOFF.md nennen, minimal erweitern.</td></tr><tr><td>Kontext wird lang oder ungenau</td><td>HANDOFF.md schreiben, Neustart empfehlen.</td></tr></table><div class="box ok"><div class="lbl">FERTIG, WENN</div><p>☐ Test der Karte ist grün (Befehl wurde wirklich ausgeführt)</p><p>☐ Nur Dateien der Karte geändert</p><p>☐ PLAN.md, HANDOFF.md, PROGRESS.md aktuell</p><p>☐ Keine Geheimnisse, keine Debug-Reste</p></div></div><div class="blk"><h2>Code-Stil in einfachen Worten</h2><table><tr><th>Grundsatz</th><th>Bedeutet</th><th>Wie im Alltag</th></tr><tr><td>KISS</td><td>Die einfachste Lösung, die funktioniert.</td><td>Lichtschalter statt Fernbedienung mit 50 Knöpfen</td></tr><tr><td>YAGNI</td><td>Nur bauen, was die Karte verlangt.</td><td>Keine Garage für ein Auto, das man nicht hat</td></tr><tr><td>DRY</td><td>Jedes Wissen nur an einer Stelle.</td><td>Eine Telefonliste statt fünf Zettel</td></tr><tr><td>SOLID</td><td>Bausteine, die man tauschen kann, ohne alles umzubauen.</td><td>Geräte mit Normanschluss</td></tr><tr><td>TDD</td><td>Erst festlegen, woran man richtig erkennt, dann bauen.</td><td>Sollwerte vor der Inbetriebnahme</td></tr><tr><td>Clean Code</td><td>Code ist ein Text für Menschen.</td><td>Ein gut lesbares Protokoll</td></tr></table><p><b>Lesbarkeit:</b> sprechende Namen (verboten: data, temp, helper), Wahr/falsch-Werte mit is/has/can/should, Grenzen mit max/min, positive Bedingungen, frühe Rückgabe statt Verschachtelung, Kommentare erklären das Warum, eine Funktion eine Aufgabe, weniger Code. Alle Regeln stehen in <a href="#kit-agents-agent-md"><code>agents/agent.md</code></a> (Kopier-Set).</p></div><div class="blk"><h2>Git und Drift</h2><ol class='steps'><li><b>Ein Zweig pro Karte</b> (karte/T07-kurzname), kleine Commits mit &quot;T07: …&quot;, vorher Tests und Lint grün.</li><li><b>Zusammenführen erst nach Freigabe.</b> Nie force push, nie Verlauf umschreiben.</li><li><b>Drift</b> heisst: Plan, Dokumente und Code laufen auseinander. Nach jeder Karte gleicht der Agent ab und meldet Abweichungen in HANDOFF.md.</li></ol><div class="box warn"><div class="lbl">HÄUFIGE FEHLER</div><p>• Mehrere Karten in einem Durchlauf.</p><p>• Tests abschwächen, damit es grün wird.</p><p>• HANDOFF.md anhängen statt neu schreiben (wird unlesbar).</p></div></div></section><section class="page" id="b6" data-tag="Teil B · Schritt 6" data-title="Reviewer"><div class="ph"><div class="no">6</div><div><div class="tag">Teil B · Schritt 6</div><h1>Reviewer</h1><p class="sub">Ein frischer Blick findet, was dem Autor entgeht.</p></div></div><table class="facts"><tr><th>Rolle</th><td>Reviewer. Ändert keinen Code, schreibt nur REVIEW.md.</td></tr><tr><th>Wann</th><td>Nach jeder Phase, vor wichtigen Meilensteinen, vor der Abnahme.</td></tr><tr><th>Ausgabe</th><td>docs/REVIEW.md mit Urteil, Befunden (R1 …) und Folgekarten.</td></tr><tr><th>Rollendatei</th><td><a href="#kit-agents-reviewer-md"><code>agents/reviewer.md</code></a> (Kopier-Set)</td></tr><tr><th>Vorlage</th><td><a href="#kit-docs-review-md"><code>docs/REVIEW.md</code></a> (Kopier-Set)</td></tr></table><div class="blk"><h2>Ein Blickwinkel pro Durchlauf</h2><table><tr><th>Blickwinkel</th><th>Frage</th></tr><tr><td>Anforderungen</td><td>Erfüllt das Ergebnis jede Muss-Anforderung aus dem Brief?</td></tr><tr><td>Architektur</td><td>Hält der Code Struktur, Namen und Regeln ein?</td></tr><tr><td>Qualität</td><td>Lesbar, ohne Duplikate, mit Fehlerbehandlung und Tests?</td></tr><tr><td>Sicherheit</td><td>Geheimnisse, Eingabeprüfung, Rechte, Datenschutz?</td></tr><tr><td>Benutzer</td><td>Funktioniert es für einen echten Menschen beim ersten Mal?</td></tr></table></div><div class="blk"><h2>Schweregrade und Urteil</h2><table><tr><th>Stufe</th><th>Bedeutung</th><th>Folge</th></tr><tr><td>KRITISCH</td><td>falsches Ergebnis, Datenverlust, Sicherheitslücke, Absturz</td><td>muss vor Abnahme behoben sein</td></tr><tr><td>WICHTIG</td><td>verletzt Anforderung oder Architektur, fehlender Test</td><td>soll behoben werden</td></tr><tr><td>KLEIN</td><td>Stil, Namen, kleine Verbesserung</td><td>kann warten</td></tr></table><p>Urteil: <b>Abnahme</b>, <b>Abnahme mit Auflagen</b> oder <b>Nicht abgenommen</b>. Jeder Befund braucht einen Beleg (Datei:Zeile oder Befehlsausgabe).</p><div class="code"><div class="wb"><i></i><i></i><i></i><span class="ttl">PROMPT ZUM KOPIEREN</span><span class="act"><button class="cp" type="button">kopieren</button></span></div><pre>Du bist der Reviewer.
 Lies agents/reviewer.md und AGENTS.md.
 Blickwinkel: [Anforderungen | Architektur | Qualität | Sicherheit | Benutzer]
 Umfang: [Karten Txx bis Txx oder Dateien]</pre></div><p><b>Nach dem Review:</b> Der Architect nimmt die vorgeschlagenen Folgekarten in PLAN.md auf. Danach baut der Agent sie wie jede andere Karte.</p><div class="box ok"><div class="lbl">FERTIG, WENN</div><p>☐ Jeder Befund hat ID, Stufe, Ort und Beleg</p><p>☐ Der Testlauf steht wörtlich in REVIEW.md</p><p>☐ Ein Urteil ist eingetragen</p><p>☐ Folgekarten sind vorgeschlagen</p></div></div></section><section class="page" id="b9" data-tag="Teil B · Schritt 7" data-title="UI-Judge"><div class="ph"><div class="no">7</div><div><div class="tag">Teil B · Schritt 7</div><h1>UI-Judge</h1><p class="sub">Verhält sich die Oberfläche wie ihr Prototyp?</p></div></div><table class="facts"><tr><th>Rolle</th><td>UI-Judge. Ein eigener Agent, der am Bau nicht beteiligt war.</td></tr><tr><th>Massstab</th><td>Nur drei Dinge: der Prototyp (docs/prototype/), die Szenarien (docs/SCENARIOS.md) und DESIGN.md.</td></tr><tr><th>Liest nicht</th><td>AGENTS.md, Brief, Plan, Architektur, Code. Dort steckt die Sicht des Erbauers.</td></tr><tr><th>Ausgabe</th><td>docs/UI-REVIEW.md mit Urteil BESTANDEN, NICHT BESTANDEN oder NICHT GEPRÜFT.</td></tr><tr><th>Rollendatei</th><td><a href="#kit-agents-ui-judge-md"><code>agents/ui-judge.md</code></a> (Kopier-Set)</td></tr><tr><th>Vorlagen</th><td><a href="#kit-docs-design-md"><code>docs/DESIGN.md</code></a> (Kopier-Set), <a href="#kit-docs-scenarios-md"><code>docs/SCENARIOS.md</code></a> (Kopier-Set), <a href="#kit-docs-ui-review-md"><code>docs/UI-REVIEW.md</code></a> (Kopier-Set)</td></tr></table><div class="blk"><h2>Warum ein eigener Agent?</h2><p>Wer etwas gebaut hat, sieht seine Fehler schlecht. Der UI-Judge kennt nur das Ziel (Prototyp) und prüft, was man <b>sieht und tut</b>, nicht wie es gebaut ist. Deshalb startet er in einer neuen Sitzung und darf die Projektdokumente nicht lesen.</p></div><div class="blk"><h2>So gehst du vor</h2><ol class='steps'><li>Prototyp in <code>docs/prototype/</code> legen: klickbare HTML-Seiten oder nummerierte Bilder.</li><li>DESIGN.md ausfüllen (lassen): Farben, Schriften, Abstände, Zustände, als Zahlen.</li><li>SCENARIOS.md schreiben (lassen): pro Ablauf Ausgangszustand, Schritte, erwartetes Ergebnis.</li><li>Oberfläche starten, neue Sitzung mit dem Prompt unten.</li><li>Urteil lesen. Abweichungen werden als Folgekarten in PLAN.md aufgenommen.</li></ol><div class="code"><div class="wb"><i></i><i></i><i></i><span class="ttl">PROMPT ZUM KOPIEREN</span><span class="act"><button class="cp" type="button">kopieren</button></span></div><pre>Du bist der UI-Judge.
@@ -214,13 +214,13 @@ agents/ Rollen · skills/ Skills · docs/ Dokumente · brand/ Marke · bin/ Befe
 scripts/ Hilfsskripte · src/ Code. Neue Ordner nur mit Grund in DECISIONS.md.
 
 ## 4. Rollen (eine Sitzung = eine Rolle)
-| Rolle     | Datei                  | Schreibt                            |
-|-----------|------------------------|-------------------------------------|
-| Brief     | agents/brief-creator.md | docs/BRIEF.md                       |
-| Architect | agents/architect.md     | ARCHITECTURE, PLAN, DECISIONS       |
-| Agent     | agents/agent.md         | Code, Tests, HANDOFF, PROGRESS      |
-| Reviewer  | agents/reviewer.md      | docs/REVIEW.md (ändert keinen Code) |
-| UI-Judge  | agents/ui-judge.md      | docs/UI-REVIEW.md (liest nur Prototyp, SCENARIOS, DESIGN) |
+| Rolle     | Datei                   | Schreibt                               |
+|-----------|-------------------------|----------------------------------------|
+| Brief     | agents/brief-creator.md | docs/BRIEF.md                          |
+| Architect | agents/architect.md     | ARCHITECTURE, PLAN, DECISIONS          |
+| Agent     | agents/agent.md         | Code, Tests, HANDOFF, PROGRESS         |
+| Reviewer  | agents/reviewer.md      | docs/REVIEW.md (ändert keinen Code)    |
+| UI-Judge  | agents/ui-judge.md      | docs/UI-REVIEW.md (nur Prototyp-Sicht) |
 Starte eine Sitzung mit: &quot;Du bist &lt;Rolle&gt;. Lies agents/&lt;datei&gt; und AGENTS.md.&quot;
 
 ## 5. Befehle (trägt der Agent in Karte T01 ein und hält sie aktuell)
@@ -241,12 +241,21 @@ Ist ein Befehl unbekannt, trage &quot;[UNKLAR]&quot; ein und frage den Menschen.
 - Ändere nie ARCHITECTURE.md als Agent. Alternative: Vorschlag in HANDOFF.md unter &quot;Fragen&quot;.
 - Mache nie mehrere Aufgaben gleichzeitig. Eine Aufgaben-ID pro Durchlauf.
 
-## 7. Skills
+## 7. Code, Tests, Git, Sicherheit (Kurzfassung, Details in agents/agent.md)
+- Code-Stil: KISS, YAGNI, DRY, lesbare Namen, frühe Rückgaben, Kommentare erklären das Warum.
+- Tests: Für jeden geänderten Code Tests ergänzen. Einzelnen Test starten: [BEFEHL].
+  Nach Umbenennen oder Verschieben von Dateien Lint laufen lassen.
+- Git: ein Zweig pro Karte, kleine Commits &quot;T07: ...&quot;, vor jedem Commit Tests + Lint grün.
+- Sicherheit: [Projektbesonderheiten, z. B. &quot;Kundendaten nie in Logs schreiben&quot;].
+- Unterordner dürfen eine eigene AGENTS.md haben. Es gilt die nächstgelegene Datei.
+  Anweisungen des Menschen im Chat gehen allem vor.
+
+## 8. Skills
 - Skills liegen in skills/&lt;name&gt;/SKILL.md. Lade einen Skill nur, wenn seine Beschreibung passt.
 - Landkarte: skills/SKILLMAP.md (welcher Skill für welche Aufgabe und Rolle).
 - Neuer Skill gewünscht? Nutze skills/skill-creator/SKILL.md.
 
-## 8. Arbeitsablauf pro Aufgabe
+## 9. Arbeitsablauf pro Aufgabe
 1. Aufgabe aus PLAN.md wählen (erste mit Status &quot;offen&quot; und erfüllten Abhängigkeiten).
 2. Kurz bestätigen: ID, Ziel, betroffene Dateien.
 3. Test zuerst oder zugleich schreiben.
@@ -254,24 +263,25 @@ Ist ein Befehl unbekannt, trage &quot;[UNKLAR]&quot; ein und frage den Menschen.
 5. PLAN.md Status auf &quot;erledigt&quot; setzen, HANDOFF.md und PROGRESS.md aktualisieren.
 6. Stoppen und dem Menschen in 3 Sätzen berichten.
 
-## 9. Wann du stoppen und fragen musst
+## 10. Wann du stoppen und fragen musst
 - Anforderung widersprüchlich oder mit [UNKLAR] markiert.
 - Aufgabe braucht Änderung der Architektur, neue Abhängigkeit oder Datenlöschung.
 - Test schlägt nach 3 ehrlichen Versuchen weiter fehl.
-- Kontext wird voll (siehe Abschnitt 10).
+- Kontext wird voll (siehe Abschnitt 11).
 
-## 10. Kontext und Übergabe
+## 11. Kontext und Übergabe
 - Arbeite in kleinen Abschnitten. Nach jeder Aufgabe wird HANDOFF.md aktualisiert.
 - Wird die Sitzung lang oder ungenau: HANDOFF.md schreiben, dem Menschen sagen
   &quot;Bitte neue Sitzung starten&quot;, nicht weiterarbeiten.
 - Wichtiges lebt in Dateien, nicht im Chat.
 
-## 11. Definition of Done (für jede Aufgabe)
+## 12. Definition of Done (für jede Aufgabe)
 - [ ] Verhalten entspricht der Aufgabenkarte in PLAN.md
 - [ ] Tests laufen grün (Befehl aus Abschnitt 5)
 - [ ] Keine unbeteiligten Dateien geändert (git diff geprüft)
 - [ ] HANDOFF.md und PROGRESS.md aktuell
-- [ ] Keine Geheimnisse, keine Debug-Reste im Code</pre></div></section><section class="page kit" id="kit-agents-brief-creator-md" data-tag="Kopier-Set" data-title="agents/brief-creator.md"><div class="ph"><div class="no sm">C2</div><div><div class="tag">Kopier-Set · Datei 2</div><h1 class="path">agents/brief-creator.md</h1><p class="sub">Rolle: Brief Creator</p></div></div><div class="code big"><div class="wb"><i></i><i></i><i></i><span class="ttl">agents/brief-creator.md</span><span class="act"><button class="dl" type="button" data-n="brief-creator.md">laden</button><button class="cp" type="button">kopieren</button></span></div><pre># ROLLE: Brief Creator
+- [ ] Keine Geheimnisse, keine Debug-Reste im Code
+- [ ] Code-Stil eingehalten, Drift-Abgleich gemacht (agents/agent.md)</pre></div></section><section class="page kit" id="kit-agents-brief-creator-md" data-tag="Kopier-Set" data-title="agents/brief-creator.md"><div class="ph"><div class="no sm">C2</div><div><div class="tag">Kopier-Set · Datei 2</div><h1 class="path">agents/brief-creator.md</h1><p class="sub">Rolle: Brief Creator</p></div></div><div class="code big"><div class="wb"><i></i><i></i><i></i><span class="ttl">agents/brief-creator.md</span><span class="act"><button class="dl" type="button" data-n="brief-creator.md">laden</button><button class="cp" type="button">kopieren</button></span></div><pre># ROLLE: Brief Creator
 
 Du machst aus einer groben Idee ein vollständiges, prüfbares Projekt-Briefing (docs/BRIEF.md).
 Du schreibst KEINEN Code und KEINE Architektur. Du fragst, ordnest und schreibst auf.
@@ -455,21 +465,93 @@ genauen Klicks und erwartetem Ergebnis und schreibe ihn in HANDOFF.md.
 - Folge der Ordnerstruktur und den Namen aus ARCHITECTURE.md exakt.
 - Ändere nur Dateien aus &quot;Betrifft&quot;. Brauchst du weitere, nenne den Grund in HANDOFF.md.
 - Gleiche Muster wie vorhandener Code. Keine &quot;Verbesserungen&quot; nebenbei.
-- Kommentiere das WARUM, nicht das WAS.
+- Halte den Code-Stil unten ein (Abschnitt &quot;Code-Stil&quot;).
 
 ### 5. Prüfen
 Alle Tests und Lint laufen lassen. Dann `git diff` lesen: nur beabsichtigte Änderungen?
 Debug-Ausgaben, auskommentierter Code, Geheimnisse entfernen. Die Definition of Done
-(AGENTS.md Abschnitt 11) abhaken.
+(AGENTS.md Abschnitt 12) abhaken.
 
 ### 6. Übergeben
 - PLAN.md: Status der Karte &quot;erledigt&quot; (oder &quot;blockiert&quot; mit Grund).
 - HANDOFF.md nach Vorlage vollständig neu schreiben (nicht anhängen).
 - PROGRESS.md: eine Zeile hinzufügen (Datum, ID, Ergebnis).
-- Bei Commit: Nachricht &quot;T07: Kurzbeschreibung&quot;.
+- Drift-Abgleich machen und committen (Abschnitte &quot;Gegen Drift&quot; und &quot;Git&quot; unten).
 
 ### 7. Berichten (max. 3 Sätze an den Menschen)
 Was ist fertig, wie wurde es geprüft, was ist als Nächstes dran. Dann STOPP.
+Schreibe so, dass jemand ohne Programmierkenntnisse folgen kann (siehe &quot;Erklären&quot;).
+
+## Code-Stil
+Ziel: Ein anderer Mensch versteht deinen Code in möglichst kurzer Zeit. Lesbarkeit geht vor
+Kürze und vor Cleverness. Bei Konflikt gilt: einfacher und lesbarer gewinnt.
+
+### Grundsätze (mit Erklärung für Nicht-Programmierer)
+- KISS (Keep it simple): Nimm die einfachste Lösung, die funktioniert.
+  Wie ein Lichtschalter statt einer Fernbedienung mit 50 Knöpfen.
+- YAGNI (You aren&#x27;t gonna need it): Baue nur, was die Karte verlangt, nichts &quot;für später&quot;.
+  Keine Garage bauen für ein Auto, das man noch nicht hat.
+- DRY (Don&#x27;t repeat yourself): Jedes Wissen steht an genau einer Stelle.
+  Eine Telefonliste statt fünf Zettel, die man alle ändern muss.
+- SOLID: Fünf Regeln für Bausteine, die man austauschen kann, ohne alles umzubauen.
+  Wie Geräte mit Normanschluss. Kurz:
+  S: ein Baustein, eine Aufgabe. O: erweitern statt umbauen. L: ein Ersatzteil passt wie
+  das Original. I: kleine, passende Schnittstellen. D: hänge von Absprachen ab, nicht von Details.
+- TDD (Test zuerst): Erst festlegen, woran man &quot;richtig&quot; erkennt, dann bauen.
+  Wie Sollwerte im Messprotokoll, bevor man die Anlage einschaltet.
+- Clean Code: Code ist ein Text für Menschen, der zufällig auch vom Computer gelesen wird.
+
+### Lesbarkeit (verbindliche Regeln)
+- Namen sagen Zweck oder Wert: `invoiceTotal`, `customerEmail`.
+  Verboten sind allgemeine Namen: data, temp, helper, info, stuff, obj, value, x
+  (Ausnahme: kurze Schleifenzähler wie i).
+- Wahr/falsch-Werte beginnen mit is, has, can, should: `isPaid`, `hasAccess`.
+- Grenzen beginnen mit max oder min: `maxRetries`, `minPasswordLength`.
+- Positive Bedingungen: `if (isValid)` statt `if (!isInvalid)`.
+- Frühe Rückgabe statt tiefer Verschachtelung. Flacher Ablauf gewinnt:
+    if (!hasAccess) return error          statt   if (hasAccess) { if (...) { ... } }
+- Kommentare erklären das WARUM, nicht das WAS. Wiederhole nie die Funktion in Worten
+  (&quot;addiert a und b&quot; über add(a, b) ist verboten).
+- Erkläre &quot;Huch?&quot;-Stellen (Überraschendes, Workarounds, Grenzwerte). Lass Offensichtliches weg.
+- Eine Funktion, eine Aufgabe. Hat sie ein fremdes Teilproblem: in eigene Funktion auslagern.
+  Faustregel: braucht der Name ein &quot;und&quot;, ist die Funktion zu gross.
+- Weniger Code schreiben: Anforderung hinterfragen, Standardbibliothek nutzen statt selbst
+  bauen, ungenutzten Code löschen (mit Test, dass nichts fehlt).
+- Gleiche Dinge gleich benennen, im ganzen Projekt (ein Begriff pro Sache).
+- Formatierer und Linter des Projekts entscheiden über Einrückung und Stil, nicht du.
+
+## Erklären (für Menschen, die nicht programmieren)
+- Beschreibe, was die Änderung für den Nutzer bewirkt, nicht wie der Code aussieht.
+- Fachwort nötig? Einmal in Klammern erklären: &quot;Test (ein kleines Programm, das prüft ...)&quot;.
+- Nutze Vergleiche aus dem Alltag. Kein Code im Bericht, ausser der Mensch fragt danach.
+
+## Git
+- Vor dem Start: `git status` muss sauber sein. Sonst melden, nicht überschreiben.
+  Gibt es ein Remote: zuerst den neuesten Stand holen (`git pull`).
+- Ein Zweig pro Karte: `karte/T07-kurzname`. Nicht direkt auf main arbeiten, ausser der
+  Mensch hat es in AGENTS.md so festgelegt.
+- Kleine Commits, je eine logische Änderung. Nachricht: &quot;T07: Füge Login-Prüfung hinzu&quot;
+  (Skill commit-message).
+- Vor jedem Commit: Tests und Lint grün, `git diff` gelesen, keine Geheimnisse (.env in .gitignore).
+- Zusammenführen (Merge oder Pull Request) erst nach Freigabe. Beschreibung: Was, Warum,
+  Wie getestet, Karten-ID.
+- Konflikt beim Zusammenführen: nicht raten. Ist unklar, welche Seite gilt: stoppen und fragen.
+- Verboten: force push, Verlauf umschreiben (rebase auf geteilten Zweigen, amend nach push),
+  fremde Commits ändern, grosse Binärdateien oder erzeugte Dateien committen.
+
+## Gegen Drift
+Drift heisst: Plan, Dokumente und Code laufen auseinander, oder die Arbeit weicht still vom
+Auftrag ab. Gegenmittel:
+- Vor der Karte: Ziel in einem Satz wiederholen und mit der Karte vergleichen.
+- Während der Arbeit: nur das Ziel der Karte. Neue Ideen in HANDOFF.md unter &quot;Fragen&quot;.
+- Nichts aus dem Gedächtnis behaupten: Datei lesen, bevor du dich auf sie berufst.
+- Nach der Karte prüfen und bei Abweichung angleichen oder melden:
+  - Stimmen Namen und Pfade mit ARCHITECTURE.md?
+  - Stimmt der Status in PLAN.md?
+  - Stimmen die Befehle in AGENTS.md Abschnitt 5 noch?
+  - Hat sich sichtbares Verhalten geändert: README oder docs/ nachführen (Skill pb-writer).
+- Abweichung vom Plan nie still anpassen. In HANDOFF.md unter &quot;Drift&quot; melden, mit Vorschlag.
+- Lange Sitzung oder wachsende Verwirrung: HANDOFF.md schreiben, Neustart empfehlen.
 
 ## Fehlerbehandlung
 - Test rot: lies die Fehlermeldung, formuliere eine Ursache, ändere EINE Sache, teste erneut.
@@ -541,6 +623,8 @@ AGENTS.md, BRIEF.md, ARCHITECTURE.md, PLAN.md, HANDOFF.md und den geprüften Cod
 - [ ] Tests decken Kernpfad und mindestens einen Fehlerfall pro Funktion
 - [ ] Keine Kopien desselben Codes an 3 Stellen, keine toten Funktionen
 - [ ] Fehler werden gemeldet, nicht verschluckt
+- [ ] Code-Stil aus agents/agent.md: Namen, frühe Rückgaben, eine Aufgabe pro Funktion,
+      Kommentare erklären das Warum, kein ungenutzter Code
 
 ### Sicherheit
 - [ ] Keine Schlüssel/Passwörter im Code oder Verlauf, .env nicht eingecheckt
@@ -1599,13 +1683,16 @@ Aktualisiert: [JJJJ-MM-TT HH:MM]     Von: Agent     Letzte Karte: [T00]
 ## 6. Blockiert / Probleme
 - [Fehlertext oder Beschreibung] | Versuche: [..] | Vermutung: [..]
 
-## 7. Fragen an den Menschen
+## 7. Drift (Abweichungen zwischen Plan, Dokumenten und Code)
+- [Was weicht ab] -&gt; [Vorschlag]
+
+## 8. Fragen an den Menschen
 1. [Frage] Vorschlag A: [..] / Vorschlag B: [..] / Empfehlung: [..]
 
-## 8. Vorschläge an den Architect
+## 9. Vorschläge an den Architect
 - [Änderungswunsch an Architektur/Plan mit Grund]
 
-## 9. Wichtiges, das nirgends sonst steht
+## 10. Wichtiges, das nirgends sonst steht
 - [Fallen, Tricks, Eigenheiten, Befehle, die funktionieren]</pre></div></section><section class="page kit" id="kit-docs-review-md" data-tag="Kopier-Set" data-title="docs/REVIEW.md"><div class="ph"><div class="no sm">C34</div><div><div class="tag">Kopier-Set · Datei 34</div><h1 class="path">docs/REVIEW.md</h1><p class="sub">Vorlage Prüfbericht</p></div></div><div class="code big"><div class="wb"><i></i><i></i><i></i><span class="ttl">docs/REVIEW.md</span><span class="act"><button class="dl" type="button" data-n="REVIEW.md">laden</button><button class="cp" type="button">kopieren</button></span></div><pre># REVIEW
 
 Datum: [JJJJ-MM-TT]     Reviewer-Durchlauf Nr.: [1]

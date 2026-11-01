@@ -22,13 +22,13 @@ agents/ Rollen · skills/ Skills · docs/ Dokumente · brand/ Marke · bin/ Befe
 scripts/ Hilfsskripte · src/ Code. Neue Ordner nur mit Grund in DECISIONS.md.
 
 ## 4. Rollen (eine Sitzung = eine Rolle)
-| Rolle     | Datei                  | Schreibt                            |
-|-----------|------------------------|-------------------------------------|
-| Brief     | agents/brief-creator.md | docs/BRIEF.md                       |
-| Architect | agents/architect.md     | ARCHITECTURE, PLAN, DECISIONS       |
-| Agent     | agents/agent.md         | Code, Tests, HANDOFF, PROGRESS      |
-| Reviewer  | agents/reviewer.md      | docs/REVIEW.md (ändert keinen Code) |
-| UI-Judge  | agents/ui-judge.md      | docs/UI-REVIEW.md (liest nur Prototyp, SCENARIOS, DESIGN) |
+| Rolle     | Datei                   | Schreibt                               |
+|-----------|-------------------------|----------------------------------------|
+| Brief     | agents/brief-creator.md | docs/BRIEF.md                          |
+| Architect | agents/architect.md     | ARCHITECTURE, PLAN, DECISIONS          |
+| Agent     | agents/agent.md         | Code, Tests, HANDOFF, PROGRESS         |
+| Reviewer  | agents/reviewer.md      | docs/REVIEW.md (ändert keinen Code)    |
+| UI-Judge  | agents/ui-judge.md      | docs/UI-REVIEW.md (nur Prototyp-Sicht) |
 Starte eine Sitzung mit: "Du bist <Rolle>. Lies agents/<datei> und AGENTS.md."
 
 ## 5. Befehle (trägt der Agent in Karte T01 ein und hält sie aktuell)
@@ -49,12 +49,21 @@ Ist ein Befehl unbekannt, trage "[UNKLAR]" ein und frage den Menschen. Rate nie.
 - Ändere nie ARCHITECTURE.md als Agent. Alternative: Vorschlag in HANDOFF.md unter "Fragen".
 - Mache nie mehrere Aufgaben gleichzeitig. Eine Aufgaben-ID pro Durchlauf.
 
-## 7. Skills
+## 7. Code, Tests, Git, Sicherheit (Kurzfassung, Details in agents/agent.md)
+- Code-Stil: KISS, YAGNI, DRY, lesbare Namen, frühe Rückgaben, Kommentare erklären das Warum.
+- Tests: Für jeden geänderten Code Tests ergänzen. Einzelnen Test starten: [BEFEHL].
+  Nach Umbenennen oder Verschieben von Dateien Lint laufen lassen.
+- Git: ein Zweig pro Karte, kleine Commits "T07: ...", vor jedem Commit Tests + Lint grün.
+- Sicherheit: [Projektbesonderheiten, z. B. "Kundendaten nie in Logs schreiben"].
+- Unterordner dürfen eine eigene AGENTS.md haben. Es gilt die nächstgelegene Datei.
+  Anweisungen des Menschen im Chat gehen allem vor.
+
+## 8. Skills
 - Skills liegen in skills/<name>/SKILL.md. Lade einen Skill nur, wenn seine Beschreibung passt.
 - Landkarte: skills/SKILLMAP.md (welcher Skill für welche Aufgabe und Rolle).
 - Neuer Skill gewünscht? Nutze skills/skill-creator/SKILL.md.
 
-## 8. Arbeitsablauf pro Aufgabe
+## 9. Arbeitsablauf pro Aufgabe
 1. Aufgabe aus PLAN.md wählen (erste mit Status "offen" und erfüllten Abhängigkeiten).
 2. Kurz bestätigen: ID, Ziel, betroffene Dateien.
 3. Test zuerst oder zugleich schreiben.
@@ -62,21 +71,22 @@ Ist ein Befehl unbekannt, trage "[UNKLAR]" ein und frage den Menschen. Rate nie.
 5. PLAN.md Status auf "erledigt" setzen, HANDOFF.md und PROGRESS.md aktualisieren.
 6. Stoppen und dem Menschen in 3 Sätzen berichten.
 
-## 9. Wann du stoppen und fragen musst
+## 10. Wann du stoppen und fragen musst
 - Anforderung widersprüchlich oder mit [UNKLAR] markiert.
 - Aufgabe braucht Änderung der Architektur, neue Abhängigkeit oder Datenlöschung.
 - Test schlägt nach 3 ehrlichen Versuchen weiter fehl.
-- Kontext wird voll (siehe Abschnitt 10).
+- Kontext wird voll (siehe Abschnitt 11).
 
-## 10. Kontext und Übergabe
+## 11. Kontext und Übergabe
 - Arbeite in kleinen Abschnitten. Nach jeder Aufgabe wird HANDOFF.md aktualisiert.
 - Wird die Sitzung lang oder ungenau: HANDOFF.md schreiben, dem Menschen sagen
   "Bitte neue Sitzung starten", nicht weiterarbeiten.
 - Wichtiges lebt in Dateien, nicht im Chat.
 
-## 11. Definition of Done (für jede Aufgabe)
+## 12. Definition of Done (für jede Aufgabe)
 - [ ] Verhalten entspricht der Aufgabenkarte in PLAN.md
 - [ ] Tests laufen grün (Befehl aus Abschnitt 5)
 - [ ] Keine unbeteiligten Dateien geändert (git diff geprüft)
 - [ ] HANDOFF.md und PROGRESS.md aktuell
 - [ ] Keine Geheimnisse, keine Debug-Reste im Code
+- [ ] Code-Stil eingehalten, Drift-Abgleich gemacht (agents/agent.md)

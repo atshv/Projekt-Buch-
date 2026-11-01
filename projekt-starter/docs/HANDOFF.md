@@ -25,11 +25,14 @@ Aktualisiert: [JJJJ-MM-TT HH:MM]     Von: Agent     Letzte Karte: [T00]
 ## 6. Blockiert / Probleme
 - [Fehlertext oder Beschreibung] | Versuche: [..] | Vermutung: [..]
 
-## 7. Fragen an den Menschen
+## 7. Drift (Abweichungen zwischen Plan, Dokumenten und Code)
+- [Was weicht ab] -> [Vorschlag]
+
+## 8. Fragen an den Menschen
 1. [Frage] Vorschlag A: [..] / Vorschlag B: [..] / Empfehlung: [..]
 
-## 8. Vorschläge an den Architect
+## 9. Vorschläge an den Architect
 - [Änderungswunsch an Architektur/Plan mit Grund]
 
-## 9. Wichtiges, das nirgends sonst steht
+## 10. Wichtiges, das nirgends sonst steht
 - [Fallen, Tricks, Eigenheiten, Befehle, die funktionieren]

@@ -47,6 +47,8 @@ AGENTS.md, BRIEF.md, ARCHITECTURE.md, PLAN.md, HANDOFF.md und den geprüften Cod
 - [ ] Tests decken Kernpfad und mindestens einen Fehlerfall pro Funktion
 - [ ] Keine Kopien desselben Codes an 3 Stellen, keine toten Funktionen
 - [ ] Fehler werden gemeldet, nicht verschluckt
+- [ ] Code-Stil aus agents/agent.md: Namen, frühe Rückgaben, eine Aufgabe pro Funktion,
+      Kommentare erklären das Warum, kein ungenutzter Code
 
 ### Sicherheit
 - [ ] Keine Schlüssel/Passwörter im Code oder Verlauf, .env nicht eingecheckt
