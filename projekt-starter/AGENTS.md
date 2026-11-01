@@ -43,18 +43,22 @@ Starte eine Sitzung mit: "Du bist <Rolle>. Lies toolkit/agents/<datei> und AGENT
 - Lint/Format:  [BEFEHL]
 - Build:        [BEFEHL]
 - Diagramme:    [BEFEHL, z. B. mmdc -i x.mmd -o x.svg]
-- Umfang prüfen:  bin/check-scope <Karten-ID>
-- Testlauf belegen: bin/record-test <Karten-ID> -- <Testbefehl>
+- Plan prüfen:     bin/check-plan
+- Umfang prüfen:   bin/check-scope <Karten-ID>
+- Testlauf belegen: bin/record-test <Karten-ID> -p A1,A2 -- <Testbefehl>
+- Fertig prüfen:   bin/check-done <Karten-ID>
 Ist ein Befehl unbekannt, trage "[UNKLAR]" ein und frage den Menschen. Rate nie.
 
 ## 6. Regeln (Verbot + Alternative)
-- Ändere nie Dateien ausserhalb der Aufgabe (Prüfung: bin/check-scope). Alternative: schreibe den
-  Fund in HANDOFF.md.
+- Ändere nie Dateien ausserhalb von "Schreiben" der Karte (Prüfung: bin/check-scope). Alternative:
+  schreibe den Fund in HANDOFF.md.
+- Geschützte Pfade: toolkit/, bin/, .env, docs/brief/, docs/principles/, docs/architecture/
+  (bin/check-scope erlaubt sie nie. Nur der Mensch oder der Architect ändert sie.)
 - Füge nie neue Abhängigkeiten ohne Rückfrage hinzu. Alternative: nenne 2 Optionen im Chat.
 - Schreibe nie Passwörter, Schlüssel oder Tokens in Dateien. Alternative: .env + .env.example.
 - Lösche nie Daten oder Dateien ohne Freigabe. Alternative: verschiebe nach _archiv/.
 - Überspringe nie Tests, um "fertig" zu melden. Alternative: melde den Fehler ehrlich.
-  Belege Testläufe mit bin/record-test.
+  Belege Testläufe mit bin/record-test. "erledigt" erst, wenn bin/check-done "FERTIG" meldet.
 - Erfinde nie Fakten über Code, den du nicht gelesen hast. Alternative: lies die Datei.
 - Ändere nie die Architektur als Agent. Alternative: Vorschlag in HANDOFF.md unter "Fragen".
 - Mache nie mehrere Aufgaben gleichzeitig. Eine Karten-ID pro Durchlauf.

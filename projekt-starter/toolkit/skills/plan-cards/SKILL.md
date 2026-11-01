@@ -30,12 +30,14 @@ Eine gute Karte kann ein Agent in einer Sitzung fertig bauen und jeder prüfen.
 3. Pro Phase Karten schneiden. Jede Karte hat genau einen Zweck. Prüffrage: Braucht der Titel
    ein "und"? Dann teilen.
 4. Pro Karte ausfüllen (Vorlage): ID, Titel als Ergebnis ("Bericht speichern"), Bezug (M/K,
-   adr, Befund R..), Abhängig von, Betrifft (Dateien), Beschreibung (max. 5 Zeilen),
-   Test ("Fertig, wenn ..." messbar), Status `offen`.
+   adr, Befund R..), Abhängig von, Schreiben (Dateien, die geändert werden dürfen), Lesen (was
+   der Agent vorher liest), Beschreibung (max. 5 Zeilen), Nicht Teil der Karte, Abnahme
+   (A1, A2 ... je "Wenn ..., dann ..."), Prüfungen (Befehle in Backticks), Status `offen`.
 5. IDs fortlaufend (T01, T02 ...). Nie neu nummerieren. Geteilte Karte: T07 wird T07a und T07b.
 6. Abhängigkeiten prüfen: keine zeigt nach vorn, keine im Kreis.
 7. Namen und Pfade gegen GLOSSARY.md und ARCHITECTURE.md prüfen.
-8. Prüftabelle am Ende von PLAN.md aktualisieren (Vorlage `templates/plan-check.md`).
+8. `bin/check-plan` ausführen und alle Fehler beheben. Dann Prüftabelle am Ende von PLAN.md
+   aktualisieren (Vorlage `templates/plan-check.md`).
 
 ## Ausgabe
 - `docs/plan/PLAN.md` mit Phasen, Karten und Prüftabelle.
@@ -43,7 +45,8 @@ Eine gute Karte kann ein Agent in einer Sitzung fertig bauen und jeder prüfen.
 
 ## Qualitätstor
 - [ ] Jede Muss-Anforderung hat mindestens eine Karte
-- [ ] Jede Karte hat Bezug, Dateien und messbaren Test
+- [ ] Jede Karte hat Bezug, Schreiben, Lesen, nummerierte Abnahme (Wenn/Dann) und Prüfungen
+- [ ] `bin/check-plan` meldet keine Fehler
 - [ ] Keine Karte grösser als eine Sitzung oder ca. 5 Dateien
 - [ ] Keine Vorwärts- oder Kreisabhängigkeit
 - [ ] Nicht-Ziele aus dem Brief kommen in keiner Karte vor
@@ -56,6 +59,7 @@ Eine gute Karte kann ein Agent in einer Sitzung fertig bauen und jeder prüfen.
 ## Nicht tun
 - Keine Karte "Aufräumen" oder "Verbessern" ohne messbares Ergebnis.
 - Keine Karte, die Architektur ändert, ohne ADR (Skill adr-writer).
+- Keine geschützten Pfade (AGENTS.md, Zeile "Geschützte Pfade") unter Schreiben.
 
 ## Weiterführend
 - `templates/card.md` Karte mit Beispiel.

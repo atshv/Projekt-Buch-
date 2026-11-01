@@ -3,10 +3,10 @@
 Eine Karte ist erst fertig, wenn alle Punkte abgehakt sind. Der Agent prüft sie vor der
 Übergabe, der Reviewer prüft sie nach.
 
-- [ ] Verhalten entspricht der Aufgabenkarte in PLAN.md
+- [ ] Jeder Abnahmepunkt (A1, A2 ...) der Karte in PLAN.md ist erfüllt, "Nicht Teil der Karte" nicht gebaut
 - [ ] Tests laufen grün (Befehl aus AGENTS.md, Abschnitt Befehle)
 - [ ] Keine unbeteiligten Dateien geändert (git diff geprüft, `bin/check-scope <Karten-ID>` meldet nichts)
-- [ ] Testlauf belegt: Nachweis in docs/handoff/nachweise/ (`bin/record-test`), Ergebnis "bestanden"
+- [ ] Testlauf belegt: Nachweise in docs/handoff/nachweise/ (`bin/record-test <ID> -p A1,A2 -- <Befehl>`), und `bin/check-done <Karten-ID>` meldet "FERTIG"
 - [ ] HANDOFF.md und PROGRESS.md aktuell
 - [ ] Keine Geheimnisse, keine Debug-Reste im Code
 - [ ] Code-Stil eingehalten, Drift-Abgleich gemacht (toolkit/agents/agent.md)

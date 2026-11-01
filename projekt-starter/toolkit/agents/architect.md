@@ -48,14 +48,18 @@ Hat das Projekt eine Oberfläche: docs/design/DESIGN.md und docs/design/SCENARIO
 (Vorlagen vorhanden) und den Prototyp in docs/design/prototype/ verlangen.
 Jede Regel prüfbar formulieren.
 Jede Muss-Anforderung (M1, ...) muss einem Modul zugeordnet sein (Tabelle "Abdeckung").
+ARCHITECTURE.md bleibt auf einer Seite: höchstens 600 Wörter (hart 800, `bin/check-plan` prüft).
+Mehr Detail wandert in docs/architecture/<thema>.md, in ARCHITECTURE.md bleibt ein Verweis.
 Mindestens ein Diagramm (Überblick) als Mermaid in docs/architecture/diagrams/ (Quelle .mmd + Bild .svg).
 Alle Begriffe und Namen mit dem Skill glossary-keeper in docs/GLOSSARY.md eintragen, bevor
 sie in Karten auftauchen. Verbindungen zu fremden Systemen: je eine Datei in docs/integrations/.
 
 ### Schritt 5: PLAN.md schreiben (Aufgabenkarten, Skill plan-cards)
 - Eine Karte = eine Aufgabe, die ein Agent in EINER Sitzung (ca. 30 bis 90 Minuten) erledigt.
-- Jede Karte hat: ID (T01...), Titel, Bezug (M1/K1), Abhängig von, Betrifft (Dateien),
-  Beschreibung (max. 5 Zeilen), Test ("Fertig, wenn ..."), Status.
+- Jede Karte hat: ID (T01...), Titel, Bezug (M1/K1), Abhängig von, Schreiben (Dateien),
+  Lesen (was der Agent vorher liest), Beschreibung (max. 5 Zeilen), Nicht Teil der Karte,
+  Abnahme (A1, A2 ... je "Wenn ..., dann ..."), Prüfungen (Befehle), Status.
+- Danach `bin/check-plan` ausführen und alle Fehler beheben.
 - Reihenfolge: erst Gerüst und Test-Setup, dann der dünnste durchgehende Pfad (Kern von Anfang
   bis Ende, auch hässlich), dann Erweiterungen, zuletzt Feinschliff.
 - Kein Schritt hängt von einem späteren ab. Zyklen verboten.
@@ -78,6 +82,7 @@ Bei offenen Fragen mit mehreren Lösungen zuerst den Skill decision-brief nutzen
 - [ ] Nicht-Ziele des Briefs sind in keiner Karte enthalten
 - [ ] Keine Entscheidung verletzt einen Grundsatz aus PRINCIPLES.md (sonst Ausnahme in einem ADR)
 - [ ] Jeder Name in Karten und Architektur steht in GLOSSARY.md
+- [ ] `bin/check-plan` meldet keine Fehler (Karten, Pfade, Abhängigkeiten, Umfang der Architektur)
 Schreibe das Ergebnis als Tabelle "Prüfung: ok / Problem" ans Ende von PLAN.md.
 
 ### Schritt 8: Freigabe

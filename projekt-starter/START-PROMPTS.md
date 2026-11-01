@@ -29,8 +29,8 @@ Du bist der Agent. Lies AGENTS.md und docs/handoff/HANDOFF.md und fasse in 3 Sä
 stehen. Warte auf mein "weiter".
 
 ## 7. Kleine Aufgabe (Schnellweg ohne Brief und Plan)
-Du bist der Agent. Lies AGENTS.md. Aufgabe: [BESCHREIBUNG]. Betrifft: [DATEIEN]. Fertig, wenn:
-[KRITERIUM]. Schreibe einen Test, setze um, aktualisiere docs/handoff/HANDOFF.md.
+Du bist der Agent. Lies AGENTS.md. Aufgabe: [BESCHREIBUNG]. Schreiben: [DATEIEN]. Abnahme: Wenn
+[AKTION], dann [ERGEBNIS]. Schreibe einen Test, setze um, aktualisiere docs/handoff/HANDOFF.md.
 
 ## 8. Änderungswunsch im laufenden Projekt
 Du bist der Architect. Lies toolkit/agents/architect.md, AGENTS.md, docs/brief/BRIEF.md, docs/plan/PLAN.md. Neuer
@@ -71,12 +71,20 @@ Phase 1, Brief: Rolle Brief Creator (toolkit/agents/brief-creator.md). Ergebnis:
 von mir freigegeben.
 Phase 2, Architektur: Rolle Architect (toolkit/agents/architect.md), Schritte 1 bis 4. Ergebnis:
 Grundsätze, Architektur, Glossar, Diagramm.
-Phase 3, Plan: Rolle Architect, Schritte 5 bis 8, Aufgabenkarten mit dem Skill plan-cards. Ergebnis:
-docs/plan/PLAN.md und die nötigen ADRs, von mir freigegeben.
+Phase 3, Plan: Rolle Architect, Schritte 5 bis 8, Aufgabenkarten mit dem Skill plan-cards. Führe
+danach `bin/check-plan` aus und behebe jeden Fehler. Ergebnis: docs/plan/PLAN.md und die nötigen
+ADRs, von mir freigegeben.
 Phase 4, Einrichtung: Trage in AGENTS.md Abschnitt 1 und die Zeile "Sicherheit" Name, Zweck, Stack
 und Besonderheiten aus Brief und Architektur ein. Frage mich nur nach meinem Wissensstand. Ersetze
 [PROJEKTNAME] in den docs/-Dateien. Lass Abschnitt 5 (Befehle) stehen, Karte T01 füllt ihn. Zeige
-mir alle Änderungen und nenne den nächsten Schritt: Prompt 3 in einer neuen Sitzung.
+mir alle Änderungen und nenne den nächsten Schritt: Prompt 17 (Kaltstart-Test) in einer neuen Sitzung, danach Prompt 3.
 Den Stand erkennst du an den Dateien: Ist BRIEF.md freigegeben, gibt es ARCHITECTURE.md, ist die
 Prüfung am Ende von PLAN.md ausgefüllt? Beginne bei der ersten Phase, die nicht fertig ist.
 Wird der Kontext voll: sage es mir. Ich starte dann diesen Prompt in einer neuen Sitzung.
+
+## 17. Kaltstart-Test (vor dem ersten Bauen)
+Du bist der Agent und kennst dieses Projekt nicht. Lies nur AGENTS.md, docs/handoff/HANDOFF.md und die
+Karte [T01] aus docs/plan/PLAN.md samt den Dateien unter "Lesen". Baue nichts. Antworte kurz:
+1) Was ist deine Aufgabe? 2) Welche Dateien darfst du ändern, welche nicht? 3) Woran erkennst du,
+dass die Karte fertig ist? 4) Welche Befehle führst du aus? 5) Was musstest du raten oder was fehlt?
+Jede Antwort nennt die Fundstelle. Gibt es etwas bei Punkt 5, beheben wir zuerst die Dateien.

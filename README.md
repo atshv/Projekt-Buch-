@@ -80,8 +80,10 @@ bin/check-skills                   # alle Skills prüfen, Abgleich mit SKILLMAP.
 ## <img src="bilder/logo-gruen.svg" height="26" align="top"> Beim Bauen prüfen
 
 ```console
-bin/check-scope T05                # nur Dateien der Karte T05 geändert?
-bin/record-test T05 -- npm test    # Testlauf als Nachweis in docs/handoff/nachweise/ ablegen
+bin/check-plan                     # Plan vollständig? Abnahme, Abhängigkeiten, Umfang der Architektur
+bin/check-scope T05                # nur Dateien der Karte T05 geändert? Geschützte Pfade unberührt?
+bin/record-test T05 -p A1,A2 -- npm test   # Testlauf als Nachweis ablegen (Arbeitsstand + Prüfsumme)
+bin/check-done T05                 # jede Abnahme der Karte durch einen gültigen Nachweis belegt?
 ```
 
 ## <img src="bilder/logo-gruen.svg" height="26" align="top"> Grundsätze
