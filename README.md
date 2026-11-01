@@ -5,40 +5,40 @@
 Alles zum Kopieren. Für jedes Projekt.
 </p>
 
-## `$ ./ablauf`
+## Ablauf
 
 <p align="center"><img src="bilder/ablauf.svg" alt="Ablauf"></p>
 
-## `$ quickstart`
+## Schnellstart
 
 ```console
-# alles laden
-$ curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s mein-projekt
+# Alles laden
+curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s mein-projekt
 
-# nur einzelne Dateien laden (im aktuellen Ordner)
-$ curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s -- \
+# Nur einzelne Dateien laden (in den aktuellen Ordner)
+curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s -- \
     --datei AGENTS.md --datei roles/architect.md --datei roles/agent.md
 
-# alle ladbaren Dateien anzeigen
-$ curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s -- --liste
+# Alle ladbaren Dateien anzeigen
+curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s -- --liste
 ```
 
-Danach:
+Danach im Projektordner:
 
 ```console
-$ cd mein-projekt && git init
-$ $EDITOR AGENTS.md        # Abschnitt 1 + 4 ausfüllen
+cd mein-projekt && git init
+# Datei AGENTS.md öffnen, Abschnitt 1 + 4 ausfüllen
 ```
 
 Ordner im KI-Programm öffnen, **Prompt 1** aus `START-PROMPTS.md` einfügen. Fertig.
 
 Ohne Skript: `git clone https://github.com/atshv/Projekt-Buch-.git` und den Ordner `projekt-starter/` kopieren.
 
-## `$ tree`
+## Dateien
 
 <p align="center"><img src="bilder/struktur.svg" alt="Struktur"></p>
 
-## `$ cat ROLLEN`
+## Rollen
 
 | Rolle | Datei | Schreibt |
 |:--|:--|:--|
@@ -48,19 +48,19 @@ Ohne Skript: `git clone https://github.com/atshv/Projekt-Buch-.git` und den Ordn
 | `reviewer` | `roles/reviewer.md` | `docs/REVIEW.md` (kein Code) |
 | `skill-creator` | `skills/skill-creator/SKILL.md` | neue Skills |
 
-## `$ validate_skill.py`
+## Skill prüfen
 
 ```console
-$ python3 projekt-starter/skills/skill-creator/scripts/validate_skill.py \
+python3 projekt-starter/skills/skill-creator/scripts/validate_skill.py \
           projekt-starter/skills/mein-skill
-Ergebnis: 0 Fehler, 0 Hinweise (38 Zeilen Körper)
+→ Ergebnis: 0 Fehler, 0 Hinweise (38 Zeilen Körper)
 ```
 
-## `$ cat GRUNDSAETZE`
+## Grundsätze
 
 <p align="center"><img src="bilder/grundsaetze.svg" alt="Grundsätze"></p>
 
-## `$ open buch`
+## Das Buch
 
 Das ganze Buch als Webseite, mit Kopieren-Knopf an jeder Datei:
 

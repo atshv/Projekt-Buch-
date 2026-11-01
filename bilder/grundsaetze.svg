@@ -2,8 +2,8 @@
 <rect width="435" height="336" rx="10" fill="#0d1117" stroke="#30363d"/>
 <path d="M0 10a10 10 0 0 1 10-10h415a10 10 0 0 1 10 10v26H0z" fill="#161b22"/>
 <circle cx="22" cy="18" r="6" fill="#ff5f56"/><circle cx="42" cy="18" r="6" fill="#ffbd2e"/><circle cx="62" cy="18" r="6" fill="#27c93f"/>
-<text x="217.5" y="23" text-anchor="middle" fill="#8b949e" font-size="12">grundsaetze.txt</text>
-<text x="24" y="61.9" xml:space="preserve"><tspan fill="#3fb950">$ </tspan><tspan fill="#c9d1d9">cat GRUNDSAETZE.txt</tspan></text>
+<text x="217.5" y="23" text-anchor="middle" fill="#8b949e" font-size="12">Grundsätze</text>
+<text x="24" y="61.9" xml:space="preserve"><tspan fill="#8b949e">Die zehn Grundsätze</tspan></text>
 <text x="24" y="84.3" xml:space="preserve"><tspan fill="#c9d1d9"></tspan></text>
 <text x="24" y="106.7" xml:space="preserve"><tspan fill="#e3b341">01 </tspan><tspan fill="#c9d1d9">Eine Sitzung, eine Rolle.</tspan></text>
 <text x="24" y="129.1" xml:space="preserve"><tspan fill="#e3b341">02 </tspan><tspan fill="#c9d1d9">Dateien vor Gedächtnis.</tspan></text>
