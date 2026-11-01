@@ -1328,7 +1328,8 @@ function show(id){var i=ids.indexOf(id);if(i<0)i=0;if(i===cur)return;cur=i;var p
  var a=nv.querySelector('a.on');if(a&&(a.offsetTop<nv.scrollTop+40||a.offsetTop>nv.scrollTop+nv.clientHeight-60))nv.scrollTop=a.offsetTop-nv.clientHeight/2;
  scrollTo(0,0);setTimeout(function(){scrollTo(0,0)},0);document.title=(i?p.getAttribute('data-title')+' · ':'')+'Das KI-Projekt-Buch';document.body.classList.remove('open')}
 function route(){show((location.hash||'#start').slice(1))}
-addEventListener('hashchange',route);route();
+if('scrollRestoration' in history)history.scrollRestoration='manual';
+addEventListener('hashchange',route);route();addEventListener('load',function(){setTimeout(function(){scrollTo(0,0)},30)});
 function go(d){var n=cur+d;if(n>=0&&n<pages.length)location.hash=ids[n]}
 bp.addEventListener('click',function(){go(-1)});bn.addEventListener('click',function(){go(1)});
 addEventListener('keydown',function(e){if(e.target.tagName==='INPUT')return;if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1)});
