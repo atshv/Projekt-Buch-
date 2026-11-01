@@ -5,11 +5,11 @@
 Alles zum Kopieren. Für jedes Projekt.
 </p>
 
-## Ablauf
+## <img src="bilder/logo.svg" height="26" align="top"> Ablauf
 
 <p align="center"><img src="bilder/ablauf.svg" alt="Ablauf"></p>
 
-## Schnellstart
+## <img src="bilder/logo.svg" height="26" align="top"> Schnellstart
 
 ```console
 # Alles laden
@@ -34,11 +34,11 @@ Ordner im KI-Programm öffnen, **Prompt 1** aus `START-PROMPTS.md` einfügen. Fe
 
 Ohne Skript: `git clone https://github.com/atshv/Projekt-Buch-.git` und den Ordner `projekt-starter/` kopieren.
 
-## Dateien
+## <img src="bilder/logo.svg" height="26" align="top"> Dateien
 
 <p align="center"><img src="bilder/struktur.svg" alt="Struktur"></p>
 
-## Rollen
+## <img src="bilder/logo.svg" height="26" align="top"> Rollen
 
 | Rolle | Datei | Schreibt |
 |:--|:--|:--|
@@ -48,7 +48,7 @@ Ohne Skript: `git clone https://github.com/atshv/Projekt-Buch-.git` und den Ordn
 | `reviewer` | `roles/reviewer.md` | `docs/REVIEW.md` (kein Code) |
 | `skill-creator` | `skills/skill-creator/SKILL.md` | neue Skills |
 
-## Skill prüfen
+## <img src="bilder/logo.svg" height="26" align="top"> Skill prüfen
 
 ```console
 python3 projekt-starter/skills/skill-creator/scripts/validate_skill.py \
@@ -56,11 +56,11 @@ python3 projekt-starter/skills/skill-creator/scripts/validate_skill.py \
 → Ergebnis: 0 Fehler, 0 Hinweise (38 Zeilen Körper)
 ```
 
-## Grundsätze
+## <img src="bilder/logo.svg" height="26" align="top"> Grundsätze
 
 <p align="center"><img src="bilder/grundsaetze.svg" alt="Grundsätze"></p>
 
-## Das Buch
+## <img src="bilder/logo.svg" height="26" align="top"> Das Buch
 
 Das ganze Buch als Webseite, mit Kopieren-Knopf an jeder Datei:
 
