@@ -6,8 +6,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#16202b;--muted:#5b6876;--line:#d9e0e7;--surface:#fafcfd;--panel:#fff;
---acc:#1f63b4;--acc-ink:#0b2c52;--acc-soft:#e3f1fb;--baby:#89cff0;
+:root{--ink:#17201d;--muted:#5d6964;--line:#d8dfda;--surface:#fbfcf8;--panel:#fff;
+--acc:#2f7d57;--acc-ink:#1d4d36;--acc-soft:#e6f3ea;--baby:#ffc000;--btn:#ffc000;--btn-ink:#4a3600;--beige:#f7f2e6;
 --teal:#0f766e;--amber:#b7791f;--red:#a3433f;--violet:#6d4fc4;
 --shadow:0 18px 50px rgba(22,32,43,.10);--r:6px;
 --sans:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
@@ -29,22 +29,23 @@ code{font:500 .86em var(--mono);background:var(--acc-soft);color:var(--acc-ink);
 body.inbook .where{display:flex}
 .sp{flex:1}
 .links{display:flex;align-items:center;gap:4px;font-size:14px;color:var(--muted)}
-.links a{padding:9px 12px;border-radius:var(--r)} .links a:hover{background:#eef2f5;color:var(--ink)}
-.button{background:var(--acc);color:#fff!important;font-weight:700;border:1px solid var(--acc)} .button:hover{background:#2a74c9!important}
+.links a{padding:9px 12px;border-radius:var(--r)} .links a:hover{background:#f1f4f2;color:var(--ink)}
+.button{background:var(--btn);color:var(--btn-ink)!important;font-weight:700;border:1px solid rgba(255,192,0,.72)} .button:hover{background:#ffd34d!important}
 #mb{display:none;font:600 14px var(--sans);background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:8px 12px}
 #prog{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--acc)}
 
 /* Hero mit Bauplan-Gitter */
-.hero{border-bottom:1px solid var(--line);background:linear-gradient(rgba(250,252,253,.92),rgba(250,252,253,.85)),repeating-linear-gradient(0deg,transparent 0,transparent 47px,rgba(31,99,180,.09) 48px),repeating-linear-gradient(90deg,transparent 0,transparent 47px,rgba(31,99,180,.08) 48px),#f4f8fb}
-.hero-inner{display:grid;grid-template-columns:minmax(0,.95fr) minmax(380px,1.05fr);gap:44px;padding:64px 0 54px;align-items:start}
-.eyebrow{display:inline-flex;gap:8px;align-items:center;margin:0 0 18px;border:1px solid #c9d8e6;border-radius:999px;padding:6px 11px;background:rgba(255,255,255,.8);color:var(--acc-ink);font-size:13px;font-weight:800}
+.hero{border-bottom:1px solid var(--line);background:linear-gradient(rgba(250,252,253,.92),rgba(250,252,253,.85)),repeating-linear-gradient(0deg,transparent 0,transparent 47px,rgba(31,111,91,.09) 48px),repeating-linear-gradient(90deg,transparent 0,transparent 47px,rgba(31,111,91,.08) 48px),#f6f8f1}
+.hero-inner{display:block;max-width:820px;padding:72px 0 64px}
+.hero .term{margin-top:30px;max-width:760px}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;margin:0 0 18px;border:1px solid #cad7d0;border-radius:999px;padding:6px 11px;background:rgba(255,255,255,.8);color:var(--acc-ink);font-size:13px;font-weight:800}
 .hero h1{margin:0;font-size:clamp(40px,6vw,66px);line-height:.98;letter-spacing:-.02em}
 .hero h1 span{color:var(--acc)}
-.hero-copy{max-width:640px;margin:22px 0 0;color:#3c4a57;font-size:19px}
+.hero-copy{max-width:640px;margin:22px 0 0;color:#3d4944;font-size:19px}
 .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .pa,.sa{display:inline-flex;align-items:center;min-height:46px;border-radius:var(--r);padding:12px 16px;font-weight:800}
-.pa{background:var(--acc);color:#fff} .pa:hover{background:#2a74c9}
-.sa{border:1px solid #b9c7d4;background:rgba(255,255,255,.75)} .sa:hover{border-color:var(--acc);color:var(--acc)}
+.pa{background:var(--btn);color:var(--btn-ink)} .pa:hover{background:#ffd34d}
+.sa{border:1px solid #b9c6be;background:rgba(255,255,255,.75)} .sa:hover{border-color:var(--acc);color:var(--acc)}
 .map{position:relative;border:1px solid #c9d6e2;border-radius:var(--r);background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(236,244,250,.92)),repeating-linear-gradient(0deg,transparent 0,transparent 39px,rgba(22,32,43,.05) 40px),repeating-linear-gradient(90deg,transparent 0,transparent 39px,rgba(22,32,43,.05) 40px);box-shadow:var(--shadow);padding:52px 18px 18px}
 .map-title{position:absolute;top:16px;left:18px;right:18px;display:flex;justify-content:space-between;color:var(--muted);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
 .flow{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
@@ -53,12 +54,12 @@ body.inbook .where{display:flex}
 .node small{position:absolute;top:10px;right:12px;font:700 11px var(--mono);color:var(--muted)}
 .nd1{border-top:5px solid var(--acc)} .nd2{border-top:5px solid var(--teal)} .nd3{border-top:5px solid var(--amber)} .nd4{border-top:5px solid var(--red)}
 .loop{margin:10px 2px 14px;font-size:12.5px;color:var(--muted)}
-.term{border-radius:var(--r);overflow:hidden;background:#16202b;color:#dbe7f2;box-shadow:var(--shadow)}
+.term{border-radius:var(--r);overflow:hidden;background:#17201d;color:#d9eadf;box-shadow:var(--shadow)}
 .term-head{display:flex;align-items:center;gap:7px;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.12)}
-.term-head i{width:10px;height:10px;border-radius:50%;background:#7fb0d6}
-.term-head span{margin-left:6px;font:12px var(--mono);color:#9fb3c6}
-.term-head button{margin-left:auto;font:600 12px var(--sans);background:transparent;color:#dbe7f2;border:1px solid rgba(255,255,255,.25);border-radius:4px;padding:3px 10px;cursor:pointer}
-.term-head button:hover{background:var(--baby);color:#0b2c52;border-color:var(--baby)}
+.term-head i{width:10px;height:10px;border-radius:50%;background:#7fb39d}
+.term-head span{margin-left:6px;font:12px var(--mono);color:#9fbcae}
+.term-head button{margin-left:auto;font:600 12px var(--sans);background:transparent;color:#d9eadf;border:1px solid rgba(255,255,255,.25);border-radius:4px;padding:3px 10px;cursor:pointer}
+.term-head button:hover{background:var(--btn);color:var(--btn-ink);border-color:var(--btn)}
 .term pre{margin:0;padding:14px 16px;font:12.5px/1.6 var(--mono);white-space:pre-wrap;word-break:break-all}
 
 /* Abschnitte */
@@ -69,30 +70,30 @@ main>section.sec{padding:76px 0}
 .ta{color:var(--acc)} .tt{color:var(--teal)}
 .grid{display:grid;gap:14px} .three{grid-template-columns:repeat(3,minmax(0,1fr))} .two{grid-template-columns:repeat(2,minmax(0,1fr))}
 .card{display:block;border:1px solid var(--line);border-radius:var(--r);padding:20px;background:var(--panel);transition:border-color .15s,box-shadow .15s}
-a.card:hover{border-color:#a9bfd4;box-shadow:0 10px 26px rgba(22,32,43,.08)}
+a.card:hover{border-color:#b5c9bb;box-shadow:0 10px 26px rgba(22,32,43,.08)}
 .card h3{margin:0 0 8px;font-size:18px} .card p{margin:0;color:var(--muted);font-size:15px}
 .card .f{display:block;margin-top:12px;font:12.5px var(--mono);color:var(--acc)}
-#rollen .card{border-left:5px solid var(--acc)} #rollen .c2{border-left-color:var(--teal)} #rollen .c3{border-left-color:var(--amber)} #rollen .c4{border-left-color:var(--red)} #rollen .c5{border-left-color:var(--violet)}
+#rollen .card{border-left:5px solid var(--btn)} #rollen .c2{border-left-color:var(--teal)} #rollen .c3{border-left-color:var(--amber)} #rollen .c4{border-left-color:var(--red)} #rollen .c5{border-left-color:var(--violet)}
 #skills .card{border-left:5px solid var(--teal)}
 .workflow{display:grid;grid-template-columns:.95fr 1.05fr;gap:26px;align-items:start}
 ol.wsteps{counter-reset:w;display:grid;gap:10px;margin:0;padding:0;list-style:none}
 ol.wsteps a{display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;align-items:start;border:1px solid var(--line);border-radius:var(--r);padding:13px 14px;background:#fff}
-ol.wsteps a:hover{border-color:#a9bfd4}
+ol.wsteps a:hover{border-color:#b5c9bb}
 ol.wsteps li{counter-increment:w} ol.wsteps a::before{content:counter(w);display:grid;width:34px;height:34px;place-items:center;border-radius:var(--r);background:var(--acc-soft);color:var(--acc-ink);font-weight:900}
 ol.wsteps strong{display:block} ol.wsteps span{color:var(--muted);font-size:14px}
-.band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff}
+.band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--beige)}
 
 /* Buch */
 .book{display:grid;grid-template-columns:250px minmax(0,1fr);gap:40px;padding:60px 0 40px}
 .toc{position:sticky;top:84px;align-self:start;max-height:calc(100vh - 100px);overflow:auto;padding-right:6px;font-size:14px}
 .toc .grp{font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px}
 .toc .grp:first-child{margin-top:0}
-.toc a{display:flex;gap:10px;padding:6px 10px;border-radius:var(--r);color:#3c4a57;border-left:3px solid transparent}
+.toc a{display:flex;gap:10px;padding:6px 10px;border-radius:var(--r);color:#3d4944;border-left:3px solid transparent}
 .toc a .no{flex:none;width:22px;font:700 11.5px var(--mono);color:var(--muted);padding-top:2px}
-.toc a:hover{background:#eef2f5}
+.toc a:hover{background:#f1f4f2}
 .toc a.on{background:var(--acc-soft);color:var(--acc-ink);font-weight:700;border-left-color:var(--acc);border-radius:0 var(--r) var(--r) 0}
 .toc a.kitlink{display:none;font:12px var(--mono);padding:3px 10px 3px 42px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.toc a.kitlink .dir{color:#9aa7b4}
+.toc a.kitlink .dir{color:#a3ada7}
 body.inkit .toc a.kitlink{display:block}
 .toc a.kitlink.on{background:var(--acc-soft);color:var(--acc-ink)}
 .chapters{min-width:0}
@@ -104,7 +105,7 @@ body.inkit .toc a.kitlink{display:block}
 .page h1{margin:2px 0 4px;font-size:30px;line-height:1.15;letter-spacing:-.015em}
 .page h1.path{font:700 22px var(--mono)}
 .sub{margin:0;color:var(--muted);font-size:16.5px}
-.lead{font-size:17.5px;color:#2d3a47}
+.lead{font-size:17.5px;color:#2f3b36}
 p{margin:0 0 12px}
 .blk{margin:0 0 6px}
 .blk>h2{display:flex;align-items:center;gap:10px;font-size:19px;margin:28px 0 12px}
@@ -113,26 +114,26 @@ h3{font-size:15px;margin:16px 0 6px}
 table{width:100%;border-collapse:separate;border-spacing:0;margin:10px 0 18px;font-size:14.5px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 th,td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
 tr:last-child td,tr:last-child th{border-bottom:0}
-th{background:#f3f6f9;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+th{background:#f2f5ef;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
 td:first-child{font-weight:600}
-table.facts{border-left:5px solid var(--acc);background:#f8fbfd}
+table.facts{border-left:5px solid var(--acc);background:#f6faf5}
 table.facts th{background:transparent;width:150px;color:var(--acc);font-size:11.5px;padding-top:12px}
 table.facts td{font-weight:400}
 ol.steps{counter-reset:s;display:grid;gap:8px;margin:6px 0 18px;padding:0;list-style:none}
 ol.steps li{counter-increment:s;display:grid;grid-template-columns:40px minmax(0,1fr);gap:10px;align-items:start;border:1px solid var(--line);border-radius:var(--r);padding:11px 13px;background:#fff}
 ol.steps li::before{content:counter(s);display:grid;width:30px;height:30px;place-items:center;border-radius:var(--r);background:var(--acc-soft);color:var(--acc-ink);font-weight:900;font-size:14px}
-.code{border-radius:var(--r);overflow:hidden;background:#16202b;color:#dbe7f2;margin:12px 0 18px;box-shadow:0 10px 30px rgba(22,32,43,.10)}
+.code{border-radius:var(--r);overflow:hidden;background:#17201d;color:#d9eadf;margin:12px 0 18px;box-shadow:0 10px 30px rgba(22,32,43,.10)}
 .code .wb{display:flex;align-items:center;gap:7px;padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.12)}
-.code .wb i{width:10px;height:10px;border-radius:50%;background:#7fb0d6}
-.code .ttl{margin-left:6px;font:12px var(--mono);color:#9fb3c6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.code .wb i{width:10px;height:10px;border-radius:50%;background:#7fb39d}
+.code .ttl{margin-left:6px;font:12px var(--mono);color:#9fbcae;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .code .act{margin-left:auto;display:flex;gap:6px}
-.code button{font:600 12px var(--sans);background:transparent;color:#dbe7f2;border:1px solid rgba(255,255,255,.25);border-radius:4px;padding:3px 10px;cursor:pointer}
-.code button:hover{background:var(--baby);color:#0b2c52;border-color:var(--baby)}
+.code button{font:600 12px var(--sans);background:transparent;color:#d9eadf;border:1px solid rgba(255,255,255,.25);border-radius:4px;padding:3px 10px;cursor:pointer}
+.code button:hover{background:var(--btn);color:var(--btn-ink);border-color:var(--btn)}
 .code button.done{background:#4ade80;color:#052e16;border-color:#4ade80}
 .code pre{margin:0;padding:14px 16px;overflow:auto;font:12.6px/1.6 var(--mono);white-space:pre}
 .page.kit .code pre{max-height:640px}
-.box{border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:var(--r);background:#f8fbfd;padding:12px 16px 10px;margin:10px 0 18px}
-.box.ok{border-left-color:var(--teal);background:#f3faf8} .box.warn{border-left-color:var(--amber);background:#fcf8f0}
+.box{border:1px solid var(--line);border-left:5px solid var(--btn);border-radius:var(--r);background:#f6faf5;padding:12px 16px 10px;margin:10px 0 18px}
+.box.ok{border-left-color:var(--teal);background:#f1f8f4} .box.warn{border-left-color:var(--amber);background:var(--beige)}
 .box p{margin:2px 0;font-size:15px}
 .lbl{font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--acc);margin-bottom:4px}
 .ok .lbl{color:var(--teal)} .warn .lbl{color:var(--amber)}
@@ -161,18 +162,9 @@ footer a{color:var(--acc)}
 <h1>Das <span>KI-Projekt</span>-Buch</h1>
 <p class="hero-copy">Software bauen mit KI, auch ohne Programmierkenntnisse. Rollen, Skills und Vorlagen, die prüfbare Ergebnisse liefern, Entscheidungen festhalten und Schritt für Schritt zum fertigen Projekt führen.</p>
 <div class="actions"><a class="pa" href="#buch">Buch lesen</a><a class="sa" href="#ablauf">Ablauf ansehen</a><a class="sa" href="https://github.com/atshv/Projekt-Buch-/archive/refs/heads/main.zip">Alles als ZIP</a></div>
-</div>
-<div class="map">
-<div class="map-title"><span>So läuft ein Projekt</span><span>Rollen + Skills + Dateien</span></div>
-<div class="flow">
-<div class="node nd1"><small>1</small><strong>Brief</strong><span>Idee wird prüfbares Dokument</span></div>
-<div class="node nd2"><small>2</small><strong>Architect</strong><span>Grundsätze, Bauplan, Karten</span></div>
-<div class="node nd3"><small>3</small><strong>Agent</strong><span>baut Karte für Karte, mit Tests</span></div>
-<div class="node nd4"><small>4</small><strong>Reviewer + UI-Judge</strong><span>prüfen mit frischem Blick</span></div>
-</div>
-<div class="loop">Funde werden neue Karten. AGENTS.md gilt immer, Skills kommen bei Bedarf dazu.</div>
 <div class="term"><div class="term-head"><i></i><i></i><i></i><span>Schnellstart im Terminal</span><button class="tcp" type="button">kopieren</button></div>
 <pre>curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s mein-projekt</pre></div>
+
 </div>
 </div></section>
 
@@ -215,7 +207,7 @@ footer a{color:var(--acc)}
 <a class="card c3" href="#kit-agents-agent-md"><h3>Agent</h3><p>Baut genau eine Karte pro Durchlauf: Test zuerst, sauberer Code-Stil, Git, Drift-Abgleich.</p><span class="f">agents/agent.md</span></a>
 <a class="card c4" href="#kit-agents-reviewer-md"><h3>Reviewer</h3><p>Prüft mit frischem Blick aus einem Blickwinkel und belegt jeden Befund.</p><span class="f">agents/reviewer.md</span></a>
 <a class="card c5" href="#kit-agents-ui-judge-md"><h3>UI-Judge</h3><p>Vergleicht die laufende Oberfläche mit Prototyp und Szenarien, ohne die Sicht des Erbauers.</p><span class="f">agents/ui-judge.md</span></a>
-<a class="card" href="#kit-agents-md" style="border-left-color:#9aa7b4"><h3>AGENTS.md</h3><p>Die Grundregeln für alle: Befehle, Regeln, Leseordnung, Definition of Done.</p><span class="f">AGENTS.md</span></a>
+<a class="card" href="#kit-agents-md" style="border-left-color:#a3ada7"><h3>AGENTS.md</h3><p>Die Grundregeln für alle: Befehle, Regeln, Leseordnung, Definition of Done.</p><span class="f">AGENTS.md</span></a>
 </div></section></div>
 
 <section class="sec wrap" id="skills">
