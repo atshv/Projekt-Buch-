@@ -7,7 +7,9 @@ if [ "${1:-}" = "" ] || [ "${1:-}" = "--help" ]; then
   sed -n '2,3p' "$0" | sed 's/^# //'; exit 0
 fi
 NAME="$1"
-echo "$NAME" | grep -Eq '^[a-z0-9]+(-[a-z0-9]+)*$' || { echo "Ungültiger Name: nur a-z, 0-9, Bindestrich"; exit 1; }
+if ! echo "$NAME" | grep -Eq '^[a-z0-9]+(-[a-z0-9]+)*$'; then
+  echo "Ungültiger Name: nur a-z, 0-9, Bindestrich"; exit 1
+fi
 DIR="skills/$NAME"
 [ -e "$DIR" ] && { echo "Gibt es schon: $DIR"; exit 1; }
 mkdir -p "$DIR/references" "$DIR/tests"
