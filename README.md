@@ -17,9 +17,9 @@ Schritt für Schritt erklärt. Mit kopierfertigen Dateien für jedes Projekt.
 
 ```
 $ ls
-Das-KI-Projekt-Buch.pdf    Buch, 42 Seiten, weiss, Teil C = Kopier-Set
+BUCH.txt                   Buch als Text, 42 Seiten, Teil C = Kopier-Set
 projekt-starter/           alle Dateien aus Teil C, fertig als Ordner
-projekt-starter.zip        derselbe Ordner als ZIP
+bilder/                    Seitenvorschau
 ```
 
 ## Ablauf
@@ -102,6 +102,16 @@ Ergebnis: 0 Fehler, 0 Hinweise (38 Zeilen Körper)
 09  Skill ab der dritten Wiederholung.
 10  Kurz schlägt lang.
 ```
+
+## Vorschau
+
+| Titel | Überblick | Brief |
+|:-:|:-:|:-:|
+| ![Titel](bilder/seite-01.png) | ![Überblick](bilder/seite-04.png) | ![Brief](bilder/seite-06.png) |
+
+| Architect | Skills | Kopier-Set |
+|:-:|:-:|:-:|
+| ![Architect](bilder/seite-09.png) | ![Skills](bilder/seite-12.png) | ![Kopier-Set](bilder/seite-16.png) |
 
 ## Das Buch
 
