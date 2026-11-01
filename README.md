@@ -30,7 +30,8 @@ cd mein-projekt && git init
 # Datei AGENTS.md öffnen, Abschnitt 1 ausfüllen
 ```
 
-Ordner im KI-Programm öffnen, **Prompt 1** aus `START-PROMPTS.md` einfügen. Fertig.
+Ordner im KI-Programm öffnen, **Prompt 1** aus `START-PROMPTS.md` einfügen. Oder **Prompt 16**:
+Er führt in einer Sitzung von der Idee über Brief, Architektur und Plan bis zur Einrichtung. Fertig.
 
 Ohne Skript: `git clone https://github.com/atshv/Projekt-Buch-.git` und den Ordner `projekt-starter/` kopieren.
 
@@ -76,6 +77,13 @@ bin/new-skill bericht-schreiben    # Gerüst anlegen
 bin/check-skills                   # alle Skills prüfen, Abgleich mit SKILLMAP.md
 ```
 
+## <img src="bilder/logo-gruen.svg" height="26" align="top"> Beim Bauen prüfen
+
+```console
+bin/check-scope T05                # nur Dateien der Karte T05 geändert?
+bin/record-test T05 -- npm test    # Testlauf als Nachweis in docs/handoff/nachweise/ ablegen
+```
+
 ## <img src="bilder/logo-gruen.svg" height="26" align="top"> Grundsätze
 
 <p align="center"><img src="bilder/grundsaetze.svg" alt="Grundsätze"></p>
@@ -88,7 +96,7 @@ Das ganze Buch als Webseite, mit Kopieren-Knopf an jeder Datei:
 Falls der Link nicht lädt: [Ersatz-Link](https://htmlpreview.github.io/?https://github.com/atshv/Projekt-Buch-/blob/main/docs/index.html)
 
 ```console
-Teil A  Verstehen            Überblick, Prompt vs. Skill vs. Brief, Einrichten
+Teil A  Verstehen            Überblick, Prompt vs. Skill vs. Brief, Einrichten, Alles in einem Durchlauf
 Teil B  Schritt für Schritt  Brief, AGENTS.md, Architect, Skills, Agent, Reviewer, Betrieb
 Teil C  Kopier-Set           jede Datei vollständig
 ```

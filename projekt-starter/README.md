@@ -5,8 +5,10 @@ Ein leeres, wiederverwendbares Gerüst für Projekte mit KI-Unterstützung.
 ## So startest du (5 Schritte)
 1. Kopiere diesen Ordner als Basis deines neuen Projekts.
 2. Öffne AGENTS.md und ersetze die Angaben in [ECKIGEN KLAMMERN] (Abschnitt 1).
-3. Starte eine Sitzung mit dem Prompt "1. Brief erstellen" aus START-PROMPTS.md.
+3. Starte eine Sitzung mit dem Prompt "1. Brief erstellen" aus START-PROMPTS.md. Oder nimm
+   Prompt 16 und lass dich in einer Sitzung von der Idee bis zur Einrichtung führen.
 4. Danach: Architect (Prompt 2), dann Agent (Prompt 3) Karte für Karte, dazwischen Reviewer.
+   Nach Prompt 16 geht es direkt mit dem Agent (Prompt 3) weiter.
 5. Brauchst du eine wiederkehrende Fähigkeit: Prompt 5 (Skill erstellen).
 
 ## Inhalt

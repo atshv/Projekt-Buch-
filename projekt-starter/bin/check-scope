@@ -1,0 +1,100 @@
+#!/usr/bin/env bash
+# Prüft, ob geänderte Dateien zur Aufgabenkarte passen.  Aufruf: bin/check-scope <Karten-ID> [Basis]
+# Erlaubt: Dateien aus "Betrifft" der Karte (docs/plan/PLAN.md), dazu docs/handoff/ und PLAN.md.
+# Basis: Zweig, ab dem verglichen wird. Standard: main (sonst master, sonst HEAD = nur Ungesichertes).
+# Ergebnis: 0 = alles passt, 1 = Dateien ausserhalb der Karte, 2 = Eingabe- oder Planfehler.
+set -uo pipefail
+cd "$(dirname "$0")/.."
+
+ID="${1:-}"
+if [ -z "$ID" ] || [ "$ID" = "--help" ] || [ "$ID" = "-h" ]; then
+  sed -n '2,5p' "$0" | sed 's/^# \{0,1\}//'; exit 0
+fi
+echo "$ID" | grep -Eq '^T[0-9]+[a-z]?$' || { echo "Ungültige Karten-ID: $ID (erwartet z. B. T07 oder T07a)"; exit 2; }
+git rev-parse --git-dir >/dev/null 2>&1 || { echo "Kein Git-Projekt. Zuerst: git init"; exit 2; }
+git rev-parse --verify -q HEAD >/dev/null || { echo "Noch kein Commit. Zuerst: git add . && git commit -m \"Start\""; exit 2; }
+
+PLAN="docs/plan/PLAN.md"
+[ -f "$PLAN" ] || { echo "Fehlt: $PLAN"; exit 2; }
+
+# Karte aus dem Plan holen (von "### Txx:" bis zur nächsten Überschrift)
+KARTE=$(awk -v id="$ID" '
+  $0 ~ "^### " id ":" { drin = 1; next }
+  drin && /^##/ { exit }
+  drin { print }
+' "$PLAN")
+[ -n "$KARTE" ] || { echo "Karte $ID steht nicht in $PLAN"; exit 2; }
+
+# Zeile "- Betrifft:" samt eingerückten Folgezeilen
+BETRIFFT=$(printf '%s\n' "$KARTE" | awk '
+  /^- Betrifft:/ { sub(/^- Betrifft:[ \t]*/, ""); feld = 1; print; next }
+  feld && /^[ \t]+[^ \t-]/ { print; next }
+  { feld = 0 }
+')
+[ -n "$BETRIFFT" ] || { echo "Karte $ID hat keine Zeile \"Betrifft\". Der Architect ergänzt sie (Skill plan-cards)."; exit 2; }
+
+EINTRAEGE=()
+LISTE=$(printf '%s' "$BETRIFFT" | tr -d '`[]' | tr ',;' '\n\n')
+while IFS= read -r z; do
+  z=$(printf '%s' "$z" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//; s/\.$//')
+  z="${z#./}"
+  if [ -n "$z" ] && [ "$z" != "-" ]; then EINTRAEGE+=("$z"); fi
+done <<< "$LISTE"
+[ ${#EINTRAEGE[@]} -gt 0 ] || { echo "Karte $ID nennt keine Dateien unter \"Betrifft\"."; exit 2; }
+
+IMMER=("docs/handoff/" "docs/plan/PLAN.md")
+
+# Vergleichsbasis bestimmen
+BASIS="${2:-}"
+if [ -z "$BASIS" ]; then
+  BASIS="HEAD"
+  for b in main master; do
+    if git rev-parse --verify -q "$b" >/dev/null; then BASIS="$b"; break; fi
+  done
+fi
+STAND=$(git merge-base "$BASIS" HEAD 2>/dev/null) || { echo "Basis nicht gefunden: $BASIS"; exit 2; }
+
+GEAENDERT=$({ git diff --relative --name-only --no-renames "$STAND"; git ls-files --others --exclude-standard; } | sort -u)
+
+passt() { # $1 = Datei, $2 = Eintrag
+  local f="$1" e="$2"
+  [[ "$f" == $e ]] && return 0
+  [[ "$e" == */ && "$f" == "$e"* ]] && return 0
+  [ -d "$e" ] && [[ "$f" == "${e%/}"/* ]] && return 0
+  return 1
+}
+
+AUSSERHALB=()
+N_OK=0
+N_ALLE=0
+while IFS= read -r f; do
+  [ -n "$f" ] || continue
+  N_ALLE=$((N_ALLE + 1))
+  ok=0
+  for e in "${IMMER[@]}" "${EINTRAEGE[@]}"; do
+    if passt "$f" "$e"; then ok=1; break; fi
+  done
+  if [ $ok -eq 1 ]; then N_OK=$((N_OK + 1)); else AUSSERHALB+=("$f"); fi
+done <<< "$GEAENDERT"
+
+echo "Karte $ID. Erlaubt: ${EINTRAEGE[*]} (dazu ${IMMER[*]})"
+echo "Verglichen mit: $BASIS (Stand $(git rev-parse --short "$STAND"))"
+if [ $N_ALLE -eq 0 ]; then echo "Keine Änderungen gefunden."; exit 0; fi
+
+# Einträge der Karte, zu denen nichts geändert wurde (nur Hinweis)
+for e in "${EINTRAEGE[@]}"; do
+  gefunden=0
+  while IFS= read -r f; do
+    [ -n "$f" ] || continue
+    if passt "$f" "$e"; then gefunden=1; break; fi
+  done <<< "$GEAENDERT"
+  [ $gefunden -eq 1 ] || echo "Hinweis: \"$e\" steht in der Karte, wurde aber nicht geändert."
+done
+
+if [ ${#AUSSERHALB[@]} -eq 0 ]; then
+  echo "OK: alle $N_ALLE geänderten Dateien gehören zur Karte."; exit 0
+fi
+echo "AUSSERHALB DER KARTE (${#AUSSERHALB[@]} von $N_ALLE):"
+for f in "${AUSSERHALB[@]}"; do echo "  $f"; done
+echo "Nimm diese Änderungen zurück oder nenne den Grund in docs/handoff/HANDOFF.md."
+exit 1
