@@ -64,7 +64,8 @@ python3 projekt-starter/skills/skill-creator/scripts/validate_skill.py \
 
 Das ganze Buch als Webseite, mit Kopieren-Knopf an jeder Datei:
 
-**[docs/index.html](https://htmlpreview.github.io/?https://github.com/atshv/Projekt-Buch-/blob/main/docs/index.html)**
+**[Buch online öffnen](https://raw.githack.com/atshv/Projekt-Buch-/main/docs/index.html)**  
+Falls der Link nicht lädt: [Ersatz-Link](https://htmlpreview.github.io/?https://github.com/atshv/Projekt-Buch-/blob/main/docs/index.html)
 
 ```console
 Teil A  Verstehen            Überblick, Prompt vs. Skill vs. Brief, Einrichten

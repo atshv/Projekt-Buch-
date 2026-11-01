@@ -1,64 +1,84 @@
 <!doctype html>
 <html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Das KI-Projekt-Buch</title><link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgdmlld0JveD0iMCAwIDk2IDk2Ij4KPGRlZnM+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHJ4PSIyNCIvPjwvY2xpcFBhdGg+PC9kZWZzPgo8ZyBjbGlwLXBhdGg9InVybCgjcikiPgo8cmVjdCB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIGZpbGw9IiMxZjYzYjQiLz4KPGcgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utb3BhY2l0eT0iLjE2IiBzdHJva2Utd2lkdGg9IjEiPjxwYXRoIGQ9Ik0xMiAwdjk2TTI0IDB2OTZNMzYgMHY5Nk00OCAwdjk2TTYwIDB2OTZNNzIgMHY5Nk04NCAwdjk2TTAgMTJoOTZNMCAyNGg5Nk0wIDM2aDk2TTAgNDhoOTZNMCA2MGg5Nk0wIDcyaDk2TTAgODRoOTYiLz48L2c+CjxnIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii4yOCIgc3Ryb2tlLXdpZHRoPSIxLjQiPjxwYXRoIGQ9Ik00OCAwdjk2TTAgNDhoOTYiLz48L2c+CjwvZz4KPHJlY3QgeD0iMjIiIHk9IjI2IiB3aWR0aD0iNDYiIGhlaWdodD0iNTIiIHJ4PSI3IiBmaWxsPSIjOWZkNmYzIiB0cmFuc2Zvcm09InJvdGF0ZSgtMTIgNDUgNTIpIi8+CjxyZWN0IHg9IjI2IiB5PSIyMiIgd2lkdGg9IjQ2IiBoZWlnaHQ9IjUyIiByeD0iNyIgZmlsbD0iI2Q0ZWRmYiIgdHJhbnNmb3JtPSJyb3RhdGUoLTQgNDkgNDgpIi8+CjxyZWN0IHg9IjMwIiB5PSIyMCIgd2lkdGg9IjQ2IiBoZWlnaHQ9IjU0IiByeD0iNyIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNNDAgMzhsOSA3LTkgNyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWY2M2I0IiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cmVjdCB4PSI1MyIgeT0iNTAiIHdpZHRoPSIxMyIgaGVpZ2h0PSI1IiByeD0iMiIgZmlsbD0iIzFmNjNiNCIvPgo8cGF0aCBkPSJNNDAgNjNoMjYiIHN0cm9rZT0iI2I1ZGZmNSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+Cg==" type="image/svg+xml">
+<title>Das KI-Projekt-Buch</title><link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgdmlld0JveD0iMCAwIDk2IDk2Ij4KPGRlZnM+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHJ4PSIwIi8+PC9jbGlwUGF0aD48L2RlZnM+CjxnIGNsaXAtcGF0aD0idXJsKCNyKSI+CjxyZWN0IHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgZmlsbD0iIzFmNjNiNCIvPgo8ZyBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS1vcGFjaXR5PSIuMTYiIHN0cm9rZS13aWR0aD0iMSI+PHBhdGggZD0iTTEyIDB2OTZNMjQgMHY5Nk0zNiAwdjk2TTQ4IDB2OTZNNjAgMHY5Nk03MiAwdjk2TTg0IDB2OTZNMCAxMmg5Nk0wIDI0aDk2TTAgMzZoOTZNMCA0OGg5Nk0wIDYwaDk2TTAgNzJoOTZNMCA4NGg5NiIvPjwvZz4KPGcgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utb3BhY2l0eT0iLjI4IiBzdHJva2Utd2lkdGg9IjEuNCI+PHBhdGggZD0iTTQ4IDB2OTZNMCA0OGg5NiIvPjwvZz4KPC9nPgo8cmVjdCB4PSIyMiIgeT0iMjYiIHdpZHRoPSI0NiIgaGVpZ2h0PSI1MiIgcng9IjEuNSIgZmlsbD0iIzlmZDZmMyIgdHJhbnNmb3JtPSJyb3RhdGUoLTEyIDQ1IDUyKSIvPgo8cmVjdCB4PSIyNiIgeT0iMjIiIHdpZHRoPSI0NiIgaGVpZ2h0PSI1MiIgcng9IjEuNSIgZmlsbD0iI2Q0ZWRmYiIgdHJhbnNmb3JtPSJyb3RhdGUoLTQgNDkgNDgpIi8+CjxyZWN0IHg9IjMwIiB5PSIyMCIgd2lkdGg9IjQ2IiBoZWlnaHQ9IjU0IiByeD0iMS41IiBmaWxsPSIjZmZmIi8+CjxwYXRoIGQ9Ik00MCAzOGw5IDctOSA3IiBmaWxsPSJub25lIiBzdHJva2U9IiMxZjYzYjQiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxyZWN0IHg9IjUzIiB5PSI1MCIgd2lkdGg9IjEzIiBoZWlnaHQ9IjUiIHJ4PSIyIiBmaWxsPSIjMWY2M2I0Ii8+CjxwYXRoIGQ9Ik00MCA2M2gyNiIgc3Ryb2tlPSIjYjVkZmY1IiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4K" type="image/svg+xml">
+<meta property="og:title" content="Das KI-Projekt-Buch"><meta property="og:description" content="Software bauen mit Brief, Architect, Agent, Skills und Reviewer."><meta name="theme-color" content="#0b0f14">
 <meta name="description" content="Software bauen mit Brief, Architect, Agent, Skills und Reviewer. Schritt für Schritt, mit kopierfertigen Dateien.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0b0f14;--bg2:#0f141b;--panel:#131a23;--panel2:#18212c;--line:#232d3a;--line2:#2e3a49;--ink:#d6dde6;--soft:#aab6c3;--dim:#7d8a99;
 --b:#89cff0;--b2:#5fb8e6;--bd:#1e6fb8;--bglow:rgba(137,207,240,.14);--ok:#4ade80;--warn:#fbbf24;
+--hi:#fff;--hi2:#e8eef5;--onb:#08243a;--hdr:rgba(11,15,20,.78);--navbg:rgba(15,20,27,.85);
 --sans:Inter,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;--mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+:root[data-theme=light]{--bg:#f5f8fb;--bg2:#ffffff;--panel:#ffffff;--panel2:#f1f5f9;--line:#e3e9f0;--line2:#d3dce6;--ink:#243243;--soft:#475569;--dim:#64748b;
+--b:#1f63b4;--b2:#3b82c4;--bglow:rgba(31,99,180,.08);--hi:#0f1b2a;--hi2:#1e2b3a;--onb:#ffffff;--hdr:rgba(245,248,251,.82);--navbg:rgba(255,255,255,.88);--ok:#16a34a;--warn:#d97706}
+:root[data-theme=light] body::before{background:radial-gradient(900px 500px at 75% -10%,rgba(31,99,180,.08),transparent 60%)}
+:root[data-theme=light] .card:hover,:root[data-theme=light] .code{box-shadow:0 10px 30px rgba(15,27,42,.12)}
+:root[data-theme=light] .hero .hlogo{filter:drop-shadow(0 18px 34px rgba(31,99,180,.3))}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 var(--sans);-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(900px 500px at 75% -10%,rgba(137,207,240,.10),transparent 60%),radial-gradient(700px 400px at 10% 110%,rgba(95,184,230,.06),transparent 60%)}
 ::selection{background:rgba(137,207,240,.3)}
 a{color:var(--b);text-decoration:none} a:hover{text-decoration:underline}
-code{font:500 .86em var(--mono);background:rgba(137,207,240,.09);color:var(--b);padding:2px 6px;border-radius:5px;border:1px solid rgba(137,207,240,.14)}
-b,strong{color:#fff;font-weight:600}
+code{font:500 .86em var(--mono);background:rgba(137,207,240,.09);color:var(--b);padding:2px 6px;border-radius:0;border:1px solid rgba(137,207,240,.14)}
+b,strong{color:var(--hi);font-weight:600}
 
 #bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--b2),var(--b),#e0f3fc);z-index:20;box-shadow:0 0 12px var(--b)}
-header{position:fixed;top:0;left:0;right:0;height:62px;z-index:10;display:flex;align-items:center;gap:14px;padding:0 24px;background:rgba(11,15,20,.78);backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);border-bottom:1px solid var(--line)}
-header .brand{display:flex;align-items:center;gap:12px;color:#fff;font-weight:700;font-size:16px;white-space:nowrap;letter-spacing:-.01em}
+header{position:fixed;top:0;left:0;right:0;height:62px;z-index:10;display:flex;align-items:center;gap:14px;padding:0 24px;background:var(--hdr);backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);border-bottom:1px solid var(--line)}
+header .brand{display:flex;align-items:center;gap:12px;color:var(--hi);font-weight:700;font-size:16px;white-space:nowrap;letter-spacing:-.01em}
 header .brand:hover{text-decoration:none}
 header .brand img{width:34px;height:34px}
 .crumb{margin-left:8px;padding-left:18px;border-left:1px solid var(--line2);color:var(--dim);font:13px var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .crumb b{color:var(--b);font-weight:500}
 .sp{flex:1} .cnt{color:var(--dim);font:12px var(--mono);white-space:nowrap}
-.hbtn{color:var(--soft);font:500 13px var(--sans);padding:7px 13px;border:1px solid var(--line2);border-radius:8px;background:transparent;cursor:pointer;white-space:nowrap}
-.hbtn:hover{color:#fff;border-color:var(--b);text-decoration:none;background:var(--bglow)}
-.hbtn.pri{background:var(--b);color:#08243a;border-color:var(--b);font-weight:600} .hbtn.pri:hover{background:#a6dcf5;color:#08243a}
+.hbtn{color:var(--soft);font:500 13px var(--sans);padding:7px 13px;border:1px solid var(--line2);border-radius:0;background:transparent;cursor:pointer;white-space:nowrap}
+.hbtn:hover{color:var(--hi);border-color:var(--b);text-decoration:none;background:var(--bglow)}
+.hbtn.pri{background:var(--b);color:var(--onb);border-color:var(--b);font-weight:600} .hbtn.pri:hover{background:#a6dcf5;color:var(--onb)}
 #mb{display:none}
+#th{width:36px;padding:7px 0;text-align:center}
+.srch{position:sticky;top:0;z-index:2;padding:8px 2px 6px;background:var(--navbg)}
+.srch input{width:100%;font:14px var(--sans);color:var(--ink);background:var(--panel);border:1px solid var(--line2);border-radius:0;padding:8px 12px 8px 34px;outline:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%237d8a99' stroke-width='2'><circle cx='7' cy='7' r='5'/><path d='M11 11l4 4'/></svg>");background-repeat:no-repeat;background-position:11px 50%}
+.srch input:focus{border-color:var(--b);box-shadow:0 0 0 3px var(--bglow)}
+.srch kbd{position:absolute;right:12px;top:15px;font:11px var(--mono);color:var(--dim);border:1px solid var(--line2);border-radius:0;padding:0 5px}
+nav .none{color:var(--dim);font-size:13px;padding:10px;display:none}
+.top{position:fixed;right:22px;bottom:22px;width:42px;height:42px;border-radius:0;border:1px solid var(--line2);background:var(--panel);color:var(--b);font-size:18px;cursor:pointer;opacity:0;pointer-events:none;transition:.2s;z-index:8;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.top.on{opacity:1;pointer-events:auto} .top:hover{background:var(--b);color:var(--onb)}
+h2 .anc{opacity:0;color:var(--dim);font-weight:400;margin-left:2px;text-decoration:none;transition:.15s} h2:hover .anc{opacity:1} h2 .anc:hover{color:var(--b)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 14px var(--sans);padding:10px 16px;border-radius:0;border:1px solid var(--line2);color:var(--ink);background:var(--panel)}
+.btn:hover{text-decoration:none;border-color:var(--b);color:var(--b)} .btn.pri{background:var(--b);border-color:var(--b);color:var(--onb)} .btn.pri:hover{filter:brightness(1.08);color:var(--onb)}
+@media print{header,nav,#bar,.pager,.act,.toast,.top,.srch,.cards,.btns{display:none!important} main{margin:0;padding:0;max-width:none} body{background:#fff;color:#000} body::before{display:none} section{break-inside:auto;padding:20px 0} .code{box-shadow:none} .code pre{max-height:none!important;white-space:pre-wrap}}
 
-nav{position:fixed;top:62px;left:0;bottom:0;width:286px;overflow:auto;z-index:5;background:rgba(15,20,27,.85);backdrop-filter:blur(10px);border-right:1px solid var(--line);padding:10px 12px 60px}
-nav::-webkit-scrollbar{width:8px} nav::-webkit-scrollbar-thumb{background:var(--line2);border-radius:8px}
+nav{position:fixed;top:62px;left:0;bottom:0;width:286px;overflow:auto;z-index:5;background:var(--navbg);backdrop-filter:blur(10px);border-right:1px solid var(--line);padding:10px 12px 60px}
+nav::-webkit-scrollbar{width:8px} nav::-webkit-scrollbar-thumb{background:var(--line2);border-radius:0}
 nav .grp{color:var(--dim);font:600 11px var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:18px 10px 6px}
-nav a{display:flex;align-items:center;gap:10px;color:var(--soft);padding:6px 10px;border-radius:8px;font-size:14px;line-height:1.35}
-nav a:hover{background:var(--panel);color:#fff;text-decoration:none}
-nav a .no{flex:none;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;font:600 11px var(--mono);color:var(--dim);background:var(--panel2);border:1px solid var(--line2)}
+nav a{display:flex;align-items:center;gap:10px;color:var(--soft);padding:6px 10px;border-radius:0;font-size:14px;line-height:1.35}
+nav a:hover{background:var(--panel);color:var(--hi);text-decoration:none}
+nav a .no{flex:none;width:22px;height:22px;border-radius:0;display:grid;place-items:center;font:600 11px var(--mono);color:var(--dim);background:var(--panel2);border:1px solid var(--line2)}
 nav a.n1{font:12.5px var(--mono);padding:5px 10px 5px 14px;color:var(--dim)} nav a.n1 .dir{color:#556273}
-nav a.on{background:linear-gradient(90deg,rgba(137,207,240,.16),rgba(137,207,240,.04));color:#fff;box-shadow:inset 3px 0 var(--b)}
-nav a.on .no{background:var(--b);color:#08243a;border-color:var(--b)}
+nav a.on{background:linear-gradient(90deg,rgba(137,207,240,.16),rgba(137,207,240,.04));color:var(--hi);box-shadow:inset 3px 0 var(--b)}
+nav a.on .no{background:var(--b);color:var(--onb);border-color:var(--b)}
 nav a.on.n1{color:var(--b)}
 
 main{position:relative;margin-left:286px;padding:100px 56px 80px;max-width:1060px}
 section{scroll-margin-top:84px;padding:56px 0 30px}
 section+section{border-top:1px solid var(--line)}
-.tag{display:inline-flex;align-items:center;gap:8px;font:600 11.5px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--b);background:var(--bglow);border:1px solid rgba(137,207,240,.22);padding:4px 11px;border-radius:999px}
-h1{margin:16px 0 6px;font:800 38px/1.15 var(--sans);letter-spacing:-.025em;color:#fff}
+.tag{display:inline-flex;align-items:center;gap:8px;font:600 11.5px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--b);background:var(--bglow);border:1px solid rgba(137,207,240,.22);padding:4px 11px;border-radius:0}
+h1{margin:16px 0 6px;font:800 38px/1.15 var(--sans);letter-spacing:-.025em;color:var(--hi)}
 .sub{color:var(--dim);margin:0 0 26px;font-size:17px}
-h2{font:700 21px/1.3 var(--sans);letter-spacing:-.01em;color:#fff;margin:40px 0 14px;display:flex;align-items:center;gap:12px}
-h2::before{content:"";width:4px;height:20px;border-radius:2px;background:linear-gradient(var(--b),var(--b2))}
+h2{font:700 21px/1.3 var(--sans);letter-spacing:-.01em;color:var(--hi);margin:40px 0 14px;display:flex;align-items:center;gap:12px}
+h2::before{content:"";width:6px;height:22px;border-radius:0;background:linear-gradient(var(--b),var(--b2))}
 h2.path{font:700 22px var(--mono);color:var(--b);margin:16px 0 4px} h2.path::before{display:none}
 h3{color:var(--b);font-size:16px;margin:22px 0 6px}
-p{margin:0 0 14px} .lead{font-size:18px;color:#e8eef5;line-height:1.75}
+p{margin:0 0 14px} .lead{font-size:18px;color:var(--hi2);line-height:1.75}
 
-table{border-collapse:separate;border-spacing:0;width:100%;margin:16px 0 22px;font-size:14.5px;border:1px solid var(--line2);border-radius:12px;overflow:hidden;background:var(--bg2)}
+table{border-collapse:separate;border-spacing:0;width:100%;margin:16px 0 22px;font-size:14.5px;border:1px solid var(--line2);border-radius:0;overflow:hidden;background:var(--bg2)}
 th,td{padding:11px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
 tr:last-child td{border-bottom:0}
 th{background:var(--panel2);color:var(--b);font:600 12px var(--sans);letter-spacing:.06em;text-transform:uppercase}
 tr:hover td{background:rgba(137,207,240,.03)}
-td:first-child{color:#fff}
+td:first-child{color:var(--hi)}
 table.facts{display:block;border:1px solid rgba(137,207,240,.22);background:linear-gradient(135deg,rgba(137,207,240,.08),rgba(137,207,240,.02))}
 table.facts tbody{display:table;width:100%}
 table.facts th{width:150px;background:transparent;color:var(--b);font-size:11.5px;padding-top:13px}
@@ -67,51 +87,51 @@ table.facts td{color:var(--ink)}
 ol.steps{list-style:none;counter-reset:s;padding:0;margin:16px 0 24px;position:relative}
 ol.steps::before{content:"";position:absolute;left:17px;top:14px;bottom:14px;width:2px;background:linear-gradient(var(--line2),transparent)}
 ol.steps li{counter-increment:s;position:relative;padding:8px 0 8px 54px;min-height:40px}
-ol.steps li::before{content:counter(s);position:absolute;left:0;top:6px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font:700 14px var(--mono);color:#08243a;background:var(--b);box-shadow:0 0 0 5px var(--bg),0 0 0 6px rgba(137,207,240,.25)}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:6px;width:36px;height:36px;border-radius:0;display:grid;place-items:center;font:700 14px var(--mono);color:var(--onb);background:var(--b);box-shadow:0 0 0 4px var(--bg)}
 
-.code{position:relative;background:#0a0e13;border:1px solid var(--line2);border-radius:12px;margin:16px 0 22px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.code{--panel:#131a23;--panel2:#18212c;--line:#232d3a;--line2:#2e3a49;--soft:#aab6c3;--onb:#08243a;--b:#89cff0;position:relative;background:#0a0e13;border:1px solid var(--line2);border-radius:0;margin:16px 0 22px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35)}
 .code .wb{display:flex;align-items:center;gap:7px;padding:9px 12px;background:var(--panel);border-bottom:1px solid var(--line)}
 .code .wb i{width:11px;height:11px;border-radius:50%;background:#ff5f57} .code .wb i:nth-child(2){background:#febc2e} .code .wb i:nth-child(3){background:#28c840}
 .code .ttl{margin-left:8px;font:500 12.5px var(--mono);color:var(--soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .code .act{margin-left:auto;display:flex;gap:6px}
-.code button{font:500 12px var(--sans);color:var(--soft);background:var(--panel2);border:1px solid var(--line2);border-radius:7px;padding:4px 11px;cursor:pointer}
-.code button:hover{color:#08243a;background:var(--b);border-color:var(--b)}
-.code button.done{color:#08243a;background:var(--ok);border-color:var(--ok)}
+.code button{font:500 12px var(--sans);color:var(--soft);background:var(--panel2);border:1px solid var(--line2);border-radius:0;padding:4px 11px;cursor:pointer}
+.code button:hover{color:var(--onb);background:var(--b);border-color:var(--b)}
+.code button.done{color:var(--onb);background:var(--ok);border-color:var(--ok)}
 .code pre{margin:0;padding:16px 18px;overflow:auto;font:13.2px/1.6 var(--mono);color:#e6edf3;white-space:pre;tab-size:4}
 .code.big pre{max-height:620px}
 
-.box{position:relative;border-radius:12px;padding:14px 18px 12px 54px;margin:16px 0 22px;border:1px solid var(--line2);background:var(--panel)}
-.box::before{position:absolute;left:16px;top:14px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font:700 13px var(--sans);content:"i";background:var(--b);color:#08243a}
+.box{position:relative;border-radius:0;padding:14px 18px 12px 54px;margin:16px 0 22px;border:1px solid var(--line2);background:var(--panel)}
+.box::before{position:absolute;left:16px;top:14px;width:24px;height:24px;border-radius:0;display:grid;place-items:center;font:700 13px var(--sans);content:"i";background:var(--b);color:var(--onb)}
 .box.ok{border-color:rgba(74,222,128,.3);background:linear-gradient(135deg,rgba(74,222,128,.08),rgba(74,222,128,.02))} .box.ok::before{content:"✓";background:var(--ok);color:#052e16}
 .box.warn{border-color:rgba(251,191,36,.3);background:linear-gradient(135deg,rgba(251,191,36,.08),rgba(251,191,36,.02))} .box.warn::before{content:"!";background:var(--warn);color:#3b2a03}
 .box p{margin:3px 0;font-size:15px} .lbl{font:700 11.5px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--b);margin-bottom:6px}
 .ok .lbl{color:var(--ok)} .warn .lbl{color:var(--warn)}
-.fig{text-align:center;margin:24px 0} .fig img{max-width:100%;border-radius:12px;box-shadow:0 14px 40px rgba(0,0,0,.4)}
+.fig{text-align:center;margin:24px 0} .fig img{max-width:100%;border-radius:0;box-shadow:0 14px 40px rgba(0,0,0,.4)}
 
 .hero{padding:30px 0 50px;text-align:left}
 .hero .hlogo{width:96px;height:96px;display:block;margin-bottom:22px;filter:drop-shadow(0 18px 40px rgba(137,207,240,.35))}
-.hero h1{font-size:60px;line-height:1.02;margin:18px 0 14px;letter-spacing:-.035em;background:linear-gradient(180deg,#fff 20%,var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1{font-size:60px;line-height:1.02;margin:18px 0 14px;letter-spacing:-.035em;background:linear-gradient(180deg,var(--hi) 20%,var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero .sub{font-size:19px;max-width:680px;color:var(--soft)}
 .hero .qs{margin-top:30px} .hero .qsl{font:600 12px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:-6px}
 .hero .small{font-size:14px;color:var(--dim)}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
-.card{position:relative;display:block;background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line2);border-radius:16px;padding:20px 20px 18px;color:var(--ink);transition:transform .18s,border-color .18s,box-shadow .18s}
+.card{position:relative;display:block;background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line2);border-radius:0;padding:20px 20px 18px;color:var(--ink);transition:transform .18s,border-color .18s,box-shadow .18s}
 .card:hover{text-decoration:none;transform:translateY(-3px);border-color:rgba(137,207,240,.5);box-shadow:0 16px 40px rgba(0,0,0,.35),0 0 0 4px var(--bglow)}
 .card .k{font:600 11.5px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--b)}
-.card .n{color:#fff;font:700 19px var(--sans);margin:6px 0 6px;letter-spacing:-.01em}
+.card .n{color:var(--hi);font:700 19px var(--sans);margin:6px 0 6px;letter-spacing:-.01em}
 .card .d{color:var(--dim);font-size:14px;line-height:1.55}
 .card .ar{position:absolute;right:18px;top:18px;color:var(--dim);font-size:18px} .card:hover .ar{color:var(--b)}
 .stats{display:flex;gap:28px;margin-top:30px;color:var(--dim);font-size:14px;flex-wrap:wrap}
-.stats b{display:block;font:800 26px var(--sans);color:#fff;letter-spacing:-.02em}
+.stats b{display:block;font:800 26px var(--sans);color:var(--hi);letter-spacing:-.02em}
 
 .pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:34px}
-.pager a{display:block;border:1px solid var(--line2);border-radius:12px;padding:12px 16px;background:var(--bg2);color:var(--soft)}
+.pager a{display:block;border:1px solid var(--line2);border-radius:0;padding:12px 16px;background:var(--bg2);color:var(--soft)}
 .pager a:hover{text-decoration:none;border-color:var(--b);background:var(--bglow)}
 .pager small{display:block;color:var(--dim);font:600 11px var(--sans);letter-spacing:.1em;text-transform:uppercase}
-.pager span{color:#fff;font-weight:600} .pager .nx{text-align:right;grid-column:2}
+.pager span{color:var(--hi);font-weight:600} .pager .nx{text-align:right;grid-column:2}
 section.kit .pager{display:none}
 footer{margin-top:60px;padding:26px 0;border-top:1px solid var(--line);color:var(--dim);font-size:14px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--b);color:#08243a;font-weight:600;padding:9px 18px;border-radius:999px;opacity:0;transition:.25s;z-index:30;pointer-events:none}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--b);color:var(--onb);font-weight:600;padding:9px 18px;border-radius:0;opacity:0;transition:.25s;z-index:30;pointer-events:none}
 .toast.on{opacity:1;transform:translateX(-50%)}
 
 @media(max-width:1100px){main{padding:96px 34px 70px}.crumb{display:none}}
@@ -122,20 +142,23 @@ footer{margin-top:60px;padding:26px 0;border-top:1px solid var(--line);color:var
  .hero h1{font-size:40px} h1{font-size:30px} .cards{grid-template-columns:1fr} .pager{grid-template-columns:1fr} .pager .nx{grid-column:1}
  table{display:block;overflow-x:auto} table.facts th{width:110px}
 }
-</style></head><body>
+</style>
+<script>try{var s=localStorage.getItem('kpb-theme');if(s)document.documentElement.setAttribute('data-theme',s)}catch(e){}</script>
+</head><body>
 <div id="bar"></div>
-<header><a class="brand" href="#start"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgdmlld0JveD0iMCAwIDk2IDk2Ij4KPGRlZnM+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHJ4PSIyNCIvPjwvY2xpcFBhdGg+PC9kZWZzPgo8ZyBjbGlwLXBhdGg9InVybCgjcikiPgo8cmVjdCB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIGZpbGw9IiMxZjYzYjQiLz4KPGcgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utb3BhY2l0eT0iLjE2IiBzdHJva2Utd2lkdGg9IjEiPjxwYXRoIGQ9Ik0xMiAwdjk2TTI0IDB2OTZNMzYgMHY5Nk00OCAwdjk2TTYwIDB2OTZNNzIgMHY5Nk04NCAwdjk2TTAgMTJoOTZNMCAyNGg5Nk0wIDM2aDk2TTAgNDhoOTZNMCA2MGg5Nk0wIDcyaDk2TTAgODRoOTYiLz48L2c+CjxnIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii4yOCIgc3Ryb2tlLXdpZHRoPSIxLjQiPjxwYXRoIGQ9Ik00OCAwdjk2TTAgNDhoOTYiLz48L2c+CjwvZz4KPHJlY3QgeD0iMjIiIHk9IjI2IiB3aWR0aD0iNDYiIGhlaWdodD0iNTIiIHJ4PSI3IiBmaWxsPSIjOWZkNmYzIiB0cmFuc2Zvcm09InJvdGF0ZSgtMTIgNDUgNTIpIi8+CjxyZWN0IHg9IjI2IiB5PSIyMiIgd2lkdGg9IjQ2IiBoZWlnaHQ9IjUyIiByeD0iNyIgZmlsbD0iI2Q0ZWRmYiIgdHJhbnNmb3JtPSJyb3RhdGUoLTQgNDkgNDgpIi8+CjxyZWN0IHg9IjMwIiB5PSIyMCIgd2lkdGg9IjQ2IiBoZWlnaHQ9IjU0IiByeD0iNyIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNNDAgMzhsOSA3LTkgNyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWY2M2I0IiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cmVjdCB4PSI1MyIgeT0iNTAiIHdpZHRoPSIxMyIgaGVpZ2h0PSI1IiByeD0iMiIgZmlsbD0iIzFmNjNiNCIvPgo8cGF0aCBkPSJNNDAgNjNoMjYiIHN0cm9rZT0iI2I1ZGZmNSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+Cg==" alt="">Das KI-Projekt-Buch</a><span id="crumb" class="crumb"></span><span class="sp"></span><span id="cnt" class="cnt"></span>
-<a class="hbtn hl" href="#c0">Kopier-Set</a><a class="hbtn hl" href="https://github.com/atshv/Projekt-Buch-">GitHub</a><a class="hbtn pri hl" href="#start">Schnellstart</a><button class="hbtn" type="button" id="mb">Inhalt</button></header>
-<nav><div class="grp">Teil A · Verstehen</div><a class="n0" href="#a1"><span class="no">A1</span>Auf einer Seite</a><a class="n0" href="#a2"><span class="no">A2</span>Prompt, Skill, Brief</a><a class="n0" href="#a3"><span class="no">A3</span>Einrichten</a><div class="grp">Teil B · Schritt für Schritt</div><a class="n0" href="#b1"><span class="no">1</span>Brief</a><a class="n0" href="#b2"><span class="no">2</span>AGENTS.md</a><a class="n0" href="#b3"><span class="no">3</span>Architect</a><a class="n0" href="#b4"><span class="no">4</span>Skills und Skill Creator</a><a class="n0" href="#b5"><span class="no">5</span>Agent</a><a class="n0" href="#b6"><span class="no">6</span>Reviewer</a><a class="n0" href="#b7"><span class="no">7</span>Betrieb</a><a class="n0" href="#b8"><span class="no">★</span>Spickzettel</a><div class="grp">Teil C · Kopier-Set</div><a class="n0" href="#c0"><span class="no">C</span>Kopier-Set</a><a class="n1" href="#kit-agents-md">AGENTS.md</a><a class="n1" href="#kit-roles-brief-creator-md"><span class="dir">roles/</span>brief-creator.md</a><a class="n1" href="#kit-roles-architect-md"><span class="dir">roles/</span>architect.md</a><a class="n1" href="#kit-roles-agent-md"><span class="dir">roles/</span>agent.md</a><a class="n1" href="#kit-roles-reviewer-md"><span class="dir">roles/</span>reviewer.md</a><a class="n1" href="#kit-skills-skill-creator-skill-md"><span class="dir">skill-creator/</span>SKILL.md</a><a class="n1" href="#kit-skills-skill-creator-references-skill-template-md"><span class="dir">references/</span>skill-template.md</a><a class="n1" href="#kit-skills-skill-creator-references-description-patterns-md"><span class="dir">references/</span>description-patterns.md</a><a class="n1" href="#kit-skills-skill-creator-references-anti-patterns-md"><span class="dir">references/</span>anti-patterns.md</a><a class="n1" href="#kit-skills-skill-creator-scripts-validate-skill-py"><span class="dir">scripts/</span>validate_skill.py</a><a class="n1" href="#kit-skills-skill-creator-tests-prompts-md"><span class="dir">tests/</span>prompts.md</a><a class="n1" href="#kit-skills-skill-creator-tests-trigger-queries-md"><span class="dir">tests/</span>trigger-queries.md</a><a class="n1" href="#kit-skills-commit-message-skill-md"><span class="dir">commit-message/</span>SKILL.md</a><a class="n1" href="#kit-skills-readme-md"><span class="dir">skills/</span>README.md</a><a class="n1" href="#kit-docs-brief-md"><span class="dir">docs/</span>BRIEF.md</a><a class="n1" href="#kit-docs-architecture-md"><span class="dir">docs/</span>ARCHITECTURE.md</a><a class="n1" href="#kit-docs-plan-md"><span class="dir">docs/</span>PLAN.md</a><a class="n1" href="#kit-docs-decisions-md"><span class="dir">docs/</span>DECISIONS.md</a><a class="n1" href="#kit-docs-handoff-md"><span class="dir">docs/</span>HANDOFF.md</a><a class="n1" href="#kit-docs-review-md"><span class="dir">docs/</span>REVIEW.md</a><a class="n1" href="#kit-docs-progress-md"><span class="dir">docs/</span>PROGRESS.md</a><a class="n1" href="#kit-start-prompts-md">START-PROMPTS.md</a><a class="n1" href="#kit-readme-md">README.md</a></nav>
+<header><a class="brand" href="#start"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgdmlld0JveD0iMCAwIDk2IDk2Ij4KPGRlZnM+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHJ4PSIwIi8+PC9jbGlwUGF0aD48L2RlZnM+CjxnIGNsaXAtcGF0aD0idXJsKCNyKSI+CjxyZWN0IHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgZmlsbD0iIzFmNjNiNCIvPgo8ZyBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS1vcGFjaXR5PSIuMTYiIHN0cm9rZS13aWR0aD0iMSI+PHBhdGggZD0iTTEyIDB2OTZNMjQgMHY5Nk0zNiAwdjk2TTQ4IDB2OTZNNjAgMHY5Nk03MiAwdjk2TTg0IDB2OTZNMCAxMmg5Nk0wIDI0aDk2TTAgMzZoOTZNMCA0OGg5Nk0wIDYwaDk2TTAgNzJoOTZNMCA4NGg5NiIvPjwvZz4KPGcgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utb3BhY2l0eT0iLjI4IiBzdHJva2Utd2lkdGg9IjEuNCI+PHBhdGggZD0iTTQ4IDB2OTZNMCA0OGg5NiIvPjwvZz4KPC9nPgo8cmVjdCB4PSIyMiIgeT0iMjYiIHdpZHRoPSI0NiIgaGVpZ2h0PSI1MiIgcng9IjEuNSIgZmlsbD0iIzlmZDZmMyIgdHJhbnNmb3JtPSJyb3RhdGUoLTEyIDQ1IDUyKSIvPgo8cmVjdCB4PSIyNiIgeT0iMjIiIHdpZHRoPSI0NiIgaGVpZ2h0PSI1MiIgcng9IjEuNSIgZmlsbD0iI2Q0ZWRmYiIgdHJhbnNmb3JtPSJyb3RhdGUoLTQgNDkgNDgpIi8+CjxyZWN0IHg9IjMwIiB5PSIyMCIgd2lkdGg9IjQ2IiBoZWlnaHQ9IjU0IiByeD0iMS41IiBmaWxsPSIjZmZmIi8+CjxwYXRoIGQ9Ik00MCAzOGw5IDctOSA3IiBmaWxsPSJub25lIiBzdHJva2U9IiMxZjYzYjQiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxyZWN0IHg9IjUzIiB5PSI1MCIgd2lkdGg9IjEzIiBoZWlnaHQ9IjUiIHJ4PSIyIiBmaWxsPSIjMWY2M2I0Ii8+CjxwYXRoIGQ9Ik00MCA2M2gyNiIgc3Ryb2tlPSIjYjVkZmY1IiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4K" alt="">Das KI-Projekt-Buch</a><span id="crumb" class="crumb"></span><span class="sp"></span><span id="cnt" class="cnt"></span>
+<a class="hbtn hl" href="#c0">Kopier-Set</a><a class="hbtn hl" href="https://github.com/atshv/Projekt-Buch-">GitHub</a><a class="hbtn pri hl" href="#start">Schnellstart</a><button class="hbtn" type="button" id="th" title="Hell / Dunkel">☾</button><button class="hbtn" type="button" id="mb">Inhalt</button></header>
+<nav><div class="srch"><input id="q" type="search" placeholder="Suchen…" autocomplete="off"><kbd>/</kbd></div><div class="none" id="none">Nichts gefunden.</div><div class="grp">Teil A · Verstehen</div><a class="n0" href="#a1"><span class="no">A1</span>Auf einer Seite</a><a class="n0" href="#a2"><span class="no">A2</span>Prompt, Skill, Brief</a><a class="n0" href="#a3"><span class="no">A3</span>Einrichten</a><div class="grp">Teil B · Schritt für Schritt</div><a class="n0" href="#b1"><span class="no">1</span>Brief</a><a class="n0" href="#b2"><span class="no">2</span>AGENTS.md</a><a class="n0" href="#b3"><span class="no">3</span>Architect</a><a class="n0" href="#b4"><span class="no">4</span>Skills und Skill Creator</a><a class="n0" href="#b5"><span class="no">5</span>Agent</a><a class="n0" href="#b6"><span class="no">6</span>Reviewer</a><a class="n0" href="#b7"><span class="no">7</span>Betrieb</a><a class="n0" href="#b8"><span class="no">★</span>Spickzettel</a><div class="grp">Teil C · Kopier-Set</div><a class="n0" href="#c0"><span class="no">C</span>Kopier-Set</a><a class="n1" href="#kit-agents-md">AGENTS.md</a><a class="n1" href="#kit-roles-brief-creator-md"><span class="dir">roles/</span>brief-creator.md</a><a class="n1" href="#kit-roles-architect-md"><span class="dir">roles/</span>architect.md</a><a class="n1" href="#kit-roles-agent-md"><span class="dir">roles/</span>agent.md</a><a class="n1" href="#kit-roles-reviewer-md"><span class="dir">roles/</span>reviewer.md</a><a class="n1" href="#kit-skills-skill-creator-skill-md"><span class="dir">skill-creator/</span>SKILL.md</a><a class="n1" href="#kit-skills-skill-creator-references-skill-template-md"><span class="dir">references/</span>skill-template.md</a><a class="n1" href="#kit-skills-skill-creator-references-description-patterns-md"><span class="dir">references/</span>description-patterns.md</a><a class="n1" href="#kit-skills-skill-creator-references-anti-patterns-md"><span class="dir">references/</span>anti-patterns.md</a><a class="n1" href="#kit-skills-skill-creator-scripts-validate-skill-py"><span class="dir">scripts/</span>validate_skill.py</a><a class="n1" href="#kit-skills-skill-creator-tests-prompts-md"><span class="dir">tests/</span>prompts.md</a><a class="n1" href="#kit-skills-skill-creator-tests-trigger-queries-md"><span class="dir">tests/</span>trigger-queries.md</a><a class="n1" href="#kit-skills-commit-message-skill-md"><span class="dir">commit-message/</span>SKILL.md</a><a class="n1" href="#kit-skills-readme-md"><span class="dir">skills/</span>README.md</a><a class="n1" href="#kit-docs-brief-md"><span class="dir">docs/</span>BRIEF.md</a><a class="n1" href="#kit-docs-architecture-md"><span class="dir">docs/</span>ARCHITECTURE.md</a><a class="n1" href="#kit-docs-plan-md"><span class="dir">docs/</span>PLAN.md</a><a class="n1" href="#kit-docs-decisions-md"><span class="dir">docs/</span>DECISIONS.md</a><a class="n1" href="#kit-docs-handoff-md"><span class="dir">docs/</span>HANDOFF.md</a><a class="n1" href="#kit-docs-review-md"><span class="dir">docs/</span>REVIEW.md</a><a class="n1" href="#kit-docs-progress-md"><span class="dir">docs/</span>PROGRESS.md</a><a class="n1" href="#kit-start-prompts-md">START-PROMPTS.md</a><a class="n1" href="#kit-readme-md">README.md</a></nav>
 <main>
 <div class="hero" id="start">
-<img class="hlogo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgdmlld0JveD0iMCAwIDk2IDk2Ij4KPGRlZnM+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHJ4PSIyNCIvPjwvY2xpcFBhdGg+PC9kZWZzPgo8ZyBjbGlwLXBhdGg9InVybCgjcikiPgo8cmVjdCB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIGZpbGw9IiMxZjYzYjQiLz4KPGcgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utb3BhY2l0eT0iLjE2IiBzdHJva2Utd2lkdGg9IjEiPjxwYXRoIGQ9Ik0xMiAwdjk2TTI0IDB2OTZNMzYgMHY5Nk00OCAwdjk2TTYwIDB2OTZNNzIgMHY5Nk04NCAwdjk2TTAgMTJoOTZNMCAyNGg5Nk0wIDM2aDk2TTAgNDhoOTZNMCA2MGg5Nk0wIDcyaDk2TTAgODRoOTYiLz48L2c+CjxnIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii4yOCIgc3Ryb2tlLXdpZHRoPSIxLjQiPjxwYXRoIGQ9Ik00OCAwdjk2TTAgNDhoOTYiLz48L2c+CjwvZz4KPHJlY3QgeD0iMjIiIHk9IjI2IiB3aWR0aD0iNDYiIGhlaWdodD0iNTIiIHJ4PSI3IiBmaWxsPSIjOWZkNmYzIiB0cmFuc2Zvcm09InJvdGF0ZSgtMTIgNDUgNTIpIi8+CjxyZWN0IHg9IjI2IiB5PSIyMiIgd2lkdGg9IjQ2IiBoZWlnaHQ9IjUyIiByeD0iNyIgZmlsbD0iI2Q0ZWRmYiIgdHJhbnNmb3JtPSJyb3RhdGUoLTQgNDkgNDgpIi8+CjxyZWN0IHg9IjMwIiB5PSIyMCIgd2lkdGg9IjQ2IiBoZWlnaHQ9IjU0IiByeD0iNyIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNNDAgMzhsOSA3LTkgNyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWY2M2I0IiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cmVjdCB4PSI1MyIgeT0iNTAiIHdpZHRoPSIxMyIgaGVpZ2h0PSI1IiByeD0iMiIgZmlsbD0iIzFmNjNiNCIvPgo8cGF0aCBkPSJNNDAgNjNoMjYiIHN0cm9rZT0iI2I1ZGZmNSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+Cg==" alt="Logo">
+<img class="hlogo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgdmlld0JveD0iMCAwIDk2IDk2Ij4KPGRlZnM+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHJ4PSIwIi8+PC9jbGlwUGF0aD48L2RlZnM+CjxnIGNsaXAtcGF0aD0idXJsKCNyKSI+CjxyZWN0IHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgZmlsbD0iIzFmNjNiNCIvPgo8ZyBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS1vcGFjaXR5PSIuMTYiIHN0cm9rZS13aWR0aD0iMSI+PHBhdGggZD0iTTEyIDB2OTZNMjQgMHY5Nk0zNiAwdjk2TTQ4IDB2OTZNNjAgMHY5Nk03MiAwdjk2TTg0IDB2OTZNMCAxMmg5Nk0wIDI0aDk2TTAgMzZoOTZNMCA0OGg5Nk0wIDYwaDk2TTAgNzJoOTZNMCA4NGg5NiIvPjwvZz4KPGcgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utb3BhY2l0eT0iLjI4IiBzdHJva2Utd2lkdGg9IjEuNCI+PHBhdGggZD0iTTQ4IDB2OTZNMCA0OGg5NiIvPjwvZz4KPC9nPgo8cmVjdCB4PSIyMiIgeT0iMjYiIHdpZHRoPSI0NiIgaGVpZ2h0PSI1MiIgcng9IjEuNSIgZmlsbD0iIzlmZDZmMyIgdHJhbnNmb3JtPSJyb3RhdGUoLTEyIDQ1IDUyKSIvPgo8cmVjdCB4PSIyNiIgeT0iMjIiIHdpZHRoPSI0NiIgaGVpZ2h0PSI1MiIgcng9IjEuNSIgZmlsbD0iI2Q0ZWRmYiIgdHJhbnNmb3JtPSJyb3RhdGUoLTQgNDkgNDgpIi8+CjxyZWN0IHg9IjMwIiB5PSIyMCIgd2lkdGg9IjQ2IiBoZWlnaHQ9IjU0IiByeD0iMS41IiBmaWxsPSIjZmZmIi8+CjxwYXRoIGQ9Ik00MCAzOGw5IDctOSA3IiBmaWxsPSJub25lIiBzdHJva2U9IiMxZjYzYjQiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxyZWN0IHg9IjUzIiB5PSI1MCIgd2lkdGg9IjEzIiBoZWlnaHQ9IjUiIHJ4PSIyIiBmaWxsPSIjMWY2M2I0Ii8+CjxwYXRoIGQ9Ik00MCA2M2gyNiIgc3Ryb2tlPSIjYjVkZmY1IiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4K" alt="Logo">
 <span class="tag">Software bauen mit KI</span>
 <h1>Das KI-Projekt-Buch</h1>
 <p class="sub">Brief, Architect, Agent, Skills und Reviewer. Schritt für Schritt erklärt, mit kopierfertigen Dateien für jedes Projekt.</p>
 <div class="qs"><div class="qsl">Schnellstart · im Terminal einfügen</div>
 <div class="code"><div class="wb"><i></i><i></i><i></i><span class="ttl">Terminal</span><span class="act"><button class="cp" type="button">kopieren</button></span></div><pre>curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s mein-projekt</pre></div>
-<p class="small">Lädt alle Dateien in den Ordner <code>mein-projekt</code>. Nur eine Datei? Am Ende <code>bash -s -- --datei roles/agent.md</code> statt <code>bash -s mein-projekt</code>.</p></div>
+<div class="btns"><a class="btn pri" href="#a1">Lesen beginnen →</a><a class="btn" href="https://github.com/atshv/Projekt-Buch-/archive/refs/heads/main.zip">Ohne Terminal: alles als ZIP</a><a class="btn" href="#c0">Einzelne Dateien</a></div>
+<p class="small" style="margin-top:14px">Lädt alle Dateien in den Ordner <code>mein-projekt</code>. Nur eine Datei? Am Ende <code>bash -s -- --datei roles/agent.md</code> statt <code>bash -s mein-projekt</code>.</p></div>
 <div class="stats"><div><b>4</b>Rollen</div><div><b>7</b>Schritte</div><div><b>23</b>Dateien zum Kopieren</div><div><b>1</b>Befehl zum Start</div></div>
 <div class="cards">
 <a class="card" href="#a1"><span class="ar">→</span><div class="k">Teil A</div><div class="n">Verstehen</div><div class="d">Das System auf einer Seite, Prompt, Skill und Brief, Einrichten.</div></a>
@@ -1283,7 +1306,7 @@ START-PROMPTS.md     fertige Startsätze
 Die Dateien sind projektunabhängig. Passe nur die eckigen Klammern an.</pre></div></section>
 <footer><span>Das KI-Projekt-Buch</span><a href="https://github.com/atshv/Projekt-Buch-">github.com/atshv/Projekt-Buch-</a></footer>
 </main>
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast"></div><button class="top" id="top" type="button" title="Nach oben">↑</button>
 <script>
 (function(){
 var toast=document.getElementById('toast'),tt;
@@ -1315,6 +1338,18 @@ function upd(){
  var tg=cur.querySelector('.tag'),ti=cur.querySelector('h1,h2');
  crumb.innerHTML=(tg?tg.textContent:'')+' › <b>'+(ti?ti.textContent:'')+'</b>';cnt.textContent=(secs.indexOf(cur)+1)+' / '+secs.length}
 addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+var th=document.getElementById('th'),de=document.documentElement;
+function sth(){th.textContent=de.getAttribute('data-theme')==='light'?'☾':'☀'}sth();
+th.addEventListener('click',function(){var n=de.getAttribute('data-theme')==='light'?'dark':'light';de.setAttribute('data-theme',n);try{localStorage.setItem('kpb-theme',n)}catch(e){}sth()});
+var top=document.getElementById('top');addEventListener('scroll',function(){top.classList.toggle('on',scrollY>900)},{passive:true});top.addEventListener('click',function(){scrollTo({top:0,behavior:'smooth'})});
+var q=document.getElementById('q'),none=document.getElementById('none');
+q.addEventListener('input',function(){var v=q.value.trim().toLowerCase(),any=false;
+ nv.querySelectorAll('.grp').forEach(function(g){var el=g.nextElementSibling,vis=false;while(el&&el.tagName==='A'){var m=!v||el.textContent.toLowerCase().indexOf(v)>=0;el.style.display=m?'':'none';if(m)vis=true;el=el.nextElementSibling}g.style.display=vis?'':'none';if(vis)any=true});
+ none.style.display=any?'none':'block'});
+q.addEventListener('keydown',function(e){if(e.key==='Enter'){var f=[].filter.call(nv.querySelectorAll('a'),function(a){return a.style.display!=='none'})[0];if(f){location.hash=f.getAttribute('href');q.blur()}}if(e.key==='Escape'){q.value='';q.dispatchEvent(new Event('input'));q.blur()}});
+addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==q){e.preventDefault();if(innerWidth<=860)document.body.classList.add('open');q.focus()}});
+document.querySelectorAll('main section h2:not(.path)').forEach(function(h,i){var s=h.closest('section'),id=(s?s.id:'x')+'-'+h.textContent.toLowerCase().replace(/[^a-z0-9äöüß]+/g,'-').replace(/^-|-$/g,'');h.id=id;h.style.scrollMarginTop='84px';
+ var a=document.createElement('a');a.className='anc';a.href='#'+id;a.textContent='#';a.title='Link kopieren';a.addEventListener('click',function(){try{navigator.clipboard.writeText(location.href.split('#')[0]+'#'+id);say('Link kopiert')}catch(x){}});h.appendChild(a)});
 document.getElementById('mb').addEventListener('click',function(){document.body.classList.toggle('open')});
 links.forEach(function(a){a.addEventListener('click',function(){document.body.classList.remove('open')})});
 })();
