@@ -176,13 +176,19 @@ footer a{color:var(--acc)}
 .hero .codebg{position:absolute;left:50%;top:50%;width:1800px;height:1800px;margin:-900px 0 0 -900px;transform:rotate(-45deg);transform-origin:center;pointer-events:none;z-index:0;
 font:14px/2.0 ui-monospace,SFMono-Regular,Menlo,monospace;color:#8a918e;opacity:.5;white-space:normal;word-break:break-all;overflow:hidden;}
 .hero .hero-inner{position:relative;z-index:1}
+.words{width:100%;border-collapse:collapse;margin-top:6px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.words th,.words td{padding:10px 14px;text-align:left;border-top:1px solid var(--line);font-size:15px;vertical-align:top}
+.words th{background:var(--beige);font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);border-top:0}
+.words td:first-child{white-space:nowrap;font-weight:700;color:var(--ink)}
+#pruefen .card{border-left:5px solid var(--amber)}
+@media(max-width:700px){.words td:first-child{white-space:normal} .page table{display:block;overflow-x:auto;max-width:100%} .page .ph>div{min-width:0} .page h1.path,.page .sub{overflow-wrap:anywhere}}
 @media(max-width:700px){.hero .codewrap,.hero .glass{display:none}}
 </style></head><body>
 <header class="topbar"><div class="wrap nav">
 <a class="brand" href="#top"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgdmlld0JveD0iMCAwIDk2IDk2Ij4KPGRlZnM+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHJ4PSIwIi8+PC9jbGlwUGF0aD48L2RlZnM+CjxnIGNsaXAtcGF0aD0idXJsKCNyKSI+CjxyZWN0IHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgZmlsbD0iIzJmN2Q1NyIvPgo8ZyBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS1vcGFjaXR5PSIuMTYiIHN0cm9rZS13aWR0aD0iMSI+PHBhdGggZD0iTTEyIDB2OTZNMjQgMHY5Nk0zNiAwdjk2TTQ4IDB2OTZNNjAgMHY5Nk03MiAwdjk2TTg0IDB2OTZNMCAxMmg5Nk0wIDI0aDk2TTAgMzZoOTZNMCA0OGg5Nk0wIDYwaDk2TTAgNzJoOTZNMCA4NGg5NiIvPjwvZz4KPGcgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utb3BhY2l0eT0iLjI4IiBzdHJva2Utd2lkdGg9IjEuNCI+PHBhdGggZD0iTTQ4IDB2OTZNMCA0OGg5NiIvPjwvZz4KPC9nPgo8cmVjdCB4PSIyMiIgeT0iMjYiIHdpZHRoPSI0NiIgaGVpZ2h0PSI1MiIgcng9IjEuNSIgZmlsbD0iI2ZmYzAwMCIgdHJhbnNmb3JtPSJyb3RhdGUoLTEyIDQ1IDUyKSIvPgo8cmVjdCB4PSIyNiIgeT0iMjIiIHdpZHRoPSI0NiIgaGVpZ2h0PSI1MiIgcng9IjEuNSIgZmlsbD0iI2Y3ZjJlNiIgdHJhbnNmb3JtPSJyb3RhdGUoLTQgNDkgNDgpIi8+CjxyZWN0IHg9IjMwIiB5PSIyMCIgd2lkdGg9IjQ2IiBoZWlnaHQ9IjU0IiByeD0iMS41IiBmaWxsPSIjZmZmIi8+CjxwYXRoIGQ9Ik00MCAzOGw5IDctOSA3IiBmaWxsPSJub25lIiBzdHJva2U9IiMxZDRkMzYiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxyZWN0IHg9IjUzIiB5PSI1MCIgd2lkdGg9IjEzIiBoZWlnaHQ9IjUiIHJ4PSIyIiBmaWxsPSIjMmY3ZDU3Ii8+CjxwYXRoIGQ9Ik00MCA2M2gyNiIgc3Ryb2tlPSIjZmZlMDhhIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4K" alt=""><span>Das KI-Projekt-Buch</span></a>
 <div class="where"><span class="pn" id="pn"></span><b id="wt"></b></div>
 <span class="sp"></span>
-<nav class="links"><a href="#ablauf">So geht es</a><a href="#ordner">Ordner</a><a href="#skills">Skills</a><a href="#buch">Buch</a><a href="#c0">Dateien</a><a class="button" href="https://github.com/atshv/Projekt-Buch-">GitHub</a></nav>
+<nav class="links"><a href="#ablauf">So geht es</a><a href="#ordner">Aufbau</a><a href="#pruefen">Prüfen</a><a href="#skills">Skills</a><a href="#buch">Buch</a><a href="#c0">Dateien</a><a class="button" href="https://github.com/atshv/Projekt-Buch-">GitHub</a></nav>
 <button id="mb" type="button">Kapitel</button>
 </div><div id="prog"></div></header>
 
@@ -212,17 +218,47 @@ font:14px/2.0 ui-monospace,SFMono-Regular,Menlo,monospace;color:#8a918e;opacity:
 </section>
 
 <div class="band"><section class="sec wrap" id="ordner">
-<div class="section-head"><h2>Zwei <span class="ta">Ordner</span>. Mehr nicht.</h2><p>Der Werkzeugkasten bleibt immer gleich. Dein Projekt wächst in einem eigenen Ordner.</p></div>
-<div class="grid two">
+<div class="section-head"><h2>Der <span class="ta">Aufbau</span>.</h2><p>Drei feste Ordner und eine Steuerdatei. Dein eigener Code kommt dazu.</p></div>
+<div class="grid three">
 <div class="card box2"><h3>toolkit/ · der Werkzeugkasten</h3><p>In jedem Projekt gleich. Du änderst ihn nicht.</p>
 <ul><li><b>agents/</b> die fünf Rollen</li><li><b>skills/</b> elf Anleitungen für wiederkehrende Arbeit</li><li><b>governance/</b> Regeln für Code, Git und „fertig“</li><li><b>templates/</b> Vorlagen für Prüfberichte</li></ul></div>
 <div class="card box2"><h3>docs/ · dein Projekt</h3><p>Hier steht alles, was die KI über dein Projekt weiss.</p>
-<ul><li><b>brief/</b> was gebaut wird</li><li><b>principles/</b> Regeln für dieses Projekt</li><li><b>GLOSSARY.md</b> ein Wort, ein Name</li><li><b>adr/</b> wichtige Entscheidungen</li><li><b>plan/</b> kleine Aufgaben</li><li><b>handoff/</b> wo wir gerade stehen</li><li><b>reviews/</b> Prüfberichte</li></ul></div>
+<ul><li><b>brief/</b> was gebaut wird</li><li><b>principles/</b> Regeln für dieses Projekt</li><li><b>architecture/</b> wie es gebaut wird (eine Seite)</li><li><b>GLOSSARY.md</b> ein Wort, ein Name</li><li><b>adr/</b> wichtige Entscheidungen</li><li><b>plan/</b> kleine Aufgaben</li><li><b>handoff/</b> wo wir gerade stehen, dazu die Nachweise</li><li><b>reviews/</b> Prüfberichte</li></ul></div>
+<div class="card box2"><h3>bin/ · die Prüfbefehle</h3><p>Kurze Befehle, die die KI für dich ausführt.</p>
+<ul><li><b>check-plan</b> ist der Plan vollständig?</li><li><b>record-test</b> Testlauf als Nachweis ablegen</li><li><b>check-done</b> ist die Aufgabe belegt fertig?</li><li><b>check-scope</b> nur erlaubte Dateien geändert?</li><li><b>check-skills</b> sind alle Skills in Ordnung?</li><li><b>new-skill</b> legt einen neuen Skill an</li></ul></div>
 </div>
+<p class="note"><b>AGENTS.md</b> liegt daneben und wird in jeder Sitzung zuerst gelesen. Sie nennt Projekt, Befehle und die <b>geschützten Pfade</b>. Dazu kommen leere Ordner, die beim Bauen gefüllt werden: <code>src/</code> (Code), <code>tests/</code>, <code>brand/</code>, <code>scripts/</code>.</p>
 <h3 class="chainh">Alles hängt zusammen</h3>
 <div class="chain"><span><b>M1</b>Wunsch</span><i>→</i><span><b>P01</b>Regel</span><i>→</i><span><b>adr-0003</b>Entscheidung</span><i>→</i><span><b>T05</b>Aufgabe</span><i>→</i><span><b>„T05: …“</b>Änderung</span><i>→</i><span><b>R1</b>Prüfung</span></div>
 <p class="note">Jede Datei nennt die Nummern, auf die sie sich bezieht. So findest du zu jeder Zeile Code den Grund.</p>
 </section></div>
+
+<section class="sec wrap" id="pruefen">
+<div class="section-head"><h2>Die KI <span class="ta">beweist</span>, was sie sagt.</h2><p>Früher hiess es „fertig“, und du musstest glauben. Jetzt gibt es Belege. Die KI führt die Prüfungen aus, du liest nur das Ergebnis.</p></div>
+<div class="grid three pr">
+<div class="card"><h3>1 · Die Karte ist genau</h3><p>Jede Aufgabe sagt, welche Dateien die KI <b>ändern</b> darf, welche sie <b>vorher lesen</b> muss und was <b>nicht dazugehört</b>. Fertig heisst: jede Abnahme „Wenn …, dann …“ stimmt.</p></div>
+<div class="card"><h3>2 · Der Plan wird geprüft</h3><p><code>bin/check-plan</code> findet leere Felder, Platzhalter, falsche Reihenfolgen und eine zu lange Architektur, bevor gebaut wird.</p></div>
+<div class="card"><h3>3 · Tests hinterlassen Spuren</h3><p><code>bin/record-test</code> führt den Test aus und legt einen Nachweis ab: was lief, was herauskam, welche Abnahme es belegt.</p></div>
+<div class="card"><h3>4 · „Fertig“ muss belegt sein</h3><p><code>bin/check-done</code> sagt nur dann FERTIG, wenn jede Abnahme einen aktuellen, unveränderten Nachweis hat. Ändert sich danach eine Datei, ist der Nachweis veraltet.</p></div>
+<div class="card"><h3>5 · Manche Orte sind tabu</h3><p>In AGENTS.md steht, welche Pfade die KI nie anfasst, zum Beispiel <code>toolkit/</code> und <code>.env</code>. <code>bin/check-scope</code> schlägt Alarm, wenn doch.</p></div>
+<div class="card"><h3>6 · Der Kaltstart-Test</h3><p>Vor dem Bauen liest eine frische Sitzung nur die Dateien und beantwortet fünf Fragen. Muss sie raten, fehlt etwas in den Dateien. Das behebst du vorher.</p></div>
+</div>
+<h3 class="chainh">Neue Wörter, einfach erklärt</h3>
+<table class="words">
+<tr><th>Wort</th><th>Bedeutung</th></tr>
+<tr><td>Karte</td><td>Eine kleine Aufgabe für genau eine Sitzung, zum Beispiel T05 „Bericht speichern“.</td></tr>
+<tr><td>Schreiben / Lesen</td><td>Die Dateien, die geändert werden dürfen, und die, die die KI vorher lesen soll. Mehr nicht.</td></tr>
+<tr><td>Nicht Teil der Karte</td><td>Was naheliegt, aber hier bewusst nicht gebaut wird. Verhindert, dass die KI „nebenbei“ mehr tut.</td></tr>
+<tr><td>Abnahme</td><td>Nummerierte Prüfsätze: A1 „Wenn ich X tue, dann passiert Y“. Fertig ist die Karte erst, wenn alle stimmen.</td></tr>
+<tr><td>Nachweis</td><td>Eine Datei in <code>docs/handoff/nachweise/</code> mit dem Ergebnis eines Testlaufs. Sie wird nie überschrieben.</td></tr>
+<tr><td>Arbeitsstand</td><td>Ein Fingerabdruck aller Projektdateien zum Zeitpunkt des Tests. Stimmt er später nicht mehr, ist der Nachweis veraltet.</td></tr>
+<tr><td>Prüfsumme</td><td>Ein Fingerabdruck des Nachweises selbst. Wer die Datei von Hand ändert, fällt auf. Das schützt vor Versehen, nicht vor böser Absicht.</td></tr>
+<tr><td>Geschützter Pfad</td><td>Ein Ordner oder eine Datei, die die KI nie ändern darf. Nur du oder der Architect.</td></tr>
+<tr><td>Kaltstart-Test</td><td>Eine frische Sitzung ohne Vorwissen liest nur die Dateien und zeigt, was fehlt.</td></tr>
+<tr><td>Wortgrenze</td><td>ARCHITECTURE.md soll höchstens 600 Wörter haben (hart 800). Mehr Detail kommt in eigene Dateien unter <code>docs/architecture/</code>.</td></tr>
+</table>
+<p class="note">Ausführlich: Kapitel <a href="#a4">A4</a> und <a href="#b5">Agent</a>.</p>
+</section>
 
 <section class="sec wrap" id="skills">
 <div class="section-head"><h2>Elf <span class="tt">Skills</span>.</h2><p>Ein Skill ist eine gespeicherte Anleitung. Die KI holt sie, wenn sie passt. Alle sind gleich aufgebaut.</p></div>
