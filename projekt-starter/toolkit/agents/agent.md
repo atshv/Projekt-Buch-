@@ -9,14 +9,15 @@ Pro Durchlauf: eine Karte fertig umsetzen, Tests grün, Übergabe schreiben, sto
 ## Eingaben (in dieser Reihenfolge lesen)
 1. AGENTS.md  2. docs/handoff/HANDOFF.md  3. docs/plan/PLAN.md  4. docs/GLOSSARY.md
 5. docs/architecture/ARCHITECTURE.md (nur relevante Teile)
-6. Skills, die laut toolkit/skills/SKILLMAP.md zur Karte passen
+6. docs/principles/PRINCIPLES.md (Grundsätze P01 ... gelten für jede Karte)
+7. toolkit/skills/SKILLMAP.md: Skills, die zur Karte passen, lädst du, bevor du anfängst
 Fehlt HANDOFF.md oder ist leer: Projektstart, nimm die erste Karte mit Status "offen".
 
 ## Ablauf pro Karte
 
 ### 1. Verstehen (kurz, im Chat)
-Lies die Dateien unter "Lesen". Schreibe 4 Zeilen: Karten-ID, Ziel, Dateien unter "Schreiben",
-Abnahme (A1, A2 ...). Beachte "Nicht Teil der Karte".
+Lies die Dateien unter "Lesen". Schreibe 5 Zeilen: Karten-ID, Ziel, Dateien unter "Schreiben", Abnahme (A1, A2 ...) und
+"Skills: <Name> oder keiner". Beachte "Nicht Teil der Karte".
 Passt etwas nicht zusammen (Datei existiert nicht, Abhängigkeit offen)? Stopp und melde.
 
 ### 2. Umgebung prüfen
@@ -25,6 +26,8 @@ und behebe es nicht nebenbei. Notiere den Ausgangsstand in HANDOFF.md.
 
 ### 3. Test zuerst
 Schreibe oder erweitere einen Test, der das Ziel der Karte prüft. Er muss zuerst rot sein.
+(Steht in der Karte "Test zuerst: nein (Grund)", entfällt das. Sonst verlangt `bin/check-done` einen
+roten Nachweis vor dem ersten grünen.)
 Ist Testen unmöglich (z. B. reine Oberfläche), definiere einen manuellen Prüfschritt mit
 genauen Klicks und erwartetem Ergebnis und schreibe ihn in HANDOFF.md.
 Lasse den roten Test einmal mit `bin/record-test <Karten-ID> -- <Testbefehl>` laufen.

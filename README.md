@@ -83,8 +83,24 @@ bin/check-skills                   # alle Skills prüfen, Abgleich mit SKILLMAP.
 bin/check-plan                     # Plan vollständig? Abnahme, Abhängigkeiten, Umfang der Architektur
 bin/check-scope T05                # nur Dateien der Karte T05 geändert? Geschützte Pfade unberührt?
 bin/record-test T05 -p A1,A2 -- npm test   # Testlauf als Nachweis ablegen (Arbeitsstand + Prüfsumme)
-bin/check-done T05                 # jede Abnahme der Karte durch einen gültigen Nachweis belegt?
+bin/check-done T05                 # jede Abnahme belegt? Test zuerst eingehalten?
+bin/new-change pdf-export          # Änderung an einem laufenden Projekt anlegen
+bin/finish-change pdf-export       # Änderung abschliessen und archivieren
 ```
+
+## <img src="bilder/logo.svg" height="26" align="top"> Welches KI-Programm liest was
+
+Die Regeln stehen nur in `AGENTS.md`. Kleine Zeigerdateien verweisen darauf, damit jedes Programm sie findet.
+
+| KI-Programm         | Liest                                | Datei im Starter                  |
+|---------------------|--------------------------------------|-----------------------------------|
+| Claude Code         | `CLAUDE.md`                          | `CLAUDE.md` (verweist auf AGENTS.md) |
+| Gemini CLI          | `GEMINI.md`                          | `GEMINI.md` (verweist auf AGENTS.md) |
+| Cursor              | `.cursor/rules/`                     | `.cursor/rules/projekt.mdc`       |
+| GitHub Copilot      | `.github/copilot-instructions.md`    | `.github/copilot-instructions.md` |
+| Codex und andere    | `AGENTS.md`                          | `AGENTS.md`                       |
+
+Kein Plugin, keine Installation. Liest dein Programm keine davon, sag ihm im ersten Satz: "Lies AGENTS.md."
 
 ## <img src="bilder/logo.svg" height="26" align="top"> Grundsätze
 

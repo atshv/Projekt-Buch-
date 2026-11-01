@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Legt eine neue Änderung an.  Aufruf: bin/new-change <name>
+# name: nur a-z, 0-9 und Bindestrich, z. B. pdf-export. Ergebnis: docs/changes/<name>/CHANGE.md
+set -euo pipefail
+cd "$(dirname "$0")/.."
+if [ "${1:-}" = "" ] || [ "${1:-}" = "--help" ] || [ "${1:-}" = "-h" ]; then
+  sed -n '2,3p' "$0" | sed 's/^# \{0,1\}//'; exit 0
+fi
+NAME="$1"
+echo "$NAME" | grep -Eq '^[a-z0-9]+(-[a-z0-9]+)*$' || { echo "Ungültiger Name: nur a-z, 0-9, Bindestrich"; exit 1; }
+[ "$NAME" != "archiv" ] || { echo "Der Name archiv ist reserviert"; exit 1; }
+VORLAGE="toolkit/templates/change.md"
+[ -f "$VORLAGE" ] || { echo "Fehlt: $VORLAGE"; exit 1; }
+DIR="docs/changes/$NAME"
+[ ! -e "$DIR" ] || { echo "Gibt es schon: $DIR"; exit 1; }
+mkdir -p "$DIR"
+HEUTE=$(date '+%Y-%m-%d')
+sed "s/\[Name der Änderung\]/$NAME/; s/Angelegt: \[JJJJ-MM-TT\]/Angelegt: $HEUTE/" "$VORLAGE" > "$DIR/CHANGE.md"
+echo "Angelegt: $DIR/CHANGE.md"
+echo "Nächster Schritt: Rolle Architect füllt die Datei aus und schneidet die Karten (Prompt 8)."

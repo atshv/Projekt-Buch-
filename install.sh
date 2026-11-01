@@ -23,7 +23,11 @@ while [ $# -gt 0 ]; do
     --datei) [ $# -ge 2 ] || fail "--datei braucht einen Pfad"; DATEIEN+=("$2"); shift 2 ;;
     --liste)
       cat <<'LISTE'
+.cursor/rules/projekt.mdc
+.github/copilot-instructions.md
 AGENTS.md
+CLAUDE.md
+GEMINI.md
 README.md
 START-PROMPTS.md
 bin/README.md
@@ -31,6 +35,8 @@ bin/check-done
 bin/check-plan
 bin/check-scope
 bin/check-skills
+bin/finish-change
+bin/new-change
 bin/new-skill
 bin/record-test
 brand/BRAND.md
@@ -39,6 +45,7 @@ docs/adr/_overview.md
 docs/architecture/ARCHITECTURE.md
 docs/architecture/diagrams/README.md
 docs/brief/BRIEF.md
+docs/changes/README.md
 docs/design/DESIGN.md
 docs/design/SCENARIOS.md
 docs/design/prototype/README.md
@@ -115,6 +122,8 @@ toolkit/skills/skill-creator/scripts/validate_skill.py
 toolkit/skills/skill-creator/tests/prompts.md
 toolkit/skills/skill-creator/tests/trigger-queries.md
 toolkit/templates/README.md
+toolkit/templates/bestand.md
+toolkit/templates/change.md
 toolkit/templates/review.md
 toolkit/templates/ui-review.md
 LISTE

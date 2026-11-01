@@ -34,7 +34,8 @@ Du bist der Agent. Lies AGENTS.md. Aufgabe: [BESCHREIBUNG]. Schreiben: [DATEIEN]
 
 ## 8. Änderungswunsch im laufenden Projekt
 Du bist der Architect. Lies toolkit/agents/architect.md, AGENTS.md, docs/brief/BRIEF.md, docs/plan/PLAN.md. Neuer
-Wunsch: [WUNSCH]. Liste zuerst die Auswirkungen (Karten, Module), dann frage mich.
+Wunsch: [WUNSCH]. Lege die Änderung mit `bin/new-change [NAME]` an und fülle docs/changes/[NAME]/CHANGE.md
+aus. Liste zuerst die Auswirkungen (Karten, Module), dann frage mich.
 
 ## 9. Oberfläche gegen Prototyp prüfen (UI-Judge)
 Du bist der UI-Judge. Lies nur toolkit/agents/ui-judge.md, docs/design/prototype/, docs/design/SCENARIOS.md und
@@ -88,3 +89,9 @@ Karte [T01] aus docs/plan/PLAN.md samt den Dateien unter "Lesen". Baue nichts. A
 1) Was ist deine Aufgabe? 2) Welche Dateien darfst du ändern, welche nicht? 3) Woran erkennst du,
 dass die Karte fertig ist? 4) Welche Befehle führst du aus? 5) Was musstest du raten oder was fehlt?
 Jede Antwort nennt die Fundstelle. Gibt es etwas bei Punkt 5, beheben wir zuerst die Dateien.
+
+## 18. Bestehendes Projekt aufnehmen (Bestandsaufnahme)
+Du bist der Architect. Lies toolkit/agents/architect.md, AGENTS.md und toolkit/templates/bestand.md.
+Dieses Projekt gibt es schon. Baue nichts. Lies den Code, führe Installieren, Starten und Tests aus und
+schreibe docs/architecture/BESTAND.md nach der Vorlage. Nur Fakten, die du gelesen oder ausgeführt hast.
+Alles andere ist [UNKLAR]. Nenne danach den nächsten Schritt: Prompt 8 für den ersten Änderungswunsch.

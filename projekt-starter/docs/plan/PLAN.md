@@ -18,6 +18,7 @@ Kartenformat: toolkit/skills/plan-cards/templates/card.md. Prüfen mit: bin/chec
   - A1: Wenn `[Testbefehl]` läuft, dann meldet er "0 Fehler".
   - A2: Wenn man in AGENTS.md Abschnitt 5 liest, dann stehen dort Installieren, Starten und Tests ohne UNKLAR-Marke.
 - Prüfungen: `[Testbefehl]`
+- Test zuerst: ja
 - Status: offen
 
 ## Phase 1: Dünnster durchgehender Pfad  (Meilenstein: Kernfunktion läuft einmal komplett)
@@ -33,6 +34,7 @@ Kartenformat: toolkit/skills/plan-cards/templates/card.md. Prüfen mit: bin/chec
   - A1: Wenn [Aktion], dann [messbares Ergebnis].
   - A2: Wenn [Fehlerfall], dann [Meldung oder Verhalten].
 - Prüfungen: `[Testbefehl]`
+- Test zuerst: ja
 - Status: offen
 
 ## Phase 2: Restliche Muss-Anforderungen

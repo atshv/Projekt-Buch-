@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 # Prüft docs/plan/PLAN.md auf Vollständigkeit und Ordnung.  Aufruf: bin/check-plan
 # Geprüft wird: Felder jeder Karte, Abnahme als "Wenn ..., dann ...", Abhängigkeiten, Platzhalter,
-# geschützte Pfade, Statuswerte und der Umfang von ARCHITECTURE.md (Warnung ab 600, Fehler ab 800 Wörter).
+# geschützte Pfade, Statuswerte, Test zuerst, Kartengrösse (Warnung ab 4 Dateien oder 5 Abnahmen),
+# Grundsätze ohne Karte und der Umfang von ARCHITECTURE.md (Warnung ab 600, Fehler ab 800 Wörter).
 # Ergebnis: 0 = keine Fehler (Warnungen möglich), 1 = Fehler gefunden, 2 = Plan fehlt.
 set -uo pipefail
 cd "$(dirname "$0")/.."
 
 if [ "${1:-}" = "--help" ] || [ "${1:-}" = "-h" ]; then
-  sed -n '2,5p' "$0" | sed 's/^# \{0,1\}//'; exit 0
+  sed -n '2,7p' "$0" | sed 's/^# \{0,1\}//'; exit 0
 fi
 
 PLAN="docs/plan/PLAN.md"
@@ -62,6 +63,13 @@ function finish(   k, t, s, i, m, parts, e, a, zeilen, nz, ids, nA, bad, schreib
     t = f[k]; gsub(/`[^`]*`/, "", t)
     if (t ~ /\[[^]]*\]/) err("Feld \"" k "\" enthält noch einen Platzhalter in eckigen Klammern")
   }
+  # Test zuerst
+  if ("Test zuerst" in f) {
+    t = trim(f["Test zuerst"])
+    if (t == "ja") { }
+    else if (t ~ /^nein[ \t]*\(.+\)$/) { }
+    else err("\"Test zuerst\" ist \"" t "\" (erwartet: ja oder nein (Grund))")
+  }
   # Abnahme
   if ("Abnahme" in f) {
     nA = 0; delete ids
@@ -76,6 +84,7 @@ function finish(   k, t, s, i, m, parts, e, a, zeilen, nz, ids, nA, bad, schreib
       }
     }
     if (nA == 0) err("Abnahme hat keinen nummerierten Punkt (A1: Wenn ..., dann ...)")
+    if (nA > 4) warn("Abnahme hat " nA " Punkte (am besten höchstens 4, sonst Karte teilen)")
   }
   # Dateien unter Schreiben
   schreib = ("Schreiben" in f) ? f["Schreiben"] : (("Betrifft" in f) ? f["Betrifft"] : "")
@@ -91,7 +100,7 @@ function finish(   k, t, s, i, m, parts, e, a, zeilen, nz, ids, nA, bad, schreib
       }
     }
     if (nz == 0) err("Schreiben nennt keine Datei")
-    if (nz > 5) warn("Schreiben nennt " nz " Einträge (höchstens ca. 5, sonst Karte teilen)")
+    if (nz > 3) warn("Schreiben nennt " nz " Einträge (am besten höchstens 3, sonst Karte teilen)")
   }
   # Abhängigkeiten
   if ("Abhängig von" in f) {
@@ -124,6 +133,14 @@ if [ -f "$ARCH" ]; then
     ERG="${ERG:+$ERG
 }Warnung ARCHITECTURE.md: $W Wörter (Ziel höchstens 600). Details nach docs/architecture/<thema>.md auslagern."
   fi
+fi
+
+PRIN="docs/principles/PRINCIPLES.md"
+if [ -f "$PRIN" ]; then
+  for p in $(grep -E '^## P[0-9]+:' "$PRIN" | grep -v '\[' | sed 's/^## \(P[0-9]*\):.*/\1/'); do
+    grep -Eq "(^|[^A-Za-z0-9])$p([^0-9]|$)" "$PLAN" || ERG="${ERG:+$ERG
+}Warnung PRINCIPLES.md: Grundsatz $p kommt in keiner Karte vor (Bezug oder Abnahme)."
+  done
 fi
 
 [ -z "$ERG" ] || printf '%s\n' "$ERG"

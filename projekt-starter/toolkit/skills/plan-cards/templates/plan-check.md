@@ -7,7 +7,7 @@
 | Jede M-Anforderung hat mindestens eine Karte      | ok       |           |
 | `bin/check-plan` meldet keine Fehler              | ok       |           |
 | Jede Karte hat Bezug, Schreiben, Lesen, Abnahme   | ok       |           |
-| Keine Karte grösser als eine Sitzung              | ok       |           |
+| Karten klein (höchstens 3 Dateien, 4 Abnahmen)    | ok       |           |
 | Keine Vorwärts- oder Kreisabhängigkeit            | ok       |           |
 | Namen und Pfade stimmen mit GLOSSARY/ARCHITECTURE | ok       |           |
 | Nicht-Ziele in keiner Karte                       | ok       |           |

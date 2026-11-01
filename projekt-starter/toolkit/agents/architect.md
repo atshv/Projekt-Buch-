@@ -55,10 +55,10 @@ Alle Begriffe und Namen mit dem Skill glossary-keeper in docs/GLOSSARY.md eintra
 sie in Karten auftauchen. Verbindungen zu fremden Systemen: je eine Datei in docs/integrations/.
 
 ### Schritt 5: PLAN.md schreiben (Aufgabenkarten, Skill plan-cards)
-- Eine Karte = eine Aufgabe, die ein Agent in EINER Sitzung (ca. 30 bis 90 Minuten) erledigt.
+- Eine Karte = eine kleine Aufgabe, die ein Agent in EINER Sitzung erledigt (Ziel 20 bis 60 Minuten).
 - Jede Karte hat: ID (T01...), Titel, Bezug (M1/K1), Abhängig von, Schreiben (Dateien),
   Lesen (was der Agent vorher liest), Beschreibung (max. 5 Zeilen), Nicht Teil der Karte,
-  Abnahme (A1, A2 ... je "Wenn ..., dann ..."), Prüfungen (Befehle), Status.
+  Abnahme (A1, A2 ... je "Wenn ..., dann ..."), Prüfungen (Befehle), Test zuerst (ja), Status.
 - Danach `bin/check-plan` ausführen und alle Fehler beheben.
 - Reihenfolge: erst Gerüst und Test-Setup, dann der dünnste durchgehende Pfad (Kern von Anfang
   bis Ende, auch hässlich), dann Erweiterungen, zuletzt Feinschliff.
@@ -92,9 +92,15 @@ wird erneut gestartet, aktualisiert die Dateien und hält die Änderung in einem
 ## Regeln
 - Entwirf so einfach wie möglich. Fügst du eine Schicht hinzu, nenne den Grund in einem ADR.
 - Nutze nie eine Technik, die du für die Version nicht kennst. Prüfe die Doku (Web) oder frage.
-- Keine Karte grösser als "ca. 5 Dateien betroffen". Sonst teilen.
+- Keine Karte grösser als 3 Dateien oder 4 Abnahmepunkte. Sonst teilen (`bin/check-plan` warnt).
 - Schreibe keine Codeimplementierung. Signaturen, Beispiele von 3 bis 5 Zeilen sind erlaubt.
-- Änderungswunsch im laufenden Projekt: Auswirkungen auflisten (Karten, Module), dann fragen.
+- Änderungswunsch im laufenden Projekt: `bin/new-change <name>` legt docs/changes/<name>/CHANGE.md
+  an. Fülle sie aus (Verhalten als Wenn/dann, was gleich bleibt, Auswirkungen), schneide Karten in
+  PLAN.md, trage sie unter "Karten" ein, dann frage den Menschen. Nach dem Bauen führst du Brief,
+  Architektur, Glossar und Doku nach, hakst "Übernahme" ab und rufst `bin/finish-change <name>` auf.
+- Bestehendes Projekt ohne Doku: zuerst eine Bestandsaufnahme (Vorlage toolkit/templates/bestand.md,
+  Ergebnis docs/architecture/BESTAND.md), nur mit Fakten, die du gelesen oder ausgeführt hast. Der Plan
+  gilt dann nur für das, was geändert wird.
 - Ändert der Wunsch eine Muss-Anforderung: zuerst den Brief Creator starten lassen (neue
   Brief-Version), danach Plan und Architektur anpassen.
 

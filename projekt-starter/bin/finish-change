@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# Schliesst eine Änderung ab.  Aufruf: bin/finish-change <name>
+# Verlangt: alle Karten unter "Karten:" stehen in PLAN.md auf "erledigt", alle Punkte unter
+# "Übernahme" sind abgehakt. Dann wandert der Ordner nach docs/changes/archiv/<Datum>-<name>/.
+# Ergebnis: 0 = abgeschlossen, 1 = noch offene Punkte, 2 = Eingabefehler.
+set -uo pipefail
+cd "$(dirname "$0")/.."
+NAME="${1:-}"
+if [ -z "$NAME" ] || [ "$NAME" = "--help" ] || [ "$NAME" = "-h" ]; then
+  sed -n '2,5p' "$0" | sed 's/^# \{0,1\}//'; exit 0
+fi
+FILE="docs/changes/$NAME/CHANGE.md"
+[ -f "$FILE" ] || { echo "Fehlt: $FILE"; exit 2; }
+PLAN="docs/plan/PLAN.md"
+[ -f "$PLAN" ] || { echo "Fehlt: $PLAN"; exit 2; }
+
+OFFEN=0
+KARTEN=$(grep -m1 '^Karten:' "$FILE" | sed 's/^Karten:[[:space:]]*//' | tr -d '`[]' | tr ',;' '  ')
+N=0
+for k in $KARTEN; do
+  echo "$k" | grep -Eq '^T[0-9]+[a-z]?$' || continue
+  N=$((N + 1))
+  STATUS=$(awk -v id="$k" '
+    $0 ~ "^### " id ":" { drin = 1; next }
+    drin && /^##/ { exit }
+    drin && /^- Status:/ { sub(/^- Status:[ \t]*/, ""); print; exit }
+  ' "$PLAN")
+  case "$STATUS" in
+    erledigt*) ;;
+    "") echo "  OFFEN  Karte $k steht nicht in $PLAN"; OFFEN=$((OFFEN + 1)) ;;
+    *) echo "  OFFEN  Karte $k hat Status \"$STATUS\""; OFFEN=$((OFFEN + 1)) ;;
+  esac
+done
+[ $N -gt 0 ] || { echo "  OFFEN  Unter \"Karten:\" steht keine Karten-ID (z. B. T07, T08)"; OFFEN=$((OFFEN + 1)); }
+
+UEBERNAHME=$(awk '/^## .*Übernahme/ { drin = 1; next } drin && /^## / { exit } drin { print }' "$FILE")
+N_OFFEN=$(printf '%s\n' "$UEBERNAHME" | grep -c '^- \[ \]' || true)
+if [ "$N_OFFEN" -gt 0 ]; then
+  printf '%s\n' "$UEBERNAHME" | grep '^- \[ \]' | sed 's/^- \[ \]/  OFFEN /'
+  OFFEN=$((OFFEN + N_OFFEN))
+fi
+if grep -q '^- \[UNKLAR\|\[UNKLAR:' "$FILE"; then echo "  OFFEN  In CHANGE.md steht noch [UNKLAR]"; OFFEN=$((OFFEN + 1)); fi
+
+if [ $OFFEN -gt 0 ]; then echo "NICHT ABGESCHLOSSEN: $OFFEN offene Punkte."; exit 1; fi
+ZIEL="docs/changes/archiv/$(date '+%Y-%m-%d')-$NAME"
+[ ! -e "$ZIEL" ] || { echo "Gibt es schon: $ZIEL"; exit 2; }
+mkdir -p docs/changes/archiv
+mv "docs/changes/$NAME" "$ZIEL"
+echo "ABGESCHLOSSEN: $ZIEL"
