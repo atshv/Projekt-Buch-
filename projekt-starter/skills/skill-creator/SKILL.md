@@ -81,7 +81,7 @@ Stilregeln:
 - Skripte: werden ausgeführt, nicht abgeschrieben. Sie brauchen Hilfetext, klare Fehlermeldungen.
 
 ## Phase 6: Prüfen (automatisch + Checkliste)
-1. Führe aus: `python skills/skill-creator/scripts/validate_skill.py skills/<name>`
+1. Führe aus: `python3 skills/skill-creator/scripts/validate_skill.py skills/<name>`
    Behebe jede Meldung. Das Skript prüft Name, Beschreibung, Länge, Struktur, Verweise.
 2. Checkliste (alle abhaken, sonst zurück zu Phase 4/5):
    - [ ] Beschreibung enthält "Nutze diesen Skill, wenn" und "Nicht für"

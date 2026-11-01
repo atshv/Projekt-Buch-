@@ -50,7 +50,14 @@ skills/commit-message/tests/prompts.md
 skills/commit-message/tests/trigger-queries.md
 LISTE
       exit 0 ;;
-    -h|--help) sed -n '2,7p' "$0" 2>/dev/null || true; exit 0 ;;
+    -h|--help)
+      cat <<'HILFE'
+Projekt-Starter laden
+  bash -s mein-projekt                 alle Dateien in den Ordner mein-projekt
+  bash -s -- --datei roles/agent.md    eine Datei (mehrfach möglich)
+  bash -s -- --liste                   alle ladbaren Dateien anzeigen
+HILFE
+      exit 0 ;;
     -*) fail "unbekannte Option: $1" ;;
     *) ZIEL="$1"; shift ;;
   esac
@@ -80,5 +87,5 @@ N_DATEIEN="$(find "$ZIEL" -type f | wc -l | tr -d ' ')"
 printf '\n%s✔ %s Dateien geladen%s\n\n' "$G" "$N_DATEIEN" "$N"
 printf '  %scd %s%s\n' "$C" "$ZIEL" "$N"
 printf '  %sgit init%s\n' "$C" "$N"
-printf '  %s$EDITOR AGENTS.md%s   %s# Abschnitt 1 + 4 ausfüllen%s\n' "$C" "$N" "$D" "$N"
+printf '  %sAGENTS.md öffnen%s    %s# Abschnitt 1 ausfüllen%s\n' "$C" "$N" "$D" "$N"
 printf '  %s→ Prompt 1 aus START-PROMPTS.md in dein KI-Programm einfügen%s\n\n' "$D" "$N"

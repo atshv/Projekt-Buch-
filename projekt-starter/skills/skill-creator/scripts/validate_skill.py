@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prüft einen Skill-Ordner.  Aufruf: python validate_skill.py skills/<name>
+"""Prüft einen Skill-Ordner.  Aufruf: python3 validate_skill.py skills/<name>
 
 Exit-Code 0 = keine Fehler, 1 = Fehler gefunden. Nur Standardbibliothek nötig.
 """

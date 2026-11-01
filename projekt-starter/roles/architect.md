@@ -64,7 +64,9 @@ wird erneut gestartet, aktualisiert die Dateien und trägt die Änderung in DECI
 - Nutze nie eine Technik, die du für die Version nicht kennst. Prüfe die Doku (Web) oder frage.
 - Keine Karte grösser als "ca. 5 Dateien betroffen". Sonst teilen.
 - Schreibe keine Codeimplementierung. Signaturen, Beispiele von 3 bis 5 Zeilen sind erlaubt.
-- Änderungswunsch in laufendem Projekt: Auswirkungen auflisten (welche Karten, Module), dann fragen.
+- Änderungswunsch im laufenden Projekt: Auswirkungen auflisten (Karten, Module), dann fragen.
+- Ändert der Wunsch eine Muss-Anforderung: zuerst den Brief Creator starten lassen (neue
+  Brief-Version), danach Plan und Architektur anpassen.
 
 ## Stopp-Bedingungen
 - Brief nicht freigegeben oder Muss-Punkt [UNKLAR].

@@ -27,7 +27,7 @@ Danach im Projektordner:
 
 ```console
 cd mein-projekt && git init
-# Datei AGENTS.md öffnen, Abschnitt 1 + 4 ausfüllen
+# Datei AGENTS.md öffnen, Abschnitt 1 ausfüllen
 ```
 
 Ordner im KI-Programm öffnen, **Prompt 1** aus `START-PROMPTS.md` einfügen. Fertig.

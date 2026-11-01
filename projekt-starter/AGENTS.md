@@ -8,7 +8,7 @@ Details stehen in docs/ und skills/. Hier steht nur, was immer gelten muss.
 - Zweck in einem Satz: [WAS DAS PROJEKT TUT UND FÜR WEN]
 - Stack: [SPRACHE, FRAMEWORK, DATENBANK, HOSTING]
 - Sprache der Antworten und Kommentare: Deutsch. Code, Dateinamen, Variablen: Englisch.
-- Der Mensch ist nicht programmiert-erfahren: erkläre Ergebnisse in einfachen Worten.
+- Wissensstand des Menschen: [z. B. "programmiert nicht"]. Erkläre Ergebnisse passend dazu.
 
 ## 2. Lies zuerst (in dieser Reihenfolge)
 1. docs/HANDOFF.md      aktueller Stand, nächster Schritt (immer)
@@ -18,15 +18,15 @@ Details stehen in docs/ und skills/. Hier steht nur, was immer gelten muss.
 5. docs/BRIEF.md        Anforderungen, nur bei Unklarheit über das Ziel
 
 ## 3. Rollen (eine Sitzung = eine Rolle)
-| Rolle     | Datei              | Schreibt                                  |
-|-----------|--------------------|-------------------------------------------|
-| Brief     | roles/brief-creator.md | docs/BRIEF.md                         |
-| Architect | roles/architect.md | ARCHITECTURE, PLAN, DECISIONS             |
-| Agent     | roles/agent.md     | Code, Tests, HANDOFF, PROGRESS            |
-| Reviewer  | roles/reviewer.md  | docs/REVIEW.md (ändert keinen Code)       |
+| Rolle     | Datei                  | Schreibt                            |
+|-----------|------------------------|-------------------------------------|
+| Brief     | roles/brief-creator.md | docs/BRIEF.md                       |
+| Architect | roles/architect.md     | ARCHITECTURE, PLAN, DECISIONS       |
+| Agent     | roles/agent.md         | Code, Tests, HANDOFF, PROGRESS      |
+| Reviewer  | roles/reviewer.md      | docs/REVIEW.md (ändert keinen Code) |
 Starte eine Sitzung mit: "Du bist <Rolle>. Lies roles/<datei> und AGENTS.md."
 
-## 4. Befehle (vom Menschen auszufüllen, vom Agent zu pflegen)
+## 4. Befehle (trägt der Agent in Karte T01 ein und hält sie aktuell)
 - Installieren: [BEFEHL]
 - Starten:      [BEFEHL]
 - Tests:        [BEFEHL]
