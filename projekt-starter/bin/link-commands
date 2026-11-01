@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+# Legt die Befehle aus toolkit/commands/ für dein KI-Programm an.  Aufruf: bin/link-commands <programm>
+# programm: claude, cursor, copilot, gemini oder alle. Es entstehen Dateien wie .claude/commands/pb-bauen.md.
+# Erzeugte Dateien tragen eine Markierung und werden bei erneutem Aufruf ersetzt. Eigene Dateien bleiben.
+set -uo pipefail
+cd "$(dirname "$0")/.."
+
+WAS="${1:-}"
+if [ -z "$WAS" ] || [ "$WAS" = "--help" ] || [ "$WAS" = "-h" ]; then
+  sed -n '2,4p' "$0" | sed 's/^# \{0,1\}//'; exit 0
+fi
+case "$WAS" in claude|cursor|copilot|gemini|alle) ;; *) echo "Unbekanntes Programm: $WAS (claude, cursor, copilot, gemini, alle)"; exit 2 ;; esac
+[ -d toolkit/commands ] || { echo "Fehlt: toolkit/commands/"; exit 2; }
+
+MARKE="erzeugt von bin/link-commands"
+N=0
+schreibe() { # $1 Datei, $2 Inhalt
+  if [ -e "$1" ] && ! grep -q "$MARKE" "$1"; then echo "übersprungen (eigene Datei): $1"; return; fi
+  mkdir -p "$(dirname "$1")"
+  printf '%s\n' "$2" > "$1"
+  N=$((N + 1))
+}
+
+erzeuge() { # $1 Programm
+  local prog="$1" f name desc body
+  for f in toolkit/commands/pb-*.md; do
+    [ -f "$f" ] || continue
+    name=$(basename "$f" .md)
+    desc=$(sed -n 's/^description:[[:space:]]*//p' "$f" | head -n 1)
+    body=$(awk 'BEGIN{n=0} /^---[[:space:]]*$/ && n<2 {n++; next} n>=2 {print}' "$f")
+    case "$prog" in
+      claude)
+        body=${body//\{\{ARGS\}\}/\$ARGUMENTS}
+        schreibe ".claude/commands/$name.md" "---
+description: $desc
+---
+<!-- $MARKE, nicht von Hand ändern -->
+$body" ;;
+      cursor)
+        body=${body//\{\{ARGS\}\}/(meine Angaben stehen direkt nach dem Befehl)}
+        schreibe ".cursor/commands/$name.md" "<!-- $MARKE, nicht von Hand ändern -->
+$body" ;;
+      copilot)
+        body=${body//\{\{ARGS\}\}/\$\{input:angaben:Deine Angaben\}}
+        schreibe ".github/prompts/$name.prompt.md" "---
+description: $desc
+---
+<!-- $MARKE, nicht von Hand ändern -->
+$body" ;;
+      gemini)
+        body=${body//\{\{ARGS\}\}/\{\{args\}\}}
+        schreibe ".gemini/commands/$name.toml" "# $MARKE, nicht von Hand ändern
+description = \"$desc\"
+prompt = '''
+$body
+'''" ;;
+    esac
+  done
+}
+
+if [ "$WAS" = "alle" ]; then for p in claude cursor copilot gemini; do erzeuge "$p"; done; else erzeuge "$WAS"; fi
+echo "Fertig: $N Dateien angelegt oder erneuert."

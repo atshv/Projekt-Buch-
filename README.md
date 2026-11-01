@@ -33,6 +33,8 @@ cd mein-projekt && git init
 Ordner im KI-Programm öffnen, **Prompt 1** aus `START-PROMPTS.md` einfügen. Oder **Prompt 16**:
 Er führt in einer Sitzung von der Idee über Brief, Architektur und Plan bis zur Einrichtung. Fertig.
 
+Lieber tippen statt kopieren: `bin/link-commands claude` (oder `cursor`, `copilot`, `gemini`) legt Befehle wie `/pb-bauen` an.
+
 Ohne Skript: `git clone https://github.com/atshv/Projekt-Buch-.git` und den Ordner `projekt-starter/` kopieren.
 
 ## <img src="bilder/logo.svg" height="26" align="top"> Dateien

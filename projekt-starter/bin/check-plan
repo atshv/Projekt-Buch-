@@ -3,12 +3,16 @@
 # Geprüft wird: Felder jeder Karte, Abnahme als "Wenn ..., dann ...", Abhängigkeiten, Platzhalter,
 # geschützte Pfade, Statuswerte, Test zuerst, Kartengrösse (Warnung ab 4 Dateien oder 5 Abnahmen),
 # Grundsätze ohne Karte und der Umfang von ARCHITECTURE.md (Warnung ab 600, Fehler ab 800 Wörter).
+# Gewicht: Dateien + Abnahmepunkte + Beschreibungszeilen (ab 3) + Abhängigkeiten (ab 3). Bis 6 klein, 7 bis 9
+# mittel, ab 10 gross (Vorschlag zum Teilen). Mit --liste zeigt es das Gewicht jeder Karte.
 # Ergebnis: 0 = keine Fehler (Warnungen möglich), 1 = Fehler gefunden, 2 = Plan fehlt.
 set -uo pipefail
 cd "$(dirname "$0")/.."
 
+LISTE=0
+[ "${1:-}" != "--liste" ] || LISTE=1
 if [ "${1:-}" = "--help" ] || [ "${1:-}" = "-h" ]; then
-  sed -n '2,7p' "$0" | sed 's/^# \{0,1\}//'; exit 0
+  sed -n '2,10p' "$0" | sed 's/^# \{0,1\}//'; exit 0
 fi
 
 PLAN="docs/plan/PLAN.md"
@@ -32,9 +36,10 @@ function start(   line) {
   } else { id = "?"; titel = ""; err("Überschrift hat keine gültige Karten-ID (erwartet \"### T05: Titel\"): " $0) }
   delete f; cur = ""; incard = 1; n++
 }
-function finish(   k, t, s, i, m, parts, e, a, zeilen, nz, ids, nA, bad, schreib, neu) {
+function finish(   k, t, s, i, m, parts, e, a, zeilen, nz, ids, nA, bad, schreib, neu, nd, nl, na, ndep, w, stufe, zz) {
   if (!incard) return
   incard = 0
+  nA = 0; nz = 0; schreib = ""
   if (titel == "" && id != "?") err("Titel fehlt")
   neu = ("Schreiben" in f)
   if (neu) {
@@ -113,6 +118,16 @@ function finish(   k, t, s, i, m, parts, e, a, zeilen, nz, ids, nA, bad, schreib
       else if (!(e in gesehen)) err("Abhängigkeit " e " ist unbekannt oder steht erst weiter unten (Vorwärts- oder Kreisabhängigkeit)")
     }
   }
+  # Gewicht
+  nd = 0; if (schreib != "") { nd = nz }
+  nl = ("Beschreibung" in f) ? split(f["Beschreibung"], zz, "\n") : 0
+  na = ("Abnahme" in f) ? nA : 0
+  ndep = 0
+  if ("Abhängig von" in f) { s = f["Abhängig von"]; gsub(/`/, "", s); m = split(s, parts, /[ ,;]+/); for (i = 1; i <= m; i++) if (parts[i] != "" && parts[i] != "-") ndep++ }
+  w = nd + na + (nl > 3 ? nl - 3 : 0) + (ndep > 2 ? ndep - 2 : 0)
+  stufe = (w <= 6) ? "klein" : ((w <= 9) ? "mittel" : "gross")
+  print "GEWICHT " id " " w " " stufe " (Dateien " nd ", Abnahmen " na ", Beschreibung " nl " Zeilen, Abhängigkeiten " ndep ")"
+  if (stufe == "gross") warn("Gewicht " w " (gross). Teilen, zum Beispiel in " id "a (Abnahme A1 bis A" int((na + 1) / 2) ") und " id "b (die übrigen), jede mit eigenen Dateien")
   gesehen[id] = 1
 }
 BEGIN { np = split(prot, pp0, /[ ,;]+/); np2 = 0; for (i = 1; i <= np; i++) if (pp0[i] != "") { np2++; pp[np2] = pp0[i] } ; np = np2 }
@@ -122,6 +137,10 @@ incard && /^- [^:]+:/ { name = $0; sub(/^- /, "", name); sub(/:.*/, "", name); v
 incard && /^[ \t]+[^ \t]/ && cur != "" { f[cur] = f[cur] "\n" trim($0); next }
 END { finish(); if (n == 0) print "FEHLER -: Keine Karte gefunden (Überschriften der Form \"### T01: Titel\")" }
 ' "$PLAN")
+
+GEW=$(printf '%s\n' "$ERG" | grep '^GEWICHT ' || true)
+ERG=$(printf '%s\n' "$ERG" | grep -v '^GEWICHT ' || true)
+if [ "$LISTE" -eq 1 ] && [ -n "$GEW" ]; then printf '%s\n' "$GEW" | sed 's/^GEWICHT /Gewicht /'; fi
 
 ARCH="docs/architecture/ARCHITECTURE.md"
 if [ -f "$ARCH" ]; then

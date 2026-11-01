@@ -44,11 +44,12 @@ Starte eine Sitzung mit: "Du bist <Rolle>. Lies toolkit/agents/<datei> und AGENT
 - Lint/Format:  [BEFEHL]
 - Build:        [BEFEHL]
 - Diagramme:    [BEFEHL, z. B. mmdc -i x.mmd -o x.svg]
-- Plan prüfen:     bin/check-plan
+- Plan prüfen:     bin/check-plan (--liste zeigt das Gewicht je Karte)
 - Umfang prüfen:   bin/check-scope <Karten-ID>
 - Testlauf belegen: bin/record-test <Karten-ID> -p A1,A2 -- <Testbefehl>
 - Fertig prüfen:   bin/check-done <Karten-ID>
 - Änderung:        bin/new-change <name> anlegen, bin/finish-change <name> abschliessen
+- Befehle /pb-*:   bin/link-commands <claude|cursor|copilot|gemini|alle> (toolkit/commands/)
 Ist ein Befehl unbekannt, trage "[UNKLAR]" ein und frage den Menschen. Rate nie.
 
 ## 6. Regeln (Verbot + Alternative)

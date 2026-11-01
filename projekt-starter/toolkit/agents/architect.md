@@ -59,7 +59,8 @@ sie in Karten auftauchen. Verbindungen zu fremden Systemen: je eine Datei in doc
 - Jede Karte hat: ID (T01...), Titel, Bezug (M1/K1), Abhängig von, Schreiben (Dateien),
   Lesen (was der Agent vorher liest), Beschreibung (max. 5 Zeilen), Nicht Teil der Karte,
   Abnahme (A1, A2 ... je "Wenn ..., dann ..."), Prüfungen (Befehle), Test zuerst (ja), Status.
-- Danach `bin/check-plan` ausführen und alle Fehler beheben.
+- Vorschlag zuerst (Prompt 19): Tabelle mit ID, Titel, Bezug, Dateien, Abnahmen, Gewicht zeigen, nach dem "ja" schreiben.
+- Danach `bin/check-plan --liste` ausführen und alle Fehler beheben. Grosse Karten werden geteilt (Prompt 20).
 - Reihenfolge: erst Gerüst und Test-Setup, dann der dünnste durchgehende Pfad (Kern von Anfang
   bis Ende, auch hässlich), dann Erweiterungen, zuletzt Feinschliff.
 - Kein Schritt hängt von einem späteren ab. Zyklen verboten.
