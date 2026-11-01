@@ -1,15 +1,15 @@
-<p align="center"><img src="bilder/banner-bauplan.svg" alt="Das KI-Projekt-Buch"></p>
+<p align="center"><img src="bilder/banner-gruen.svg" alt="Das KI-Projekt-Buch"></p>
 
 <p align="center">
 <b>Brief → Architect → Agent → Reviewer</b>, dazu <b>Skills</b> und eine kurze <b>AGENTS.md</b>.<br>
 Alles zum Kopieren. Für jedes Projekt.
 </p>
 
-## <img src="bilder/logo-bauplan.svg" height="26" align="top"> Ablauf
+## <img src="bilder/logo-gruen.svg" height="26" align="top"> Ablauf
 
 <p align="center"><img src="bilder/ablauf.svg" alt="Ablauf"></p>
 
-## <img src="bilder/logo-bauplan.svg" height="26" align="top"> Schnellstart
+## <img src="bilder/logo-gruen.svg" height="26" align="top"> Schnellstart
 
 ```console
 # Alles laden
@@ -34,11 +34,11 @@ Ordner im KI-Programm öffnen, **Prompt 1** aus `START-PROMPTS.md` einfügen. Fe
 
 Ohne Skript: `git clone https://github.com/atshv/Projekt-Buch-.git` und den Ordner `projekt-starter/` kopieren.
 
-## <img src="bilder/logo-bauplan.svg" height="26" align="top"> Dateien
+## <img src="bilder/logo-gruen.svg" height="26" align="top"> Dateien
 
 <p align="center"><img src="bilder/struktur.svg" alt="Struktur"></p>
 
-## <img src="bilder/logo-bauplan.svg" height="26" align="top"> Rollen
+## <img src="bilder/logo-gruen.svg" height="26" align="top"> Rollen
 
 | Rolle | Datei | Schreibt |
 |:--|:--|:--|
@@ -60,18 +60,18 @@ Ohne Skript: `git clone https://github.com/atshv/Projekt-Buch-.git` und den Ordn
 
 Welcher Skill wann passt: `skills/SKILLMAP.md`.
 
-## <img src="bilder/logo-bauplan.svg" height="26" align="top"> Skill anlegen und prüfen
+## <img src="bilder/logo-gruen.svg" height="26" align="top"> Skill anlegen und prüfen
 
 ```console
 bin/new-skill bericht-schreiben    # Gerüst anlegen
 bin/check-skills                   # alle Skills prüfen, Abgleich mit SKILLMAP.md
 ```
 
-## <img src="bilder/logo-bauplan.svg" height="26" align="top"> Grundsätze
+## <img src="bilder/logo-gruen.svg" height="26" align="top"> Grundsätze
 
 <p align="center"><img src="bilder/grundsaetze.svg" alt="Grundsätze"></p>
 
-## <img src="bilder/logo-bauplan.svg" height="26" align="top"> Das Buch
+## <img src="bilder/logo-gruen.svg" height="26" align="top"> Das Buch
 
 Das ganze Buch als Webseite, mit Kopieren-Knopf an jeder Datei:
 
