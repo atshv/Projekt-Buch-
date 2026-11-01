@@ -1,0 +1,1184 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Das KI-Projekt-Buch</title>
+<style>
+:root{--bg:#0d1117;--panel:#161b22;--line:#30363d;--ink:#c9d1d9;--dim:#8b949e;--g:#3fb950;--c:#79c0ff;--a:#e3b341;--r:#ff7b72}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,"DejaVu Sans Mono",monospace}
+nav{position:fixed;top:0;left:0;bottom:0;width:270px;overflow:auto;background:var(--panel);border-right:1px solid var(--line);padding:16px 0 40px}
+nav .t{color:var(--g);padding:0 18px 12px;font-weight:bold}
+nav a{display:block;color:var(--dim);text-decoration:none;padding:3px 18px;font-size:13px}
+nav a:hover{color:var(--c);background:#1c2330}
+nav a.n0{color:var(--ink);margin-top:8px} nav a.n1{padding-left:30px;font-size:11.5px}
+main{margin-left:270px;padding:24px 40px 80px;max-width:1010px}
+section{padding:30px 0 20px;border-bottom:1px dashed var(--line)}
+.tag{color:var(--c);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+h1{margin:4px 0 2px;font-size:30px;color:#fff} h1::before{content:"$ ";color:var(--g)}
+h2{color:var(--a);font-size:17px;margin:26px 0 8px} h2::before{content:"## ";color:var(--dim)}
+h2.path{color:var(--g);font-size:20px;margin:4px 0 2px} h2.path::before{content:"$ cat ";color:var(--dim)}
+h3{color:var(--c);font-size:14px;margin:16px 0 4px}
+.sub{color:var(--dim);margin:0 0 14px} .lead{font-size:16px;color:#e6edf3}
+code{background:#1c2330;color:var(--c);padding:1px 5px;border-radius:4px;font-size:.9em}
+a{color:var(--c)} b{color:#fff}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--panel);color:var(--g)}
+table.facts th{width:130px;background:#12202f;color:var(--c);font-weight:normal;text-transform:uppercase;font-size:11.5px}
+table.facts td{background:#101a26}
+ol.steps{list-style:none;counter-reset:s;padding:0;margin:10px 0}
+ol.steps li{counter-increment:s;padding:5px 0 5px 38px;position:relative;border-bottom:1px solid #1c2330}
+ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;color:var(--a)}
+.code{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:8px;margin:12px 0;overflow:hidden}
+.code pre{margin:0;padding:12px 14px;overflow:auto;font-size:12.5px;line-height:1.5;color:#e6edf3;white-space:pre}
+.ptitle{background:#12202f;color:var(--c);padding:5px 14px;font-size:12px;border-bottom:1px solid var(--line);padding-right:90px}
+.cp{position:absolute;top:4px;right:6px;background:#21262d;color:var(--ink);border:1px solid var(--line);border-radius:5px;font:12px inherit;font-family:inherit;padding:2px 9px;cursor:pointer}
+.cp:hover{border-color:var(--g);color:var(--g)}
+.box{border-left:3px solid var(--c);background:#101a26;padding:8px 14px;margin:12px 0}
+.box.ok{border-color:var(--g);background:#0f1f15} .box.warn{border-color:var(--a);background:#211b0c}
+.box p{margin:2px 0} .lbl{font-size:11.5px;letter-spacing:.08em;color:var(--dim);margin-bottom:4px}
+.ok .lbl{color:var(--g)} .warn .lbl{color:var(--a)}
+.fig{text-align:center} .fig img{max-width:100%}
+.hero{padding:10px 0 20px} .hero h1{font-size:38px;color:var(--c)}
+@media(max-width:860px){nav{position:static;width:auto;border:0;max-height:200px} main{margin:0;padding:16px}}
+</style></head><body>
+<nav><div class="t">$ ls buch/</div><a class="n0" href="#a1">Auf einer Seite</a><a class="n0" href="#a2">Prompt, Skill, Brief</a><a class="n0" href="#a3">Einrichten</a><a class="n0" href="#b1">Brief</a><a class="n0" href="#b2">AGENTS.md</a><a class="n0" href="#b3">Architect</a><a class="n0" href="#b4">Skills und Skill Creator</a><a class="n0" href="#b5">Agent</a><a class="n0" href="#b6">Reviewer</a><a class="n0" href="#b7">Betrieb</a><a class="n0" href="#b8">Spickzettel</a><a class="n0" href="#c0">Kopier-Set</a><a class="n1" href="#kit-agents-md">AGENTS.md</a><a class="n1" href="#kit-roles-brief-creator-md">roles/brief-creator.md</a><a class="n1" href="#kit-roles-architect-md">roles/architect.md</a><a class="n1" href="#kit-roles-agent-md">roles/agent.md</a><a class="n1" href="#kit-roles-reviewer-md">roles/reviewer.md</a><a class="n1" href="#kit-skills-skill-creator-skill-md">skills/skill-creator/SKILL.md</a><a class="n1" href="#kit-skills-skill-creator-references-skill-template-md">skills/skill-creator/references/skill-template.md</a><a class="n1" href="#kit-skills-skill-creator-references-description-patterns-md">skills/skill-creator/references/description-patterns.md</a><a class="n1" href="#kit-skills-skill-creator-references-anti-patterns-md">skills/skill-creator/references/anti-patterns.md</a><a class="n1" href="#kit-skills-skill-creator-scripts-validate-skill-py">skills/skill-creator/scripts/validate_skill.py</a><a class="n1" href="#kit-skills-skill-creator-tests-prompts-md">skills/skill-creator/tests/prompts.md</a><a class="n1" href="#kit-skills-skill-creator-tests-trigger-queries-md">skills/skill-creator/tests/trigger-queries.md</a><a class="n1" href="#kit-skills-commit-message-skill-md">skills/commit-message/SKILL.md</a><a class="n1" href="#kit-skills-readme-md">skills/README.md</a><a class="n1" href="#kit-docs-brief-md">docs/BRIEF.md</a><a class="n1" href="#kit-docs-architecture-md">docs/ARCHITECTURE.md</a><a class="n1" href="#kit-docs-plan-md">docs/PLAN.md</a><a class="n1" href="#kit-docs-decisions-md">docs/DECISIONS.md</a><a class="n1" href="#kit-docs-handoff-md">docs/HANDOFF.md</a><a class="n1" href="#kit-docs-review-md">docs/REVIEW.md</a><a class="n1" href="#kit-docs-progress-md">docs/PROGRESS.md</a><a class="n1" href="#kit-start-prompts-md">START-PROMPTS.md</a><a class="n1" href="#kit-readme-md">README.md</a></nav>
+<main>
+<div class="hero"><div class="tag">Software bauen mit KI</div><h1>Das KI-Projekt-Buch</h1>
+<p class="sub">Brief, Architect, Agent, Skills, Reviewer. Schritt für Schritt, mit kopierfertigen Dateien.</p>
+<div class="code"><button class="cp" type="button">kopieren</button><pre>curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s mein-projekt</pre></div>
+<p class="sub">Quickstart: lädt den Starter in den Ordner <code>mein-projekt</code>. Einzelne Dateien findest du ganz unten im Kopier-Set, jeweils mit Kopieren-Knopf.</p></div>
+<section style="display:none"></section><section id="a1"><div class="tag">Teil A · Verstehen</div><h1>Auf einer Seite</h1><p class="sub">Das ganze System, bevor du in die Einzelteile gehst.</p><p class="lead"><b>Idee.</b> Du lässt eine KI nicht alles in einem Rutsch bauen. Du teilst die Arbeit in <b>Rollen</b>. Jede Rolle hat eine Anleitung (Datei). Jede Übergabe ist ein Dokument. So bleibt die KI präzise, und du behältst die Kontrolle.</p><p class="fig"><img src="ablauf.svg" alt="Ablauf"></p><table><tr><th>Baustein</th><th>Beantwortet</th><th>Dateien</th><th>Wann</th></tr><tr><td>Brief</td><td>Was soll entstehen?</td><td>docs/BRIEF.md</td><td>einmal am Anfang</td></tr><tr><td>AGENTS.md</td><td>Was gilt immer?</td><td>AGENTS.md</td><td>in jeder Sitzung geladen</td></tr><tr><td>Architect</td><td>Wie bauen wir es?</td><td>ARCHITECTURE, PLAN, DECISIONS</td><td>nach dem Brief, bei Änderungen</td></tr><tr><td>Skills</td><td>Wie geht eine wiederkehrende Aufgabe?</td><td>skills/&lt;name&gt;/SKILL.md</td><td>automatisch, wenn die Beschreibung passt</td></tr><tr><td>Agent</td><td>Baue die nächste Aufgabe.</td><td>Code, Tests, HANDOFF, PROGRESS</td><td>wiederholt, Karte für Karte</td></tr><tr><td>Reviewer</td><td>Stimmt es wirklich?</td><td>docs/REVIEW.md</td><td>nach jeder Phase</td></tr></table><h2>Die fünf Grundsätze</h2><ol class='steps'><li><b>Eine Sitzung, eine Rolle.</b> Wer plant, baut nicht. Wer baut, prüft nicht.</li><li><b>Dateien statt Gedächtnis.</b> Alles Wichtige steht in einer Datei, nicht nur im Chat.</li><li><b>Kleine Aufgaben.</b> Eine Karte pro Durchlauf. Danach Übergabe und Stopp.</li><li><b>Der Mensch gibt frei.</b> Brief, Architektur und Abnahme bestätigst du.</li><li><b>Frischer Blick.</b> Geprüft wird in einer neuen Sitzung, nicht vom Autor.</li></ol><h2>So sieht dein Projektordner aus</h2><div class="code"><button class="cp" type="button">kopieren</button><pre>mein-projekt/
+  AGENTS.md              immer geladen
+  roles/                 brief-creator.md  architect.md  agent.md  reviewer.md
+  docs/                  BRIEF  ARCHITECTURE  PLAN  DECISIONS  HANDOFF  REVIEW  PROGRESS
+  skills/                README.md  skill-creator/  commit-message/  (deine Skills)
+  src/  tests/           der eigentliche Code</pre></div></section><section id="a2"><div class="tag">Teil A · Verstehen</div><h1>Prompt, Skill, Brief</h1><p class="sub">Drei Dinge, die oft verwechselt werden.</p><table><tr><th></th><th>Prompt</th><th>Skill</th><th>Brief</th></tr><tr><td>Ist</td><td>Eine Anweisung jetzt</td><td>Eine gespeicherte Anleitung</td><td>Ein Projektdokument</td></tr><tr><td>Lebt</td><td>im Chat</td><td>Ordner skills/&lt;name&gt;/</td><td>docs/BRIEF.md</td></tr><tr><td>Wird gelesen</td><td>sofort, einmalig</td><td>automatisch, wenn die Beschreibung zur Aufgabe passt</td><td>von Architect und Reviewer</td></tr><tr><td>Zweck</td><td>Etwas anstossen</td><td>Dasselbe immer gleich gut tun</td><td>Festlegen, was gebaut wird</td></tr><tr><td>Dauer</td><td>eine Sitzung</td><td>dauerhaft, wiederverwendbar</td><td>ein Projekt</td></tr><tr><td>Beispiel</td><td>&quot;Baue Karte T03.&quot;</td><td>&quot;So schreibe ich Commit-Nachrichten.&quot;</td><td>&quot;M1: Nutzer kann Bericht speichern.&quot;</td></tr><tr><td>Wer schreibt</td><td>du, im Moment</td><td>du mit dem Skill Creator</td><td>du mit dem Brief Creator</td></tr></table><h2>Faustregeln</h2><ol class='steps'><li>Sagst du es nur <b>jetzt</b>? Prompt.</li><li>Willst du es <b>immer wieder</b> gleich ausgeführt haben? Skill (ab der dritten Wiederholung).</li><li>Beschreibst du, <b>was überhaupt gebaut werden soll</b>? Brief.</li><li>Gilt es <b>in jeder Sitzung ohne Ausnahme</b>? AGENTS.md.</li></ol><h2>Wie sie zusammenspielen</h2><p>Ein <b>Prompt</b> startet eine Rolle (&quot;Du bist der Architect&quot;). Die Rolle liest den <b>Brief</b>, arbeitet nach <b>AGENTS.md</b> und lädt bei Bedarf einen <b>Skill</b>. Der Brief ist also kein Befehl, sondern das Dokument, auf das sich alle Befehle beziehen.</p></section><section id="a3"><div class="tag">Teil A · Verstehen</div><h1>Einrichten</h1><p class="sub">In fünf Minuten startklar.</p><table class="facts"><tr><th>Du brauchst</th><td>Ein KI-Programm, das Dateien in einem Ordner lesen und schreiben kann und die Datei AGENTS.md beachtet. Dazu optional git (Sicherung der Zwischenstände).</td></tr><tr><th>Dauer</th><td>5 Minuten</td></tr><tr><th>Ergebnis</th><td>Leerer Projektordner mit allen Rollen, Vorlagen und Skills.</td></tr></table><ol class='steps'><li><b>Starter kopieren.</b> Entpacke <code>projekt-starter.zip</code> (liegt bei) oder lege die Dateien aus Teil C selbst an. Benenne den Ordner nach deinem Projekt.</li><li><b>Ordner öffnen.</b> Öffne den Ordner in deinem KI-Programm.</li><li><b>AGENTS.md anpassen.</b> Ersetze die Angaben in [ECKIGEN KLAMMERN] in Abschnitt 1 (Projekt) und 4 (Befehle). Weisst du Befehle noch nicht, lass sie stehen: der Architect trägt sie ein.</li><li><b>Sicherung einschalten (empfohlen).</b> Im Ordner: <code>git init</code>, danach <code>git add . &amp;&amp; git commit -m &quot;Start&quot;</code>.</li><li><b>Erste Sitzung starten.</b> Nimm Prompt 1 aus Kapitel &quot;Brief&quot; und füge deine Idee ein.</li></ol><h2>Merke</h2><div class="box note"><div class="lbl">Regel</div><p>Jede neue Aufgabe beginnt mit einem <b>Start-Prompt</b> (Teil C, START-PROMPTS.md). Er sagt der KI, welche Rolle sie hat und welche Dateien sie zuerst liest.</p></div></section><section id="b1"><div class="tag">Teil B · Schritt 1</div><h1>Brief</h1><p class="sub">Aus einer groben Idee wird ein prüfbares Dokument.</p><table class="facts"><tr><th>Rolle</th><td>Brief Creator (fragt, ordnet, schreibt auf; baut nichts)</td></tr><tr><th>Eingabe</th><td>Deine Idee in eigenen Worten, auch holprig oder per Sprachnotiz.</td></tr><tr><th>Ausgabe</th><td>docs/BRIEF.md mit Zielen, Muss- und Kann-Anforderungen, Nicht-Zielen.</td></tr><tr><th>Rollendatei</th><td><a href="#kit-roles-brief-creator-md"><code>roles/brief-creator.md</code></a> (Kopier-Set)</td></tr><tr><th>Vorlage</th><td><a href="#kit-docs-brief-md"><code>docs/BRIEF.md</code></a> (Kopier-Set)</td></tr></table><h2>So gehst du vor</h2><ol class='steps'><li>Schreibe deine Idee in 3 bis 10 Sätzen auf. Perfekt muss sie nicht sein.</li><li>Starte eine neue Sitzung mit dem Prompt unten.</li><li>Die KI spiegelt die Idee. Antworte mit &quot;stimmt&quot; oder korrigiere.</li><li>Beantworte die <b>eine</b> Klärungsrunde (bis 10 Fragen) mit den Nummern. Weisst du etwas nicht, schreibe &quot;weiss nicht&quot;: es wird als [UNKLAR] markiert, nicht erfunden.</li><li>Lies den Brief. Prüfe nur die Muss-Punkte (M1, M2 …): Stimmt jeder? Ist &quot;Fertig, wenn&quot; messbar?</li><li>Sage &quot;Ja, freigegeben&quot;. Erst dann gilt der Brief.</li></ol><div class="code"><div class="ptitle">PROMPT ZUM KOPIEREN</div><button class="cp" type="button">kopieren</button><pre>Du bist der Brief Creator.
+Lies roles/brief-creator.md und AGENTS.md.
+Meine Idee: [IDEE IN EIGENEN WORTEN]
+Beginne mit Schritt 1 und stelle danach deine Klärungsfragen gebündelt.</pre></div><h2>Gute und schlechte Anforderungen</h2><table><tr><th>Schlecht (nicht prüfbar)</th><th>Gut (prüfbar)</th></tr><tr><td>Die App soll schnell sein.</td><td>M1: Die Startseite erscheint in unter 2 Sekunden. Fertig, wenn gemessen auf Mittelklasse-Handy.</td></tr><tr><td>Einfache Bedienung.</td><td>M2: Ein Neuling erstellt einen Bericht in unter 5 Minuten ohne Hilfe.</td></tr><tr><td>Daten sicher speichern.</td><td>M3: Berichte sind nur nach Anmeldung sichtbar. Fertig, wenn Aufruf ohne Login abgewiesen wird.</td></tr></table><div class="box ok"><div class="lbl">FERTIG, WENN</div><p>☐ Jede Anforderung hat eine ID (M/K) und ein &quot;Fertig, wenn&quot;</p><p>☐ Mindestens 3 Nicht-Ziele stehen drin</p><p>☐ Alle [UNKLAR] stehen gesammelt unter &quot;Offene Fragen&quot;</p><p>☐ Keine Technikentscheidung im Brief (das macht der Architect)</p><p>☐ Du hast &quot;freigegeben&quot; gesagt</p></div><div class="box warn"><div class="lbl">HÄUFIGE FEHLER</div><p>• Zu früh &quot;ja&quot; sagen, ohne die Muss-Punkte zu lesen.</p><p>• Wörter wie schnell, schön, modern ohne Zahl.</p><p>• Technik vorgeben (&quot;mit React&quot;), bevor der Architect verglichen hat.</p></div></section><section id="b2"><div class="tag">Teil B · Schritt 2</div><h1>AGENTS.md</h1><p class="sub">Die Grundregeln, die in jeder Sitzung gelten.</p><table class="facts"><tr><th>Wozu</th><td>Gibt jeder Sitzung dieselben Regeln, Befehle und die Leseordnung.</td></tr><tr><th>Länge</th><td>Kurz: Ziel unter 100 Zeilen. Lange Inhalte gehören in docs/ oder skills/.</td></tr><tr><th>Pflegt</th><td>Du (Abschnitte 1 und 4), der Architect (Befehle), sonst niemand von selbst.</td></tr><tr><th>Datei</th><td><a href="#kit-agents-md"><code>AGENTS.md</code></a> (Kopier-Set)</td></tr></table><h2>So gehst du vor</h2><ol class='steps'><li>Öffne AGENTS.md. Fülle <b>Abschnitt 1</b>: Name, Zweck in einem Satz, Stack (wenn schon bekannt).</li><li>Fülle <b>Abschnitt 4</b> (Befehle) erst, wenn sie existieren. Bis dahin [UNKLAR] stehen lassen.</li><li>Lies <b>Abschnitt 5</b> (Regeln). Streiche nichts. Ergänze nur eigene Regeln im selben Format.</li><li>Ergänze eine Regel, sobald die KI <b>denselben Fehler zweimal</b> macht. Nicht früher.</li></ol><h2>Was gehört hinein, was nicht</h2><table><tr><th>Gehört in AGENTS.md</th><th>Gehört woandershin</th></tr><tr><td>Befehle zum Starten und Testen</td><td>Lange Anleitungen für eine Aufgabe → Skill</td></tr><tr><td>Regeln mit Verbot und Alternative</td><td>Warum Technik X gewählt wurde → DECISIONS.md</td></tr><tr><td>Leseordnung der Dateien</td><td>Anforderungen → BRIEF.md</td></tr><tr><td>Wann die KI stoppen und fragen muss</td><td>Aktueller Stand → HANDOFF.md</td></tr><tr><td>Definition of Done</td><td>Aufgabenliste → PLAN.md</td></tr></table><h2>Regel-Schreibweise</h2><p>Jede Regel hat zwei Teile: ein <b>Verbot</b> und eine <b>Alternative</b>. Nur &quot;Tu das nicht&quot; lässt die KI ratlos. Beispiel: <i>Füge nie neue Abhängigkeiten ohne Rückfrage hinzu. Alternative: nenne 2 Optionen im Chat.</i></p><div class="box ok"><div class="lbl">FERTIG, WENN</div><p>☐ Abschnitt 1 ist ausgefüllt</p><p>☐ Keine Zeile ist doppelt zu docs/ oder skills/</p><p>☐ Die Datei ist kürzer als 100 Zeilen</p><p>☐ Jede eigene Regel hat eine Alternative</p></div></section><section id="b3"><div class="tag">Teil B · Schritt 3</div><h1>Architect</h1><p class="sub">Aus dem Brief wird ein Bauplan mit kleinen Aufgabenkarten.</p><table class="facts"><tr><th>Rolle</th><td>Architect (entwirft, schreibt keinen Produktionscode)</td></tr><tr><th>Eingabe</th><td>Freigegebener Brief, AGENTS.md, vorhandener Code (falls es welchen gibt).</td></tr><tr><th>Ausgabe</th><td>docs/ARCHITECTURE.md, docs/PLAN.md, docs/DECISIONS.md</td></tr><tr><th>Rollendatei</th><td><a href="#kit-roles-architect-md"><code>roles/architect.md</code></a> (Kopier-Set)</td></tr><tr><th>Vorlagen</th><td><a href="#kit-docs-architecture-md"><code>docs/ARCHITECTURE.md</code></a> (Kopier-Set), <a href="#kit-docs-plan-md"><code>docs/PLAN.md</code></a> (Kopier-Set), <a href="#kit-docs-decisions-md"><code>docs/DECISIONS.md</code></a> (Kopier-Set)</td></tr></table><h2>So gehst du vor</h2><ol class='steps'><li>Neue Sitzung, Prompt unten. Der Architect prüft zuerst den Brief und meldet Widersprüche.</li><li>Er legt dir <b>höchstens 3 Entscheidungen</b> mit Empfehlung vor (Technik, Daten, Hosting). Antworte mit A, B oder C.</li><li>Er schreibt die drei Dateien und führt die <b>Konsistenzprüfung</b> durch (Tabelle am Ende von PLAN.md).</li><li>Du liest nur: Ordnerstruktur, Phasen/Meilensteine in PLAN.md und die Prüftabelle. Passt es? &quot;Freigegeben&quot;.</li></ol><div class="code"><div class="ptitle">PROMPT ZUM KOPIEREN</div><button class="cp" type="button">kopieren</button><pre>Du bist der Architect.
+Lies roles/architect.md, AGENTS.md und docs/BRIEF.md.
+Erstelle docs/ARCHITECTURE.md, docs/PLAN.md und docs/DECISIONS.md.
+Frage mich nur nach den wichtigsten Entscheidungen (mit Empfehlung).</pre></div><h2>So sieht eine gute Aufgabenkarte aus</h2><div class="code"><button class="cp" type="button">kopieren</button><pre>### T05: Bericht speichern
+- Bezug: M1
+- Abhängig von: T03, T04
+- Betrifft: src/reports/save.py, tests/test_save.py
+- Beschreibung: Funktion save_report(daten) legt den Bericht an und gibt die ID zurück.
+  Leere Pflichtfelder lösen einen Fehler mit lesbarer Meldung aus.
+- Test: Fertig, wenn test_save.py grün ist und ein gespeicherter Bericht wieder ladbar ist.
+- Status: offen</pre></div><h2>Regeln für Karten</h2><ol class='steps'><li>Eine Karte = eine Sitzung (30 bis 90 Minuten), höchstens etwa 5 Dateien.</li><li>Reihenfolge: Gerüst und Test-Setup, dann der <b>dünnste durchgehende Pfad</b> (Kern von A bis Z), dann Erweiterungen.</li><li>Jede Karte nennt Bezug (M/K), Abhängigkeit, Dateien und einen Test.</li><li>Nach jeder Phase läuft die Software. Keine Phase endet mit halber Arbeit.</li></ol><div class="box ok"><div class="lbl">FERTIG, WENN</div><p>☐ Jede Muss-Anforderung hat Modul und Karte</p><p>☐ Jede Karte verweist auf eine Anforderung</p><p>☐ Kein Zyklus in den Abhängigkeiten</p><p>☐ Pfade stimmen mit der Ordnerstruktur überein</p><p>☐ Jede grosse Wahl steht in DECISIONS.md</p></div></section><section id="b4"><div class="tag">Teil B · Schritt 4</div><h1>Skills und Skill Creator</h1><p class="sub">Wiederkehrende Abläufe einmal sauber festhalten.</p><table class="facts"><tr><th>Wozu</th><td>Ein Skill ist eine Anleitung, die automatisch geladen wird, wenn ihre Beschreibung zur Aufgabe passt.</td></tr><tr><th>Wann</th><td>Sobald du dieselbe Anleitung zum dritten Mal tippst.</td></tr><tr><th>Ersteller</th><td>Skill Creator (selbst ein Skill)</td></tr><tr><th>Dateien</th><td><a href="#kit-skills-skill-creator-skill-md"><code>skills/skill-creator/SKILL.md</code></a> (Kopier-Set), <a href="#kit-skills-skill-creator-scripts-validate-skill-py"><code>skills/skill-creator/scripts/validate_skill.py</code></a> (Kopier-Set)</td></tr></table><h2>Aufbau eines Skills</h2><div class="code"><button class="cp" type="button">kopieren</button><pre>skills/mein-skill/
+  SKILL.md           Pflicht: Frontmatter + Anleitung (unter 500 Zeilen)
+  references/        lange Nachschlagedokumente, nur bei Bedarf gelesen
+  scripts/           Programme für fehleranfällige Rechenarbeit
+  assets/            Vorlagen und Dateien, die ins Ergebnis gehen
+  tests/             prompts.md, trigger-queries.md</pre></div><h2>Drei Ladestufen (progressive disclosure)</h2><table><tr><th>Stufe</th><th>Inhalt</th><th>Wann geladen</th><th>Grösse</th></tr><tr><td>1</td><td>name + description</td><td>immer, für alle Skills</td><td>ca. 100 Wörter</td></tr><tr><td>2</td><td>SKILL.md Körper</td><td>wenn der Skill passt</td><td>unter 500 Zeilen</td></tr><tr><td>3</td><td>references/, scripts/, assets/</td><td>nur wenn der Körper darauf verweist</td><td>unbegrenzt</td></tr></table><h2>Harte Regeln für die Kopfzeilen (Frontmatter)</h2><table><tr><th>Feld</th><th>Pflicht</th><th>Regel</th></tr><tr><td>name</td><td>ja</td><td>1 bis 64 Zeichen. Nur a-z, 0-9, Bindestrich. Nicht am Rand, nicht doppelt (--). Gleich wie der Ordnername.</td></tr><tr><td>description</td><td>ja</td><td>1 bis 1024 Zeichen. Was der Skill tut und wann er genutzt wird. Keine spitzen Klammern.</td></tr><tr><td>license</td><td>nein</td><td>Kurzname oder Verweis auf eine Datei.</td></tr><tr><td>compatibility</td><td>nein</td><td>bis 500 Zeichen, nur bei besonderen Anforderungen.</td></tr><tr><td>metadata</td><td>nein</td><td>Schlüssel-Wert-Paare (Autor, Version).</td></tr></table><h2>Die Beschreibung ist der Auslöser</h2><p>Der Körper wird erst nach dem Start gelesen. Alles über das <i>Wann</i> gehört deshalb in die Beschreibung. Formel:</p><div class="code"><button class="cp" type="button">kopieren</button><pre>[Was der Skill tut]. Nutze diesen Skill, wenn [Situationen] oder der Mensch
+[Stichworte in seinen Worten] sagt, auch wenn [Sonderfall]. Nicht für [nahe Fehlgriffe].</pre></div><table><tr><th>Schwach</th><th>Stark</th></tr><tr><td>Hilft bei PDFs.</td><td>Liest Text und Tabellen aus PDFs, füllt Formulare, fügt Dateien zusammen. Nutze diesen Skill bei PDF, Formular, Seiten extrahieren, zusammenfügen. Nicht für Word oder Bilder.</td></tr></table><h2>Skill erstellen in 8 Phasen</h2><table><tr><th>Phase</th><th>Was passiert</th><th>Ergebnis</th></tr><tr><td>1 Absicht</td><td>Bis zu 5 Fragen: Zweck, Auslöser, Ausgabe, Grenzen, Werkzeuge</td><td>Klarer Auftrag</td></tr><tr><td>2 Zuschnitt</td><td>Ein Skill = eine Aufgabe; Inhalte auf SKILL.md, references, scripts, assets verteilen</td><td>Ordnerplan</td></tr><tr><td>3 Name</td><td>Regeln der Kopfzeile anwenden</td><td>gültiger Name</td></tr><tr><td>4 Beschreibung</td><td>Formel, Stichworte, &quot;Nicht für&quot;</td><td>Auslöser-Text</td></tr><tr><td>5 Körper</td><td>Gerüst: Vorbereitung, Ablauf, Format, Beispiele, Regeln, Prüfen</td><td>SKILL.md</td></tr><tr><td>6 Prüfen</td><td>Prüfskript und Checkliste</td><td>0 Fehler</td></tr><tr><td>7 Testen</td><td>3 realistische Aufträge, 20 Auslösesätze (10 ja, 10 nein)</td><td>Testbericht</td></tr><tr><td>8 Verbessern</td><td>Ursachen beheben, alles neu testen, schlanker machen</td><td>fertiger Skill</td></tr></table><div class="code"><div class="ptitle">PROMPT ZUM KOPIEREN</div><button class="cp" type="button">kopieren</button><pre>Lies skills/skill-creator/SKILL.md.
+Ich möchte einen Skill für: [AUFGABE].
+So würde ich es sagen: &quot;[SATZ 1]&quot;, &quot;[SATZ 2]&quot;, &quot;[SATZ 3]&quot;.
+Führe mich durch die 8 Phasen.</pre></div><p><b>Prüfen per Befehl:</b> <code>python skills/skill-creator/scripts/validate_skill.py skills/mein-skill</code>. Das Skript meldet Fehler (müssen weg) und Hinweise (prüfen).</p><div class="box ok"><div class="lbl">FERTIG, WENN</div><p>☐ Prüfskript meldet 0 Fehler</p><p>☐ Beschreibung enthält &quot;Nutze diesen Skill, wenn&quot; und &quot;Nicht für&quot;</p><p>☐ Alle 3 Testaufträge liefern das gewünschte Ergebnis</p><p>☐ Bei den 20 Auslösesätzen startet der Skill nur bei den 10 JA-Sätzen</p><p>☐ Der Skill steht in skills/README.md</p></div><div class="box warn"><div class="lbl">HÄUFIGE FEHLER</div><p>• Ein Skill für mehrere Aufgaben (besser: teilen).</p><p>• Beschreibung ohne die Wörter, die du wirklich sagst.</p><p>• Nur Verbote ohne Alternative.</p><p>• Nie getestet: ein ungetesteter Skill löst oft gar nicht aus.</p><p>• Alles in SKILL.md, nichts in references/.</p></div></section><section id="b5"><div class="tag">Teil B · Schritt 5</div><h1>Agent</h1><p class="sub">Baut Karte für Karte und übergibt sauber.</p><table class="facts"><tr><th>Rolle</th><td>Agent (Builder). Setzt genau eine Karte pro Durchlauf um.</td></tr><tr><th>Eingabe</th><td>AGENTS.md, HANDOFF.md, PLAN.md, passende Teile von ARCHITECTURE.md, passende Skills.</td></tr><tr><th>Ausgabe</th><td>Code + Tests, aktualisierte PLAN.md, HANDOFF.md, PROGRESS.md.</td></tr><tr><th>Rollendatei</th><td><a href="#kit-roles-agent-md"><code>roles/agent.md</code></a> (Kopier-Set)</td></tr><tr><th>Vorlagen</th><td><a href="#kit-docs-handoff-md"><code>docs/HANDOFF.md</code></a> (Kopier-Set), <a href="#kit-docs-progress-md"><code>docs/PROGRESS.md</code></a> (Kopier-Set)</td></tr></table><h2>Der Durchlauf in sieben Schritten</h2><ol class='steps'><li><b>Verstehen:</b> 4 Zeilen: Karten-ID, Ziel, Dateien, Test.</li><li><b>Umgebung prüfen:</b> Tests vorher laufen lassen. Rot vorher heisst: melden, nicht nebenbei reparieren.</li><li><b>Test zuerst:</b> Test schreiben, der rot ist.</li><li><b>Umsetzen:</b> kleine Schritte, nur die Dateien der Karte.</li><li><b>Prüfen:</b> alle Tests, Lint, <code>git diff</code> lesen.</li><li><b>Übergeben:</b> PLAN.md auf &quot;erledigt&quot;, HANDOFF.md neu schreiben, eine Zeile in PROGRESS.md.</li><li><b>Berichten:</b> 3 Sätze an dich. Dann Stopp.</li></ol><div class="code"><div class="ptitle">PROMPT ZUM KOPIEREN</div><button class="cp" type="button">kopieren</button><pre>Du bist der Agent.
+Lies roles/agent.md, AGENTS.md und docs/HANDOFF.md.
+Setze die nächste offene Karte aus docs/PLAN.md um und stoppe danach.</pre></div><h2>Wenn etwas schiefgeht</h2><table><tr><th>Lage</th><th>Was der Agent tut</th></tr><tr><td>Test rot</td><td>Fehlermeldung lesen, Ursache formulieren, EINE Änderung, neu testen.</td></tr><tr><td>3 Versuche ohne Fortschritt</td><td>Stopp. HANDOFF.md &quot;Blockiert&quot;: Fehlertext, Versuche, Vermutung. Dich fragen.</td></tr><tr><td>Anforderung unklar</td><td>Nicht raten. Unter &quot;Fragen&quot; zwei Vorschläge mit Empfehlung eintragen.</td></tr><tr><td>Karte braucht mehr Dateien</td><td>Grund in HANDOFF.md nennen, minimal erweitern.</td></tr><tr><td>Kontext wird lang oder ungenau</td><td>HANDOFF.md schreiben, Neustart empfehlen.</td></tr></table><div class="box ok"><div class="lbl">FERTIG, WENN</div><p>☐ Test der Karte ist grün (Befehl wurde wirklich ausgeführt)</p><p>☐ Nur Dateien der Karte geändert</p><p>☐ PLAN.md, HANDOFF.md, PROGRESS.md aktuell</p><p>☐ Keine Geheimnisse, keine Debug-Reste</p></div><div class="box warn"><div class="lbl">HÄUFIGE FEHLER</div><p>• Mehrere Karten in einem Durchlauf.</p><p>• Tests abschwächen, damit es grün wird.</p><p>• HANDOFF.md anhängen statt neu schreiben (wird unlesbar).</p></div></section><section id="b6"><div class="tag">Teil B · Schritt 6</div><h1>Reviewer</h1><p class="sub">Ein frischer Blick findet, was dem Autor entgeht.</p><table class="facts"><tr><th>Rolle</th><td>Reviewer. Ändert keinen Code, schreibt nur REVIEW.md.</td></tr><tr><th>Wann</th><td>Nach jeder Phase, vor wichtigen Meilensteinen, vor der Abnahme.</td></tr><tr><th>Ausgabe</th><td>docs/REVIEW.md mit Urteil, Befunden (R1 …) und Folgekarten.</td></tr><tr><th>Rollendatei</th><td><a href="#kit-roles-reviewer-md"><code>roles/reviewer.md</code></a> (Kopier-Set)</td></tr><tr><th>Vorlage</th><td><a href="#kit-docs-review-md"><code>docs/REVIEW.md</code></a> (Kopier-Set)</td></tr></table><h2>Ein Blickwinkel pro Durchlauf</h2><table><tr><th>Blickwinkel</th><th>Frage</th></tr><tr><td>Anforderungen</td><td>Erfüllt das Ergebnis jede Muss-Anforderung aus dem Brief?</td></tr><tr><td>Architektur</td><td>Hält der Code Struktur, Namen und Regeln ein?</td></tr><tr><td>Qualität</td><td>Lesbar, ohne Duplikate, mit Fehlerbehandlung und Tests?</td></tr><tr><td>Sicherheit</td><td>Geheimnisse, Eingabeprüfung, Rechte, Datenschutz?</td></tr><tr><td>Benutzer</td><td>Funktioniert es für einen echten Menschen beim ersten Mal?</td></tr></table><h2>Schweregrade und Urteil</h2><table><tr><th>Stufe</th><th>Bedeutung</th><th>Folge</th></tr><tr><td>KRITISCH</td><td>falsches Ergebnis, Datenverlust, Sicherheitslücke, Absturz</td><td>muss vor Abnahme behoben sein</td></tr><tr><td>WICHTIG</td><td>verletzt Anforderung oder Architektur, fehlender Test</td><td>soll behoben werden</td></tr><tr><td>KLEIN</td><td>Stil, Namen, kleine Verbesserung</td><td>kann warten</td></tr></table><p>Urteil: <b>Abnahme</b>, <b>Abnahme mit Auflagen</b> oder <b>Nicht abgenommen</b>. Jeder Befund braucht einen Beleg (Datei:Zeile oder Befehlsausgabe).</p><div class="code"><div class="ptitle">PROMPT ZUM KOPIEREN</div><button class="cp" type="button">kopieren</button><pre>Du bist der Reviewer.
+Lies roles/reviewer.md und AGENTS.md.
+Blickwinkel: [Anforderungen | Architektur | Qualität | Sicherheit | Benutzer]
+Umfang: [Karten Txx bis Txx oder Dateien]</pre></div><p><b>Nach dem Review:</b> Der Architect nimmt die vorgeschlagenen Folgekarten in PLAN.md auf. Danach baut der Agent sie wie jede andere Karte.</p><div class="box ok"><div class="lbl">FERTIG, WENN</div><p>☐ Jeder Befund hat ID, Stufe, Ort und Beleg</p><p>☐ Der Testlauf steht wörtlich in REVIEW.md</p><p>☐ Ein Urteil ist eingetragen</p><p>☐ Folgekarten sind vorgeschlagen</p></div></section><section id="b7"><div class="tag">Teil B · Schritt 7</div><h1>Betrieb</h1><p class="sub">Kontext, Übergabe, Schnellweg und Fehlerbehebung.</p><h2>Kontext und Übergabe</h2><p>Eine KI-Sitzung hat einen begrenzten <b>Kontext</b> (alles, was sie gerade &quot;im Kopf&quot; hat). Wird er voll, werden Antworten ungenau und Absprachen gehen verloren. Gegenmittel: in Abschnitten arbeiten und den Stand in <b>HANDOFF.md</b> festhalten.</p><table><tr><th>Warnzeichen</th><th>Mittel</th></tr><tr><td>KI wiederholt sich oder vergisst Absprachen</td><td>HANDOFF.md schreiben lassen, neue Sitzung starten</td></tr><tr><td>Antworten werden ungenau oder widersprüchlich</td><td>Neustart mit Prompt &quot;Weiterarbeiten&quot; (Teil C)</td></tr><tr><td>Sitzung länger als ca. 3 Karten</td><td>Nach jeder Karte neu starten</td></tr></table><h2>Tagesablauf (Checkliste)</h2><ol class='steps'><li>Neue Sitzung: Prompt <b>Weiterarbeiten</b>. Die KI fasst in 3 Sätzen zusammen. Stimmt es? &quot;weiter&quot;.</li><li>Agent baut <b>eine</b> Karte. Du liest die 3-Satz-Meldung.</li><li>Nach jeder Phase: Reviewer-Sitzung (ein Blickwinkel).</li><li>Am Ende des Tages: letzter Stand in HANDOFF.md? Sicherung (git commit) gemacht?</li></ol><h2>Schnellweg für kleine Aufgaben</h2><p>Weniger als ein Tag Arbeit, keine Strukturänderung? Brief und Plan überspringen. Prompt 7 aus Teil C nutzen: Aufgabe, Dateien, &quot;Fertig, wenn&quot;. Test schreiben, umsetzen, HANDOFF.md aktualisieren.</p><h2>Änderungswunsch mitten im Projekt</h2><ol class='steps'><li>Neue Sitzung als <b>Architect</b> (Prompt 8 aus Teil C).</li><li>Er listet Auswirkungen auf (welche Karten, Module). Du entscheidest.</li><li>Er aktualisiert BRIEF-Hinweis, ARCHITECTURE, PLAN und trägt den Grund in DECISIONS.md ein.</li></ol><h2>Wenn es hakt</h2><table><tr><th>Symptom</th><th>Ursache</th><th>Mittel</th></tr><tr><td>KI ignoriert Regeln</td><td>AGENTS.md zu lang oder nicht gelesen</td><td>kürzen; im Prompt ausdrücklich nennen</td></tr><tr><td>KI baut zu viel auf einmal</td><td>Karte zu gross</td><td>Karte teilen (Architect)</td></tr><tr><td>Skill startet nie</td><td>Beschreibung ohne deine Wörter</td><td>Stichworte und &quot;auch wenn&quot; ergänzen</td></tr><tr><td>Skill startet bei Fremdem</td><td>Beschreibung zu breit</td><td>&quot;Nicht für …&quot; schärfen</td></tr><tr><td>Ergebnis weicht vom Plan ab</td><td>Plan unklar oder alt</td><td>Reviewer (Architektur), dann Plan korrigieren</td></tr><tr><td>Dieselbe Panne zweimal</td><td>Regel fehlt</td><td>Regel mit Alternative in AGENTS.md ergänzen</td></tr></table></section><section id="b8"><div class="tag">Teil B · Nachschlagen</div><h1>Spickzettel</h1><p class="sub">Alles Wichtige auf einer Seite.</p><table><tr><th>Schritt</th><th>Rolle</th><th>Start-Prompt (Kurzform)</th><th>Ergebnis</th></tr><tr><td>1</td><td>Brief Creator</td><td>Du bist der Brief Creator. Lies roles/brief-creator.md. Idee: …</td><td>BRIEF.md</td></tr><tr><td>2</td><td>Architect</td><td>Du bist der Architect. Lies roles/architect.md und BRIEF.md.</td><td>ARCHITECTURE, PLAN, DECISIONS</td></tr><tr><td>3</td><td>Agent</td><td>Du bist der Agent. Lies roles/agent.md und HANDOFF.md. Nächste Karte.</td><td>Code, HANDOFF</td></tr><tr><td>4</td><td>Reviewer</td><td>Du bist der Reviewer. Blickwinkel: … Umfang: …</td><td>REVIEW.md</td></tr><tr><td>5</td><td>Skill Creator</td><td>Lies skills/skill-creator/SKILL.md. Skill für: …</td><td>skills/&lt;name&gt;/</td></tr></table><h2>Die wichtigsten Begriffe</h2><table><tr><th>Begriff</th><th>Bedeutung</th></tr><tr><td>Kontext</td><td>Alles, was die KI in einer Sitzung gerade berücksichtigt. Begrenzt.</td></tr><tr><td>Handoff</td><td>Übergabedatei, mit der eine neue Sitzung nahtlos weiterarbeitet.</td></tr><tr><td>Karte</td><td>Kleine Aufgabe im PLAN mit ID, Bezug, Dateien und Test.</td></tr><tr><td>Muss / Kann (M/K)</td><td>Pflicht- und Wunschanforderung im Brief.</td></tr><tr><td>[UNKLAR]</td><td>Markierung für Unbekanntes. Wird gefragt, nicht erfunden.</td></tr><tr><td>Frontmatter</td><td>Kopfzeilen (name, description) am Anfang einer SKILL.md.</td></tr><tr><td>Progressive Disclosure</td><td>Skill lädt nur so viel, wie die Aufgabe braucht.</td></tr><tr><td>Definition of Done</td><td>Checkliste, die jede Aufgabe vor &quot;fertig&quot; bestehen muss.</td></tr><tr><td>Review-Blickwinkel</td><td>Ein Prüfthema pro Durchlauf.</td></tr></table><h2>Die zehn Leitsätze</h2><ol class='steps'><li>Eine Sitzung, eine Rolle.</li><li>Dateien vor Gedächtnis.</li><li>Kleine Karten, kleine Schritte.</li><li>Test zuerst.</li><li>Verbot immer mit Alternative.</li><li>Unklar? Markieren und fragen.</li><li>Mensch gibt frei.</li><li>Frischer Blick prüft.</li><li>Skill ab der dritten Wiederholung.</li><li>Kurz schlägt lang.</li></ol></section><section id="c0"><div class="tag">Teil C · Kopier-Set</div><h1>Kopier-Set</h1><p class="sub">Alle Dateien vollständig. Jede einzeln kopierbar und für jedes Projekt verwendbar.</p><p class="lead"><b>So benutzt du es.</b> Jede Datei beginnt auf einer neuen Seite. Oben steht der Pfad, unter dem du sie speicherst. Inhalt in einem Rutsch markieren und kopieren. Die Datei <code>projekt-starter.zip</code> enthält alles schon fertig als Dateien.</p><table><tr><th>Datei (speichern unter)</th><th>Inhalt</th></tr><tr><td><a href="#kit-agents-md"><code>AGENTS.md</code></a></td><td>Immer geladene Grundregeln. Abschnitte 1 und 4 anpassen.</td></tr><tr><td><a href="#kit-roles-brief-creator-md"><code>roles/brief-creator.md</code></a></td><td>Rolle: Brief Creator</td></tr><tr><td><a href="#kit-roles-architect-md"><code>roles/architect.md</code></a></td><td>Rolle: Architect</td></tr><tr><td><a href="#kit-roles-agent-md"><code>roles/agent.md</code></a></td><td>Rolle: Agent (Builder)</td></tr><tr><td><a href="#kit-roles-reviewer-md"><code>roles/reviewer.md</code></a></td><td>Rolle: Reviewer</td></tr><tr><td><a href="#kit-skills-skill-creator-skill-md"><code>skills/skill-creator/SKILL.md</code></a></td><td>Skill: Skill Creator (Hauptdatei)</td></tr><tr><td><a href="#kit-skills-skill-creator-references-skill-template-md"><code>skills/skill-creator/references/skill-template.md</code></a></td><td>Skill Creator: Vorlage zum Ausfüllen</td></tr><tr><td><a href="#kit-skills-skill-creator-references-description-patterns-md"><code>skills/skill-creator/references/description-patterns.md</code></a></td><td>Skill Creator: Beschreibungen, die auslösen</td></tr><tr><td><a href="#kit-skills-skill-creator-references-anti-patterns-md"><code>skills/skill-creator/references/anti-patterns.md</code></a></td><td>Skill Creator: typische Fehler</td></tr><tr><td><a href="#kit-skills-skill-creator-scripts-validate-skill-py"><code>skills/skill-creator/scripts/validate_skill.py</code></a></td><td>Skill Creator: Prüfskript (Python 3)</td></tr><tr><td><a href="#kit-skills-skill-creator-tests-prompts-md"><code>skills/skill-creator/tests/prompts.md</code></a></td><td>Skill Creator: Testaufträge</td></tr><tr><td><a href="#kit-skills-skill-creator-tests-trigger-queries-md"><code>skills/skill-creator/tests/trigger-queries.md</code></a></td><td>Skill Creator: Auslösesätze</td></tr><tr><td><a href="#kit-skills-commit-message-skill-md"><code>skills/commit-message/SKILL.md</code></a></td><td>Beispiel-Skill, zugleich Muster</td></tr><tr><td><a href="#kit-skills-readme-md"><code>skills/README.md</code></a></td><td>Verzeichnis aller Skills</td></tr><tr><td><a href="#kit-docs-brief-md"><code>docs/BRIEF.md</code></a></td><td>Vorlage Brief</td></tr><tr><td><a href="#kit-docs-architecture-md"><code>docs/ARCHITECTURE.md</code></a></td><td>Vorlage Architektur</td></tr><tr><td><a href="#kit-docs-plan-md"><code>docs/PLAN.md</code></a></td><td>Vorlage Plan mit Aufgabenkarten</td></tr><tr><td><a href="#kit-docs-decisions-md"><code>docs/DECISIONS.md</code></a></td><td>Vorlage Entscheidungsprotokoll</td></tr><tr><td><a href="#kit-docs-handoff-md"><code>docs/HANDOFF.md</code></a></td><td>Vorlage Übergabe</td></tr><tr><td><a href="#kit-docs-review-md"><code>docs/REVIEW.md</code></a></td><td>Vorlage Prüfbericht</td></tr><tr><td><a href="#kit-docs-progress-md"><code>docs/PROGRESS.md</code></a></td><td>Vorlage Fortschrittsprotokoll</td></tr><tr><td><a href="#kit-start-prompts-md"><code>START-PROMPTS.md</code></a></td><td>Fertige Startsätze für jede Rolle</td></tr><tr><td><a href="#kit-readme-md"><code>README.md</code></a></td><td>Kurzanleitung des Starters</td></tr></table></section><section class="kit" id="kit-agents-md"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">AGENTS.md</h2><p class="sub">Immer geladene Grundregeln. Abschnitte 1 und 4 anpassen.</p><div class="code"><div class="ptitle">AGENTS.md</div><button class="cp" type="button">kopieren</button><pre># AGENTS.md
+
+Diese Datei wird in JEDER Sitzung zuerst gelesen. Sie ist kurz (Ziel: unter 100 Zeilen).
+Details stehen in docs/ und skills/. Hier steht nur, was immer gelten muss.
+
+## 1. Projekt
+- Name: [PROJEKTNAME]
+- Zweck in einem Satz: [WAS DAS PROJEKT TUT UND FÜR WEN]
+- Stack: [SPRACHE, FRAMEWORK, DATENBANK, HOSTING]
+- Sprache der Antworten und Kommentare: Deutsch. Code, Dateinamen, Variablen: Englisch.
+- Der Mensch ist nicht programmiert-erfahren: erkläre Ergebnisse in einfachen Worten.
+
+## 2. Lies zuerst (in dieser Reihenfolge)
+1. docs/HANDOFF.md      aktueller Stand, nächster Schritt (immer)
+2. docs/PLAN.md         Aufgabenliste mit IDs (immer)
+3. docs/ARCHITECTURE.md Struktur und Regeln (bei Struktur- oder Designfragen)
+4. docs/DECISIONS.md    warum etwas so entschieden wurde (vor jeder Änderung an Grundlagen)
+5. docs/BRIEF.md        Anforderungen, nur bei Unklarheit über das Ziel
+
+## 3. Rollen (eine Sitzung = eine Rolle)
+| Rolle     | Datei              | Schreibt                                  |
+|-----------|--------------------|-------------------------------------------|
+| Brief     | roles/brief-creator.md | docs/BRIEF.md                         |
+| Architect | roles/architect.md | ARCHITECTURE, PLAN, DECISIONS             |
+| Agent     | roles/agent.md     | Code, Tests, HANDOFF, PROGRESS            |
+| Reviewer  | roles/reviewer.md  | docs/REVIEW.md (ändert keinen Code)       |
+Starte eine Sitzung mit: &quot;Du bist &lt;Rolle&gt;. Lies roles/&lt;datei&gt; und AGENTS.md.&quot;
+
+## 4. Befehle (vom Menschen auszufüllen, vom Agent zu pflegen)
+- Installieren: [BEFEHL]
+- Starten:      [BEFEHL]
+- Tests:        [BEFEHL]
+- Lint/Format:  [BEFEHL]
+- Build:        [BEFEHL]
+Ist ein Befehl unbekannt, trage &quot;[UNKLAR]&quot; ein und frage den Menschen. Rate nie.
+
+## 5. Regeln (Verbot + Alternative)
+- Ändere nie Dateien ausserhalb der Aufgabe. Alternative: schreibe den Fund in HANDOFF.md.
+- Füge nie neue Abhängigkeiten ohne Rückfrage hinzu. Alternative: nenne 2 Optionen im Chat.
+- Schreibe nie Passwörter, Schlüssel oder Tokens in Dateien. Alternative: .env + .env.example.
+- Lösche nie Daten oder Dateien ohne ausdrückliche Freigabe. Alternative: verschiebe nach _archiv/.
+- Überspringe nie Tests, um &quot;fertig&quot; zu melden. Alternative: melde den Fehler ehrlich.
+- Erfinde nie Fakten über Code, den du nicht gelesen hast. Alternative: lies die Datei.
+- Ändere nie ARCHITECTURE.md als Agent. Alternative: Vorschlag in HANDOFF.md unter &quot;Fragen&quot;.
+- Mache nie mehrere Aufgaben gleichzeitig. Eine Aufgaben-ID pro Durchlauf.
+
+## 6. Skills
+- Skills liegen in skills/&lt;name&gt;/SKILL.md. Lade einen Skill nur, wenn seine Beschreibung passt.
+- Verzeichnis: skills/README.md (Liste mit einem Satz pro Skill).
+- Neuer Skill gewünscht? Nutze skills/skill-creator/SKILL.md.
+
+## 7. Arbeitsablauf pro Aufgabe
+1. Aufgabe aus PLAN.md wählen (erste mit Status &quot;offen&quot; und erfüllten Abhängigkeiten).
+2. Kurz bestätigen: ID, Ziel, betroffene Dateien.
+3. Test zuerst oder zugleich schreiben.
+4. Umsetzen, Tests und Lint laufen lassen.
+5. PLAN.md Status auf &quot;erledigt&quot; setzen, HANDOFF.md und PROGRESS.md aktualisieren.
+6. Stoppen und dem Menschen in 3 Sätzen berichten.
+
+## 8. Wann du stoppen und fragen musst
+- Anforderung widersprüchlich oder mit [UNKLAR] markiert.
+- Aufgabe braucht Änderung der Architektur, neue Abhängigkeit oder Datenlöschung.
+- Test schlägt nach 3 ehrlichen Versuchen weiter fehl.
+- Kontext wird voll (siehe Abschnitt 9).
+
+## 9. Kontext und Übergabe
+- Arbeite in kleinen Abschnitten. Nach jeder Aufgabe wird HANDOFF.md aktualisiert.
+- Wird die Sitzung lang oder ungenau: HANDOFF.md schreiben, dem Menschen sagen
+  &quot;Bitte neue Sitzung starten&quot;, nicht weiterarbeiten.
+- Wichtiges lebt in Dateien, nicht im Chat.
+
+## 10. Definition of Done (für jede Aufgabe)
+- [ ] Verhalten entspricht der Aufgabenkarte in PLAN.md
+- [ ] Tests laufen grün (Befehl aus Abschnitt 4)
+- [ ] Keine unbeteiligten Dateien geändert (git diff geprüft)
+- [ ] HANDOFF.md und PROGRESS.md aktuell
+- [ ] Keine Geheimnisse, keine Debug-Reste im Code</pre></div></section><section class="kit" id="kit-roles-brief-creator-md"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">roles/brief-creator.md</h2><p class="sub">Rolle: Brief Creator</p><div class="code"><div class="ptitle">roles/brief-creator.md</div><button class="cp" type="button">kopieren</button><pre># ROLLE: Brief Creator
+
+Du machst aus einer groben Idee ein vollständiges, prüfbares Projekt-Briefing (docs/BRIEF.md).
+Du schreibst KEINEN Code und KEINE Architektur. Du fragst, ordnest und schreibst auf.
+
+## Auftrag
+Ergebnis ist docs/BRIEF.md nach der Vorlage docs/BRIEF.md (Template im Starter-Kit).
+Ein guter Brief ist so klar, dass ein Fremder ohne Rückfrage versteht, WAS gebaut wird und
+WORAN man erkennt, dass es fertig ist.
+
+## Eingaben
+- Die Idee des Menschen (Text, Sprachnotiz, Stichworte, Skizze, Beispiel-Links).
+- Vorhandene Dateien (falls Projekt schon existiert): lies sie, bevor du fragst.
+
+## Ablauf (halte die Reihenfolge ein)
+
+### Schritt 1: Idee spiegeln (max. 5 Zeilen)
+Fasse die Idee in eigenen Worten zusammen und frage: &quot;Stimmt das so?&quot; Warte auf Antwort.
+
+### Schritt 2: Klärungsrunde (genau EINE Runde, max. 10 Fragen)
+Stelle alle Fragen gebündelt, nummeriert, mit Vorschlag zum Ankreuzen. Pflichtthemen:
+1. Zielgruppe: Wer nutzt es? Wie technisch sind diese Personen?
+2. Problem: Welches Problem löst es? Wie wird es heute gelöst?
+3. Kern: Was ist die EINE Funktion, ohne die es sinnlos wäre?
+4. Plattform: Web, App, Desktop, Skript, Gerät? Wo läuft es?
+5. Daten: Welche Daten entstehen? Wer darf sie sehen? Müssen sie gespeichert werden?
+6. Grenzen: Budget, Zeit, Technik, die ausgeschlossen ist, Datenschutz/Recht.
+7. Vorbilder: Gibt es ähnliche Produkte? Was gefällt, was nicht?
+8. Erfolg: Woran erkennt der Mensch, dass es &quot;fertig&quot; und &quot;gut&quot; ist?
+9. Nicht-Ziele: Was soll ausdrücklich NICHT gebaut werden?
+10. Risiken: Was könnte schiefgehen oder ist unbekannt?
+Frage nichts, was die Eingaben schon beantworten. Weniger Fragen sind besser als Pflicht.
+
+### Schritt 3: Lücken markieren
+Offene Punkte NICHT erfinden. Schreibe sie als `[UNKLAR: Frage]` in den Brief.
+Widersprüche melden: &quot;Punkt A sagt X, Punkt B sagt Y. Was gilt?&quot;
+
+### Schritt 4: Brief schreiben
+- Nutze die Vorlage vollständig, in gleicher Reihenfolge.
+- Muss-Anforderungen als M1, M2, ...; Kann-Anforderungen als K1, K2, ...
+- Jede Anforderung ist EIN Satz, prüfbar, ohne Wörter wie &quot;schnell&quot;, &quot;schön&quot;, &quot;einfach&quot;.
+  Schlecht: &quot;Die Seite soll schnell laden.&quot; Gut: &quot;Die Startseite erscheint in unter 2 s.&quot;
+- Jede Anforderung bekommt ein Abnahmekriterium (&quot;Fertig, wenn ...&quot;).
+- Nicht-Ziele mindestens 3 Stück.
+### Schritt 5: Selbstprüfung (vor der Abgabe)
+- [ ] Jede Anforderung hat ID und Abnahmekriterium
+- [ ] Kein Wort der Liste: schnell, schön, modern, intuitiv, einfach, flexibel, robust (ohne Zahl)
+- [ ] Alle [UNKLAR] stehen gesammelt im Abschnitt &quot;Offene Fragen&quot;
+- [ ] Keine Technikentscheidung im Brief (das macht der Architect)
+- [ ] Nicht-Ziele vorhanden
+- [ ] Der Mensch kann den Brief in 5 Minuten lesen
+
+### Schritt 6: Freigabe
+Zeige dem Menschen den Brief und frage: &quot;Passt das? Sonst nenne mir die Nummer, die falsch ist.&quot;
+Erst nach &quot;Ja&quot; gilt der Brief als freigegeben. Setze dann `Status: freigegeben` mit Datum.
+
+## Regeln
+- Stelle nie mehr als eine Klärungsrunde, ausser der Mensch bringt Neues.
+- Schlage nie eine Technik vor (&quot;nutze React&quot;). Sage: &quot;Das entscheidet der Architect.&quot;
+- Schreibe Wünsche des Menschen wörtlich in &quot;Originalwunsch&quot; (Abschnitt 1) und ändere sie nicht.
+- Bei sehr kleiner Aufgabe (weniger als 1 Tag Arbeit): nutze die Kurzform
+  (Ziel, 3 Muss, Abnahme, Nicht-Ziele).
+
+## Stopp-Bedingungen
+- Der Mensch kann die Kernfunktion nicht benennen: biete 3 Beispiele an und lass wählen.
+- Der Brief überschreitet ca. 3 Seiten: teile in Phase 1 (jetzt) und Phase 2 (später).
+
+## Abgabeformat
+Antworte mit: 1) Pfad der Datei, 2) die Liste der [UNKLAR]-Punkte, 3) die Frage nach Freigabe.</pre></div></section><section class="kit" id="kit-roles-architect-md"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">roles/architect.md</h2><p class="sub">Rolle: Architect</p><div class="code"><div class="ptitle">roles/architect.md</div><button class="cp" type="button">kopieren</button><pre># ROLLE: Architect
+
+Du entwirfst, wie das Projekt gebaut wird. Du schreibst KEINEN Produktionscode.
+Deine Dokumente sind der Bauplan, nach dem der Agent arbeitet.
+
+## Auftrag
+Aus docs/BRIEF.md entstehen drei Dateien:
+1. docs/ARCHITECTURE.md  Struktur, Technik, Regeln
+2. docs/PLAN.md          kleine, prüfbare Aufgabenkarten
+3. docs/DECISIONS.md     jede wichtige Entscheidung mit Grund
+
+## Eingaben
+- docs/BRIEF.md (nur freigegeben, sonst stoppen und den Brief Creator verlangen)
+- AGENTS.md, vorhandener Code (falls vorhanden: zuerst lesen und zusammenfassen)
+
+## Ablauf
+
+### Schritt 1: Brief prüfen
+Lies den Brief. Gibt es [UNKLAR]-Punkte in Muss-Anforderungen? Dann stoppe und melde sie.
+Gibt es Widersprüche? Melde sie. Baue nie auf unklaren Muss-Punkten.
+
+### Schritt 2: Optionen vergleichen
+Für jede grosse Entscheidung (Sprache/Framework, Datenhaltung, Hosting, Aufbau) nenne
+2 bis 3 Optionen mit Vor- und Nachteilen in je 1 Zeile und gib eine Empfehlung.
+Bevorzuge: bekannt, verbreitet, einfach, wenig Abhängigkeiten. Ein neues Werkzeug nur mit Grund.
+Lege die Wahl dem Menschen kurz vor (max. 3 Entscheidungen auf einmal), mit Empfehlung.
+
+### Schritt 3: ARCHITECTURE.md schreiben
+Pflichtabschnitte: Überblick (5 Zeilen), Technik-Stack mit Version, Ordnerstruktur (Baum),
+Module mit je einem Satz Verantwortung, Datenmodell, Schnittstellen (Eingabe/Ausgabe),
+Fehlerbehandlung, Sicherheit/Datenschutz, Teststrategie, Konfiguration/Geheimnisse,
+Grenzen (was nicht gebaut wird). Jede Regel prüfbar formulieren.
+Jede Muss-Anforderung (M1, ...) muss einem Modul zugeordnet sein (Tabelle &quot;Abdeckung&quot;).
+
+### Schritt 4: PLAN.md schreiben (Aufgabenkarten)
+- Eine Karte = eine Aufgabe, die ein Agent in EINER Sitzung (ca. 30 bis 90 Minuten) erledigt.
+- Jede Karte hat: ID (T01...), Titel, Bezug (M1/K1), Abhängig von, Betrifft (Dateien),
+  Beschreibung (max. 5 Zeilen), Test (&quot;Fertig, wenn ...&quot;), Status.
+- Reihenfolge: erst Gerüst und Test-Setup, dann der dünnste durchgehende Pfad (Kern von Anfang
+  bis Ende, auch hässlich), dann Erweiterungen, zuletzt Feinschliff.
+- Kein Schritt hängt von einem späteren ab. Zyklen verboten.
+- Phasen mit Meilenstein: nach jeder Phase lauffähige Software.
+
+### Schritt 5: DECISIONS.md schreiben
+Pro Entscheidung ein Eintrag: ID (D01...), Datum, Entscheidung, Optionen, Grund, Folgen,
+Status (gilt / ersetzt durch Dxx). Spätere Änderungen = neuer Eintrag, nie überschreiben.
+
+### Schritt 6: Konsistenzprüfung (Pflicht, vor Abgabe)
+- [ ] Jede Muss-Anforderung aus dem Brief hat Modul UND mindestens eine Karte
+- [ ] Jede Karte verweist auf eine Anforderung (keine Karte ohne Zweck)
+- [ ] Dateipfade in Karten stimmen mit der Ordnerstruktur überein
+- [ ] Namen (Module, Tabellen, Funktionen) sind in allen drei Dateien gleich
+- [ ] Keine Abhängigkeit zeigt nach vorn oder im Kreis
+- [ ] Jede Entscheidung in ARCHITECTURE.md hat einen Eintrag in DECISIONS.md
+- [ ] Nicht-Ziele des Briefs sind in keiner Karte enthalten
+Schreibe das Ergebnis als Tabelle &quot;Prüfung: ok / Problem&quot; ans Ende von PLAN.md.
+
+### Schritt 7: Freigabe
+Der Mensch gibt frei. Erst dann beginnt der Agent. Ändert sich der Brief später: Architect
+wird erneut gestartet, aktualisiert die Dateien und trägt die Änderung in DECISIONS.md ein.
+
+## Regeln
+- Entwirf so einfach wie möglich. Fügst du eine Schicht hinzu, nenne den Grund in DECISIONS.md.
+- Nutze nie eine Technik, die du für die Version nicht kennst. Prüfe die Doku (Web) oder frage.
+- Keine Karte grösser als &quot;ca. 5 Dateien betroffen&quot;. Sonst teilen.
+- Schreibe keine Codeimplementierung. Signaturen, Beispiele von 3 bis 5 Zeilen sind erlaubt.
+- Änderungswunsch in laufendem Projekt: Auswirkungen auflisten (welche Karten, Module), dann fragen.
+
+## Stopp-Bedingungen
+- Brief nicht freigegeben oder Muss-Punkt [UNKLAR].
+- Zwei Anforderungen schliessen sich aus.
+- Technik nicht prüfbar (Version, Lizenz, Verfügbarkeit unbekannt).
+
+## Abgabeformat
+Antworte mit: 1) drei Dateipfade, 2) Entscheidungen, die der Mensch bestätigen muss,
+3) Ergebnis der Konsistenzprüfung in 3 Zeilen, 4) Hinweis, wer als Nächstes startet (Agent, T01).</pre></div></section><section class="kit" id="kit-roles-agent-md"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">roles/agent.md</h2><p class="sub">Rolle: Agent (Builder)</p><div class="code"><div class="ptitle">roles/agent.md</div><button class="cp" type="button">kopieren</button><pre># ROLLE: Agent (Builder)
+
+Du setzt Aufgabenkarten aus docs/PLAN.md um. Du baust, testest und übergibst sauber.
+Du entscheidest nicht über Architektur. Du arbeitest immer an GENAU EINER Karte.
+
+## Auftrag
+Pro Durchlauf: eine Karte fertig umsetzen, Tests grün, Übergabe schreiben, stoppen.
+
+## Eingaben (in dieser Reihenfolge lesen)
+1. AGENTS.md  2. docs/HANDOFF.md  3. docs/PLAN.md  4. docs/ARCHITECTURE.md (relevante Teile)
+5. Skills, deren Beschreibung zur Karte passt (skills/README.md)
+Fehlt HANDOFF.md oder ist leer: Projektstart, nimm die erste Karte mit Status &quot;offen&quot;.
+
+## Ablauf pro Karte
+
+### 1. Verstehen (kurz, im Chat)
+Schreibe 4 Zeilen: Karten-ID, Ziel, betroffene Dateien, Test (&quot;Fertig, wenn ...&quot;).
+Passt etwas nicht zusammen (Datei existiert nicht, Abhängigkeit offen)? Stopp und melde.
+
+### 2. Umgebung prüfen
+Starte Tests/Build laut AGENTS.md Abschnitt 4. Sind sie VOR deiner Änderung rot, melde das
+und behebe es nicht nebenbei. Notiere den Ausgangsstand in HANDOFF.md.
+### 3. Test zuerst
+Schreibe oder erweitere einen Test, der das Ziel der Karte prüft. Er muss zuerst rot sein.
+Ist Testen unmöglich (z. B. reine Oberfläche), definiere einen manuellen Prüfschritt mit
+genauen Klicks und erwartetem Ergebnis und schreibe ihn in HANDOFF.md.
+
+### 4. Umsetzen
+- Kleine Schritte; nach jedem Schritt Test oder Start prüfen.
+- Folge der Ordnerstruktur und den Namen aus ARCHITECTURE.md exakt.
+- Ändere nur Dateien aus &quot;Betrifft&quot;. Brauchst du weitere, nenne den Grund in HANDOFF.md.
+- Gleiche Muster wie vorhandener Code. Keine &quot;Verbesserungen&quot; nebenbei.
+- Kommentiere das WARUM, nicht das WAS.
+
+### 5. Prüfen
+Alle Tests und Lint laufen lassen. Dann `git diff` lesen: nur beabsichtigte Änderungen?
+Debug-Ausgaben, auskommentierter Code, Geheimnisse entfernen. Die Definition of Done
+(AGENTS.md Abschnitt 10) abhaken.
+
+### 6. Übergeben
+- PLAN.md: Status der Karte &quot;erledigt&quot; (oder &quot;blockiert&quot; mit Grund).
+- HANDOFF.md nach Vorlage vollständig neu schreiben (nicht anhängen).
+- PROGRESS.md: eine Zeile hinzufügen (Datum, ID, Ergebnis).
+- Bei Commit: Nachricht &quot;T07: Kurzbeschreibung&quot;.
+
+### 7. Berichten (max. 3 Sätze an den Menschen)
+Was ist fertig, wie wurde es geprüft, was ist als Nächstes dran. Dann STOPP.
+
+## Fehlerbehandlung
+- Test rot: lies die Fehlermeldung, formuliere eine Ursache, ändere EINE Sache, teste erneut.
+- Nach 3 Versuchen ohne Fortschritt: Stopp, schreibe in HANDOFF.md &quot;Blockiert&quot;: Fehlertext,
+  Versuche, Vermutung. Frage den Menschen.
+- Nie Tests löschen, abschwächen oder überspringen, um grün zu werden.
+- Nie Fehler verschweigen. &quot;Teilweise fertig&quot; ist eine gültige, ehrliche Meldung.
+
+## Kontextdisziplin
+- Lies nur Dateien, die du brauchst. Keine ganzen Verzeichnisse einlesen.
+- Lange Ausgaben (Logs) kürzen: letzte 30 Zeilen oder gezielt suchen.
+- Merkst du Wiederholungen, Verwirrung oder Vergessenes: HANDOFF.md schreiben und Neustart
+  empfehlen, bevor du Fehler machst.
+
+## Fragen statt raten
+Ist eine Anforderung unklar oder fehlt eine Entscheidung: Eintrag unter &quot;Fragen&quot; in HANDOFF.md
+und im Chat fragen. Gib dabei immer 2 Vorschläge mit deiner Empfehlung an.
+## Verboten
+- Mehrere Karten in einem Durchlauf.
+- Architektur, Brief oder Plan ändern (nur Vorschläge in HANDOFF.md &quot;Fragen&quot;).
+- Neue Abhängigkeiten, Löschen von Daten, Änderungen an Konfiguration/Secrets ohne Freigabe.
+- Behauptungen über Tests, die nicht gelaufen sind.</pre></div></section><section class="kit" id="kit-roles-reviewer-md"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">roles/reviewer.md</h2><p class="sub">Rolle: Reviewer</p><div class="code"><div class="ptitle">roles/reviewer.md</div><button class="cp" type="button">kopieren</button><pre># ROLLE: Reviewer
+
+Du prüfst fertige Arbeit mit frischem Blick. Du hast den Code nicht geschrieben und
+verteidigst ihn nicht. Du änderst KEINEN Code. Du schreibst nur docs/REVIEW.md.
+
+## Auftrag
+Finde Fehler, Lücken und Abweichungen, bevor der Mensch sie findet.
+Ein Durchlauf prüft aus EINEM Blickwinkel. Mehrere Blickwinkel = mehrere Durchläufe.
+
+## Blickwinkel (der Mensch wählt einen; ohne Wahl: Anforderungen)
+1. Anforderungen: Erfüllt das Ergebnis jede Muss-Anforderung aus BRIEF.md?
+2. Architektur: Hält der Code Struktur, Namen und Regeln aus ARCHITECTURE.md ein?
+3. Qualität: Lesbarkeit, Duplikate, tote Teile, fehlende Fehlerbehandlung, Tests.
+4. Sicherheit: Geheimnisse, Eingabeprüfung, Rechte, Datenschutz, Abhängigkeiten.
+5. Benutzer: Läuft es für einen echten Menschen? Verständliche Meldungen, leere Zustände.
+
+## Eingaben
+AGENTS.md, BRIEF.md, ARCHITECTURE.md, PLAN.md, HANDOFF.md und den geprüften Code
+(Bereich nennt der Mensch, sonst die zuletzt erledigten Karten laut PROGRESS.md).
+
+## Ablauf
+1. Umfang festlegen: welche Karten/Dateien, welcher Blickwinkel. Schreibe es oben in REVIEW.md.
+2. Bauen und testen: Tests/Start laut AGENTS.md ausführen. Ergebnis wörtlich notieren.
+3. Prüfen anhand der Checkliste des Blickwinkels (unten). Jede Aussage mit Beleg:
+   Datei:Zeile oder Befehlsausgabe. Ohne Beleg kein Fund.
+4. Befunde einstufen:
+   - KRITISCH: falsches Ergebnis, Datenverlust, Sicherheitslücke, Absturz. Muss vor Abnahme weg.
+   - WICHTIG: verletzt Anforderung/Architektur, fehlender Test. Soll behoben werden.
+   - KLEIN: Stil, Namen, kleine Verbesserung. Kann warten.
+5. Zu jedem Fund: ID (R1...), Stufe, Ort, Beobachtung, Folge, Vorschlag zur Behebung.
+6. Urteil: ABNAHME / ABNAHME MIT AUFLAGEN / NICHT ABGENOMMEN, mit Begründung in 3 Zeilen.
+7. Folgekarten vorschlagen (Titel + Bezug), damit der Architect sie in PLAN.md aufnimmt.
+
+## Checklisten
+
+### Anforderungen
+- [ ] Jede M-Anforderung: Beleg (Test oder manuelle Prüfung) dass sie erfüllt ist
+- [ ] Kein Verhalten, das nicht im Brief steht (Umfangsausweitung)
+- [ ] Nicht-Ziele wurden nicht gebaut
+
+### Architektur
+- [ ] Ordnerstruktur und Namen stimmen
+- [ ] Verantwortung der Module nicht vermischt
+- [ ] Abweichungen sind in DECISIONS.md begründet
+### Qualität
+- [ ] Tests decken Kernpfad und mindestens einen Fehlerfall pro Funktion
+- [ ] Keine Kopien desselben Codes an 3 Stellen, keine toten Funktionen
+- [ ] Fehler werden gemeldet, nicht verschluckt
+
+### Sicherheit
+- [ ] Keine Schlüssel/Passwörter im Code oder Verlauf, .env nicht eingecheckt
+- [ ] Alle Eingaben von aussen geprüft (Typ, Länge, Zeichen)
+- [ ] Rechte minimal; keine unnötigen offenen Ports/Berechtigungen
+- [ ] Abhängigkeiten notwendig und aktuell
+
+### Benutzer
+- [ ] Erster Start funktioniert nach README ohne Vorwissen
+- [ ] Fehlermeldungen sagen, was zu tun ist
+- [ ] Leere Listen, Ladezustände, Abbruch sind behandelt
+
+## Regeln
+- Ändere nie Code. Sage, was nicht stimmt, nicht wie du es heimlich fixt.
+- Lobe nicht pauschal. Nenne auch, was geprüft wurde und in Ordnung ist (kurz).
+- Keine Vermutung als Fakt. &quot;Vermutung:&quot; kennzeichnen.
+- Zweifelhafte Funde zuletzt, getrennt als &quot;Unsicher&quot;.
+## Abgabeformat
+REVIEW.md nach Vorlage. Im Chat: Urteil, Anzahl Funde je Stufe, die 3 wichtigsten Funde.</pre></div></section><section class="kit" id="kit-skills-skill-creator-skill-md"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">skills/skill-creator/SKILL.md</h2><p class="sub">Skill: Skill Creator (Hauptdatei)</p><div class="code"><div class="ptitle">skills/skill-creator/SKILL.md</div><button class="cp" type="button">kopieren</button><pre>---
+name: skill-creator
+description: Erstellt, prüft und verbessert Skills (SKILL.md mit Ordnerstruktur). Nutze diesen Skill,
+  wenn der Mensch einen neuen Skill, eine wiederverwendbare Anleitung, einen Workflow zum
+  Speichern oder eine SKILL.md erstellen, ändern, prüfen oder testen will, oder sagt &quot;mach
+  daraus einen Skill&quot;. Nicht für einmalige Aufgaben, Projektdokumente (BRIEF, PLAN) oder Code.
+---
+
+# Skill Creator
+
+Du baust Skills, die zuverlässig ausgelöst werden und beim Ausführen das Richtige tun.
+Ein Skill ist eine gespeicherte Arbeitsanweisung. Er wird geladen, wenn seine Beschreibung
+zur Aufgabe passt. Du arbeitest in 8 Phasen. Überspringe keine, ausser der Mensch sagt es.
+
+## Phase 1: Absicht klären (Fragen, höchstens 5, gebündelt)
+Wenn der Mensch einen Ablauf schon vorgeführt hat (Chatverlauf, Dateien), extrahiere zuerst:
+Schritte, Korrekturen des Menschen, Ein- und Ausgabeformate. Frage nur das Fehlende:
+1. Was soll Claude damit können? (ein Satz, Verb am Anfang)
+2. Wann soll der Skill starten? (3 Beispielsätze, wie der Mensch es wirklich sagt)
+3. Was kommt heraus? (Dateityp, Format, Ort)
+4. Was darf nie passieren? (Grenzen, Risiken, Daten)
+5. Welche Werkzeuge, Dateien, Befehle werden gebraucht?
+Prüfe vorab: Gibt es schon einen Skill dafür (skills/README.md)? Dann erweitern statt neu.
+Ist die Aufgabe einmalig oder nur ein Projektdokument? Dann KEIN Skill; sage das.
+
+## Phase 2: Zuschnitt (ein Skill = eine Aufgabe)
+- Passt der Skill nicht in einen Satz ohne &quot;und&quot;: teilen.
+- Zu klein (nur 2 Zeilen): in AGENTS.md aufnehmen statt Skill.
+- Entscheide pro Inhalt, wo er lebt:
+  | Inhalt                                      | Ort          |
+  |---------------------------------------------|--------------|
+  | Ablauf, Regeln, Entscheidungshilfen         | SKILL.md     |
+  | Lange Nachschlagewerke, Varianten, Beispiele| references/  |
+  | Wiederholbare, fehleranfällige Rechenarbeit | scripts/     |
+  | Vorlagen, Dateien, die ins Ergebnis gehen   | assets/      |
+
+## Phase 3: Name
+Regeln (hart): 1 bis 64 Zeichen; nur a-z, 0-9 und Bindestrich; nicht am Anfang oder Ende
+ein Bindestrich; kein doppelter Bindestrich (--); Ordnername = name.
+Stil: Tätigkeit oder Gegenstand, 2 bis 4 Wörter, englisch: `pdf-report`, `db-migration`.
+
+## Phase 4: Description schreiben (wichtigster Teil)
+Die Beschreibung ist der EINZIGE Auslöser. Der Körper wird erst nach dem Start gelesen, also
+gehört jede &quot;Wann nutzen&quot;-Information hierher. Harte Grenzen: 1 bis 1024 Zeichen, eine Zeile
+oder ein Block ohne Zeilen mit `---`, keine spitzen Klammern.
+Formel:  [Was der Skill tut, 1 Satz, Verben]. Nutze diesen Skill, wenn [Situationen]
+oder der Mensch [Stichworte, so wie er spricht] sagt. Nicht für [nahe Fehlgriffe].
+Regeln:
+- Dritte Person oder Befehlsform, nie &quot;Ich&quot; oder &quot;Du&quot;.
+- Mindestens 3 Stichworte, die der Mensch wirklich benutzt, auch ohne den Fachbegriff.
+- Etwas &quot;drängend&quot; formulieren (Skills werden eher zu selten ausgelöst als zu oft):
+  &quot;auch wenn der Mensch das Wort Skill nicht nennt&quot;.
+- &quot;Nicht für ...&quot; nennt die 1 bis 3 nächsten Verwechslungen, nicht Beliebiges.
+- Keine Verfahrensdetails in der Beschreibung.
+Schlecht: `Hilft bei PDFs.`
+Gut: `Liest Text und Tabellen aus PDFs, füllt Formulare, fügt Dateien zusammen. Nutze diesen
+Skill bei PDF, Formular, Seiten extrahieren, zusammenfügen. Nicht für Word oder Bilder.`
+
+## Phase 5: Körper schreiben (SKILL.md unter 500 Zeilen, ideal unter 200)
+Gerüst (in dieser Reihenfolge):
+1. `# Titel` und 1 Satz Zweck
+2. `## Wann` (nur wenn Abgrenzung nötig; sonst weglassen)
+3. `## Vorbereitung` (Dateien lesen, Annahmen prüfen)
+4. `## Ablauf` nummerierte Schritte, jeder Schritt: Verb + Objekt + erwartetes Ergebnis
+5. `## Ausgabeformat` exakte Vorlage in einem Codeblock
+6. `## Beispiele` 1 bis 2 mit Eingabe und Ausgabe
+7. `## Regeln` Verbot + Alternative
+8. `## Prüfen` Checkliste vor Abgabe
+9. `## Weiterführend` Verweise: &quot;Lies references/X.md, wenn Y&quot;
+Stilregeln:
+- Befehlsform. &quot;Lies die Datei&quot;, nicht &quot;Es wäre gut, die Datei zu lesen&quot;.
+- Erkläre das WARUM in einem Halbsatz bei jeder wichtigen Regel. Das Modell handelt besser,
+  wenn es den Zweck kennt. GROSSBUCHSTABEN-Verbote nur für echte Gefahr (Datenverlust, Geheimnisse).
+- Strenge nach Fragilität: fragile, unumkehrbare Schritte = exakte Befehle und feste Reihenfolge.
+  Robuste Schritte = Ziel + Kriterien, Weg offen lassen.
+- Ein Standardweg statt vieler Optionen. Nenne Alternativen nur mit Auswahlregel.
+- Verweise auf Dateien relativ zum Skill-Ordner, nur eine Ebene tief.
+- references/-Dateien über 100 Zeilen bekommen oben ein Inhaltsverzeichnis.
+- Keine Zeitangaben (&quot;bis August 2026&quot;), keine Geheimnisse, keine absoluten Pfade.
+- Konsistente Begriffe: ein Ding hat einen Namen im ganzen Skill.
+- Skripte: werden ausgeführt, nicht abgeschrieben. Sie brauchen Hilfetext, klare Fehlermeldungen.
+
+## Phase 6: Prüfen (automatisch + Checkliste)
+1. Führe aus: `python skills/skill-creator/scripts/validate_skill.py skills/&lt;name&gt;`
+   Behebe jede Meldung. Das Skript prüft Name, Beschreibung, Länge, Struktur, Verweise.
+2. Checkliste (alle abhaken, sonst zurück zu Phase 4/5):
+   - [ ] Beschreibung enthält &quot;Nutze diesen Skill, wenn&quot; und &quot;Nicht für&quot;
+   - [ ] Jeder Schritt hat ein überprüfbares Ergebnis
+   - [ ] Ausgabeformat ist als Vorlage vorhanden
+   - [ ] Jedes Verbot hat eine Alternative
+   - [ ] Jede Datei in references/ wird im Körper mit Bedingung verlinkt
+   - [ ] Kein Inhalt doppelt (Körper vs. references/)
+   - [ ] Keine Geheimnisse, keine überraschenden Nebenwirkungen
+   - [ ] Eintrag in skills/README.md ergänzt (Name + 1 Satz)
+
+## Phase 7: Testen (nie ohne Test abgeben)
+A. Ausführungstest: formuliere 3 realistische Aufträge (wie der Mensch wirklich schreibt, mit
+   Details, Tippfehlern, Kontext). Speichere sie in `skills/&lt;name&gt;/tests/prompts.md`.
+   Lasse sie in frischen Sitzungen laufen, mit Skill und ohne Skill, und vergleiche.
+B. Auslösetest: schreibe 20 Sätze, 10 sollen auslösen (verschieden formuliert, auch ohne
+   Fachwort), 10 nicht auslösen (knifflige Fast-Treffer, die dieselben Wörter nutzen).
+   Speichere in `tests/trigger-queries.md` als Liste &quot;JA:&quot; / &quot;NEIN:&quot;.
+   Prüfe in frischen Sitzungen, ob der Skill genau bei den JA-Sätzen startet.
+C. Wertung: Skill löst zu selten aus -&gt; Stichworte und &quot;auch wenn&quot; ergänzen. Zu oft -&gt;
+   &quot;Nicht für&quot; schärfen. Ergebnis falsch -&gt; Körper klären (Beispiel ergänzen, Warum ergänzen).
+
+## Phase 8: Verbessern
+Pro Runde eine Gruppe an Änderungen, dann alle Tests wiederholen. Verallgemeinere: ändere
+nicht für einen Testfall, sondern für die Ursache dahinter. Entferne Zeilen, die nichts
+bewirken (Lauf anschauen: verschwendet der Skill Zeit?). Wiederholt sich in allen Läufen
+dieselbe Hilfsarbeit (gleiches Skript selbst geschrieben)? Dann in scripts/ ablegen.
+Beende, wenn alle Tests bestehen oder der Mensch zufrieden ist.
+
+## Abgabe
+Berichte in 5 Zeilen: Pfad, Name + Beschreibung, was der Skill tut, Testergebnis (x von 3
+Aufträgen, y von 20 Auslösesätzen), offene Punkte.
+
+## Weiterführend
+- Lies `references/skill-template.md`, wenn du eine Vorlage zum Ausfüllen brauchst.
+- Lies `references/description-patterns.md`, wenn die Beschreibung schlecht auslöst.
+- Lies `references/anti-patterns.md` vor Phase 6, um typische Fehler auszuschliessen.</pre></div></section><section class="kit" id="kit-skills-skill-creator-references-skill-template-md"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">skills/skill-creator/references/skill-template.md</h2><p class="sub">Skill Creator: Vorlage zum Ausfüllen</p><div class="code"><div class="ptitle">skills/skill-creator/references/skill-template.md</div><button class="cp" type="button">kopieren</button><pre># Vorlage: SKILL.md zum Ausfüllen
+
+Kopiere den Block nach `skills/&lt;name&gt;/SKILL.md`, ersetze alles in [ECKIGEN KLAMMERN],
+lösche nicht benötigte Abschnitte.
+
+```markdown
+---
+name: [kleinbuchstaben-mit-bindestrich]
+description: [Was der Skill tut, 1 Satz]. Nutze diesen Skill, wenn [Situation 1], [Situation 2]
+  oder der Mensch [Stichwort 1], [Stichwort 2], [Stichwort 3] sagt, auch wenn [Sonderfall].
+  Nicht für [Fehlgriff 1] oder [Fehlgriff 2].
+---
+
+# [Titel]
+
+[Zweck in einem Satz. Warum gibt es diesen Skill?]
+
+## Vorbereitung
+1. Lies [Datei/Quelle], damit [Grund].
+2. Prüfe, dass [Annahme]. Ist sie falsch: stoppe und frage.
+
+## Ablauf
+1. [Verb] [Objekt]. Ergebnis: [überprüfbar].
+2. [Verb] [Objekt]. Ergebnis: [überprüfbar].
+3. [Verb] [Objekt]. Ergebnis: [überprüfbar].
+
+## Ausgabeformat
+```text
+[Exakte Vorlage mit Platzhaltern]
+```
+
+## Beispiele
+**Eingabe:** [realistischer Auftrag]
+**Ausgabe:** [erwartetes Ergebnis]
+
+## Regeln
+- Tue nie [Verbot], weil [Grund]. Stattdessen: [Alternative].
+- Tue nie [Verbot], weil [Grund]. Stattdessen: [Alternative].
+
+## Prüfen
+- [ ] [Prüfpunkt 1]
+- [ ] [Prüfpunkt 2]
+
+## Weiterführend
+- Lies `references/[datei].md`, wenn [Bedingung].
+- Führe `scripts/[datei]` aus, um [Zweck]. Aufruf: `[Befehl]`.
+```
+
+## Optionale Frontmatter-Felder
+| Feld            | Grenze                | Zweck                                          |
+|-----------------|-----------------------|------------------------------------------------|
+| license         | kurz                  | Lizenzname oder Verweis auf Datei              |
+| compatibility   | 1 bis 500 Zeichen     | nur wenn Umgebung nötig (Programme, Netzwerk)  |
+| metadata        | Schlüssel: Text       | z. B. author, version                          |
+| allowed-tools   | Leerzeichen-getrennt  | vorab erlaubte Werkzeuge (experimentell)       |
+
+## Ordnerstruktur
+```text
+skills/[name]/
+  SKILL.md          Pflicht
+  references/       lange Dokumente, nur bei Bedarf gelesen
+  scripts/          ausführbare Hilfen
+  assets/           Vorlagen und Dateien für das Ergebnis
+  tests/            prompts.md, trigger-queries.md
+```</pre></div></section><section class="kit" id="kit-skills-skill-creator-references-description-patterns-md"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">skills/skill-creator/references/description-patterns.md</h2><p class="sub">Skill Creator: Beschreibungen, die auslösen</p><div class="code"><div class="ptitle">skills/skill-creator/references/description-patterns.md</div><button class="cp" type="button">kopieren</button><pre># Beschreibungen, die auslösen
+
+Inhalt: 1 Formel, 2 Vorher/Nachher, 3 Diagnose, 4 Auslösetest-Satzliste bauen
+
+## 1. Formel
+[Tut was, Verben]. Nutze diesen Skill, wenn [Situationen] oder der Mensch [Stichworte] sagt,
+auch wenn [Sonderfall ohne Fachwort]. Nicht für [nahe Fehlgriffe].
+
+## 2. Vorher / Nachher
+| Vorher (löst schlecht aus)        | Nachher                                                      |
+|-----------------------------------|--------------------------------------------------------------|
+| Hilft bei Tabellen.               | Erstellt und ändert Tabellendateien (.xlsx, .csv), rechnet   |
+|                                   | Formeln. Nutze diesen Skill bei Tabelle, Excel, Spalte, Summe,|
+|                                   | CSV aufräumen. Nicht für Diagramm-only oder Datenbanken.     |
+| Code-Review Skill.                | Prüft Änderungen auf Fehler, Sicherheit und Lesbarkeit.      |
+|                                   | Nutze ihn bei &quot;schau drüber&quot;, Review, PR, Diff. Nicht zum    |
+|                                   | Schreiben neuer Funktionen.                                  |
+| Wärmepumpen-Hilfe.                | Erstellt Serviceberichte für Wärmepumpen aus Messwerten.     |
+|                                   | Nutze ihn bei Bericht, Messprotokoll, Kältekreis, Störung.   |
+|                                   | Nicht für Angebote oder Rechnungen.                          |
+
+## 3. Diagnose
+| Symptom                           | Ursache                | Mittel                              |
+|-----------------------------------|------------------------|-------------------------------------|
+| Startet nie                       | zu abstrakt            | reale Wörter des Menschen ergänzen  |
+| Startet bei fremden Aufgaben      | zu breit               | &quot;Nicht für&quot; nennen, Verben präzisieren |
+| Startet nur bei Fachwort          | Fachsprache            | Alltagswörter und &quot;auch wenn&quot;       |
+| Startet, tut aber das Falsche     | Körper unklar          | Beispiel + Ausgabeformat ergänzen   |
+| Zwei Skills konkurrieren          | Überlappung            | Zuständigkeit je Skill abgrenzen    |
+
+## 4. Auslösetest: 20 Sätze bauen
+10 JA-Sätze: 3 formal, 3 locker (klein geschrieben, Tippfehler), 2 ohne Fachwort,
+2 mit Hintergrundgeschichte (Name der Datei, Kontext, Ziel).
+10 NEIN-Sätze: 5 Fast-Treffer (gleiche Wörter, andere Aufgabe), 3 Nachbargebiet,
+2 mit Wort des Skills, aber anderes Werkzeug zuständig.
+Schlechte NEIN-Sätze sind offensichtlich unpassend (&quot;Schreibe ein Gedicht&quot;): sie testen nichts.</pre></div></section><section class="kit" id="kit-skills-skill-creator-references-anti-patterns-md"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">skills/skill-creator/references/anti-patterns.md</h2><p class="sub">Skill Creator: typische Fehler</p><div class="code"><div class="ptitle">skills/skill-creator/references/anti-patterns.md</div><button class="cp" type="button">kopieren</button><pre># Typische Skill-Fehler (vor Phase 6 durchgehen)
+
+| Nr | Fehler                                         | Besser                                           |
+|----|------------------------------------------------|--------------------------------------------------|
+| 1  | Beschreibung ohne &quot;Wann&quot; (&quot;Hilft bei X&quot;)       | Formel mit Situationen und Stichworten           |
+| 2  | &quot;Wann nutzen&quot; steht im Körper statt Beschreibung| in die Beschreibung verschieben                 |
+| 3  | Ein Skill für mehrere Aufgaben                 | Teilen, je ein Zweck                             |
+| 4  | Zu viele Optionen (&quot;du kannst A, B, C, D&quot;)     | Standardweg + Auswahlregel für Ausnahmen         |
+| 5  | Nur Verbote, keine Alternative                 | &quot;Tue nie X. Stattdessen Y.&quot;                      |
+| 6  | Alles in SKILL.md (über 500 Zeilen)            | references/ + Verweis mit Bedingung              |
+| 7  | Tief verschachtelte Verweise (A-&gt;B-&gt;C)         | nur eine Ebene tief                              |
+| 8  | Vage Schritte (&quot;optimiere&quot;, &quot;bereinige&quot;)       | konkrete Verben, Ergebnis je Schritt             |
+| 9  | Kein Ausgabeformat                             | Vorlage im Codeblock                             |
+| 10 | Keine Beispiele                                | 1 bis 2 reale Ein-/Ausgaben                      |
+| 11 | Zeitabhängige Angaben                          | zeitlos formulieren                              |
+| 12 | Uneinheitliche Begriffe (Datei/Dokument/File)  | ein Begriff, überall gleich                      |
+| 13 | Skript wird im Text nachgebaut                 | Skript aufrufen, nicht abschreiben               |
+| 14 | Geheimnisse oder absolute Pfade                | .env, relative Pfade                             |
+| 15 | Keine Tests                                    | 3 Aufträge + 20 Auslösesätze                     |
+| 16 | Überstrenge GROSSBUCHSTABEN überall            | Warum erklären; Grossschrift nur bei Gefahr      |
+| 17 | Skill für einmalige Aufgabe                    | direkt im Chat erledigen                         |
+| 18 | Verwirrende Überraschung (Skill tut Verstecktes)| Zweck und Wirkung offenlegen                    |</pre></div></section><section class="kit" id="kit-skills-skill-creator-scripts-validate-skill-py"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">skills/skill-creator/scripts/validate_skill.py</h2><p class="sub">Skill Creator: Prüfskript (Python 3)</p><div class="code"><div class="ptitle">skills/skill-creator/scripts/validate_skill.py</div><button class="cp" type="button">kopieren</button><pre>#!/usr/bin/env python3
+&quot;&quot;&quot;Prüft einen Skill-Ordner.  Aufruf: python validate_skill.py skills/&lt;name&gt;
+
+Exit-Code 0 = keine Fehler, 1 = Fehler gefunden. Nur Standardbibliothek nötig.
+&quot;&quot;&quot;
+import re
+import sys
+from pathlib import Path
+
+NAME_RE = re.compile(r&quot;^[a-z0-9]+(-[a-z0-9]+)*$&quot;)
+ALLOWED = {&quot;name&quot;, &quot;description&quot;, &quot;license&quot;, &quot;compatibility&quot;, &quot;metadata&quot;, &quot;allowed-tools&quot;}
+
+
+def parse_frontmatter(text):
+    m = re.match(r&quot;^---\n(.*?)\n---\n&quot;, text, re.S)
+    if not m:
+        return None, text
+    fields, key = {}, None
+    for line in m.group(1).split(&quot;\n&quot;):
+        mk = re.match(r&quot;^([A-Za-z][\w-]*):\s*(.*)$&quot;, line)
+        if mk and not line.startswith(&quot; &quot;):
+            key = mk.group(1)
+            fields[key] = mk.group(2).strip()
+        elif key and line.startswith(&quot; &quot;):
+            fields[key] = (fields[key] + &quot; &quot; + line.strip()).strip()
+    return fields, text[m.end():]
+
+
+def main(path):
+    root = Path(path)
+    errors, warnings = [], []
+    skill = root / &quot;SKILL.md&quot;
+    if not skill.is_file():
+        print(f&quot;FEHLER: {skill} fehlt&quot;)
+        return 1
+    text = skill.read_text(encoding=&quot;utf-8&quot;)
+    fm, body = parse_frontmatter(text)
+    if fm is None:
+        print(&quot;FEHLER: Frontmatter fehlt (Datei muss mit --- beginnen und mit --- enden)&quot;)
+        return 1
+
+    name = fm.get(&quot;name&quot;, &quot;&quot;)
+    desc = fm.get(&quot;description&quot;, &quot;&quot;).strip(&#x27;&quot;\&#x27;&#x27;)
+    if not name:
+        errors.append(&quot;name fehlt&quot;)
+    else:
+        if len(name) &gt; 64:
+            errors.append(f&quot;name hat {len(name)} Zeichen (max. 64)&quot;)
+        if not NAME_RE.match(name):
+            errors.append(&quot;name: nur a-z, 0-9, Bindestrich; kein Bindestrich am Rand; kein &#x27;--&#x27;&quot;)
+        if name != root.name:
+            errors.append(f&quot;name &#x27;{name}&#x27; passt nicht zum Ordner &#x27;{root.name}&#x27;&quot;)
+    if not desc:
+        errors.append(&quot;description fehlt oder ist leer&quot;)
+    else:
+        if len(desc) &gt; 1024:
+            errors.append(f&quot;description hat {len(desc)} Zeichen (max. 1024)&quot;)
+        if &quot;&lt;&quot; in desc or &quot;&gt;&quot; in desc:
+            errors.append(&quot;description enthält spitze Klammern&quot;)
+        if &quot;nutze&quot; not in desc.lower() and &quot;use &quot; not in desc.lower():
+            warnings.append(&quot;description enthält kein &#x27;Nutze diesen Skill, wenn ...&#x27;&quot;)
+        if &quot;nicht für&quot; not in desc.lower() and &quot;not for&quot; not in desc.lower():
+            warnings.append(&quot;description enthält kein &#x27;Nicht für ...&#x27; (Abgrenzung)&quot;)
+        if len(desc) &lt; 80:
+            warnings.append(&quot;description sehr kurz (unter 80 Zeichen): Stichworte ergänzen&quot;)
+    for key in fm:
+        if key not in ALLOWED:
+            errors.append(f&quot;unbekanntes Frontmatter-Feld: {key}&quot;)
+    if &quot;compatibility&quot; in fm and len(fm[&quot;compatibility&quot;]) &gt; 500:
+        errors.append(&quot;compatibility über 500 Zeichen&quot;)
+
+    lines = body.count(&quot;\n&quot;) + 1
+    if lines &gt; 500:
+        errors.append(f&quot;SKILL.md hat {lines} Zeilen (max. 500): Teile nach references/ aus&quot;)
+    elif lines &gt; 300:
+        warnings.append(f&quot;SKILL.md hat {lines} Zeilen: prüfe, ob Teile nach references/ gehören&quot;)
+
+    # Verweise prüfen
+    for ref in set(re.findall(r&quot;`((?:references|scripts|assets)/[^`\s]+)`&quot;, body)):
+        if not (root / ref).exists():
+            errors.append(f&quot;Verweis auf fehlende Datei: {ref}&quot;)
+    for sub in (&quot;references&quot;, &quot;scripts&quot;, &quot;assets&quot;):
+        d = root / sub
+        if d.is_dir():
+            for f in d.rglob(&quot;*&quot;):
+                if f.is_file() and f.name not in body and f.suffix in {&quot;.md&quot;, &quot;.py&quot;, &quot;.sh&quot;}:
+                    warnings.append(f&quot;{sub}/{f.name} wird in SKILL.md nicht erwähnt&quot;)
+                if f.suffix == &quot;.md&quot; and f.stat().st_size &gt; 0:
+                    n = f.read_text(encoding=&quot;utf-8&quot;).count(&quot;\n&quot;)
+                    if n &gt; 100 and &quot;inhalt&quot; not in f.read_text(encoding=&quot;utf-8&quot;)[:600].lower():
+                        warnings.append(f&quot;{sub}/{f.name}: über 100 Zeilen ohne Inhaltsverzeichnis&quot;)
+
+    if not re.search(r&quot;^## .*(Ablauf|Schritte|Workflow|Phase)&quot;, body, re.M | re.I):
+        warnings.append(&quot;kein Abschnitt &#x27;Ablauf&#x27; gefunden&quot;)
+    if re.search(r&quot;(api[_-]?key|passwort|password|secret|token)\s*[:=]\s*\S{8,}&quot;, text, re.I):
+        errors.append(&quot;mögliches Geheimnis im Text&quot;)
+    if re.search(r&quot;(/home/|/Users/|C:\\\\)&quot;, text):
+        warnings.append(&quot;absoluter Pfad im Text: verwende relative Pfade&quot;)
+    if not (root / &quot;tests&quot;).exists():
+        warnings.append(&quot;tests/ fehlt (prompts.md, trigger-queries.md)&quot;)
+
+    for e in errors:
+        print(&quot;FEHLER:&quot;, e)
+    for w in warnings:
+        print(&quot;HINWEIS:&quot;, w)
+    print(f&quot;Ergebnis: {len(errors)} Fehler, {len(warnings)} Hinweise ({lines} Zeilen Körper)&quot;)
+    return 1 if errors else 0
+
+
+if __name__ == &quot;__main__&quot;:
+    if len(sys.argv) != 2:
+        print(__doc__)
+        sys.exit(2)
+    sys.exit(main(sys.argv[1]))</pre></div></section><section class="kit" id="kit-skills-skill-creator-tests-prompts-md"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">skills/skill-creator/tests/prompts.md</h2><p class="sub">Skill Creator: Testaufträge</p><div class="code"><div class="ptitle">skills/skill-creator/tests/prompts.md</div><button class="cp" type="button">kopieren</button><pre># Testaufträge
+1. Ich will einen Skill, der meine Serviceberichte immer gleich aufbaut.
+2. Mach aus unserem Ablauf fürs Release einen Skill.
+3. Prüf mal, ob mein SKILL.md in Ordnung ist.</pre></div></section><section class="kit" id="kit-skills-skill-creator-tests-trigger-queries-md"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">skills/skill-creator/tests/trigger-queries.md</h2><p class="sub">Skill Creator: Auslösesätze</p><div class="code"><div class="ptitle">skills/skill-creator/tests/trigger-queries.md</div><button class="cp" type="button">kopieren</button><pre># Auslösesätze
+JA: erstelle einen neuen skill für rechnungen
+JA: kannst du das als wiederverwendbare anleitung speichern
+JA: prüf meine SKILL.md
+NEIN: schreib mir eine rechnung
+NEIN: erstelle einen Brief für das Projekt
+NEIN: fix den bug in login.py</pre></div></section><section class="kit" id="kit-skills-commit-message-skill-md"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">skills/commit-message/SKILL.md</h2><p class="sub">Beispiel-Skill, zugleich Muster</p><div class="code"><div class="ptitle">skills/commit-message/SKILL.md</div><button class="cp" type="button">kopieren</button><pre>---
+name: commit-message
+description: Schreibt klare Commit-Nachrichten aus den aktuellen Änderungen (git diff) im Format &quot;T07:
+  Kurzbeschreibung&quot;. Nutze diesen Skill, wenn der Mensch commit, Commit-Nachricht, einchecken,
+  speichern in git oder &quot;schreib mir die Nachricht&quot; sagt, auch ohne das Wort Skill. Nicht für
+  Pull-Request-Texte, Changelogs oder das Lösen von Merge-Konflikten.
+---
+
+# Commit Message
+
+Gute Commit-Nachrichten machen die Geschichte des Projekts lesbar, auch für eine neue Sitzung.
+
+## Vorbereitung
+1. Führe `git status` und `git diff --staged` aus. Ist nichts vorgemerkt, nimm `git diff`.
+2. Lies die aktive Karte in docs/PLAN.md, damit die Karten-ID stimmt.
+
+## Ablauf
+1. Fasse zusammen, WAS sich geändert hat und WARUM (nicht Zeile für Zeile). Ergebnis: 1 Satz.
+2. Schreibe die Betreffzeile: `&lt;ID&gt;: &lt;Verb im Imperativ&gt; &lt;Objekt&gt;`, höchstens 60 Zeichen.
+3. Füge einen Textkörper nur hinzu, wenn das Warum nicht offensichtlich ist (max. 3 Zeilen).
+4. Zeige dem Menschen die Nachricht. Committe erst nach &quot;ja&quot;.
+## Ausgabeformat
+```text
+T07: Füge Login-Validierung hinzu
+
+Leere Passwörter wurden bisher akzeptiert. Prüfung in auth/validate.py,
+Test in tests/test_validate.py.
+```
+
+## Beispiele
+**Eingabe:** Diff ändert 2 Dateien, neue Prüfung für leere E-Mail, Karte T12.
+**Ausgabe:** `T12: Prüfe leere E-Mail im Formular`
+
+## Regeln
+- Schreibe nie &quot;Änderungen&quot; oder &quot;Update&quot; als Betreff, weil das später nichts aussagt.
+  Stattdessen: konkretes Verb und Objekt.
+- Mische nie zwei Aufgaben in einem Commit. Stattdessen: schlage zwei Commits vor.
+- Schreibe nie Geheimnisse oder Dateiinhalte in die Nachricht.
+
+## Prüfen
+- [ ] Betreff unter 60 Zeichen und beginnt mit der Karten-ID
+- [ ] Imperativ (&quot;Füge hinzu&quot;), nicht Vergangenheit
+- [ ] Nachricht passt zum Diff, nicht zu etwas anderem</pre></div></section><section class="kit" id="kit-skills-readme-md"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">skills/README.md</h2><p class="sub">Verzeichnis aller Skills</p><div class="code"><div class="ptitle">skills/README.md</div><button class="cp" type="button">kopieren</button><pre># Skills-Verzeichnis
+
+Der Agent liest diese Liste und lädt einen Skill nur, wenn der Satz zur Aufgabe passt.
+Neuer Skill = ein Eintrag hier (macht der Skill Creator in Phase 6).
+
+| Skill            | Zweck in einem Satz                                        |
+|------------------|------------------------------------------------------------|
+| skill-creator    | Erstellt, prüft, testet und verbessert Skills.             |
+| commit-message   | Schreibt Commit-Nachrichten im Format &quot;T07: Kurztext&quot;.     |
+
+Hinweis: commit-message ist zugleich ein Muster für eigene Skills.
+Kopiere den Ordner, benenne ihn um und passe ihn an.</pre></div></section><section class="kit" id="kit-docs-brief-md"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">docs/BRIEF.md</h2><p class="sub">Vorlage Brief</p><div class="code"><div class="ptitle">docs/BRIEF.md</div><button class="cp" type="button">kopieren</button><pre># BRIEF: [PROJEKTNAME]
+
+Status: Entwurf | freigegeben am [DATUM]
+Version: 1
+
+## 1. Originalwunsch (wörtlich, unverändert)
+&gt; [Was der Mensch gesagt oder geschrieben hat]
+
+## 2. Ziel in einem Satz
+[Das Projekt ermöglicht [Zielgruppe], [Ergebnis], damit [Nutzen].]
+
+## 3. Zielgruppe
+- Wer: [Rolle, Anzahl]
+- Technisches Wissen: [keins | mittel | hoch]
+- Nutzungssituation: [wo, wann, womit]
+
+## 4. Problem und heutige Lösung
+- Problem: [..]
+- Heute gelöst durch: [..]
+- Warum das nicht reicht: [..]
+
+## 5. Plattform und Umgebung
+- Läuft auf: [Web | Handy | Desktop | Skript | Gerät]
+- Online nötig: [ja | nein]
+- Sprache der Oberfläche: [..]
+
+## 6. Muss-Anforderungen (ohne diese ist das Projekt wertlos)
+| ID | Anforderung (ein prüfbarer Satz)                | Fertig, wenn ...                |
+|----|--------------------------------------------------|---------------------------------|
+| M1 | [Der Nutzer kann ...]                            | [messbares Kriterium]           |
+| M2 |                                                  |                                 |
+
+## 7. Kann-Anforderungen (schön, wenn Zeit ist)
+| ID | Anforderung                                      | Fertig, wenn ...                |
+|----|--------------------------------------------------|---------------------------------|
+| K1 |                                                  |                                 |
+
+## 8. Daten
+- Welche Daten entstehen/werden gebraucht: [..]
+- Wer darf sie sehen/ändern: [..]
+- Aufbewahrung/Löschung: [..]
+- Datenschutz/Recht: [..]
+
+## 9. Grenzen
+- Budget: [..]  Zeit: [..]  Technik, die gesetzt/verboten ist: [..]
+
+## 10. Nicht-Ziele (wird ausdrücklich NICHT gebaut)
+- [..]
+- [..]
+- [..]
+
+## 11. Vorbilder
+- [Produkt/Link]: gefällt [..], gefällt nicht [..]
+
+## 12. Risiken und Annahmen
+- [Annahme/Risiko] -&gt; [Auswirkung]
+
+## 13. Offene Fragen
+- [UNKLAR: Frage] (Eigentümer: [Name], bis: [Datum])
+
+## 14. Abnahme des Gesamtprojekts
+Das Projekt ist fertig, wenn: [alle M erfüllt] und [Gesamtkriterium, z. B. &quot;Ein Neuling schafft
+Aufgabe X in unter 5 Minuten ohne Hilfe&quot;].</pre></div></section><section class="kit" id="kit-docs-architecture-md"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">docs/ARCHITECTURE.md</h2><p class="sub">Vorlage Architektur</p><div class="code"><div class="ptitle">docs/ARCHITECTURE.md</div><button class="cp" type="button">kopieren</button><pre># ARCHITECTURE: [PROJEKTNAME]
+
+Status: Entwurf | freigegeben am [DATUM]     Basis: BRIEF.md Version [N]
+
+## 1. Überblick (max. 5 Zeilen)
+[Wie funktioniert das System im Grossen? Wer spricht mit wem?]
+
+## 2. Technik-Stack
+| Bereich      | Wahl            | Version | Grund (siehe DECISIONS) |
+|--------------|-----------------|---------|--------------------------|
+| Sprache      | [..]            | [..]    | D01                      |
+| Framework    | [..]            | [..]    | D02                      |
+| Daten        | [..]            | [..]    | D03                      |
+| Tests        | [..]            | [..]    | D04                      |
+| Hosting      | [..]            | [..]    | D05                      |
+
+## 3. Ordnerstruktur
+```text
+[projekt]/
+  AGENTS.md
+  docs/            BRIEF, ARCHITECTURE, PLAN, DECISIONS, HANDOFF, REVIEW, PROGRESS
+  roles/  skills/
+  src/
+    [modul-a]/     [Verantwortung in 1 Satz]
+    [modul-b]/
+  tests/
+  .env.example
+```
+
+## 4. Module
+| Modul     | Verantwortung (1 Satz)       | Hängt ab von | Anforderungen |
+|-----------|------------------------------|--------------|---------------|
+| [modul-a] | [..]                         | -            | M1            |
+| [modul-b] | [..]                         | modul-a      | M2, K1        |
+
+## 5. Datenmodell
+| Objekt   | Felder (Name: Typ)           | Regeln                       |
+|----------|------------------------------|------------------------------|
+| [Nutzer] | id: Zahl, name: Text         | name eindeutig, 2-50 Zeichen |
+
+## 6. Schnittstellen
+| Name           | Eingabe             | Ausgabe          | Fehler              |
+|----------------|---------------------|------------------|---------------------|
+| [funktion/api] | [Parameter + Typ]   | [Typ + Beispiel] | [Fall -&gt; Meldung]   |
+## 7. Regeln für Code (prüfbar)
+- Namen: [Konvention]. Dateien: [Konvention].
+- Eine Datei hat eine Aufgabe, höchstens ca. [300] Zeilen.
+- Keine Logik in [Oberflächenschicht]; Logik nur in [Modul].
+- Jede Funktion mit Fehlerfall hat einen Test.
+
+## 8. Fehlerbehandlung
+- Fehler werden [abgefangen in ..], dem Nutzer als [verständlicher Satz] gezeigt, [geloggt in ..].
+
+## 9. Sicherheit und Datenschutz
+- Geheimnisse nur in .env (nie im Code). Eingaben werden geprüft in [..].
+- Personenbezogene Daten: [welche, wo, wie lange].
+
+## 10. Teststrategie
+- Einheit: [..]  Integration: [..]  Manuell: [Szenarien]
+- Befehl: [..]  Mindestabdeckung Kernpfad: [..]
+
+## 11. Konfiguration und Betrieb
+- Umgebungsvariablen: [NAME: Zweck]  Start: [..]  Deployment: [..]
+
+## 12. Abdeckung der Anforderungen
+| Anforderung | Modul        | Karten      |
+|-------------|--------------|-------------|
+| M1          | [modul-a]    | T02, T03    |
+
+## 13. Grenzen
+Nicht gebaut: [..] (siehe Nicht-Ziele im Brief)</pre></div></section><section class="kit" id="kit-docs-plan-md"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">docs/PLAN.md</h2><p class="sub">Vorlage Plan mit Aufgabenkarten</p><div class="code"><div class="ptitle">docs/PLAN.md</div><button class="cp" type="button">kopieren</button><pre># PLAN: [PROJEKTNAME]
+
+Basis: ARCHITECTURE.md   Statuswerte: offen | in Arbeit | erledigt | blockiert
+Regel: Eine Karte pro Agent-Durchlauf. Reihenfolge einhalten. Abhängigkeiten zuerst.
+
+## Phase 0: Gerüst  (Meilenstein: Projekt startet, Test läuft grün mit leerem Test)
+
+### T01: Projektgerüst und Test-Setup
+- Bezug: Architektur Abschnitt 3
+- Abhängig von: -
+- Betrifft: Ordnerstruktur, Konfiguration, tests/
+- Beschreibung: Ordner anlegen, Werkzeuge installieren, Start- und Testbefehl in AGENTS.md
+  Abschnitt 4 eintragen.
+- Test: Fertig, wenn `[Testbefehl]` läuft und &quot;0 Fehler&quot; meldet.
+- Status: offen
+
+## Phase 1: Dünnster durchgehender Pfad  (Meilenstein: Kernfunktion läuft einmal komplett)
+
+### T02: [Titel]
+- Bezug: M1
+- Abhängig von: T01
+- Betrifft: [Dateipfade]
+- Beschreibung: [max. 5 Zeilen: was entsteht, wie verhält es sich, Randfälle]
+- Test: Fertig, wenn [messbares Ergebnis, z. B. Aufruf X liefert Y].
+- Status: offen
+
+### T03: [Titel]
+- Bezug: M1
+- Abhängig von: T02
+- Betrifft: [..]
+- Beschreibung: [..]
+- Test: Fertig, wenn [..].
+- Status: offen
+
+## Phase 2: Restliche Muss-Anforderungen
+(Karten T04 ... nach gleichem Muster)
+
+## Phase 3: Kann-Anforderungen und Feinschliff
+(Karten nach gleichem Muster)
+
+## Phase 4: Abschluss
+### Tn: README, Aufräumen, Abschlussprüfung
+- Bezug: Brief Abschnitt 14
+- Test: Fertig, wenn ein Neuling nach README das Projekt startet und Aufgabe X löst.
+## Prüfung (vom Architect ausgefüllt)
+| Prüfpunkt                                         | Ergebnis |
+|---------------------------------------------------|----------|
+| Jede M-Anforderung hat Modul und Karte            | ok       |
+| Jede Karte hat Bezug zu M/K                       | ok       |
+| Pfade stimmen mit Ordnerstruktur                  | ok       |
+| Keine Zyklen/Vorwärtsabhängigkeiten               | ok       |
+| Nicht-Ziele nicht enthalten                       | ok       |</pre></div></section><section class="kit" id="kit-docs-decisions-md"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">docs/DECISIONS.md</h2><p class="sub">Vorlage Entscheidungsprotokoll</p><div class="code"><div class="ptitle">docs/DECISIONS.md</div><button class="cp" type="button">kopieren</button><pre># DECISIONS: [PROJEKTNAME]
+
+Regel: Einträge werden nie überschrieben. Änderung = neuer Eintrag, alter bekommt
+&quot;Status: ersetzt durch Dxx&quot;. Eintrag schreiben, sobald eine Wahl mit Folgen getroffen wird.
+
+## D01: [Entscheidung in einem Satz]
+- Datum: [JJJJ-MM-TT]     Status: gilt
+- Kontext: [Welches Problem/Anforderung (M1)?]
+- Optionen:
+  1. [Option A]: + [Vorteil] / - [Nachteil]
+  2. [Option B]: + [..] / - [..]
+- Entscheidung: [Option A]
+- Grund: [1 bis 3 Sätze]
+- Folgen: [Was wird einfacher/schwerer? Was ist jetzt festgelegt?]
+- Entschieden von: [Mensch | Architect, vom Menschen bestätigt]
+
+## D02: [..]
+- Datum:     Status:
+- Kontext:
+- Optionen:
+- Entscheidung:
+- Grund:
+- Folgen:
+- Entschieden von:</pre></div></section><section class="kit" id="kit-docs-handoff-md"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">docs/HANDOFF.md</h2><p class="sub">Vorlage Übergabe</p><div class="code"><div class="ptitle">docs/HANDOFF.md</div><button class="cp" type="button">kopieren</button><pre># HANDOFF
+
+Wird vom Agent nach JEDER Aufgabe komplett neu geschrieben (nicht angehängt).
+Ziel: Eine neue Sitzung ohne Gedächtnis kann in 2 Minuten weiterarbeiten.
+
+Aktualisiert: [JJJJ-MM-TT HH:MM]     Von: Agent     Letzte Karte: [T00]
+
+## 1. Stand in 3 Sätzen
+[Was funktioniert jetzt? Was ist als Letztes passiert? Wo steht das Projekt im Plan?]
+
+## 2. Nächster Schritt
+- Karte: [Txx: Titel]
+- Erster konkreter Handgriff: [z. B. &quot;Datei src/x.py öffnen, Funktion y ergänzen&quot;]
+
+## 3. Erledigt in dieser Sitzung
+- [Txx]: [Ergebnis] (Dateien: [..])
+
+## 4. Geänderte Dateien
+- [Pfad]: [Was und warum, 1 Zeile]
+
+## 5. Prüfstand
+- Test-Befehl: [..]  Ergebnis: [x bestanden, y fehlgeschlagen]
+- Manuell geprüft: [Schritt -&gt; Ergebnis]
+
+## 6. Blockiert / Probleme
+- [Fehlertext oder Beschreibung] | Versuche: [..] | Vermutung: [..]
+
+## 7. Fragen an den Menschen
+1. [Frage] Vorschlag A: [..] / Vorschlag B: [..] / Empfehlung: [..]
+
+## 8. Vorschläge an den Architect
+- [Änderungswunsch an Architektur/Plan mit Grund]
+
+## 9. Wichtiges, das nirgends sonst steht
+- [Fallen, Tricks, Eigenheiten, Befehle, die funktionieren]</pre></div></section><section class="kit" id="kit-docs-review-md"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">docs/REVIEW.md</h2><p class="sub">Vorlage Prüfbericht</p><div class="code"><div class="ptitle">docs/REVIEW.md</div><button class="cp" type="button">kopieren</button><pre># REVIEW
+
+Datum: [JJJJ-MM-TT]     Reviewer-Durchlauf Nr.: [1]
+Blickwinkel: [Anforderungen | Architektur | Qualität | Sicherheit | Benutzer]
+Umfang: [Karten Txx bis Txx / Dateien]
+
+## Urteil
+[ABNAHME | ABNAHME MIT AUFLAGEN | NICHT ABGENOMMEN]
+Begründung (max. 3 Zeilen): [..]
+
+## Testlauf
+- Befehl: [..]
+- Ausgabe (wörtlich, gekürzt): [..]
+
+## Befunde
+| ID | Stufe     | Ort (Datei:Zeile) | Beobachtung | Folge | Vorschlag |
+|----|-----------|-------------------|-------------|-------|-----------|
+| R1 | KRITISCH  |                   |             |       |           |
+| R2 | WICHTIG   |                   |             |       |           |
+| R3 | KLEIN     |                   |             |       |           |
+
+## Geprüft und in Ordnung
+- [Kurze Liste, was ohne Beanstandung war]
+
+## Unsicher (Vermutungen, nicht belegt)
+- [..]
+
+## Folgekarten (Vorschlag an den Architect)
+- [Titel] (Bezug: R1, M2)</pre></div></section><section class="kit" id="kit-docs-progress-md"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">docs/PROGRESS.md</h2><p class="sub">Vorlage Fortschrittsprotokoll</p><div class="code"><div class="ptitle">docs/PROGRESS.md</div><button class="cp" type="button">kopieren</button><pre># PROGRESS
+
+Eine Zeile pro erledigter Karte. Wird nur ergänzt, nie umgeschrieben.
+
+| Datum      | Karte | Ergebnis                     | Tests        | Notiz              |
+|------------|-------|------------------------------|--------------|--------------------|
+| 2026-01-01 | T01   | Gerüst steht                 | 0 von 0 grün | -                  |</pre></div></section><section class="kit" id="kit-start-prompts-md"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">START-PROMPTS.md</h2><p class="sub">Fertige Startsätze für jede Rolle</p><div class="code"><div class="ptitle">START-PROMPTS.md</div><button class="cp" type="button">kopieren</button><pre># Start-Prompts (zum Kopieren)
+
+Jeder Prompt startet eine NEUE Sitzung mit genau einer Rolle. Ersetze [ ] durch deine Angaben.
+
+## 1. Brief erstellen
+Du bist der Brief Creator. Lies roles/brief-creator.md und AGENTS.md. Meine Idee: [IDEE IN
+EIGENEN WORTEN]. Beginne mit Schritt 1 und stelle danach deine Klärungsfragen gebündelt.
+
+## 2. Architektur und Plan
+Du bist der Architect. Lies roles/architect.md, AGENTS.md und docs/BRIEF.md. Erstelle
+ARCHITECTURE.md, PLAN.md und DECISIONS.md. Frage mich nur nach den wichtigsten Entscheidungen
+(mit Empfehlung).
+
+## 3. Bauen (ein Durchlauf pro Karte)
+Du bist der Agent. Lies roles/agent.md, AGENTS.md und docs/HANDOFF.md. Setze die nächste offene
+Karte aus docs/PLAN.md um und stoppe danach.
+
+## 4. Prüfen
+Du bist der Reviewer. Lies roles/reviewer.md und AGENTS.md. Blickwinkel: [Anforderungen |
+Architektur | Qualität | Sicherheit | Benutzer]. Umfang: [Karten oder Dateien].
+
+## 5. Skill erstellen
+Lies skills/skill-creator/SKILL.md. Ich möchte einen Skill für: [AUFGABE]. Beispiele, wie ich
+es sagen würde: &quot;[SATZ 1]&quot;, &quot;[SATZ 2]&quot;.
+
+## 6. Weiterarbeiten nach Pause oder vollem Kontext
+Du bist der Agent. Lies AGENTS.md und docs/HANDOFF.md und fasse in 3 Sätzen zusammen, wo wir
+stehen. Warte auf mein &quot;weiter&quot;.
+
+## 7. Kleine Aufgabe (Schnellweg ohne Brief und Plan)
+Du bist der Agent. Lies AGENTS.md. Aufgabe: [BESCHREIBUNG]. Betrifft: [DATEIEN]. Fertig, wenn:
+[KRITERIUM]. Schreibe einen Test, setze um, aktualisiere docs/HANDOFF.md.
+
+## 8. Änderungswunsch im laufenden Projekt
+Du bist der Architect. Lies roles/architect.md, AGENTS.md, docs/BRIEF.md, docs/PLAN.md. Neuer
+Wunsch: [WUNSCH]. Liste zuerst die Auswirkungen (Karten, Module), dann frage mich.</pre></div></section><section class="kit" id="kit-readme-md"><div class="tag">Kopier-Set · Speichern unter</div><h2 class="path">README.md</h2><p class="sub">Kurzanleitung des Starters</p><div class="code"><div class="ptitle">README.md</div><button class="cp" type="button">kopieren</button><pre># Projekt-Starter
+
+Ein leeres, wiederverwendbares Gerüst für Projekte mit KI-Unterstützung.
+
+## So startest du (5 Schritte)
+1. Kopiere diesen Ordner als Basis deines neuen Projekts.
+2. Öffne AGENTS.md und ersetze die Angaben in [ECKIGEN KLAMMERN] (Abschnitte 1 und 4).
+3. Starte eine Sitzung mit dem Prompt &quot;1. Brief erstellen&quot; aus START-PROMPTS.md.
+4. Danach: Architect (Prompt 2), dann Agent (Prompt 3) Karte für Karte, dazwischen Reviewer.
+5. Brauchst du eine wiederkehrende Fähigkeit: Prompt 5 (Skill erstellen).
+
+## Inhalt
+AGENTS.md            immer geladene Grundregeln
+roles/               brief-creator, architect, agent, reviewer
+docs/                Vorlagen: BRIEF, ARCHITECTURE, PLAN, DECISIONS, HANDOFF, REVIEW, PROGRESS
+skills/              skill-creator (mit Prüfskript), commit-message (Beispiel-Skill)
+START-PROMPTS.md     fertige Startsätze
+
+Die Dateien sind projektunabhängig. Passe nur die eckigen Klammern an.</pre></div></section>
+</main>
+<script>
+document.querySelectorAll('.cp').forEach(function(b){b.addEventListener('click',function(){
+ var t=b.parentElement.querySelector('pre').innerText;
+ (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent='kopiert';setTimeout(function(){b.textContent='kopieren'},1500)}).catch(function(){
+  var r=document.createRange();r.selectNodeContents(b.parentElement.querySelector('pre'));var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='markiert'})})});
+</script></body></html>
