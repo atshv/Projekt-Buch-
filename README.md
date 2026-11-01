@@ -5,11 +5,11 @@
 Alles zum Kopieren. Für jedes Projekt.
 </p>
 
-## <img src="bilder/logo-gruen.svg" height="26" align="top"> Ablauf
+## <img src="bilder/logo.svg" height="26" align="top"> Ablauf
 
 <p align="center"><img src="bilder/ablauf.svg" alt="Ablauf"></p>
 
-## <img src="bilder/logo-gruen.svg" height="26" align="top"> Schnellstart
+## <img src="bilder/logo.svg" height="26" align="top"> Schnellstart
 
 ```console
 # Alles laden
@@ -35,11 +35,11 @@ Er führt in einer Sitzung von der Idee über Brief, Architektur und Plan bis zu
 
 Ohne Skript: `git clone https://github.com/atshv/Projekt-Buch-.git` und den Ordner `projekt-starter/` kopieren.
 
-## <img src="bilder/logo-gruen.svg" height="26" align="top"> Dateien
+## <img src="bilder/logo.svg" height="26" align="top"> Dateien
 
 <p align="center"><img src="bilder/struktur-v2.svg" alt="Struktur"></p>
 
-## <img src="bilder/logo-gruen.svg" height="26" align="top"> Rollen
+## <img src="bilder/logo.svg" height="26" align="top"> Rollen
 
 | Rolle | Datei | Schreibt |
 |:--|:--|:--|
@@ -70,14 +70,14 @@ Alle Skills haben dasselbe Gerüst: Kurzstart, Benötigte Eingaben, Ablauf, Ausg
 
 Welcher Skill wann passt: `toolkit/skills/SKILLMAP.md`.
 
-## <img src="bilder/logo-gruen.svg" height="26" align="top"> Skill anlegen und prüfen
+## <img src="bilder/logo.svg" height="26" align="top"> Skill anlegen und prüfen
 
 ```console
 bin/new-skill bericht-schreiben    # Gerüst anlegen
 bin/check-skills                   # alle Skills prüfen, Abgleich mit SKILLMAP.md
 ```
 
-## <img src="bilder/logo-gruen.svg" height="26" align="top"> Beim Bauen prüfen
+## <img src="bilder/logo.svg" height="26" align="top"> Beim Bauen prüfen
 
 ```console
 bin/check-plan                     # Plan vollständig? Abnahme, Abhängigkeiten, Umfang der Architektur
@@ -86,11 +86,11 @@ bin/record-test T05 -p A1,A2 -- npm test   # Testlauf als Nachweis ablegen (Arbe
 bin/check-done T05                 # jede Abnahme der Karte durch einen gültigen Nachweis belegt?
 ```
 
-## <img src="bilder/logo-gruen.svg" height="26" align="top"> Grundsätze
+## <img src="bilder/logo.svg" height="26" align="top"> Grundsätze
 
 <p align="center"><img src="bilder/grundsaetze.svg" alt="Grundsätze"></p>
 
-## <img src="bilder/logo-gruen.svg" height="26" align="top"> Das Buch
+## <img src="bilder/logo.svg" height="26" align="top"> Das Buch
 
 Das ganze Buch als Webseite, mit Kopieren-Knopf an jeder Datei:
 
