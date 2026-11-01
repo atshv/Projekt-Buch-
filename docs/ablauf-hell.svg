@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="250" viewBox="0 0 700 250">
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1f4e8c"/></marker></defs>
+<rect x="1.0" y="70" width="138" height="62" fill="#eaf1fa" stroke="#1f4e8c" stroke-width="1.5"/>
+<text x="70.0" y="96" text-anchor="middle" font-family="Poppins,Segoe UI,Arial,sans-serif" font-weight="500" font-size="15" fill="#1f4e8c">1  Brief</text>
+<text x="70.0" y="118" text-anchor="middle" font-family="Carlito,Calibri,Arial,sans-serif" font-size="14" fill="#1f4e8c">Was?</text>
+<text x="70.0" y="152" text-anchor="middle" font-family="JetBrains Mono,DejaVu Sans Mono,monospace" font-size="10.5" fill="#6b7280">BRIEF.md</text>
+<line x1="144.0" y1="101.0" x2="180.66666666666666" y2="101.0" stroke="#1f4e8c" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="187.66666666666666" y="70" width="138" height="62" fill="#eaf1fa" stroke="#1f4e8c" stroke-width="1.5"/>
+<text x="256.66666666666663" y="96" text-anchor="middle" font-family="Poppins,Segoe UI,Arial,sans-serif" font-weight="500" font-size="15" fill="#1f4e8c">2  Architect</text>
+<text x="256.66666666666663" y="118" text-anchor="middle" font-family="Carlito,Calibri,Arial,sans-serif" font-size="14" fill="#1f4e8c">Wie?</text>
+<text x="256.66666666666663" y="152" text-anchor="middle" font-family="JetBrains Mono,DejaVu Sans Mono,monospace" font-size="10.5" fill="#6b7280">ARCHITECTURE · PLAN</text>
+<line x1="330.66666666666663" y1="101.0" x2="367.3333333333333" y2="101.0" stroke="#1f4e8c" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="374.3333333333333" y="70" width="138" height="62" fill="#1f4e8c" stroke="#1f4e8c" stroke-width="1.5"/>
+<text x="443.3333333333333" y="96" text-anchor="middle" font-family="Poppins,Segoe UI,Arial,sans-serif" font-weight="500" font-size="15" fill="#fff">3  Agent</text>
+<text x="443.3333333333333" y="118" text-anchor="middle" font-family="Carlito,Calibri,Arial,sans-serif" font-size="14" fill="#fff">Bauen</text>
+<text x="443.3333333333333" y="152" text-anchor="middle" font-family="JetBrains Mono,DejaVu Sans Mono,monospace" font-size="10.5" fill="#6b7280">Code · HANDOFF</text>
+<line x1="517.3333333333333" y1="101.0" x2="553.9999999999999" y2="101.0" stroke="#1f4e8c" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="561.0" y="70" width="138" height="62" fill="#eaf1fa" stroke="#1f4e8c" stroke-width="1.5"/>
+<text x="630.0" y="96" text-anchor="middle" font-family="Poppins,Segoe UI,Arial,sans-serif" font-weight="500" font-size="15" fill="#1f4e8c">4  Reviewer</text>
+<text x="630.0" y="118" text-anchor="middle" font-family="Carlito,Calibri,Arial,sans-serif" font-size="14" fill="#1f4e8c">Prüfen</text>
+<text x="630.0" y="152" text-anchor="middle" font-family="JetBrains Mono,DejaVu Sans Mono,monospace" font-size="10.5" fill="#6b7280">REVIEW.md</text>
+<path d="M630.0 70 V44 H443.3333333333333 V66" fill="none" stroke="#a15c00" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#ar)"/>
+<text x="536.6666666666666" y="38" text-anchor="middle" font-family="Carlito,Calibri,Arial,sans-serif" font-style="italic" font-size="14" fill="#a15c00">Funde werden neue Karten</text>
+<rect x="1" y="188" width="698" height="58" fill="#f5f6f8" stroke="#d5d9df"/>
+<text x="16" y="212" font-family="Poppins,Segoe UI,Arial,sans-serif" font-weight="500" font-size="13" fill="#1b1f24">Immer geladen:  AGENTS.md</text><text x="290" y="212" font-family="Carlito,Calibri,Arial,sans-serif" font-size="14" fill="#6b7280">Grundregeln, Befehle, Leseordnung.</text>
+<text x="16" y="234" font-family="Poppins,Segoe UI,Arial,sans-serif" font-weight="500" font-size="13" fill="#1b1f24">Bei Bedarf:  skills/…/SKILL.md</text><text x="290" y="234" font-family="Carlito,Calibri,Arial,sans-serif" font-size="14" fill="#6b7280">Wiederkehrende Abläufe, laut SKILLMAP.</text>
+</svg>
