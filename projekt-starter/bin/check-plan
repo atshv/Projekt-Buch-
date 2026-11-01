@@ -1,0 +1,137 @@
+#!/usr/bin/env bash
+# Prüft docs/plan/PLAN.md auf Vollständigkeit und Ordnung.  Aufruf: bin/check-plan
+# Geprüft wird: Felder jeder Karte, Abnahme als "Wenn ..., dann ...", Abhängigkeiten, Platzhalter,
+# geschützte Pfade, Statuswerte und der Umfang von ARCHITECTURE.md (Warnung ab 600, Fehler ab 800 Wörter).
+# Ergebnis: 0 = keine Fehler (Warnungen möglich), 1 = Fehler gefunden, 2 = Plan fehlt.
+set -uo pipefail
+cd "$(dirname "$0")/.."
+
+if [ "${1:-}" = "--help" ] || [ "${1:-}" = "-h" ]; then
+  sed -n '2,5p' "$0" | sed 's/^# \{0,1\}//'; exit 0
+fi
+
+PLAN="docs/plan/PLAN.md"
+[ -f "$PLAN" ] || { echo "Fehlt: $PLAN"; exit 2; }
+
+GESCHUETZT=""
+if [ -f AGENTS.md ]; then
+  GESCHUETZT=$(grep -m1 '^- Geschützte Pfade' AGENTS.md | sed 's/^[^:]*:[[:space:]]*//' | tr -d '`' || true)
+fi
+
+ERG=$(awk -v prot="$GESCHUETZT" '
+function trim(s) { gsub(/^[ \t]+|[ \t]+$/, "", s); return s }
+function err(m) { print "FEHLER " id ": " m }
+function warn(m) { print "Warnung " id ": " m }
+function start(   line) {
+  line = $0; sub(/^### /, "", line)
+  if (match(line, /^T[0-9]+[a-z]?:/)) {
+    id = substr(line, 1, RLENGTH - 1); titel = trim(substr(line, RLENGTH + 1))
+    if (id in gesehen || id in offen) err("ID kommt mehrfach vor")
+    offen[id] = 1
+  } else { id = "?"; titel = ""; err("Überschrift hat keine gültige Karten-ID (erwartet \"### T05: Titel\"): " $0) }
+  delete f; cur = ""; incard = 1; n++
+}
+function finish(   k, t, s, i, m, parts, e, a, zeilen, nz, ids, nA, bad, schreib, neu) {
+  if (!incard) return
+  incard = 0
+  if (titel == "" && id != "?") err("Titel fehlt")
+  neu = ("Schreiben" in f)
+  if (neu) {
+    if (!("Lesen" in f) || trim(f["Lesen"]) == "") err("Feld \"Lesen\" fehlt (welche Dateien der Agent vorher liest)")
+    if (!("Nicht Teil der Karte" in f) || trim(f["Nicht Teil der Karte"]) == "") err("Feld \"Nicht Teil der Karte\" fehlt")
+    if (!("Abnahme" in f)) err("Feld \"Abnahme\" fehlt")
+    if (!("Prüfungen" in f) || trim(f["Prüfungen"]) == "") warn("Feld \"Prüfungen\" fehlt, bin/check-done verlangt dann nur irgendeinen Nachweis")
+  } else {
+    if ("Betrifft" in f) warn("altes Feld \"Betrifft\", bitte auf \"Schreiben\" und \"Lesen\" umstellen")
+    else err("Feld \"Schreiben\" fehlt (Dateien, die geändert werden dürfen)")
+    if ("Test" in f) { warn("altes Feld \"Test\", bitte auf nummerierte \"Abnahme\" umstellen"); if (f["Test"] !~ /Fertig, wenn/) warn("Test beginnt nicht mit \"Fertig, wenn\"") }
+    else if (!("Abnahme" in f)) err("Feld \"Abnahme\" fehlt")
+  }
+  if (!("Bezug" in f) || trim(f["Bezug"]) == "") err("Feld \"Bezug\" fehlt")
+  if (!("Abhängig von" in f) || trim(f["Abhängig von"]) == "") err("Feld \"Abhängig von\" fehlt (\"-\" wenn nichts)")
+  if (!("Beschreibung" in f) || trim(f["Beschreibung"]) == "") err("Feld \"Beschreibung\" fehlt")
+  else { nz = split(f["Beschreibung"], zeilen, "\n"); if (nz > 5) warn("Beschreibung hat " nz " Zeilen (höchstens 5)") }
+  if (!("Status" in f)) err("Feld \"Status\" fehlt")
+  else {
+    s = trim(f["Status"])
+    if (s !~ /^(offen|in Arbeit|erledigt|blockiert)/) err("Status \"" s "\" ist ungültig (offen | in Arbeit | erledigt | blockiert)")
+  }
+  # Platzhalter
+  if (f["Prüfungen"] ~ /`\[[^`]*\]`/) err("Feld \"Prüfungen\" enthält noch einen Platzhalter")
+  for (k in f) {
+    t = f[k]; gsub(/`[^`]*`/, "", t)
+    if (t ~ /\[[^]]*\]/) err("Feld \"" k "\" enthält noch einen Platzhalter in eckigen Klammern")
+  }
+  # Abnahme
+  if ("Abnahme" in f) {
+    nA = 0; delete ids
+    m = split(f["Abnahme"], zeilen, "\n")
+    for (i = 1; i <= m; i++) {
+      a = trim(zeilen[i]); sub(/^- /, "", a)
+      if (a ~ /^A[0-9]+:/) {
+        nA++; s = a; sub(/:.*/, "", s)
+        if (s in ids) err("Abnahme " s " kommt doppelt vor"); ids[s] = 1
+        t = tolower(a)
+        if (t !~ /wenn/ || t !~ /dann/) err("Abnahme " s " hat nicht die Form \"Wenn ..., dann ...\"")
+      }
+    }
+    if (nA == 0) err("Abnahme hat keinen nummerierten Punkt (A1: Wenn ..., dann ...)")
+  }
+  # Dateien unter Schreiben
+  schreib = ("Schreiben" in f) ? f["Schreiben"] : (("Betrifft" in f) ? f["Betrifft"] : "")
+  if (schreib != "") {
+    gsub(/`/, "", schreib); gsub(/\n/, ",", schreib)
+    m = split(schreib, parts, /[,;]/); nz = 0
+    for (i = 1; i <= m; i++) {
+      e = trim(parts[i]); sub(/\.$/, "", e); sub(/^\.\//, "", e)
+      if (e == "" || e == "-") continue
+      nz++
+      for (k = 1; k <= np; k++) {
+        if (e == pp[k] || (pp[k] ~ /\/$/ && index(e, pp[k]) == 1)) err("\"" e "\" ist ein geschützter Pfad (AGENTS.md) und darf nicht unter Schreiben stehen")
+      }
+    }
+    if (nz == 0) err("Schreiben nennt keine Datei")
+    if (nz > 5) warn("Schreiben nennt " nz " Einträge (höchstens ca. 5, sonst Karte teilen)")
+  }
+  # Abhängigkeiten
+  if ("Abhängig von" in f) {
+    s = f["Abhängig von"]; gsub(/`/, "", s)
+    m = split(s, parts, /[ ,;]+/)
+    for (i = 1; i <= m; i++) {
+      e = parts[i]; if (e == "" || e == "-") continue
+      if (e !~ /^T[0-9]+[a-z]?$/) err("Abhängigkeit \"" e "\" ist keine Karten-ID")
+      else if (e == id) err("Karte hängt von sich selbst ab")
+      else if (!(e in gesehen)) err("Abhängigkeit " e " ist unbekannt oder steht erst weiter unten (Vorwärts- oder Kreisabhängigkeit)")
+    }
+  }
+  gesehen[id] = 1
+}
+BEGIN { np = split(prot, pp0, /[ ,;]+/); np2 = 0; for (i = 1; i <= np; i++) if (pp0[i] != "") { np2++; pp[np2] = pp0[i] } ; np = np2 }
+/^### / { finish(); start(); next }
+/^## /  { finish(); next }
+incard && /^- [^:]+:/ { name = $0; sub(/^- /, "", name); sub(/:.*/, "", name); v = $0; sub(/^- [^:]+:[ \t]*/, "", v); f[name] = v; cur = name; next }
+incard && /^[ \t]+[^ \t]/ && cur != "" { f[cur] = f[cur] "\n" trim($0); next }
+END { finish(); if (n == 0) print "FEHLER -: Keine Karte gefunden (Überschriften der Form \"### T01: Titel\")" }
+' "$PLAN")
+
+ARCH="docs/architecture/ARCHITECTURE.md"
+if [ -f "$ARCH" ]; then
+  W=$(wc -w < "$ARCH" | tr -d ' ')
+  if [ "$W" -gt 800 ]; then
+    ERG="${ERG:+$ERG
+}FEHLER ARCHITECTURE.md: $W Wörter (hart höchstens 800). Details nach docs/architecture/<thema>.md auslagern."
+  elif [ "$W" -gt 600 ]; then
+    ERG="${ERG:+$ERG
+}Warnung ARCHITECTURE.md: $W Wörter (Ziel höchstens 600). Details nach docs/architecture/<thema>.md auslagern."
+  fi
+fi
+
+[ -z "$ERG" ] || printf '%s\n' "$ERG"
+N_KARTEN=$(grep -c '^### ' "$PLAN" || true)
+N_ERR=$(printf '%s\n' "$ERG" | grep -c '^FEHLER' || true)
+N_WARN=$(printf '%s\n' "$ERG" | grep -c '^Warnung' || true)
+if [ "$N_ERR" -gt 0 ]; then
+  echo "NICHT IN ORDNUNG: $N_ERR Fehler, $N_WARN Warnungen bei $N_KARTEN Karten."; exit 1
+fi
+echo "OK: $N_KARTEN Karten, $N_WARN Warnungen."
+exit 0

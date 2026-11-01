@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+# Prüft, ob eine Karte belegt fertig ist.  Aufruf: bin/check-done <Karten-ID>
+# Verlangt gültige Nachweise (bin/record-test) für jeden Abnahmepunkt (A1, A2 ...) und jeden Befehl
+# unter "Prüfungen". Gültig = bestanden, Prüfsumme stimmt, Arbeitsdateien seit dem Lauf unverändert.
+# Ergebnis: 0 = FERTIG, 1 = NICHT FERTIG, 2 = Eingabe- oder Planfehler.
+set -uo pipefail
+cd "$(dirname "$0")/.."
+
+ID="${1:-}"
+if [ -z "$ID" ] || [ "$ID" = "--help" ] || [ "$ID" = "-h" ]; then
+  sed -n '2,5p' "$0" | sed 's/^# \{0,1\}//'; exit 0
+fi
+echo "$ID" | grep -Eq '^T[0-9]+[a-z]?$' || { echo "Ungültige Karten-ID: $ID (erwartet z. B. T07 oder T07a)"; exit 2; }
+git rev-parse --git-dir >/dev/null 2>&1 || { echo "Kein Git-Projekt. Zuerst: git init"; exit 2; }
+PLAN="docs/plan/PLAN.md"
+[ -f "$PLAN" ] || { echo "Fehlt: $PLAN"; exit 2; }
+
+hashen() {
+  if command -v sha256sum >/dev/null 2>&1; then sha256sum | cut -c1-32
+  elif command -v shasum >/dev/null 2>&1; then shasum -a 256 | cut -c1-32
+  else cksum | tr -d ' '; fi
+}
+stand_hash() {
+  git ls-files -c -o --exclude-standard 2>/dev/null | sort -u | while IFS= read -r f; do
+    case "$f" in docs/handoff/*|docs/plan/PLAN.md) continue ;; esac
+    [ -f "$f" ] || continue
+    printf '%s %s\n' "$f" "$(hashen < "$f")"
+  done | hashen
+}
+
+KARTE=$(awk -v id="$ID" '
+  $0 ~ "^### " id ":" { drin = 1; next }
+  drin && /^##/ { exit }
+  drin { print }
+' "$PLAN")
+[ -n "$KARTE" ] || { echo "Karte $ID steht nicht in $PLAN"; exit 2; }
+
+# Abnahmepunkte (A1 ...) und Prüfbefehle der Karte
+ABNAHME=$(printf '%s\n' "$KARTE" | awk '
+  /^- Abnahme:/ { feld = 1; next }
+  feld && /^[ \t]+/ { if (match($0, /A[0-9]+:/)) print substr($0, RSTART, RLENGTH - 1); next }
+  { feld = 0 }
+')
+PRUEFUNGEN=$(printf '%s\n' "$KARTE" | awk '
+  /^- Prüfungen:/ { sub(/^- Prüfungen:[ \t]*/, ""); feld = 1; print; next }
+  feld && /^[ \t]+[^ \t-]/ { print; next }
+  { feld = 0 }
+' | grep -o '`[^`]*`' | tr -d '`' || true)
+
+JETZT=$(stand_hash)
+DECKT_A=" "
+DECKT_B=""
+N_GUELTIG=0
+N_ALT=0
+N_KAPUTT=0
+for d in docs/handoff/nachweise/"$ID"-[0-9]*.md; do
+  [ -f "$d" ] || continue
+  SUMME=$(grep '^Prüfsumme: ' "$d" | tail -n 1 | sed 's/^Prüfsumme: //')
+  REAL=$(sed '$d' "$d" | hashen)
+  if [ -z "$SUMME" ] || [ "$SUMME" != "$REAL" ]; then
+    echo "Nachweis beschädigt oder nachträglich verändert (ignoriert): $d"; N_KAPUTT=$((N_KAPUTT + 1)); continue
+  fi
+  grep -q '^- Ergebnis: bestanden' "$d" || continue
+  STAND=$(grep '^- Arbeitsstand: ' "$d" | head -n 1 | sed 's/^- Arbeitsstand: //')
+  if [ "$STAND" != "$JETZT" ]; then N_ALT=$((N_ALT + 1)); continue; fi
+  N_GUELTIG=$((N_GUELTIG + 1))
+  PUNKTE=$(grep '^- Abnahme: ' "$d" | head -n 1 | sed 's/^- Abnahme: //' | tr -d ' ' | tr ',' ' ')
+  for p in $PUNKTE; do DECKT_A="$DECKT_A$p "; done
+  BEFEHL=$(grep '^- Befehl: ' "$d" | head -n 1 | sed 's/^- Befehl: `//; s/`$//')
+  DECKT_B="$DECKT_B
+$BEFEHL"
+done
+
+FEHLT=0
+echo "Karte $ID"
+for a in $ABNAHME; do
+  case "$DECKT_A" in *" $a "*) echo "  ok       $a belegt" ;; *) echo "  FEHLT    $a ist durch keinen gültigen Nachweis belegt"; FEHLT=$((FEHLT + 1)) ;; esac
+done
+while IFS= read -r b; do
+  [ -n "$b" ] || continue
+  if printf '%s\n' "$DECKT_B" | grep -Fxq -- "$b"; then echo "  ok       Prüfung \`$b\` belegt"
+  else echo "  FEHLT    Prüfung \`$b\` ist durch keinen gültigen Nachweis belegt"; FEHLT=$((FEHLT + 1)); fi
+done <<< "$PRUEFUNGEN"
+if [ -z "$ABNAHME" ] && [ -z "$PRUEFUNGEN" ] && [ $N_GUELTIG -eq 0 ]; then
+  echo "  FEHLT    kein gültiger Nachweis (Karte hat keine Abnahme-IDs und keine Prüfungen)"; FEHLT=$((FEHLT + 1))
+fi
+[ $N_ALT -eq 0 ] || echo "  Hinweis  $N_ALT bestandene Nachweise sind veraltet (Dateien wurden seit dem Lauf geändert). Test neu laufen lassen."
+[ $N_KAPUTT -eq 0 ] || echo "  Hinweis  $N_KAPUTT Nachweise sind beschädigt."
+if [ $FEHLT -eq 0 ]; then echo "FERTIG: $ID ist belegt."; exit 0; fi
+echo "NICHT FERTIG: $FEHLT Punkte ohne gültigen Nachweis. Beleg mit: bin/record-test $ID -p A1 -- <Befehl>"
+exit 1

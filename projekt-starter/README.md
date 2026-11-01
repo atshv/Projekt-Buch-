@@ -8,7 +8,7 @@ Ein leeres, wiederverwendbares Gerüst für Projekte mit KI-Unterstützung.
 3. Starte eine Sitzung mit dem Prompt "1. Brief erstellen" aus START-PROMPTS.md. Oder nimm
    Prompt 16 und lass dich in einer Sitzung von der Idee bis zur Einrichtung führen.
 4. Danach: Architect (Prompt 2), dann Agent (Prompt 3) Karte für Karte, dazwischen Reviewer.
-   Nach Prompt 16 geht es direkt mit dem Agent (Prompt 3) weiter.
+   Nach Prompt 16 folgt Prompt 17 (Kaltstart-Test), dann geht es mit dem Agent (Prompt 3) weiter.
 5. Brauchst du eine wiederkehrende Fähigkeit: Prompt 5 (Skill erstellen).
 
 ## Inhalt

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Prüft, ob geänderte Dateien zur Aufgabenkarte passen.  Aufruf: bin/check-scope <Karten-ID> [Basis]
-# Erlaubt: Dateien aus "Betrifft" der Karte (docs/plan/PLAN.md), dazu docs/handoff/ und PLAN.md.
+# Erlaubt: Dateien aus "Schreiben" der Karte (alt: "Betrifft"), dazu docs/handoff/ und PLAN.md.
+# Geschützte Pfade aus AGENTS.md (Zeile "Geschützte Pfade") sind nie erlaubt, auch nicht per Karte.
 # Basis: Zweig, ab dem verglichen wird. Standard: main (sonst master, sonst HEAD = nur Ungesichertes).
 # Ergebnis: 0 = alles passt, 1 = Dateien ausserhalb der Karte, 2 = Eingabe- oder Planfehler.
 set -uo pipefail
@@ -8,7 +9,7 @@ cd "$(dirname "$0")/.."
 
 ID="${1:-}"
 if [ -z "$ID" ] || [ "$ID" = "--help" ] || [ "$ID" = "-h" ]; then
-  sed -n '2,5p' "$0" | sed 's/^# \{0,1\}//'; exit 0
+  sed -n '2,6p' "$0" | sed 's/^# \{0,1\}//'; exit 0
 fi
 echo "$ID" | grep -Eq '^T[0-9]+[a-z]?$' || { echo "Ungültige Karten-ID: $ID (erwartet z. B. T07 oder T07a)"; exit 2; }
 git rev-parse --git-dir >/dev/null 2>&1 || { echo "Kein Git-Projekt. Zuerst: git init"; exit 2; }
@@ -25,13 +26,13 @@ KARTE=$(awk -v id="$ID" '
 ' "$PLAN")
 [ -n "$KARTE" ] || { echo "Karte $ID steht nicht in $PLAN"; exit 2; }
 
-# Zeile "- Betrifft:" samt eingerückten Folgezeilen
+# Zeile "- Schreiben:" (alt "- Betrifft:") samt eingerückten Folgezeilen
 BETRIFFT=$(printf '%s\n' "$KARTE" | awk '
-  /^- Betrifft:/ { sub(/^- Betrifft:[ \t]*/, ""); feld = 1; print; next }
+  /^- (Schreiben|Betrifft):/ { sub(/^- (Schreiben|Betrifft):[ \t]*/, ""); feld = 1; print; next }
   feld && /^[ \t]+[^ \t-]/ { print; next }
   { feld = 0 }
 ')
-[ -n "$BETRIFFT" ] || { echo "Karte $ID hat keine Zeile \"Betrifft\". Der Architect ergänzt sie (Skill plan-cards)."; exit 2; }
+[ -n "$BETRIFFT" ] || { echo "Karte $ID hat keine Zeile \"Schreiben\". Der Architect ergänzt sie (Skill plan-cards)."; exit 2; }
 
 EINTRAEGE=()
 LISTE=$(printf '%s' "$BETRIFFT" | tr -d '`[]' | tr ',;' '\n\n')
@@ -40,9 +41,20 @@ while IFS= read -r z; do
   z="${z#./}"
   if [ -n "$z" ] && [ "$z" != "-" ]; then EINTRAEGE+=("$z"); fi
 done <<< "$LISTE"
-[ ${#EINTRAEGE[@]} -gt 0 ] || { echo "Karte $ID nennt keine Dateien unter \"Betrifft\"."; exit 2; }
+[ ${#EINTRAEGE[@]} -gt 0 ] || { echo "Karte $ID nennt keine Dateien unter \"Schreiben\"."; exit 2; }
 
 IMMER=("docs/handoff/" "docs/plan/PLAN.md")
+
+# Geschützte Pfade aus AGENTS.md
+GESCHUETZT=()
+if [ -f AGENTS.md ]; then
+  ZEILE=$(grep -m1 '^- Geschützte Pfade' AGENTS.md | sed 's/^[^:]*:[[:space:]]*//' | tr -d '`' | tr ',;' '\n\n' || true)
+  while IFS= read -r z; do
+    z=$(printf '%s' "$z" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//; s/\.$//')
+    z="${z#./}"
+    if [ -n "$z" ]; then GESCHUETZT+=("$z"); fi
+  done <<< "$ZEILE"
+fi
 
 # Vergleichsbasis bestimmen
 BASIS="${2:-}"
@@ -65,12 +77,20 @@ passt() { # $1 = Datei, $2 = Eintrag
 }
 
 AUSSERHALB=()
+VERBOTEN=()
 N_OK=0
 N_ALLE=0
 while IFS= read -r f; do
   [ -n "$f" ] || continue
   N_ALLE=$((N_ALLE + 1))
   ok=0
+  gesperrt=0
+  if [ ${#GESCHUETZT[@]} -gt 0 ]; then
+    for g in "${GESCHUETZT[@]}"; do
+      if passt "$f" "$g"; then gesperrt=1; break; fi
+    done
+  fi
+  if [ $gesperrt -eq 1 ]; then VERBOTEN+=("$f"); continue; fi
   for e in "${IMMER[@]}" "${EINTRAEGE[@]}"; do
     if passt "$f" "$e"; then ok=1; break; fi
   done
@@ -91,9 +111,15 @@ for e in "${EINTRAEGE[@]}"; do
   [ $gefunden -eq 1 ] || echo "Hinweis: \"$e\" steht in der Karte, wurde aber nicht geändert."
 done
 
-if [ ${#AUSSERHALB[@]} -eq 0 ]; then
+if [ ${#VERBOTEN[@]} -gt 0 ]; then
+  echo "GESCHÜTZT (${#VERBOTEN[@]}): diese Pfade darf kein Agent ändern (AGENTS.md):"
+  for f in "${VERBOTEN[@]}"; do echo "  $f"; done
+  echo "Nimm die Änderung zurück. Brauchst du sie wirklich, frage den Menschen."
+fi
+if [ ${#AUSSERHALB[@]} -eq 0 ] && [ ${#VERBOTEN[@]} -eq 0 ]; then
   echo "OK: alle $N_ALLE geänderten Dateien gehören zur Karte."; exit 0
 fi
+[ ${#AUSSERHALB[@]} -gt 0 ] || exit 1
 echo "AUSSERHALB DER KARTE (${#AUSSERHALB[@]} von $N_ALLE):"
 for f in "${AUSSERHALB[@]}"; do echo "  $f"; done
 echo "Nimm diese Änderungen zurück oder nenne den Grund in docs/handoff/HANDOFF.md."

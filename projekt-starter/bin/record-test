@@ -1,19 +1,39 @@
 #!/usr/bin/env bash
-# Führt einen Befehl aus und legt das Ergebnis als Nachweis ab.  Aufruf: bin/record-test <Karten-ID> -- <Befehl>
-# Beispiel: bin/record-test T05 -- npm test       Ablage: docs/handoff/nachweise/<ID>-JJJJMMTT-HHMMSS.md
-# Die Datei hat immer denselben Aufbau, wird nie überschrieben und hält auch Fehlschläge fest.
+# Führt einen Befehl aus und legt das Ergebnis als Nachweis ab.  Aufruf: bin/record-test <Karten-ID> [-p A1,A2] -- <Befehl>
+# Beispiel: bin/record-test T05 -p A1,A2 -- npm test   Ablage: docs/handoff/nachweise/<ID>-JJJJMMTT-HHMMSS.md
+# -p nennt die Abnahmepunkte der Karte, die der Lauf belegt. Der Nachweis enthält Arbeitsstand und Prüfsumme,
+# damit bin/check-done erkennt, ob er noch zum Code passt. Nie überschrieben, Fehlschläge werden festgehalten.
 # Der Exit-Code des Befehls wird durchgereicht (0 = bestanden).
 set -uo pipefail
 cd "$(dirname "$0")/.."
 
 ID="${1:-}"
 if [ -z "$ID" ] || [ "$ID" = "--help" ] || [ "$ID" = "-h" ]; then
-  sed -n '2,5p' "$0" | sed 's/^# \{0,1\}//'; exit 0
+  sed -n '2,6p' "$0" | sed 's/^# \{0,1\}//'; exit 0
 fi
 shift
+PUNKTE="-"
+if [ "${1:-}" = "-p" ]; then
+  PUNKTE=$(printf '%s' "${2:-}" | tr -d ' ')
+  echo "$PUNKTE" | grep -Eq '^A[0-9]+(,A[0-9]+)*$' || { echo "Ungültige Abnahmepunkte: ${2:-} (erwartet z. B. A1,A2)"; exit 2; }
+  shift 2
+fi
 if [ "${1:-}" = "--" ]; then shift; fi
 [ $# -gt 0 ] || { echo "Es fehlt der Befehl. Aufruf: bin/record-test <Karten-ID> -- <Befehl>"; exit 2; }
 echo "$ID" | grep -Eq '^[A-Za-z0-9][A-Za-z0-9._-]*$' || { echo "Ungültige Kennung: $ID (erlaubt: Buchstaben, Ziffern, . _ -)"; exit 2; }
+
+hashen() { # Prüfsumme von stdin
+  if command -v sha256sum >/dev/null 2>&1; then sha256sum | cut -c1-32
+  elif command -v shasum >/dev/null 2>&1; then shasum -a 256 | cut -c1-32
+  else cksum | tr -d ' '; fi
+}
+stand_hash() { # Fingerabdruck der Arbeitsdateien, ohne docs/handoff/ und PLAN.md
+  git ls-files -c -o --exclude-standard 2>/dev/null | sort -u | while IFS= read -r f; do
+    case "$f" in docs/handoff/*|docs/plan/PLAN.md) continue ;; esac
+    [ -f "$f" ] || continue
+    printf '%s %s\n' "$f" "$(hashen < "$f")"
+  done | hashen
+}
 
 ZIEL="docs/handoff/nachweise"
 mkdir -p "$ZIEL"
@@ -43,7 +63,8 @@ if [ -f docs/plan/PLAN.md ]; then
     drin && /^##/ { exit }
     drin && /^- Test:/ { sub(/^- Test:[ \t]*/, ""); print; exit }
   ' docs/plan/PLAN.md)
-  [ -z "$T" ] || KARTENTEST="$T"
+  if [ -n "$T" ]; then KARTENTEST="$T"
+  elif grep -q "^### $ID:" docs/plan/PLAN.md; then KARTENTEST="siehe Abnahme der Karte $ID"; fi
 fi
 
 # Ausgabe säubern (Farbcodes, Zeilenenden) und auf die letzten 100 Zeilen kürzen
@@ -56,6 +77,8 @@ if [ "$N_ZEILEN" -gt 100 ]; then
 else
   HINWEIS="vollständig: $N_ZEILEN Zeilen"
 fi
+
+if git rev-parse --git-dir >/dev/null 2>&1; then ARBEITSSTAND=$(stand_hash); else ARBEITSSTAND="kein-git"; fi
 
 DATEI="$ZIEL/$ID-$STEMPEL.md"
 N=2
@@ -70,6 +93,8 @@ while [ -e "$DATEI" ]; do DATEI="$ZIEL/$ID-$STEMPEL-$N.md"; N=$((N + 1)); done
   echo "- Ergebnis: $ERGEBNIS (Exit-Code $CODE)"
   echo "- Stand: $STAND"
   echo "- Test der Karte: $KARTENTEST"
+  echo "- Abnahme: ${PUNKTE//,/, }"
+  echo "- Arbeitsstand: $ARBEITSSTAND"
   echo
   echo "## Ausgabe ($HINWEIS)"
   echo
@@ -77,6 +102,7 @@ while [ -e "$DATEI" ]; do DATEI="$ZIEL/$ID-$STEMPEL-$N.md"; N=$((N + 1)); done
   tail -n 100 "$SAUBER"
   echo '````'
 } > "$DATEI"
+echo "Prüfsumme: $(hashen < "$DATEI")" >> "$DATEI"
 rm -f "$SAUBER"
 
 echo

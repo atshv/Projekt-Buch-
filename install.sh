@@ -27,6 +27,8 @@ AGENTS.md
 README.md
 START-PROMPTS.md
 bin/README.md
+bin/check-done
+bin/check-plan
 bin/check-scope
 bin/check-skills
 bin/new-skill

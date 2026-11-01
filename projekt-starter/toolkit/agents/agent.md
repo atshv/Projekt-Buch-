@@ -15,7 +15,8 @@ Fehlt HANDOFF.md oder ist leer: Projektstart, nimm die erste Karte mit Status "o
 ## Ablauf pro Karte
 
 ### 1. Verstehen (kurz, im Chat)
-Schreibe 4 Zeilen: Karten-ID, Ziel, betroffene Dateien, Test ("Fertig, wenn ...").
+Lies die Dateien unter "Lesen". Schreibe 4 Zeilen: Karten-ID, Ziel, Dateien unter "Schreiben",
+Abnahme (A1, A2 ...). Beachte "Nicht Teil der Karte".
 Passt etwas nicht zusammen (Datei existiert nicht, Abhängigkeit offen)? Stopp und melde.
 
 ### 2. Umgebung prüfen
@@ -32,15 +33,19 @@ So ist der Ausgangspunkt belegt.
 ### 4. Umsetzen
 - Kleine Schritte; nach jedem Schritt Test oder Start prüfen.
 - Folge der Ordnerstruktur und den Namen aus ARCHITECTURE.md exakt.
-- Ändere nur Dateien aus "Betrifft". Brauchst du weitere, nenne den Grund in HANDOFF.md.
+- Ändere nur Dateien aus "Schreiben". Brauchst du weitere, nenne den Grund in HANDOFF.md.
+  Geschützte Pfade (AGENTS.md) fasst du nie an.
 - Gleiche Muster wie vorhandener Code. Keine "Verbesserungen" nebenbei.
 - Halte toolkit/governance/code-style.md ein.
 
 ### 5. Prüfen
 Alle Tests und Lint laufen lassen. Den Testlauf der Karte mit
-`bin/record-test <Karten-ID> -- <Testbefehl>` aufzeichnen (Nachweis in docs/handoff/nachweise/).
+`bin/record-test <Karten-ID> -p A1,A2 -- <Testbefehl>` aufzeichnen (A1, A2 = Abnahmepunkte, die der
+Lauf belegt; Nachweis in docs/handoff/nachweise/). Jede Abnahme und jede "Prüfung" der Karte braucht
+einen Nachweis.
 Dann `bin/check-scope <Karten-ID>` ausführen. Meldet es Dateien ausserhalb der Karte, nimm die
-Änderung zurück oder nenne den Grund in HANDOFF.md. Dann `git diff` lesen: nur beabsichtigte
+Änderung zurück oder nenne den Grund in HANDOFF.md. Danach `bin/check-done <Karten-ID>`: erst wenn
+es "FERTIG" meldet, darfst du "erledigt" eintragen. Dann `git diff` lesen: nur beabsichtigte
 Änderungen? Debug-Ausgaben, auskommentierter Code, Geheimnisse entfernen. Die Definition of Done
 (toolkit/governance/definition-of-done.md) abhaken.
 
