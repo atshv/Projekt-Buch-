@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Projekt-Starter laden.
 #   Alles:          curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s mein-projekt
-#   Eine Datei:     curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s -- --datei agents/architect.md
-#   Mehrere Dateien: ... | bash -s -- --datei AGENTS.md --datei agents/agent.md
+#   Eine Datei:     curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s -- --datei toolkit/agents/architect.md
+#   Mehrere Dateien: ... | bash -s -- --datei AGENTS.md --datei toolkit/agents/agent.md
 #   Liste:          ... | bash -s -- --liste
 set -euo pipefail
 
@@ -26,60 +26,100 @@ while [ $# -gt 0 ]; do
 AGENTS.md
 README.md
 START-PROMPTS.md
-agents/agent.md
-agents/architect.md
-agents/brief-creator.md
-agents/reviewer.md
-agents/ui-judge.md
 bin/README.md
 bin/check-skills
 bin/new-skill
 brand/BRAND.md
-docs/ARCHITECTURE.md
-docs/BRIEF.md
-docs/DECISIONS.md
-docs/DESIGN.md
 docs/GLOSSARY.md
-docs/HANDOFF.md
-docs/PLAN.md
-docs/PRINCIPLES.md
-docs/PROGRESS.md
-docs/REVIEW.md
-docs/SCENARIOS.md
-docs/UI-REVIEW.md
-docs/diagrams/README.md
-docs/prototype/README.md
+docs/adr/_overview.md
+docs/architecture/ARCHITECTURE.md
+docs/architecture/diagrams/README.md
+docs/brief/BRIEF.md
+docs/design/DESIGN.md
+docs/design/SCENARIOS.md
+docs/design/prototype/README.md
+docs/handoff/HANDOFF.md
+docs/handoff/PROGRESS.md
+docs/integrations/README.md
+docs/plan/PLAN.md
+docs/principles/PRINCIPLES.md
+docs/problem-to-solution/README.md
+docs/reviews/README.md
 scripts/README.md
-skills/SKILLMAP.md
-skills/commit-message/SKILL.md
-skills/commit-message/tests/prompts.md
-skills/commit-message/tests/trigger-queries.md
-skills/pb-writer/SKILL.md
-skills/pb-writer/references/contributing-writer.md
-skills/pb-writer/references/documentation-writer.md
-skills/pb-writer/references/readme-writer.md
-skills/pb-writer/tests/prompts.md
-skills/pb-writer/tests/trigger-queries.md
-skills/prior-art-research/SKILL.md
-skills/prior-art-research/references/report-template.md
-skills/prior-art-research/references/search-strategy.md
-skills/prior-art-research/tests/prompts.md
-skills/prior-art-research/tests/trigger-queries.md
-skills/skill-creator/SKILL.md
-skills/skill-creator/references/anti-patterns.md
-skills/skill-creator/references/description-patterns.md
-skills/skill-creator/references/skill-template.md
-skills/skill-creator/scripts/validate_skill.py
-skills/skill-creator/tests/prompts.md
-skills/skill-creator/tests/trigger-queries.md
 src/README.md
+tests/README.md
+toolkit/agents/agent.md
+toolkit/agents/architect.md
+toolkit/agents/brief-creator.md
+toolkit/agents/reviewer.md
+toolkit/agents/ui-judge.md
+toolkit/governance/README.md
+toolkit/governance/anti-drift.md
+toolkit/governance/code-style.md
+toolkit/governance/definition-of-done.md
+toolkit/governance/git-workflow.md
+toolkit/skills/SKILLMAP.md
+toolkit/skills/adr-writer/SKILL.md
+toolkit/skills/adr-writer/scripts/new_adr.py
+toolkit/skills/adr-writer/templates/adr.md
+toolkit/skills/adr-writer/templates/overview-row.md
+toolkit/skills/adr-writer/tests/prompts.md
+toolkit/skills/adr-writer/tests/trigger-queries.md
+toolkit/skills/commit-message/SKILL.md
+toolkit/skills/commit-message/tests/prompts.md
+toolkit/skills/commit-message/tests/trigger-queries.md
+toolkit/skills/decision-brief/SKILL.md
+toolkit/skills/decision-brief/templates/decision-brief.md
+toolkit/skills/decision-brief/tests/prompts.md
+toolkit/skills/decision-brief/tests/trigger-queries.md
+toolkit/skills/glossary-keeper/SKILL.md
+toolkit/skills/glossary-keeper/templates/glossary.md
+toolkit/skills/glossary-keeper/tests/prompts.md
+toolkit/skills/glossary-keeper/tests/trigger-queries.md
+toolkit/skills/pb-writer/SKILL.md
+toolkit/skills/pb-writer/references/contributing-writer.md
+toolkit/skills/pb-writer/references/documentation-writer.md
+toolkit/skills/pb-writer/references/readme-writer.md
+toolkit/skills/pb-writer/tests/prompts.md
+toolkit/skills/pb-writer/tests/trigger-queries.md
+toolkit/skills/plain-language/SKILL.md
+toolkit/skills/plain-language/scripts/readability.py
+toolkit/skills/plain-language/tests/prompts.md
+toolkit/skills/plain-language/tests/trigger-queries.md
+toolkit/skills/plan-cards/SKILL.md
+toolkit/skills/plan-cards/templates/card.md
+toolkit/skills/plan-cards/templates/plan-check.md
+toolkit/skills/plan-cards/tests/prompts.md
+toolkit/skills/plan-cards/tests/trigger-queries.md
+toolkit/skills/plan-challenge/SKILL.md
+toolkit/skills/plan-challenge/tests/prompts.md
+toolkit/skills/plan-challenge/tests/trigger-queries.md
+toolkit/skills/principle-writer/SKILL.md
+toolkit/skills/principle-writer/templates/principle.md
+toolkit/skills/principle-writer/tests/prompts.md
+toolkit/skills/principle-writer/tests/trigger-queries.md
+toolkit/skills/prior-art-research/SKILL.md
+toolkit/skills/prior-art-research/references/report-template.md
+toolkit/skills/prior-art-research/references/search-strategy.md
+toolkit/skills/prior-art-research/tests/prompts.md
+toolkit/skills/prior-art-research/tests/trigger-queries.md
+toolkit/skills/skill-creator/SKILL.md
+toolkit/skills/skill-creator/references/anti-patterns.md
+toolkit/skills/skill-creator/references/description-patterns.md
+toolkit/skills/skill-creator/references/skill-template.md
+toolkit/skills/skill-creator/scripts/validate_skill.py
+toolkit/skills/skill-creator/tests/prompts.md
+toolkit/skills/skill-creator/tests/trigger-queries.md
+toolkit/templates/README.md
+toolkit/templates/review.md
+toolkit/templates/ui-review.md
 LISTE
       exit 0 ;;
     -h|--help)
       cat <<'HILFE'
 Projekt-Starter laden
   bash -s mein-projekt                 alle Dateien in den Ordner mein-projekt
-  bash -s -- --datei agents/agent.md    eine Datei (mehrfach möglich)
+  bash -s -- --datei toolkit/agents/agent.md    eine Datei (mehrfach möglich)
   bash -s -- --liste                   alle ladbaren Dateien anzeigen
 HILFE
       exit 0 ;;

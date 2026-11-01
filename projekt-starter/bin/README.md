@@ -4,7 +4,7 @@ Befehle, die man direkt aufruft. Jede Datei ist ausführbar und erklärt sich mi
 
 | Befehl            | Was er tut                                   |
 |-------------------|----------------------------------------------|
-| bin/new-skill     | legt skills/<name>/ mit Gerüst und Tests an  |
+| bin/new-skill     | legt toolkit/skills/<name>/ mit Gerüst und Tests an  |
 | bin/check-skills  | prüft alle Skills mit dem Prüfskript         |
 
 Regeln: kurze Befehle für den Alltag hierher. Längere oder seltene Abläufe gehören in

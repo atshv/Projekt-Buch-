@@ -12,14 +12,16 @@ Ein leeres, wiederverwendbares Gerüst für Projekte mit KI-Unterstützung.
 ## Inhalt
 AGENTS.md            immer geladene Grundregeln
 START-PROMPTS.md     fertige Startsätze
-agents/              Rollen: brief-creator, architect, agent, reviewer, ui-judge
-skills/              SKILLMAP.md, skill-creator, pb-writer, prior-art-research, commit-message
-docs/                Vorlagen: BRIEF, PRINCIPLES, ARCHITECTURE, GLOSSARY, PLAN, DECISIONS,
-                     HANDOFF, REVIEW, PROGRESS, DESIGN, SCENARIOS, UI-REVIEW,
-                     prototype/ und diagrams/
-brand/               BRAND.md: Name, Logo, Farben, Schrift, Ton
-bin/                 new-skill, check-skills (direkt aufrufbar)
-scripts/             Hilfsskripte des Projekts
-src/                 der Code
+toolkit/             in jedem Projekt gleich, nicht verändern
+  agents/            brief-creator, architect, agent, reviewer, ui-judge
+  skills/            SKILLMAP.md und alle Skills
+  governance/        code-style, git-workflow, anti-drift, definition-of-done
+  templates/         Vorlagen für Prüfberichte
+docs/                nur dieses Projekt
+  GLOSSARY.md        ein Begriff, ein Name im Code
+  brief/ principles/ architecture/ adr/ integrations/ problem-to-solution/
+  plan/ design/ handoff/ reviews/
+brand/ bin/ scripts/ src/ tests/
 
 Die Dateien sind projektunabhängig. Passe nur die eckigen Klammern an.
+Update des Werkzeugs: toolkit/ ersetzen, docs/ bleibt unberührt.

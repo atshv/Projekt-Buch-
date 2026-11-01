@@ -10,9 +10,9 @@ NAME="$1"
 if ! echo "$NAME" | grep -Eq '^[a-z0-9]+(-[a-z0-9]+)*$'; then
   echo "Ungültiger Name: nur a-z, 0-9, Bindestrich"; exit 1
 fi
-DIR="skills/$NAME"
+DIR="toolkit/skills/$NAME"
 [ -e "$DIR" ] && { echo "Gibt es schon: $DIR"; exit 1; }
-mkdir -p "$DIR/references" "$DIR/tests"
+mkdir -p "$DIR/tests"
 cat > "$DIR/SKILL.md" <<SKILL
 ---
 name: $NAME
@@ -22,26 +22,34 @@ description: [Was der Skill tut, 1 Satz]. Nutze diesen Skill, wenn [Situationen]
 
 # $NAME
 
-[Zweck in einem Satz.]
+[Zweck in 1 bis 2 Sätzen.]
+
+## Kurzstart
+- Wann: [..]
+- Ergebnis: [Datei, Ort, Name]
+- Schnellweg: [..]
+
+## Benötigte Eingaben
+- [..]
 
 ## Ablauf
 1. [Verb] [Objekt]. Ergebnis: [überprüfbar].
 2. [Verb] [Objekt]. Ergebnis: [überprüfbar].
 
-## Ausgabeformat
-\`\`\`text
-[Vorlage]
-\`\`\`
+## Ausgabe
+- [Ort, Dateiname, Chat-Meldung]
 
-## Regeln
-- Tue nie [..], weil [..]. Stattdessen: [..].
-
-## Prüfen
+## Qualitätstor
 - [ ] [..]
+
+## Verwandte Skills
+- [..]
+
+## Nicht tun
+- Nie [..], weil [..]. Stattdessen: [..].
 SKILL
 printf '# Testaufträge\n1. [realistischer Auftrag]\n2. [..]\n3. [..]\n' > "$DIR/tests/prompts.md"
 printf '# Auslösesätze\nJA: [..]\nNEIN: [..]\n' > "$DIR/tests/trigger-queries.md"
-rmdir "$DIR/references" 2>/dev/null || true
 echo "Angelegt: $DIR"
-echo "Weiter: Platzhalter ausfüllen (oder skills/skill-creator/SKILL.md nutzen),"
-echo "        Zeile in skills/SKILLMAP.md ergänzen, dann bin/check-skills"
+echo "Weiter: Platzhalter ausfüllen (oder toolkit/skills/skill-creator/SKILL.md nutzen),"
+echo "        Zeile in toolkit/skills/SKILLMAP.md ergänzen, dann bin/check-skills"

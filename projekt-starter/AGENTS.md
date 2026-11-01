@@ -1,7 +1,7 @@
 # AGENTS.md
 
 Diese Datei wird in JEDER Sitzung zuerst gelesen. Sie ist kurz (Ziel: unter 100 Zeilen).
-Details stehen in docs/ und skills/. Hier steht nur, was immer gelten muss.
+Details stehen in toolkit/ (gleich in jedem Projekt) und docs/ (nur dieses Projekt).
 
 ## 1. Projekt
 - Name: [PROJEKTNAME]
@@ -11,84 +11,70 @@ Details stehen in docs/ und skills/. Hier steht nur, was immer gelten muss.
 - Wissensstand des Menschen: [z. B. "programmiert nicht"]. Erkläre Ergebnisse passend dazu.
 
 ## 2. Lies zuerst (in dieser Reihenfolge)
-1. docs/HANDOFF.md      aktueller Stand, nächster Schritt (immer)
-2. docs/PLAN.md         Aufgabenliste mit IDs (immer)
-3. docs/ARCHITECTURE.md Struktur und Regeln (bei Struktur- oder Designfragen)
-4. docs/DECISIONS.md    warum etwas so entschieden wurde (vor jeder Änderung an Grundlagen)
-   docs/PRINCIPLES.md   Grundsätze, an denen alles gemessen wird
-   docs/GLOSSARY.md     Begriffe und Namen im Code (bevor du etwas benennst)
-5. docs/BRIEF.md        Anforderungen, nur bei Unklarheit über das Ziel
+1. docs/handoff/HANDOFF.md            aktueller Stand, nächster Schritt (immer)
+2. docs/plan/PLAN.md                  Aufgabenkarten mit IDs (immer)
+3. docs/GLOSSARY.md                   Begriffe und Namen im Code (bevor du etwas benennst)
+4. docs/architecture/ARCHITECTURE.md  Struktur und Regeln (bei Struktur- oder Designfragen)
+5. docs/principles/PRINCIPLES.md      Grundsätze, an denen alles gemessen wird
+6. docs/adr/_overview.md              getroffene Entscheidungen (vor Änderungen an Grundlagen)
+7. docs/brief/BRIEF.md                Anforderungen, nur bei Unklarheit über das Ziel
 
 ## 3. Ordner
-agents/ Rollen · skills/ Skills · docs/ Dokumente · brand/ Marke · bin/ Befehle
-scripts/ Hilfsskripte · src/ Code. Neue Ordner nur mit Grund in DECISIONS.md.
+toolkit/   agents/ (Rollen), skills/ (Skills + SKILLMAP.md), governance/ (Regeln), templates/
+docs/      GLOSSARY.md, brief/, principles/, architecture/, adr/, integrations/,
+           problem-to-solution/, research/, plan/, design/, handoff/, reviews/
+brand/ Marke · bin/ Befehle · scripts/ Hilfsskripte · src/ Code · tests/ Tests
+Neue Ordner nur mit Grund in einem ADR (docs/adr/). toolkit/ wird im Projekt nicht verändert.
 
 ## 4. Rollen (eine Sitzung = eine Rolle)
-| Rolle     | Datei                   | Schreibt                               |
-|-----------|-------------------------|----------------------------------------|
-| Brief     | agents/brief-creator.md | docs/BRIEF.md                          |
-| Architect | agents/architect.md     | ARCHITECTURE, PLAN, DECISIONS          |
-| Agent     | agents/agent.md         | Code, Tests, HANDOFF, PROGRESS         |
-| Reviewer  | agents/reviewer.md      | docs/REVIEW.md (ändert keinen Code)    |
-| UI-Judge  | agents/ui-judge.md      | docs/UI-REVIEW.md (nur Prototyp-Sicht) |
-Starte eine Sitzung mit: "Du bist <Rolle>. Lies agents/<datei> und AGENTS.md."
+| Rolle     | Datei                           | Schreibt                                      |
+|-----------|---------------------------------|-----------------------------------------------|
+| Brief     | toolkit/agents/brief-creator.md | docs/brief/BRIEF.md                           |
+| Architect | toolkit/agents/architect.md     | principles, architecture, GLOSSARY, plan, adr |
+| Agent     | toolkit/agents/agent.md         | src/, tests/, docs/handoff/                   |
+| Reviewer  | toolkit/agents/reviewer.md      | docs/reviews/review-NNNN-*.md (kein Code)     |
+| UI-Judge  | toolkit/agents/ui-judge.md      | docs/reviews/ui-review-NNNN.md                |
+Starte eine Sitzung mit: "Du bist <Rolle>. Lies toolkit/agents/<datei> und AGENTS.md."
 
 ## 5. Befehle (trägt der Agent in Karte T01 ein und hält sie aktuell)
 - Installieren: [BEFEHL]
 - Starten:      [BEFEHL]
-- Tests:        [BEFEHL]
+- Tests:        [BEFEHL]     Einzelner Test: [BEFEHL]
 - Lint/Format:  [BEFEHL]
 - Build:        [BEFEHL]
+- Diagramme:    [BEFEHL, z. B. mmdc -i x.mmd -o x.svg]
 Ist ein Befehl unbekannt, trage "[UNKLAR]" ein und frage den Menschen. Rate nie.
 
 ## 6. Regeln (Verbot + Alternative)
 - Ändere nie Dateien ausserhalb der Aufgabe. Alternative: schreibe den Fund in HANDOFF.md.
 - Füge nie neue Abhängigkeiten ohne Rückfrage hinzu. Alternative: nenne 2 Optionen im Chat.
 - Schreibe nie Passwörter, Schlüssel oder Tokens in Dateien. Alternative: .env + .env.example.
-- Lösche nie Daten oder Dateien ohne ausdrückliche Freigabe. Alternative: verschiebe nach _archiv/.
+- Lösche nie Daten oder Dateien ohne Freigabe. Alternative: verschiebe nach _archiv/.
 - Überspringe nie Tests, um "fertig" zu melden. Alternative: melde den Fehler ehrlich.
 - Erfinde nie Fakten über Code, den du nicht gelesen hast. Alternative: lies die Datei.
-- Ändere nie ARCHITECTURE.md als Agent. Alternative: Vorschlag in HANDOFF.md unter "Fragen".
-- Mache nie mehrere Aufgaben gleichzeitig. Eine Aufgaben-ID pro Durchlauf.
+- Ändere nie die Architektur als Agent. Alternative: Vorschlag in HANDOFF.md unter "Fragen".
+- Mache nie mehrere Aufgaben gleichzeitig. Eine Karten-ID pro Durchlauf.
 
-## 7. Code, Tests, Git, Sicherheit (Kurzfassung, Details in agents/agent.md)
-- Code-Stil: KISS, YAGNI, DRY, lesbare Namen, frühe Rückgaben, Kommentare erklären das Warum.
-- Tests: Für jeden geänderten Code Tests ergänzen. Einzelnen Test starten: [BEFEHL].
-  Nach Umbenennen oder Verschieben von Dateien Lint laufen lassen.
-- Git: ein Zweig pro Karte, kleine Commits "T07: ...", vor jedem Commit Tests + Lint grün.
+## 7. Regeln für alle Rollen (toolkit/governance/)
+- code-style.md: KISS, YAGNI, DRY, lesbare Namen, frühe Rückgaben, Warum-Kommentare.
+- git-workflow.md: ein Zweig pro Karte, kleine Commits "T07: ...", Tests + Lint vorher grün.
+- anti-drift.md: nach jeder Karte Plan, Dokumente und Code abgleichen.
+- definition-of-done.md: Checkliste vor "fertig".
 - Sicherheit: [Projektbesonderheiten, z. B. "Kundendaten nie in Logs schreiben"].
 - Unterordner dürfen eine eigene AGENTS.md haben. Es gilt die nächstgelegene Datei.
   Anweisungen des Menschen im Chat gehen allem vor.
 
 ## 8. Skills
-- Skills liegen in skills/<name>/SKILL.md. Lade einen Skill nur, wenn seine Beschreibung passt.
-- Landkarte: skills/SKILLMAP.md (welcher Skill für welche Aufgabe und Rolle).
-- Neuer Skill gewünscht? Nutze skills/skill-creator/SKILL.md.
+- Landkarte: toolkit/skills/SKILLMAP.md (welcher Skill für welche Aufgabe und Rolle).
+- Lade einen Skill nur, wenn seine Beschreibung passt. Neuer Skill: skill-creator.
 
-## 9. Arbeitsablauf pro Aufgabe
-1. Aufgabe aus PLAN.md wählen (erste mit Status "offen" und erfüllten Abhängigkeiten).
-2. Kurz bestätigen: ID, Ziel, betroffene Dateien.
-3. Test zuerst oder zugleich schreiben.
-4. Umsetzen, Tests und Lint laufen lassen.
-5. PLAN.md Status auf "erledigt" setzen, HANDOFF.md und PROGRESS.md aktualisieren.
-6. Stoppen und dem Menschen in 3 Sätzen berichten.
+## 9. Rückverfolgung (alles hängt über IDs zusammen)
+Brief M1 → Grundsatz P01 → Architektur (Modul) → adr-0003 → Karte T05 → Commit "T05: ..."
+→ review-0002 Befund R1 → neue Karte T09. Jede Datei nennt die IDs, auf die sie sich bezieht.
 
 ## 10. Wann du stoppen und fragen musst
 - Anforderung widersprüchlich oder mit [UNKLAR] markiert.
 - Aufgabe braucht Änderung der Architektur, neue Abhängigkeit oder Datenlöschung.
 - Test schlägt nach 3 ehrlichen Versuchen weiter fehl.
-- Kontext wird voll (siehe Abschnitt 11).
-
-## 11. Kontext und Übergabe
-- Arbeite in kleinen Abschnitten. Nach jeder Aufgabe wird HANDOFF.md aktualisiert.
-- Wird die Sitzung lang oder ungenau: HANDOFF.md schreiben, dem Menschen sagen
-  "Bitte neue Sitzung starten", nicht weiterarbeiten.
-- Wichtiges lebt in Dateien, nicht im Chat.
-
-## 12. Definition of Done (für jede Aufgabe)
-- [ ] Verhalten entspricht der Aufgabenkarte in PLAN.md
-- [ ] Tests laufen grün (Befehl aus Abschnitt 5)
-- [ ] Keine unbeteiligten Dateien geändert (git diff geprüft)
-- [ ] HANDOFF.md und PROGRESS.md aktuell
-- [ ] Keine Geheimnisse, keine Debug-Reste im Code
-- [ ] Code-Stil eingehalten, Drift-Abgleich gemacht (agents/agent.md)
+- Kontext wird voll: HANDOFF.md schreiben, "Bitte neue Sitzung starten", nicht weiterarbeiten.
+Wichtiges lebt in Dateien, nicht im Chat.

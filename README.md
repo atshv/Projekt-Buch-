@@ -17,7 +17,7 @@ curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh
 
 # Nur einzelne Dateien laden (in den aktuellen Ordner)
 curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s -- \
-    --datei AGENTS.md --datei agents/architect.md --datei agents/agent.md
+    --datei AGENTS.md --datei toolkit/agents/architect.md --datei toolkit/agents/agent.md
 
 # Alle ladbaren Dateien anzeigen
 curl -fsSL https://raw.githubusercontent.com/atshv/Projekt-Buch-/main/install.sh | bash -s -- --liste
@@ -36,29 +36,38 @@ Ohne Skript: `git clone https://github.com/atshv/Projekt-Buch-.git` und den Ordn
 
 ## <img src="bilder/logo-gruen.svg" height="26" align="top"> Dateien
 
-<p align="center"><img src="bilder/struktur.svg" alt="Struktur"></p>
+<p align="center"><img src="bilder/struktur-v2.svg" alt="Struktur"></p>
 
 ## <img src="bilder/logo-gruen.svg" height="26" align="top"> Rollen
 
 | Rolle | Datei | Schreibt |
 |:--|:--|:--|
-| `brief-creator` | `agents/brief-creator.md` | `docs/BRIEF.md` |
-| `architect` | `agents/architect.md` | ARCHITECTURE, PLAN, DECISIONS |
-| `agent` | `agents/agent.md` | Code, Tests, HANDOFF, PROGRESS |
-| `reviewer` | `agents/reviewer.md` | `docs/REVIEW.md` (kein Code) |
-| `ui-judge` | `agents/ui-judge.md` | `docs/UI-REVIEW.md` (prüft Oberfläche gegen Prototyp) |
-| `skill-creator` | `skills/skill-creator/SKILL.md` | neue Skills |
+| `brief-creator` | `toolkit/agents/brief-creator.md` | `docs/BRIEF.md` |
+| `architect` | `toolkit/agents/architect.md` | ARCHITECTURE, PLAN, DECISIONS |
+| `agent` | `toolkit/agents/agent.md` | Code, Tests, HANDOFF, PROGRESS |
+| `reviewer` | `toolkit/agents/reviewer.md` | `docs/REVIEW.md` (kein Code) |
+| `ui-judge` | `toolkit/agents/ui-judge.md` | `docs/UI-REVIEW.md` (prüft Oberfläche gegen Prototyp) |
+| `skill-creator` | `toolkit/skills/skill-creator/SKILL.md` | neue Skills |
 
 ### Skills
 
-| Skill | Wofür | Referenzen |
-|:--|:--|:--|
-| `skill-creator` | Skills bauen, prüfen, testen | Vorlage, Beschreibungs-Muster, Fehlerliste |
-| `pb-writer` | README, CONTRIBUTING, Doku | readme-writer, contributing-writer, documentation-writer |
-| `prior-art-research` | Was gibt es schon? (arXiv, GitHub) | Suchstrategie, Berichtsvorlage |
-| `commit-message` | Commit-Nachrichten | Muster für eigene Skills |
+Alle Skills haben dasselbe Gerüst: Kurzstart, Benötigte Eingaben, Ablauf, Ausgabe (Ort und Dateiname), Qualitätstor, Verwandte Skills, Nicht tun.
 
-Welcher Skill wann passt: `skills/SKILLMAP.md`.
+| Skill | Wofür | Ergebnis |
+|:--|:--|:--|
+| `plan-challenge` | Plan oder Brief löchern, eine Frage nach der anderen | geklärte Punkte |
+| `principle-writer` | prüfbare Grundsätze festlegen | `docs/principles/PRINCIPLES.md` |
+| `glossary-keeper` | ein Begriff, ein Name im Code | `docs/GLOSSARY.md` |
+| `prior-art-research` | was gibt es schon? (arXiv, GitHub) | `docs/research/<thema>/` |
+| `decision-brief` | Optionen fair vergleichen | `docs/problem-to-solution/` |
+| `adr-writer` | Entscheidungen festhalten (mit Skript) | `docs/adr/adr-0001-….md` |
+| `plan-cards` | Aufgabenkarten schneiden | `docs/plan/PLAN.md` |
+| `commit-message` | Commit-Nachrichten „T07: …“ | Nachricht |
+| `pb-writer` | README, CONTRIBUTING, Doku | `README.md`, `docs/` |
+| `plain-language` | Lesbarkeit messen (mit Skript) | Lesewert + Vorschläge |
+| `skill-creator` | neue Skills bauen und prüfen | `toolkit/skills/<name>/` |
+
+Welcher Skill wann passt: `toolkit/skills/SKILLMAP.md`.
 
 ## <img src="bilder/logo-gruen.svg" height="26" align="top"> Skill anlegen und prüfen
 
