@@ -9,7 +9,7 @@ export function ToastDemo() {
   return (
     <Button
       bg="ui.accent"
-      color="white"
+      color="ui.onAccent"
       onClick={() =>
         toaster.create({
           title: "Gespeichert",

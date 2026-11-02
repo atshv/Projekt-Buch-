@@ -45,6 +45,7 @@ Node.js 20 oder neuer wird gebraucht (Vorgabe von Chakra UI).
 ## Regeln für dieses Gerüst
 
 - **Farben nur über `src/theme.ts`.** Seiten benutzen `ui.bg`, `ui.text`, `ui.accent` usw., nie `#1F5C43`.
+  Jeder Wert hat zwei Fassungen: `base` (hell) und `_dark` (dunkel).
 - **Neue Bausteine holen, nicht nachbauen:** Toaster, Tooltip und Feld sind schon da. Weitere
   holst du mit `npx @chakra-ui/cli snippet add <name>` – sie landen in `src/components/ui/`.
 - **`dev` und `build` laufen mit `--webpack`.** Turbopack setzt das CSS von Emotion (Chakra UI)
