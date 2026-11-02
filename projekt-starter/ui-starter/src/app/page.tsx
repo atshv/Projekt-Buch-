@@ -12,13 +12,16 @@ import {
   Text,
 } from "@chakra-ui/react"
 import { ColorModeButton } from "@/components/ui/color-mode"
+import { Field } from "@/components/ui/field"
+import { Tooltip } from "@/components/ui/tooltip"
+import { ToastDemo } from "@/components/toast-demo"
 
 // Beispielseite: zeigt die Bausteine und die Farbnamen aus src/theme.ts.
 // Ersetze den Inhalt durch deine erste Seite (Karte T01 im Plan).
 const naechsteSchritte = [
   "Farben und Schriften aus docs/design/DESIGN.md in src/theme.ts eintragen.",
   "Diese Seite ersetzen: src/app/page.tsx.",
-  "Neue Bausteine holen: npx @chakra-ui/cli snippet add.",
+  "Weitere Bausteine holen: npx @chakra-ui/cli snippet add <name>.",
 ]
 
 export default function Home() {
@@ -54,18 +57,24 @@ export default function Home() {
             <Text fontWeight="600" mb="4">
               Formular (Beispiel)
             </Text>
-            <Stack gap="3">
-              <Input placeholder="Name der Kundin" aria-label="Name der Kundin" />
+            <Stack gap="4">
+              <Field
+                label="Name der Kundin"
+                helperText="Erscheint später auf dem Angebot."
+                required
+              >
+                <Input placeholder="z. B. Meier Sanitär AG" />
+              </Field>
               <HStack>
-                <Button bg="ui.accent" color="white">
-                  Speichern
-                </Button>
+                <ToastDemo />
                 <Button variant="outline" borderColor="ui.border">
                   Abbrechen
                 </Button>
-                <Button variant="ghost" color="ui.textMuted">
-                  Mehr
-                </Button>
+                <Tooltip content="Weitere Aktionen" showArrow>
+                  <Button variant="ghost" color="ui.textMuted">
+                    Mehr
+                  </Button>
+                </Tooltip>
               </HStack>
             </Stack>
           </Box>

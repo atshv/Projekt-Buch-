@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Provider } from "@/components/ui/provider"
+import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
   title: "UI-Starter",
@@ -13,7 +14,10 @@ export default function RootLayout({
   return (
     <html lang="de" suppressHydrationWarning>
       <body>
-        <Provider>{children}</Provider>
+        <Provider>
+          <Toaster />
+          {children}
+        </Provider>
       </body>
     </html>
   )

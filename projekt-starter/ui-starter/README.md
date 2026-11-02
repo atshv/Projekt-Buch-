@@ -35,14 +35,18 @@ Node.js 20 oder neuer wird gebraucht (Vorgabe von Chakra UI).
 | `src/theme.ts`                | Farbsystem: einzige Stelle mit Farbwerten                         |
 | `src/components/ui/provider.tsx`     | Chakra-System + hell/dunkel (aus `snippet add`)           |
 | `src/components/ui/color-mode.tsx`   | Hell/dunkel umschalten (aus `snippet add`)                |
+| `src/components/ui/toaster.tsx`      | Meldungen oben/unten; `<Toaster />` liegt in `layout.tsx`  |
+| `src/components/ui/tooltip.tsx`      | kurzer Hinweis beim Überfahren oder Fokussieren            |
+| `src/components/ui/field.tsx`        | Feld mit Beschriftung, Hilfetext und Fehlertext            |
+| `src/components/toast-demo.tsx`      | Beispiel: Client-Komponente, die einen Toast auslöst       |
 | `next.config.ts`              | lädt nur benutzte Chakra-Bausteine (`optimizePackageImports`)     |
 | `tsconfig.json`               | Pfad `@/*` → `src/*`, wie in der Anleitung verlangt               |
 
 ## Regeln für dieses Gerüst
 
 - **Farben nur über `src/theme.ts`.** Seiten benutzen `ui.bg`, `ui.text`, `ui.accent` usw., nie `#1F5C43`.
-- **Neue Bausteine holen, nicht nachbauen:** `npx @chakra-ui/cli snippet add` legt weitere Bausteine
-  in `src/components/ui/` ab (z. B. `toaster`, `tooltip`, `field`).
+- **Neue Bausteine holen, nicht nachbauen:** Toaster, Tooltip und Feld sind schon da. Weitere
+  holst du mit `npx @chakra-ui/cli snippet add <name>` – sie landen in `src/components/ui/`.
 - **`dev` und `build` laufen mit `--webpack`.** Turbopack setzt das CSS von Emotion (Chakra UI)
   im Browser falsch zusammen; die Anleitung nennt das „Hydration errors (Turbopack)“.
 - **Kein Streaming in Phase 1.** Wer `<Suspense>` nutzt, braucht zusätzlich die

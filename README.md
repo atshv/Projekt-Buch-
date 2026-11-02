@@ -41,7 +41,8 @@ Ohne Skript: `git clone https://github.com/atshv/Projekt-Buch-.git` und den Ordn
 
 Braucht dein Projekt eine Oberfläche, lade zusätzlich den **UI-Starter**: Next.js 16 mit
 [Chakra UI 3](https://chakra-ui.com/docs/get-started/installation), eigenem Farbsystem und einer
-Beispielseite. Fertige Bausteine statt eigener Knöpfe, Tastaturbedienung und Kontrast inklusive.
+Beispielseite. Fertige Bausteine für Knopf, Feld, Tooltip und Toast statt eigener Knöpfe –
+Tastaturbedienung und Kontrast inklusive.
 
 ```console
 # im Projektordner, nach dem Starter
